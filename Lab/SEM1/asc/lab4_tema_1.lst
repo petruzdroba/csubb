@@ -1,0 +1,70 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13                                      ; ex 4
+    14                                      
+    15                                      ;Se da octetul A. Sa se obtina numarul intreg n reprezentat de bitii 2-4 ai lui A. Sa se obtina apoi in B octetul rezultat prin rotirea spre dreapta a lui A cu n pozitii. Sa se ;obtina dublucuvantul C:
+    16                                      ;bitii 8-15 ai lui C sunt 0
+    17                                      ;bitii 16-23 ai lui C coincid cu bitii lui B
+    18                                      ;bitii 24-31 ai lui C coincid cu bitii lui A
+    19                                      ;bitii 0-7 ai lui C sunt 1
+    20                                      
+    21                                      ; a - byte, b - byte, c - dword
+    22 00000000 9F                          a db 9fh
+    23 00000001 <res 00000001>              n resb 1
+    24 00000002 <res 00000001>              b resb 1
+    25 00000003 <res 00000004>              c resd 1
+    26                                      
+    27                                  ; our code starts here
+    28                                  segment code use32 class=code
+    29                                      start:
+    30                                          ; se obtine n , nr intreg care este reprezentat de bitii 2-4 ai lui
+    31                                          
+    32 00000000 A0[00000000]                    mov al,[a]
+    33 00000005 241C                            and al, 0001_1100b
+    34 00000007 C0E802                          shr al, 2   ; se elimina cei doi biti extra de pe poz 0-1
+    35 0000000A A2[01000000]                    mov [n],al 
+    36                                          
+    37                                          
+    38                                          ; sa se obt in b rotirea spre dreapta a lui a cu n pozitii
+    39                                          ;folosim registrul bl pt aceasta operatie
+    40                                          
+    41 0000000F 8A1D[00000000]                  mov bl, [a]
+    42 00000015 8A0D[01000000]                  mov cl, [n]
+    43 0000001B D2CB                            ror bl, cl  ;rotim a spre dreapta cu n = CL biti
+    44 0000001D 881D[02000000]                  mov [b], bl
+    45                                          
+    46                                          
+    47                                          ; utilizez stiva ca sa formez dword C in registrul EAX
+    48                                          ;forma AAAA_AAAA_BBBB_BBBB_0000_0000_1111_1111b
+    49                                          
+    50                                          ;formez DX - partea high in DX:AX
+    51                                          ; DH - bitii lui [a]  DL - bitii lui [b]
+    52 00000023 8A35[00000000]                  mov dh, [a]
+    53 00000029 8A15[02000000]                  mov dl, [b]
+    54                                          
+    55                                          ;formez AX - partea low in DX:AX
+    56                                          ; AH - zerorizata , AL - numai 1
+    57 0000002F B400                            mov ah, 0
+    58 00000031 B0FF                            mov al, 0ffh
+    59                                          
+    60                                          ;utilizez stiva
+    61 00000033 6652                            push dx
+    62 00000035 6650                            push ax
+    63 00000037 58                              pop eax
+    64                                          
+    65 00000038 A3[03000000]                    mov [c], eax
+    66                                          
+    67                                      
+    68                                          ; exit(0)
+    69 0000003D 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    70 0000003F FF15[00000000]                  call    [exit]       ; call exit to terminate the program

@@ -1,0 +1,36 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  
+     4                                  extern exit
+     5                                  import exit msvcrt.dll
+     6                                  
+     7                                  segment data use32 class=data
+     8 00000000 616263646566                s db 'abcdef'
+     9                                      len equ $-s
+    10 00000006 00<rept>                    d times len db 0
+    11                                      
+    12                                  ; Se da un sir de caractere s.
+    13                                  ; Se cere sirul de caractere d obtinut prin copierea sirului s.
+    14                                  segment code use32 class=code
+    15                                      start:
+    16 00000000 B906000000                      mov ecx, len
+    17 00000005 83F900                          cmp ecx, 0
+    18 00000008 0F8492000000                    je final
+    19                                          ;jecxz final
+    20 0000000E 90<rept>                        times 128 nop
+    21                                          
+    22 0000008E BE[00000000]                    mov esi, s
+    23 00000093 BF[06000000]                    mov edi, d
+    24                                          
+    25                                          repeta:
+    26 00000098 8A06                                mov al, [esi]
+    27 0000009A 8807                                mov [edi], al
+    28                                              
+    29 0000009C 46                                  inc esi
+    30 0000009D 47                                  inc edi
+    31 0000009E E2F8                            loop repeta
+    32                                          
+    33                                          final:
+    34                                          ; exit(0)
+    35 000000A0 6A00                            push dword 0        ; push the parameter for exit onto the stack
+    36 000000A2 FF15[00000000]                  call [exit]         ; call exit to terminate the program

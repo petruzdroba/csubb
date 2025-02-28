@@ -1,0 +1,54 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  
+     4                                  extern exit, scanf, printf
+     5                                  import exit msvcrt.dll
+     6                                  import scanf msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  
+     9                                  segment data use32 class=data
+    10 00000000 256400                      formatc db '%d', 0
+    11 00000003 00000000                    n dd 0
+    12 00000007 00000000<rept>              s times 100 dd 0
+    13                                      
+    14                                  ; Cititi de la tastatura si afisati un sir de numere intregi.
+    15                                  ; (citirea se termina atunci cand utilizatorul introduce numarul ZERO)
+    16                                  segment code use32 class=code
+    17                                      start:
+    18 00000000 BF[07000000]                    mov edi, s
+    19 00000005 FC                              cld
+    20                                          
+    21                                          repeta:
+    22 00000006 68[03000000]                        push dword n
+    23 0000000B 68[00000000]                        push dword formatc
+    24 00000010 FF15[00000000]                      call [scanf]
+    25 00000016 83C408                              add esp, 4*2
+    26                                              
+    27 00000019 A1[03000000]                        mov eax, [n]
+    28 0000001E AB                                  stosd
+    29                                              
+    30 0000001F 83F800                              cmp eax, 0
+    31 00000022 7402                                je skip
+    32                                              
+    33 00000024 EBE0                                jmp repeta
+    34                                      
+    35                                          skip:
+    36                                          
+    37 00000026 BE[07000000]                    mov esi, s
+    38                                          repeta2:
+    39 0000002B AD                                  lodsd
+    40 0000002C 83F800                              cmp eax, 0
+    41 0000002F 7411                                je skip2
+    42                                              
+    43 00000031 50                                  push eax
+    44 00000032 68[00000000]                        push dword formatc
+    45                                              
+    46 00000037 FF15[00000000]                      call[printf]
+    47 0000003D 83C408                              add esp, 4*2
+    48                                              
+    49 00000040 EBE9                                jmp repeta2
+    50                                             
+    51                                          skip2:
+    52                                              
+    53 00000042 6A00                            push dword 0        ; push the parameter for exit onto the stack
+    54 00000044 FF15[00000000]                  call [exit]         ; call exit to terminate the program

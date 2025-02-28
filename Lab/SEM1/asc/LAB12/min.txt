@@ -1,0 +1,1 @@
+Minimul în baza 16 este: ffffffff

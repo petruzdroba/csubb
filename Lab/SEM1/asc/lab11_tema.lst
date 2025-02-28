@@ -1,0 +1,93 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit,scanf, fopen,fprintf, fclose              ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                  import scanf msvcrt.dll
+    10                                  import fopen msvcrt.dll  
+    11                                  import fprintf msvcrt.dll
+    12                                  import fclose msvcrt.dll
+    13                                  
+    14                                  ; our data is declared here (the variables needed by our program)
+    15                                  segment data use32 class=data
+    16                                      ;26
+    17                                      ;Se citeste de la tastatura un sir de numere in baza 10, cu semn, pana la valoarea 0.
+    18                                      ;Sa se determine valoarea minima din sir si sa se afiseze in fisierul min.txt (fisierul va fi creat)
+    19                                      ;valoarea minima, in baza 16.
+    20                                      
+    21 00000000 6D696E2E74787400            nume_fisier db 'min.txt', 0
+    22 00000008 7700                        mod_acces db 'w',0
+    23 0000000A FFFFFFFF                    descriptor dd -1
+    24                                      
+    25 0000000E 256400                      formatc db '%d', 0
+    26 00000011 257800                      formats db '%x', 0
+    27                                      
+    28 00000014 00000000                    n dd 0
+    29 00000018 00000000<rept>              s times 100 dd 0
+    30                                  
+    31                                  ; our code starts here
+    32                                  segment code use32 class=code
+    33                                      compara:
+    34 00000000 39C3                            cmp ebx, eax
+    35 00000002 7E02                            jle .done
+    36 00000004 89C3                            mov ebx, eax
+    37                                          .done:
+    38 00000006 C3                                  ret
+    39                                      start:
+    40 00000007 BF[18000000]                    mov edi , s
+    41 0000000C FC                              cld
+    42                                          ;citirea sirului
+    43                                          repeta:
+    44 0000000D 68[14000000]                        push dword n
+    45 00000012 68[0E000000]                        push dword formatc
+    46 00000017 FF15[00000000]                      call [scanf]
+    47 0000001D 83C408                              add esp, 4*2
+    48                                              
+    49 00000020 A1[14000000]                        mov eax, [n]
+    50 00000025 AB                                  stosd
+    51                                              
+    52 00000026 83F800                              cmp eax, 0
+    53 00000029 7402                                je skip
+    54                                              
+    55 0000002B EBE0                            jmp repeta
+    56                                          skip:
+    57 0000002D BE[18000000]                        mov esi, s
+    58 00000032 8B1D[18000000]                      mov ebx, [s]    ;punem in EBX primul numar din sir
+    59                                              
+    60                                              repeta2:
+    61 00000038 AD                                      lodsd
+    62 00000039 83F800                                  cmp eax, 0
+    63 0000003C 7407                                    je skip2
+    64                                                  
+    65 0000003E E8BDFFFFFF                              call compara    ; in ebx va fi returnat numarul mai mic
+    66 00000043 EBF3                                jmp repeta2
+    67                                              skip2:
+    68                                                  ;in EBX se afla acum cel mai mic numar din sir
+    69                                                  
+    70                                                  ;creem si deshidem fisierul destinatie
+    71 00000045 68[08000000]                            push dword mod_acces
+    72 0000004A 68[00000000]                            push dword nume_fisier
+    73 0000004F FF15[00000000]                          call [fopen]
+    74                                                  
+    75 00000055 83C408                                  add esp, 4*2
+    76                                                  
+    77 00000058 A3[0A000000]                            mov [descriptor], eax
+    78 0000005D 83F800                                  cmp eax, 0
+    79 00000060 7415                                    je final
+    80                                                  
+    81                                                  ;scriem in fisier rezultatul din ebx
+    82                                                  
+    83 00000062 53                                      push ebx
+    84 00000063 68[11000000]                            push formats
+    85 00000068 FF35[0A000000]                          push dword [descriptor]
+    86 0000006E FF15[00000000]                          call[fprintf]
+    87                                              
+    88 00000074 83C40C                                  add esp, 4*3
+    89                                                  
+    90                                                  final:
+    91                                          ; exit(0)
+    92 00000077 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    93 00000079 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

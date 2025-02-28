@@ -1,0 +1,12 @@
+1,corp iluminat,lampa,300,99.0
+C110,corp iluminat,Lampa Venetia,12,501.0
+C111,canapea,Canapea Venetia,12,502.0
+C112,corp iluminat,Lampa Milano,13,503.0
+C113,scaun,Scaun Dortmund,12,504.0
+C114,corp iluminat,Lampa Palermo,12,505.0
+C115,spatiu depozitare,Depozit Londra,12,506.0
+C116,scaun,Scaun Venetia,12,507.0
+C117,spatiu depozitare,Depozit Amsterdam,12,508.0
+C118,corp iluminat,Lampa Napoli,12,509.0
+C119,canapea,Canapea Chicago,12,520.0
+2,canapea,Canapea Cluj,10,2000.0

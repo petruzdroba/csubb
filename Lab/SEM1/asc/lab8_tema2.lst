@@ -1,0 +1,106 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit,scanf, fopen,fprintf, fclose              ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                  import scanf msvcrt.dll
+    10                                  import fopen msvcrt.dll  
+    11                                  import fprintf msvcrt.dll
+    12                                  import fclose msvcrt.dll
+    13                                  
+    14                                  ; our data is declared here (the variables needed by our program)
+    15                                  segment data use32 class=data
+    16                                      ;17
+    17                                      ;Se da un nume de fisier (definit in segmentul de date).
+    18                                      ;Sa se creeze un fisier cu numele dat, apoi sa se citeasca de la tastatura numere si sa se scrie din valorile citite in fisier numerele divizibile cu 7, pana cand se citeste de la tastatura valoarea 0.
+    19                                      
+    20 00000000 726573756C742E7478-         nume_fisier db 'result.txt', 0
+    20 00000009 7400               
+    21 0000000B 6100                        mod_acces db 'a', 0     ;append deoarece vom trece prin sir, si vom adauga la finalul fisierului fiecare numar
+    22 0000000D FFFFFFFF                    descriptor dd -1
+    23                                      
+    24 00000011 256400                      formatc db '%d', 0  ;formatul de citire
+    25 00000014 25642000                    formats db '%d ',0  ;format de afisare
+    26 00000018 00000000                    n dd 0              ; numarul care este citit
+    27 0000001C 00000000<rept>              s times 100 dd 0    ;sirul unde numerele vor fi salvate daca sunt divizibile cu 7
+    28                                  
+    29                                  ; our code starts here
+    30                                  segment code use32 class=code
+    31                                      start:
+    32 00000000 BF[1C000000]                    mov edi, s  ;sirul destinatie
+    33 00000005 FC                              cld
+    34                                          
+    35                                          repeta:
+    36 00000006 68[18000000]                        push dword n
+    37 0000000B 68[11000000]                        push dword formatc
+    38 00000010 FF15[00000000]                      call [scanf]
+    39                                              
+    40 00000016 83C408                              add esp, 4*2
+    41                                              
+    42 00000019 A1[18000000]                        mov eax, [n]    ;punem pe n in eax, pentru a utiliza stiva
+    43                                              
+    44 0000001E 50                                  push eax        ; transformam cu ajutorul stivei eax in dx:ax
+    45 0000001F 6658                                pop ax
+    46 00000021 665A                                pop dx
+    47                                              
+    48 00000023 66BB0700                            mov bx, 7
+    49 00000027 66F7F3                              div bx          ; impartim DX:AX la BX, cat - ax si rest - dx
+    50                                              
+    51 0000002A 6683FA00                            cmp dx, 0       ; comparam restul cu 0
+    52 0000002E 750B                                jne skip        ; daca ZF nu e zero, se sare peste numar
+    53                                              
+    54 00000030 A1[18000000]                        mov eax,[n]     ; punem din nou in eax, val lui n, ca sa poate sa fie pusa in sir
+    55 00000035 AB                                  stosd          
+    56                                              
+    57 00000036 83F800                              cmp eax, 0      ;comparam val curenta a lui n cu 0 (aceasta a fost deja adaugata in sir, pt a fi folosita ca 
+    58 00000039 7402                                je skip2        ;conditie de stop)
+    59                                              
+    60                                              skip:
+    61 0000003B EBC9                                jmp repeta
+    62                                          skip2:
+    63                                          
+    64                                          ;creem si deshidem fisierul destinatie
+    65 0000003D 68[0B000000]                    push dword mod_acces
+    66 00000042 68[00000000]                    push dword nume_fisier
+    67 00000047 FF15[00000000]                  call [fopen]
+    68                                          
+    69 0000004D 83C408                          add esp, 4*2
+    70                                          
+    71 00000050 A3[0D000000]                    mov [descriptor], eax   ;salvam descriptor fisier
+    72 00000055 83F800                          cmp eax, 0  ; verificam daca functia fopen a creat cu succes fisierul (daca EAX != 0)
+    73 00000058 7431                            je final
+    74                                          
+    75                                          
+    76                                          ; adaugam/scriem textul in fisierul deschis folosind functia fprintf
+    77                                          ; fprintf(descriptor_fis, text)
+    78 0000005A BE[1C000000]                    mov esi, s  ;sirul sursa
+    79                                          
+    80                                          repeta2:
+    81 0000005F AD                                  lodsd
+    82                                              
+    83 00000060 83F800                              cmp eax, 0
+    84 00000063 7417                                je skip3
+    85                                              
+    86 00000065 50                                  push eax
+    87 00000066 68[14000000]                        push formats
+    88 0000006B FF35[0D000000]                      push dword [descriptor]
+    89 00000071 FF15[00000000]                      call[fprintf]
+    90                                              
+    91 00000077 83C40C                              add esp, 4*3
+    92                                              
+    93 0000007A EBE3                                jmp repeta2
+    94                                          skip3:
+    95                                          
+    96                                          ;apelam functia fclose pentru a inchide fisierul
+    97                                          ; fclose(descriptor_fis)
+    98 0000007C FF35[0D000000]                  push dword [descriptor]
+    99 00000082 FF15[00000000]                  call [fclose]
+   100 00000088 83C404                          add esp, 4
+   101                                          
+   102                                          final:
+   103                                          ; exit(0)
+   104 0000008B 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+   105 0000008D FF15[00000000]                  call    [exit]       ; call exit to terminate the program

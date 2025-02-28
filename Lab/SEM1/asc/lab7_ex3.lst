@@ -1,0 +1,50 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  
+     4                                  extern exit
+     5                                  import exit msvcrt.dll
+     6                                  
+     7                                  segment data use32 class=data
+     8 00000000 04000600CD89                s1 dw 4h, 6, 89cdh
+     9                                      ls equ ($-s1)/2
+    10 00000006 452378566745                s2 dw 2345h, 5678h, 4567h
+    11 0000000C 00<rept>                    d times ls db 0
+    12                                  
+    13                                  ; Se dau doua siruri de cuvinte s1 si s2.
+    14                                  ; Se cere sirul de cuvinte d obtinut in interpretarea cu semn, astfel:
+    15                                  ; - d[i] = s1[i], daca s1[i] > s2[i]
+    16                                  ; - d[i] = s2[i], altfel.
+    17                                  segment code use32 class=code
+    18                                      start:
+    19 00000000 B903000000                      mov ecx, ls
+    20 00000005 E32C                            jecxz final
+    21                                          
+    22 00000007 BE[00000000]                    mov esi, s1
+    23 0000000C BF[0C000000]                    mov edi, d
+    24                                          
+    25 00000011 FC                              cld
+    26                                          
+    27 00000012 F366A5                          rep movsw
+    28                                          
+    29 00000015 B903000000                      mov ecx, ls
+    30 0000001A E317                            jecxz final
+    31                                          
+    32 0000001C BE[06000000]                    mov esi, s2
+    33 00000021 BF[0C000000]                    mov edi, d
+    34                                          
+    35                                          repeta:
+    36 00000026 66AD                                lodsw
+    37                                              
+    38 00000028 66AF                                scasw
+    39 0000002A 7E05                                jle next
+    40                                              
+    41 0000002C 83EF02                              sub edi,2
+    42 0000002F 66AB                                stosw
+    43                                              
+    44                                              next:
+    45 00000031 E2F3                            loop repeta
+    46                                          
+    47                                          
+    48                                          final:
+    49 00000033 6A00                            push dword 0
+    50 00000035 FF15[00000000]                  call [exit]

@@ -1,0 +1,12 @@
+problema 7
+fara math.h
+
+Cu divide and conquer and epsilon
+
+7. Calculeaza o valoare aproximativa a radacinii patrate a unui numar
+   real pozitiv, cu o precizie data.
+
+   Sa se scrie un program C pentru unul dintre urmatoarele probleme.
+Aplicatia ofera un mic meniu pentru a efectua repetat operatia ceruta.
+Programul trebuie sa contina cel putin 2 functii. (functia main+ 1,2 functii)
+Fiecare funtie trebuie specificata. Specificatia contine: a scurta descriere, descrierea parametrilor, conditii impuse asupra datelor de intrare (preconditii), descriere rezultatului (post conditii)

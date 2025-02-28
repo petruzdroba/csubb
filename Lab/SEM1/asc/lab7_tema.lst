@@ -1,0 +1,78 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13                                      ;ex 14
+    14                                      ;Se da un sir S de dublucuvinte.
+    15                                      ;Sa se obtina sirul D format din octetii dublucuvintelor din sirul D 
+    16                                      ;sortati in ordine crescatoare in interpretarea fara semn.
+    17                                      
+    18 00000000 07563412153C2B1A            s DD 12345607h, 1A2B3C15h
+    19                                      ls equ $-s
+    20 00000008 00<rept>                    d times ls db 0
+    21                                  
+    22                                  ; our code starts here
+    23                                  segment code use32 class=code
+    24                                      start:
+    25                                          ; traversam s pe octeti si ii punem in d, dupa sortam d
+    26                                          
+    27                                          ; copierea octetilor din s in d
+    28 00000000 B908000000                      mov ecx, ls
+    29 00000005 E33C                            jecxz final
+    30                                          
+    31 00000007 FC                              cld
+    32                                          
+    33 00000008 BE[00000000]                    mov esi, s
+    34 0000000D BF[08000000]                    mov edi, d
+    35                                          
+    36 00000012 F3A4                            rep movsb
+    37                                          
+    38                                          ; sortarea octetilor din d in ordine crescatoare
+    39                                          ;utilizand metoda sortarii in loc
+    40                                          
+    41 00000014 B908000000                      mov ecx, ls
+    42 00000019 49                              dec ecx     ;decrementam 0 <= index < lungime -1
+    43 0000001A E327                            jecxz final
+    44                                          
+    45 0000001C BE[08000000]                    mov esi, d ;Sirul sursa va fi d, care contine octetii din s
+    46                                          
+    47                                          repeta_1:
+    48 00000021 51                                  push ecx    ;punem ECX = ls pe stiva, pentru a utiliza ecx in urmatoarea struct repetitiva
+    49                                              
+    50 00000022 8A06                                mov al, [esi]   ;valoarea curenta din d
+    51                                              
+    52 00000024 BB01000000                          mov ebx, 1      ;index2 = index1 + 1
+    53                                              repeta_2:
+    54 00000029 8A141E                                  mov dl, [esi + ebx]     ;valoarile care urmeaza dupa index1
+    55                                                  
+    56 0000002C 38D0                                    cmp al,dl       ;comparam val de pe index1 cu restul valorilor de dupa
+    57 0000002E 7207                                    jb skip_swap    ;jump if below
+    58                                                  
+    59                                                  ;swap
+    60 00000030 88041E                                  mov [esi + ebx], al
+    61 00000033 8816                                    mov [esi], dl
+    62 00000035 88D0                                    mov al, dl  ;se mai poate folosi xchg
+    63                                                  
+    64                                                  skip_swap:
+    65 00000037 43                                          inc ebx     ;sarim la urmatorul element
+    66 00000038 83FB08                                      cmp ebx, ls    ;verificam index2 <= ls
+    67 0000003B 7402                                        je next
+    68 0000003D E2EA                                loop repeta_2
+    69                                              
+    70                                              next:
+    71 0000003F 46                                      inc esi     ;index1 trece la urmatorul element
+    72 00000040 59                                      pop ecx     ; reinitializam ecx
+    73 00000041 E2DE                            loop repeta_1
+    74                                          
+    75                                          final:
+    76                                          ; exit(0)
+    77 00000043 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    78 00000045 FF15[00000000]                  call    [exit]       ; call exit to terminate the program
