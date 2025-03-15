@@ -1,0 +1,21 @@
+[2025-03-15 18:47:37] [info] Start Program:
+Path:"C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab4\lab4\x64\Debug\lab4.exe"
+Arguments:
+Working directory: "C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab4\lab4\lab4\"
+Modules: Selected: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab4\lab4\x64\Debug\lab4.exe Excluded: 
+Sources: Selected: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab2-3\lab2-3 C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab4\lab4\lab4 Excluded: teste.c main.c ui.c 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: Binary C:\Users\Petru\AppData\Local\Temp\lbndq13o.oqr 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2025-03-15 18:47:37] [info] Module: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab4\lab4\x64\Debug\lab4.exe is selected because it matches selected pattern: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab4\lab4\x64\Debug\lab4.exe
+[2025-03-15 18:47:39] [info] ----------------------------------------------------
+[2025-03-15 18:47:39] [info] Coverage binary generated in file: C:\Users\Petru\AppData\Local\Temp\lbndq13o.oqr
+[2025-03-15 18:47:39] [info] ----------------------------------------------------
