@@ -35,19 +35,19 @@ int stergereMedicament(ListaMedicamente *farmacie, int cod);
         -1 , obiectul a fost sters cu success
 */
 
-ListaMedicamente sortCrescatorNume(ListaMedicamente *farmacie);
+ListaMedicamente sortCrescatorNume(ListaMedicamente *farmacie, int(* comparaNume)(const void *a,const void *b));
 /*
     Functie care returneaza lista farmacie sortata alfabetic
     return: o noua lista care este sortata dupa prima litera a numelui
 */
 
-ListaMedicamente sortCantitateCrescator(ListaMedicamente *farmacie);
+ListaMedicamente sortCantitateCrescator(ListaMedicamente *farmacie, int(* compareCantitateCrescator)(const void *a, const void *b));
 /*
     Functie care returneaza lista farmacie sortata cresc dupa cantitate
     return: o noua lista care este sortata dupa cantitate
 */
 
-ListaMedicamente sortCantitateDescrescator(ListaMedicamente *farmacie);
+ListaMedicamente sortCantitateDescrescator(ListaMedicamente *farmacie, int (* compareCantitateDescrescator)(const void *a, const void * b));
 /*
     Functie care returneaza lista farmacie sortata desc dupa cantitate
     return: o noua lista care este sortata dupa cantitate

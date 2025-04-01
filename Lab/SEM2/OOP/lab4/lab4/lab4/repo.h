@@ -4,7 +4,7 @@
 
 typedef struct
 {
-    Medicament medicamente[101];
+    Medicament *medicamente;
     int lungime;
     int capacitate;
 } ListaMedicamente;
@@ -40,7 +40,7 @@ int modificareMedicamentRepo(ListaMedicamente *farmacie, Medicament *medicament)
         - 0, codul medicamentului nu exista
 */
 
-int stergereMedicamentRepo(ListaMedicamente *farmacie, int cod);
+int stergereMedicamentRepo(ListaMedicamente *farmacie, int pozitie);
 /*
     Functie care sterge un medicament din lista
         medicament : Medicametn
@@ -48,3 +48,11 @@ int stergereMedicamentRepo(ListaMedicamente *farmacie, int cod);
         - 1, medicamentul a fost sters cu succes
         - 0, codul medicamentului nu exista
 */
+
+void redimensionareLista(ListaMedicamente* farmacie);
+
+int compareName( const Medicament* a, const Medicament* b);
+
+int compareCantitateCrescator(const Medicament* a, const Medicament* b);
+
+int compareCantitateDescrescator(const Medicament* a, const Medicament* b);

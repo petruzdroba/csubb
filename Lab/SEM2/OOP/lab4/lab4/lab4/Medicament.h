@@ -4,12 +4,12 @@
 typedef struct
 {
     int cod;
-    char *nume;
+    char nume[30];
     int cantitate;
     int concentratie;
 } Medicament;
 
-Medicament *constructorMedicament(int cod, const char *nume, int cantitate, int concentratie);
+Medicament *constructorMedicament(int cod,const char *nume, int cantitate, int concentratie);
 /*
     Functie care creeeaza un medicament
         cod: int > 0
@@ -19,7 +19,7 @@ Medicament *constructorMedicament(int cod, const char *nume, int cantitate, int 
     return: un struct de tipul medicament cu informatiile date
 */
 
-int validareMedicament(int cod, const char *nume, int cantitate, int concentratie);
+int validareMedicament(int cod,const char *nume, int cantitate, int concentratie);
 /*
     Functie care valideaza un medicament
         cod: int > 0

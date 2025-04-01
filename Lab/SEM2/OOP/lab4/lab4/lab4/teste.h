@@ -26,4 +26,6 @@ void testFiltrareCantitate();
 
 void testFiltrareAlpha();
 
+void testRedimensionareLista();
+
 void runAllTests();

@@ -23,6 +23,7 @@ void testConstructorMedicament()
     assert(medicament->concentratie != 999);
 
     eliminaMedicament(medicament);
+    free(medicament);
 }
 
 void testEliminareMedicament()
@@ -45,8 +46,7 @@ void testValidareMedicament()
 
 void testConstructorListaMedicamente()
 {
-    ListaMedicamente testFarmacie;
-    testFarmacie = constructorListaMedicamente();
+    ListaMedicamente testFarmacie = constructorListaMedicamente();
     assert(testFarmacie.lungime == 0);
     assert(testFarmacie.capacitate == 101);
 
@@ -66,18 +66,15 @@ void testAdaugaMedicament()
 
     assert(adaugareMedicament(&farmacie, 2, "Medicament Bun", 12, 1) == 2);
     assert(farmacie.medicamente[1].cantitate == 12);
-    assert(farmacie.lungime == 2);
+    assert(farmacie.lungime == 2); 
 
+    assert(adaugareMedicament(&farmacie, -2, "Medicament Rau", 1, 1) == 0);
     assert(adaugareMedicament(&farmacie, 1, "Medicament Bun", -10, 1) == 0);
     assert(adaugareMedicament(&farmacie, 2, "Medicament Rau", 1, -1) == 0);
     assert(adaugareMedicament(&farmacie, 3, "", 1, 1) == 0);
     assert(farmacie.lungime == 2);
 
-    farmacie.capacitate = 1;
-    assert(adaugareMedicament(&farmacie, 4, "Medicament Bun", 10, 1) == 0);
-
    eliminaListaMedicamente(&farmacie);
-   assert(farmacie.lungime == 0);
 }
 
 void testEliminaListaMedicamente()
@@ -101,7 +98,7 @@ void testModificareMedicament()
     assert(adaugareMedicament(&farmacie, 1, "1", 10, 1) == 1);
     assert(adaugareMedicament(&farmacie, 2, "1", 10, 1) == 1);
     assert(adaugareMedicament(&farmacie, 3, "1", 10, 1) == 1);
-
+    
     assert(modificareMedicament(&farmacie, 1, "2", 100, 100) == 1);
     assert(farmacie.medicamente[0].cantitate == 100);
     assert(farmacie.medicamente[0].concentratie == 100);
@@ -120,15 +117,15 @@ void testStergeremedicament()
 {
     ListaMedicamente farmacie = constructorListaMedicamente();
     assert(adaugareMedicament(&farmacie, 1, "1", 10, 1) == 1);
-    assert(adaugareMedicament(&farmacie, 2, "1", 10, 1) == 1);
-    assert(adaugareMedicament(&farmacie, 3, "1", 10, 1) == 1);
+    assert(adaugareMedicament(&farmacie, 2, "2", 11, 2) == 1);
+    assert(adaugareMedicament(&farmacie, 3, "3", 12, 3) == 1);
     assert(farmacie.lungime == 3);
 
     assert(stergereMedicament(&farmacie, 1) == 1);
     assert(farmacie.medicamente[0].cod != 1);
     assert(farmacie.medicamente[0].cantitate != 10);
     assert(farmacie.medicamente[0].concentratie != 1);
-    assert(farmacie.medicamente[0].nume == NULL);
+    assert(strcmp(farmacie.medicamente[0].nume, "1") != 0);
 
     assert(stergereMedicament(&farmacie, -1) == 0);
 
@@ -144,9 +141,12 @@ void testSortCrescatorNume()
     assert(adaugareMedicament(&farmacie, 3, "A", 10, 1) == 1);
     assert(farmacie.lungime == 3);
 
-    assert(strcmp(sortCrescatorNume(&farmacie).medicamente[0].nume, "A") == 0);
-    assert(strcmp(sortCrescatorNume(&farmacie).medicamente[1].nume, "B") == 0);
-    assert(strcmp(sortCrescatorNume(&farmacie).medicamente[2].nume, "C") == 0);
+    ListaMedicamente sorted = sortCrescatorNume(&farmacie, compareName);
+    assert(strcmp(sorted.medicamente[0].nume, "A") == 0);
+    assert(strcmp(sorted.medicamente[1].nume, "B") == 0);
+    assert(strcmp(sorted.medicamente[2].nume, "C") == 0);
+
+    eliminaListaMedicamente(&sorted);
     eliminaListaMedicamente(&farmacie);
 }
 
@@ -158,9 +158,12 @@ void testSortCrescatorCantitate()
     assert(adaugareMedicament(&farmacie, 3, "A", 10, 1) == 1);
     assert(farmacie.lungime == 3);
 
-    assert(strcmp(sortCantitateCrescator(&farmacie).medicamente[0].nume, "A") == 0);
-    assert(strcmp(sortCantitateCrescator(&farmacie).medicamente[1].nume, "B") == 0);
-    assert(strcmp(sortCantitateCrescator(&farmacie).medicamente[2].nume, "C") == 0);
+    ListaMedicamente sorted = sortCantitateCrescator(&farmacie, compareCantitateCrescator);
+    assert(strcmp(sorted.medicamente[0].nume, "A") == 0);
+    assert(strcmp(sorted.medicamente[1].nume, "B") == 0);
+    assert(strcmp(sorted.medicamente[2].nume, "C") == 0);
+
+    eliminaListaMedicamente(&sorted);
     eliminaListaMedicamente(&farmacie);
 }
 
@@ -173,9 +176,12 @@ void testSortDescrescatorCantitate()
     assert(adaugareMedicament(&farmacie, 3, "A", 30, 1) == 1);
     assert(farmacie.lungime == 3);
 
-    assert(strcmp(sortCantitateDescrescator(&farmacie).medicamente[0].nume, "A") == 0);
-    assert(strcmp(sortCantitateDescrescator(&farmacie).medicamente[1].nume, "B") == 0);
-    assert(strcmp(sortCantitateDescrescator(&farmacie).medicamente[2].nume, "C") == 0);
+    ListaMedicamente sorted = sortCantitateDescrescator(&farmacie, compareCantitateDescrescator);
+    assert(strcmp(sorted.medicamente[0].nume, "A") == 0);
+    assert(strcmp(sorted.medicamente[1].nume, "B") == 0);
+    assert(strcmp(sorted.medicamente[2].nume, "C") == 0);
+
+    eliminaListaMedicamente(&sorted);
     eliminaListaMedicamente(&farmacie);
 }
 
@@ -188,8 +194,11 @@ void testFiltrareCantitate()
     assert(adaugareMedicament(&farmacie, 3, "A", 30, 1) == 1);
     assert(farmacie.lungime == 3);
 
-    assert(strcmp(filtrareCantitate(&farmacie, 20).medicamente[1].nume, "B") == 0);
-    assert(strcmp(filtrareCantitate(&farmacie, 20).medicamente[0].nume, "C") == 0);
+    ListaMedicamente filtered = filtrareCantitate(&farmacie, 20);
+    assert(strcmp(filtered.medicamente[1].nume, "B") == 0);
+    assert(strcmp(filtered.medicamente[0].nume, "C") == 0);
+
+    eliminaListaMedicamente(&filtered);
     eliminaListaMedicamente(&farmacie);
 }
 
@@ -201,29 +210,50 @@ void testFiltrareAlpha()
     assert(adaugareMedicament(&farmacie, 3, "A", 30, 1) == 1);
     assert(farmacie.lungime == 3);
 
-    assert(strcmp(filtrareAlpha(&farmacie, 'A').medicamente[0].nume, "A") == 0);
-    assert(strcmp(filtrareAlpha(&farmacie, 'C').medicamente[0].nume, "C") == 0);
+    ListaMedicamente filteredA = filtrareAlpha(&farmacie, 'A');
+    ListaMedicamente filteredC = filtrareAlpha(&farmacie, 'C');
+    assert(strcmp(filteredA.medicamente[0].nume, "A") == 0);
+    assert(strcmp(filteredC.medicamente[0].nume, "C") == 0);
+
+    eliminaListaMedicamente(&filteredA);
+    eliminaListaMedicamente(&filteredC);
+    eliminaListaMedicamente(&farmacie);
+}
+
+void testRedimensionareLista()
+{
+    ListaMedicamente farmacie = constructorListaMedicamente();
+    assert(adaugareMedicament(&farmacie, 1, "C", 10, 1) == 1);
+    assert(adaugareMedicament(&farmacie, 2, "B", 20, 1) == 1);
+    assert(adaugareMedicament(&farmacie, 3, "A", 30, 1) == 1);
+    assert(farmacie.lungime == 3);
+    farmacie.capacitate = 4;
+    assert(adaugareMedicament(&farmacie, 4, "B", 20, 1) == 1);
+    assert(adaugareMedicament(&farmacie, 5, "A", 30, 1) == 1);
+
+    assert(farmacie.lungime == 5);
+    assert(farmacie.capacitate >= 5);
+
     eliminaListaMedicamente(&farmacie);
 }
 
 void runAllTests()
 {
     testConstructorMedicament();
+
     testValidareMedicament();
     testEliminareMedicament();
-
     testConstructorListaMedicamente();
     testAdaugaMedicament();
     testEliminaListaMedicamente();
     testModificareMedicament();
     testStergeremedicament();
-
     testSortCrescatorNume();
     testSortCrescatorCantitate();
     testSortDescrescatorCantitate();
-
     testFiltrareCantitate();
     testFiltrareAlpha();
+    testRedimensionareLista();
 
     printf("Tests completed\n");
 }

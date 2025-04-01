@@ -1,4 +1,4 @@
-[2025-03-15 18:47:37] [info] Start Program:
+[2025-03-28 10:07:03] [info] Start Program:
 Path:"C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab4\lab4\x64\Debug\lab4.exe"
 Arguments:
 Working directory: "C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab4\lab4\lab4\"
@@ -9,13 +9,13 @@ Cover Children: 0
 Aggregate by file: 1
 Continue after C++ exception: 0
 Optimized build support: 0
-Export: Binary C:\Users\Petru\AppData\Local\Temp\lbndq13o.oqr 
+Export: Binary C:\Users\Petru\AppData\Local\Temp\sapjv0e2.2dc 
 Input coverage: 
 Unified diff: 
 Excluded line regular expressions: 
 Substitute pdb source paths: 
 
-[2025-03-15 18:47:37] [info] Module: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab4\lab4\x64\Debug\lab4.exe is selected because it matches selected pattern: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab4\lab4\x64\Debug\lab4.exe
-[2025-03-15 18:47:39] [info] ----------------------------------------------------
-[2025-03-15 18:47:39] [info] Coverage binary generated in file: C:\Users\Petru\AppData\Local\Temp\lbndq13o.oqr
-[2025-03-15 18:47:39] [info] ----------------------------------------------------
+[2025-03-28 10:07:03] [info] Module: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab4\lab4\x64\Debug\lab4.exe is selected because it matches selected pattern: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab4\lab4\x64\Debug\lab4.exe
+[2025-03-28 10:07:03] [info] ----------------------------------------------------
+[2025-03-28 10:07:03] [info] Coverage binary generated in file: C:\Users\Petru\AppData\Local\Temp\sapjv0e2.2dc
+[2025-03-28 10:07:03] [info] ----------------------------------------------------

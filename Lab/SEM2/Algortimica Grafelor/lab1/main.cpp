@@ -30,7 +30,7 @@ void afisareMatriceAdiacenta(int dimensiune, int matrice[100][100])
 
 void citireMatriceAdiacenta(int &dimensiune, int matrice[100][100])
 {
-    ifstream in("C:\\Users\\Petru\\Desktop\\Lab\\Algortimica Grafelor\\lab1\\in.txt");
+    ifstream in("C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\Algortimica Grafelor\\lab1\\in.txt");
     in >> dimensiune;
     zerorizeaza(dimensiune, matrice);
     for (int index = 1; index <= dimensiune; ++index)
@@ -41,7 +41,6 @@ void citireMatriceAdiacenta(int &dimensiune, int matrice[100][100])
         matrice[nod2][nod1] = 1;
     }
     in.close();
-    afisareMatriceAdiacenta(dimensiune, matrice);
 }
 
 void afisareListaAdiacenta(int dimensiune, int matrice[100][100])
@@ -60,7 +59,7 @@ void afisareListaAdiacenta(int dimensiune, int matrice[100][100])
 
 void citireListaAdiacenta(int dimensiune, int matrice[100][100])
 {
-    ifstream in("C:\\Users\\Petru\\Desktop\\Lab\\Algortimica Grafelor\\lab1\\in.txt");
+    ifstream in("C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\Algortimica Grafelor\\lab1\\in.txt");
     in >> dimensiune;
     zerorizeaza(dimensiune, matrice);
     for (int index = 1; index < dimensiune; ++index)
@@ -93,7 +92,7 @@ void afisareMatriceIncidenta(int dimensiune, int nrMuchii, int matrice[100][100]
 
 void citireMatriceIncidenta(int dimensiune, int matrice[100][100])
 {
-    ifstream in("C:\\Users\\Petru\\Desktop\\Lab\\Algortimica Grafelor\\lab1\\in.txt");
+    ifstream in("C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\Algortimica Grafelor\\lab1\\in.txt");
     in >> dimensiune;
     zerorizeaza(dimensiune, matrice);
     int count = 0;
@@ -169,11 +168,65 @@ void determinareGrafRegulat(int dimensiune, int matrice[100][100])
         }
     }
 
-    cout << "Este regulat " << (eRegulat ? "Da" : "Nu");
+    cout << "Este regulat " << (eRegulat ? "Da\n" : "Nu\n");
 }
 
-void determinareMatriceDimensiuni(int dimensiune, int matrice[100][100])
+void afisareMatriceDrumurilor(int dimensiune, int matrice[100][100])
 {
+    cout << "Matrice de Drumurilor \n";
+    cout << dimensiune << "\n";
+    for (int index = 1; index <= dimensiune; ++index)
+    {
+        for (int jndex = 1; jndex <= dimensiune; ++jndex)
+        {
+            cout << matrice[index][jndex] << " ";
+        }
+        cout << "\n";
+    }
+}
+#define INF 1000;
+
+void determinareMatriceDrumurilor(int dimensiune, int matrice[100][100])
+{
+    for (int i = 1; i <= dimensiune; ++i)
+        for (int j = 1; j <= dimensiune; ++j)
+            if (i != j && !matrice[i][j])
+                matrice[i][j] = INF;
+
+    for (int k = 1; k <= dimensiune; ++k)
+        for (int i = 1; i <= dimensiune; ++i)
+            for (int j = 1; j <= dimensiune; ++j)
+                if (i != j && matrice[i][j] > matrice[i][k] + matrice[k][j])
+                    matrice[i][j] = matrice[i][k] + matrice[k][j];
+
+    afisareMatriceDrumurilor(dimensiune, matrice);
+}
+
+void determinareGrafConex(int dimensiune, int matrice[100][100])
+{
+    bool eConex = true;
+    zerorizeaza(dimensiune, matrice);
+    citireMatriceAdiacenta(dimensiune, matrice);
+
+    for (int k = 1; k <= dimensiune; ++k)
+        for (int i = 1; i <= dimensiune; ++i)
+            for (int j = 1; j <= dimensiune; ++j)
+                if (i != j && matrice[i][j] == 0 && matrice[i][k] == 1 && matrice[k][j] == 1)
+                    matrice[i][j] = 1;
+
+    for (int index = 1; index < dimensiune; ++index)
+    {
+        for (int jndex = index + 1; jndex <= dimensiune; ++jndex)
+        {
+            if (!matrice[index][jndex])
+            {
+                eConex = false;
+                break;
+            }
+        }
+    }
+
+    cout << "E conex " << (eConex ? "Da\n" : "Nu\n");
 }
 
 int main()
@@ -182,30 +235,12 @@ int main()
 
     int matrice_adiacenta[100][100];
     citireMatriceAdiacenta(dimensiune, matrice_adiacenta);
+    afisareMatriceAdiacenta(dimensiune, matrice_adiacenta);
     // citireListaAdiacenta(dimensiune, matrice_adiacenta);
     // citireMatriceIncidenta(dimensiune, matrice_adiacenta);
     determinareNoduriIzolate(dimensiune, matrice_adiacenta);
     determinareGrafRegulat(dimensiune, matrice_adiacenta);
+    determinareMatriceDrumurilor(dimensiune, matrice_adiacenta);
+    determinareGrafConex(dimensiune, matrice_adiacenta);
     return 0;
 }
-/*
-0 1 0 1 0
-1 0 0 0 1
-0 0 0 0 1
-1 0 0 0 0
-0 1 1 0 0
-*/
-
-/*
-1-2
-1-2-5-3
-1-4
-1-2-5
-
-2-1
-2-5-3
-2-1-4
-2-5
-
-
-*/

@@ -16,12 +16,6 @@ int adaugareMedicament(ListaMedicamente *farmacie, int cod, const char *nume, in
     {
         return 2;
     }
-
-    if (adaugaMedicamentRepo(farmacie, medicament) == 2)
-    {
-        return 0;
-    }
-
     return 1;
 }
 
@@ -40,12 +34,25 @@ int stergereMedicament(ListaMedicamente *farmacie, int cod)
     if (cod < 0)
         return 0;
 
-    return stergereMedicamentRepo(farmacie, cod);
+    int poz = -1;
+    for (int index = 0; index < farmacie->lungime; ++index)
+    {
+        if (cod == farmacie->medicamente[index].cod)
+        {
+            poz = index;
+            break;
+        }
+    }
+
+    if (poz == -1)
+        return 0;
+
+    return stergereMedicamentRepo(farmacie, poz);
 }
 
 void copyList(ListaMedicamente *newList, ListaMedicamente *list)
 {
-    for (int index = 0; index < list->lungime; ++index)
+    for (int index = 0; index < list->lungime; index++)
     {
         newList->medicamente[index] = list->medicamente[index];
     }
@@ -53,56 +60,33 @@ void copyList(ListaMedicamente *newList, ListaMedicamente *list)
     newList->capacitate = list->capacitate;
 }
 
-int compareName(const void *a, const void *b)
-{
-    const Medicament *medi1 = (const Medicament *)a;
-    const Medicament *medi2 = (const Medicament *)b;
 
-    return strcmp(medi1->nume, medi2->nume);
-}
-
-int compareCantitateCrescator(const void *a, const void *b)
-{
-    const Medicament *medi1 = (const Medicament *)a;
-    const Medicament *medi2 = (const Medicament *)b;
-
-    return medi1->cantitate - medi2->cantitate;
-}
-
-int compareCantitateDescrescator(const void *a, const void *b)
-{
-    const Medicament *medi1 = (const Medicament *)a;
-    const Medicament *medi2 = (const Medicament *)b;
-
-    return medi2->cantitate - medi1->cantitate;
-}
-
-ListaMedicamente sortCrescatorNume(ListaMedicamente *farmacie)
+ListaMedicamente sortCrescatorNume(ListaMedicamente *farmacie, int(* compareName)(const void * a, const void * b))
 {
     ListaMedicamente sortedFarmacie = constructorListaMedicamente();
     copyList(&sortedFarmacie, farmacie);
 
-    qsort(&sortedFarmacie, sortedFarmacie.lungime, sizeof(Medicament), compareName);
+    qsort(sortedFarmacie.medicamente, sortedFarmacie.lungime, sizeof(Medicament), compareName);
 
     return sortedFarmacie;
 }
 
-ListaMedicamente sortCantitateCrescator(ListaMedicamente *farmacie)
+ListaMedicamente sortCantitateCrescator(ListaMedicamente *farmacie, int(* compareCantitateCrescator)(const void * a, const void * b))
 {
     ListaMedicamente sortedFarmacie = constructorListaMedicamente();
     copyList(&sortedFarmacie, farmacie);
 
-    qsort(&sortedFarmacie, sortedFarmacie.lungime, sizeof(Medicament), compareCantitateCrescator);
+    qsort(sortedFarmacie.medicamente, sortedFarmacie.lungime, sizeof(Medicament), compareCantitateCrescator);
 
     return sortedFarmacie;
 }
 
-ListaMedicamente sortCantitateDescrescator(ListaMedicamente *farmacie)
+ListaMedicamente sortCantitateDescrescator(ListaMedicamente *farmacie, int(* compareCantitateDescrescator)(const void * a, const void *b))
 {
     ListaMedicamente sortedFarmacie = constructorListaMedicamente();
     copyList(&sortedFarmacie, farmacie);
 
-    qsort(&sortedFarmacie, sortedFarmacie.lungime, sizeof(Medicament), compareCantitateDescrescator);
+    qsort(sortedFarmacie.medicamente, sortedFarmacie.lungime, sizeof(Medicament), compareCantitateDescrescator);
 
     return sortedFarmacie;
 }
@@ -115,7 +99,7 @@ ListaMedicamente filtrareCantitate(ListaMedicamente *farmacie, int cantitate)
     {
         if (farmacie->medicamente[index].cantitate <= cantitate)
         {
-            adaugaMedicamentRepo(&filteredList, &farmacie->medicamente[index]);
+            adaugareMedicament(&filteredList, farmacie->medicamente[index].cod, farmacie->medicamente[index].nume, farmacie->medicamente[index].cantitate, farmacie->medicamente[index].concentratie);
         }
     }
     return filteredList;
@@ -129,7 +113,7 @@ ListaMedicamente filtrareAlpha(ListaMedicamente *farmacie, char litera)
     {
         if (litera == farmacie->medicamente[index].nume[0])
         {
-            adaugaMedicamentRepo(&filteredList, &farmacie->medicamente[index]);
+            adaugareMedicament(&filteredList, farmacie->medicamente[index].cod, farmacie->medicamente[index].nume, farmacie->medicamente[index].cantitate, farmacie->medicamente[index].concentratie);
         }
     }
     return filteredList;

@@ -61,7 +61,7 @@ void run(ListaMedicamente farmacie)
             printf("concentratie>>");
             scanf("%d", &concentratie);
 
-            short response = adaugareMedicament(&farmacie, cod, nume, cantitate, concentratie);
+            int response = adaugareMedicament(&farmacie, cod, nume, cantitate, concentratie);
 
             if (response == 1)
                 printf("\nMedicament adaugat!\n");
@@ -88,7 +88,7 @@ void run(ListaMedicamente farmacie)
             printf("concentratie>>");
             scanf("%d", &concentratie);
 
-            short response = modificareMedicament(&farmacie, cod, nume, cantitate, concentratie);
+            int response = modificareMedicament(&farmacie, cod, nume, cantitate, concentratie);
 
             if (response == 1)
                 printf("\nMedicament modificat!\n");
@@ -101,7 +101,7 @@ void run(ListaMedicamente farmacie)
             printf("cod>>");
             scanf("%d", &cod);
 
-            short response = stergereMedicament(&farmacie, cod);
+            int response = stergereMedicament(&farmacie, cod);
 
             if (response == 1)
                 printf("\nMedicament sters!\n");
@@ -117,20 +117,20 @@ void run(ListaMedicamente farmacie)
             int choice;
             printf(">>");
             scanf("%d", &choice);
-
+          
             if (choice == 1)
             {
-                ListaMedicamente sortedList = sortCrescatorNume(&farmacie);
+                ListaMedicamente sortedList = sortCrescatorNume(&farmacie, compareName);
                 printMedicamente(sortedList);
             }
             else if (choice == 2)
             {
-                ListaMedicamente sortedList = sortCantitateCrescator(&farmacie);
+                ListaMedicamente sortedList = sortCantitateCrescator(&farmacie, compareCantitateCrescator);
                 printMedicamente(sortedList);
             }
             else if (choice == 3)
             {
-                ListaMedicamente sortedList = sortCantitateDescrescator(&farmacie);
+                ListaMedicamente sortedList = sortCantitateDescrescator(&farmacie, compareCantitateDescrescator);
                 printMedicamente(sortedList);
             }
             else

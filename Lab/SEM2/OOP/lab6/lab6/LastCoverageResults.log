@@ -1,0 +1,21 @@
+[2025-04-01 22:28:50] [info] Start Program:
+Path:"C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\x64\Debug\lab6.exe"
+Arguments:
+Working directory: "C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\"
+Modules: Selected: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\x64\Debug\lab6.exe Excluded: 
+Sources: Selected: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6 Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: Binary C:\Users\Petru\AppData\Local\Temp\1f3lr0je.ips 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2025-04-01 22:28:50] [info] Module: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\x64\Debug\lab6.exe is selected because it matches selected pattern: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\x64\Debug\lab6.exe
+[2025-04-01 22:28:50] [info] ----------------------------------------------------
+[2025-04-01 22:28:50] [info] Coverage binary generated in file: C:\Users\Petru\AppData\Local\Temp\1f3lr0je.ips
+[2025-04-01 22:28:50] [info] ----------------------------------------------------

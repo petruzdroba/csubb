@@ -6,14 +6,9 @@
 Medicament *constructorMedicament(int cod, const char *nume, int cantitate, int concentratie)
 {
     Medicament *medicament = (Medicament *)malloc(sizeof(Medicament));
-    /*if (medicament == NULL) {
-        return NULL;
-    }*/
 
     medicament->cod = cod;
-    medicament->nume = (char *)malloc(sizeof(char) * (strlen(nume) + 1));
-
-    strcpy(medicament->nume, nume);
+    strcpy_s(medicament->nume,sizeof(medicament->nume), nume);
     medicament->cantitate = cantitate;
     medicament->concentratie = concentratie;
 
@@ -22,6 +17,8 @@ Medicament *constructorMedicament(int cod, const char *nume, int cantitate, int 
 
 int validareMedicament(int cod, const char *nume, int cantitate, int concentratie)
 {
+    if (cod < 0)
+        return 0;
     if (strcmp(nume, "") == 0)
         return 0;
 
@@ -42,14 +39,6 @@ void eliminaMedicament(Medicament *medicament)
         medicament->cod = 0;
         medicament->cantitate = 0;
         medicament->concentratie = 0;
-
-        if (medicament->nume != NULL) {
-            free(medicament->nume);
-            medicament->nume = NULL; // Set to NULL after freeing to prevent double-free.
-        }
-
-        /*free(medicament);
-        medicament = NULL;*/
+        medicament->nume[0] = '\0';
     }
-
 }
