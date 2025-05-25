@@ -11,7 +11,7 @@ int main() {
 
      printf("Toate testele au fost rulate cu succes!\n");
 
-     //ruleaza();
-     _CrtDumpMemoryLeaks();
+     ruleaza();
+     //_CrtDumpMemoryLeaks();
     return 0;
 }

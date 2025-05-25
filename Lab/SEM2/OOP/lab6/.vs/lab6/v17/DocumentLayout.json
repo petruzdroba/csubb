@@ -3,32 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\service.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|solutionrelative:lab6\\service.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\teste.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|solutionrelative:lab6\\teste.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|solutionrelative:lab6\\service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\teste.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|solutionrelative:lab6\\teste.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\validator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|solutionrelative:lab6\\validator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\validator.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|solutionrelative:lab6\\validator.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\repo.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|solutionrelative:lab6\\repo.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|solutionrelative:lab6\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\ui.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|solutionrelative:lab6\\ui.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\Disciplina.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|solutionrelative:lab6\\Disciplina.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BBCECE21-8E16-4C15-A535-064C7F52C11C}|lab6\\lab6.vcxproj|solutionrelative:lab6\\service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 267,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,94 +50,88 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "repo.h",
-              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\repo.h",
-              "RelativeDocumentMoniker": "lab6\\repo.h",
-              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\repo.h",
-              "RelativeToolTip": "lab6\\repo.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-04-01T18:56:32.143Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "validator.h",
-              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\validator.h",
-              "RelativeDocumentMoniker": "lab6\\validator.h",
-              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\validator.h",
-              "RelativeToolTip": "lab6\\validator.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-04-01T18:55:25.806Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "validator.cpp",
-              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\validator.cpp",
-              "RelativeDocumentMoniker": "lab6\\validator.cpp",
-              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\validator.cpp",
-              "RelativeToolTip": "lab6\\validator.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-01T18:55:05.534Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "service.h",
-              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\service.h",
-              "RelativeDocumentMoniker": "lab6\\service.h",
-              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\service.h",
-              "RelativeToolTip": "lab6\\service.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-04-01T18:55:15.926Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "service.cpp",
-              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\service.cpp",
-              "RelativeDocumentMoniker": "lab6\\service.cpp",
-              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\service.cpp",
-              "RelativeToolTip": "lab6\\service.cpp",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAABwAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-01T18:54:58.822Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "teste.cpp",
               "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\teste.cpp",
               "RelativeDocumentMoniker": "lab6\\teste.cpp",
               "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\teste.cpp",
               "RelativeToolTip": "lab6\\teste.cpp",
-              "ViewState": "AgIAAIgAAAAAAAAAAAAuwJUAAABOAAAAAAAAAA==",
+              "ViewState": "AgIAADUBAAAAAAAAAAAAAGIBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-01T17:53:47.539Z",
+              "WhenOpened": "2025-05-08T11:49:13.333Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ui.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\ui.h",
+              "RelativeDocumentMoniker": "lab6\\ui.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\ui.h",
+              "RelativeToolTip": "lab6\\ui.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-24T12:20:05.841Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "validator.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\validator.h",
+              "RelativeDocumentMoniker": "lab6\\validator.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\validator.h",
+              "RelativeToolTip": "lab6\\validator.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-24T12:20:04.439Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "teste.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\teste.h",
+              "RelativeDocumentMoniker": "lab6\\teste.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\teste.h",
+              "RelativeToolTip": "lab6\\teste.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-24T11:51:01.335Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "repo.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\repo.h",
+              "RelativeDocumentMoniker": "lab6\\repo.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\repo.h",
+              "RelativeToolTip": "lab6\\repo.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-24T11:51:00.753Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "main.cpp",
-              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\main.cpp",
-              "RelativeDocumentMoniker": "lab6\\main.cpp",
-              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\main.cpp",
-              "RelativeToolTip": "lab6\\main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-01T17:35:29.309Z",
-              "EditorCaption": ""
+              "Title": "service.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\service.h",
+              "RelativeDocumentMoniker": "lab6\\service.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\service.h",
+              "RelativeToolTip": "lab6\\service.h",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-24T11:51:00.283Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Disciplina.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\Disciplina.h",
+              "RelativeDocumentMoniker": "lab6\\Disciplina.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab6\\lab6\\Disciplina.h",
+              "RelativeToolTip": "lab6\\Disciplina.h",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-24T11:50:59.364Z"
             }
           ]
         }

@@ -1,0 +1,40 @@
+Finding an manual entry with:
+	-man command
+For multimple commands with the same name
+	-Find all usages:
+		--what is command // return options like command(n), n - the number in the manual
+		-- man n command
+
+To compile a program
+	-gcc -Wall -Wextra -Werror -g file.c/cpp
+		--gcc compiler
+		-- Warning All, Warning Error, Waring Extra
+		--g, run globally
+
+	- watch gcc gcc -Wall -Wextra -Werror -g file.c/cpp
+		--will update program if any cahnges made max 2 seconds
+
+	-optional add -o file.out
+		--specify where you want your out file to be compiled to
+		--defaults to a.out
+	-run an .out/.exe file with ./a.out and if any aguments if it has any
+
+Valgrind
+	-Compile program first
+		--gcc -Wall -Wextra -Werror -g file.c/cpp
+	-Run out file with Valgrind
+		-valgrind ./a.out
+		
+		--Not aloccated enough space
+			---Invalid write size of {size:number} at adress {hexa adress}
+			---means you wrote too much space in HEAP, shouldve allocated more space
+		--Not freed up enough space
+			---leak summary : definitely losts : {size: number} bytes in {int} blocks
+			---check how much space you freed up, probably much less than you allocated
+
+		--Invalid write/read of {size:number}
+			---check fors for stopping too early/late
+
+		--If memory cleared
+			---no leaks are possible
+	-Each time you run valgrind you have to recompile the .c file, or else changes wont be noticed, valgrind looks at the out file

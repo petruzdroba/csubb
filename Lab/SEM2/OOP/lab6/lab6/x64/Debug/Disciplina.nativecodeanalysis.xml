@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\</FILEPATH>
+      <FILENAME>Disciplina.h</FILENAME>
+      <LINE>16</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26455</DEFECTCODE>
+    <DESCRIPTION>Default constructor should not throw. Declare it 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>Disciplina::{ctor}</FUNCTION>
+    <DECORATED>??0Disciplina@@QEAA@XZ</DECORATED>
+    <FUNCLINE>16</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\</FILEPATH>
+      <FILENAME>Disciplina.h</FILENAME>
+      <LINE>28</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26432</DEFECTCODE>
+    <DESCRIPTION>If you define or delete any default operation in the type 'class Disciplina', define or delete them all (c.21).</DESCRIPTION>
+    <FUNCTION>Disciplina::{ctor}</FUNCTION>
+    <DECORATED>??0Disciplina@@QEAA@AEBV0@@Z</DECORATED>
+    <FUNCLINE>28</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\</FILEPATH>
+      <FILENAME>Disciplina.cpp</FILENAME>
+      <LINE>39</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>6389</DEFECTCODE>
+    <DESCRIPTION>Move '__empty_global_delete' to anonymous namespace or put a forward declaration in a common header included in this file.</DESCRIPTION>
+    <FUNCTION>__empty_global_delete</FUNCTION>
+    <DECORATED>?__empty_global_delete@@YAXPEAX@Z</DECORATED>
+    <FUNCLINE>39</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\</FILEPATH>
+      <FILENAME>Disciplina.cpp</FILENAME>
+      <LINE>39</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>6389</DEFECTCODE>
+    <DESCRIPTION>Move '__empty_global_delete' to anonymous namespace or put a forward declaration in a common header included in this file.</DESCRIPTION>
+    <FUNCTION>__empty_global_delete</FUNCTION>
+    <DECORATED>?__empty_global_delete@@YAXPEAX_K@Z</DECORATED>
+    <FUNCLINE>39</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

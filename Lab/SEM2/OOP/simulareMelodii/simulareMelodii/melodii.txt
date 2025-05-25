@@ -1,0 +1,30 @@
+7,Gravity Void,Deepfield,0
+15,Last Transmission,Deepfield,0
+24,Zero Phase,Sahara Tone,3
+8,Wild Mirage,Sahara Tone,1
+16,Shadow Loop,Sahara Tone,1
+1,Starlight,Neon Skies,2
+9,Echo Chamber,Neon Skies,2
+17,Glass Halo,Neon Skies,2
+5,Crystal Rain,Liquid Echo,3
+13,Velvet Comet,Liquid Echo,3
+21,Ocean Paradox,Liquid Echo,3
+29,Neon Veins,Liquid Echo,3
+2,Nightfall,Aurora Blaze,4
+10,Midnight Drift,Chrome Vibe,4
+18,Signal Fade,Chrome Vibe,4
+26,Iron Pulse,Chrome Vibe,4
+4,Frozen Fire,Blaze Core,5
+20,Burning Code,Blaze Core,5
+28,Afterburn,Blaze Core,5
+6,Golden Dust,Sunset Drive,6
+14,Static Love,Sunset Drive,6
+22,Crimson Dusk,Sunset Drive,6
+30,Blue Frequency,Sunset Drive,6
+3,Electric Dreams,Synth Pulse,7
+11,Digital Oasis,Synth Pulse,7
+19,Voltage Bloom,Synth Pulse,7
+12,Broken Prism,Blaze Core,8
+27,Shattered Rhythm,Synth Pulse,8
+23,Orbit Rewind,Deepfield,9
+25,Parallel Flame,Neon Skies,10

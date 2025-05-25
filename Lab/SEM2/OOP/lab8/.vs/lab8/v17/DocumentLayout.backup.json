@@ -1,0 +1,162 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\teste.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|solutionrelative:lab8\\teste.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\service.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|solutionrelative:lab8\\service.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\repo.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|solutionrelative:lab8\\repo.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\Contract.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|solutionrelative:lab8\\Contract.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\Contract.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|solutionrelative:lab8\\Contract.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\exception.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|solutionrelative:lab8\\exception.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\teste.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|solutionrelative:lab8\\teste.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\ui.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{885CB77E-A10D-41E0-9092-ADC8FD345803}|lab8\\lab8.vcxproj|solutionrelative:lab8\\ui.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 267,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Contract.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\Contract.h",
+              "RelativeDocumentMoniker": "lab8\\Contract.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\Contract.h",
+              "RelativeToolTip": "lab8\\Contract.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-08T11:50:53.668Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Contract.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\Contract.cpp",
+              "RelativeDocumentMoniker": "lab8\\Contract.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\Contract.cpp",
+              "RelativeToolTip": "lab8\\Contract.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-08T11:50:50.229Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "exception.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\exception.h",
+              "RelativeDocumentMoniker": "lab8\\exception.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\exception.h",
+              "RelativeToolTip": "lab8\\exception.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-08T11:50:30.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "service.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\service.cpp",
+              "RelativeDocumentMoniker": "lab8\\service.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\service.cpp",
+              "RelativeToolTip": "lab8\\service.cpp",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAUwBAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-04T18:17:16.805Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "teste.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\teste.cpp",
+              "RelativeDocumentMoniker": "lab8\\teste.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\teste.cpp",
+              "RelativeToolTip": "lab8\\teste.cpp",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAADwAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-04T18:13:46.403Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "teste.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\teste.h",
+              "RelativeDocumentMoniker": "lab8\\teste.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\teste.h",
+              "RelativeToolTip": "lab8\\teste.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T18:13:44.078Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "repo.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\repo.cpp",
+              "RelativeDocumentMoniker": "lab8\\repo.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\repo.cpp",
+              "RelativeToolTip": "lab8\\repo.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-04T18:11:10.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ui.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\ui.cpp",
+              "RelativeDocumentMoniker": "lab8\\ui.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab8\\lab8\\ui.cpp",
+              "RelativeToolTip": "lab8\\ui.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsBAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-03T10:49:35.576Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

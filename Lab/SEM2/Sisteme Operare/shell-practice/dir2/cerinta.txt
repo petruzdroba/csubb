@@ -1,0 +1,20 @@
+scrieti un script shell intr-un fisier cu numele "run_R.sh" care:
+-asteapta exact un argument de la linia de comanda.
+	-daca nu primeste exact unul, afiseaza pe ecran un mesaj tip: "Usage: run.sh <1>"
+	-afisati mesajul la stderr, nu la stdout
+-afiseaza fisierele din /usr/include/ care nu contin textul de forma: "#include <N>" unde N este argument primit de la tastatura.
+	spre exemplu, pentru argumentul "assert.h" scriptul va afisa:
+	/usr/include/ncurses/etip.h
+	/usr/include/etip.h
+	/usr/include/ncursesw/etip.h
+
+	in cazul in care nu exista nici macar un astfel de fisier, afisati pe ecran textul "nu am gasit nimic"
+
+afisati care din fisierele obtinute la pasul 2 contine cele mai multe #include-uri, precum si candidatii in ordine descrescatoare. afisati calea completa catre fisier si apoi numarul de #include-uri, separate prin virgula.
+
+	spre exemplu, fisierul "/usr/include/ncurses/form.h" contine 2 linii tip #include.
+
+	maximul este /usr/include/grp.h! mai jos sunt candidatii:
+	/usr/include/grp.h,3
+	/usr/include/ncurses/form.h,2
+	/usr/include/ncurses/menu.h,2

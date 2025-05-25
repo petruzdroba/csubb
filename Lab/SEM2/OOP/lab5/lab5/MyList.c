@@ -5,12 +5,15 @@
 #include <stdio.h>
 #include <string.h>//memcpy
 
-MyList *createEmpty()
+MyList* createEmpty()
 {
-	MyList *undoList = (MyList* )malloc(sizeof(MyList));
-	undoList->capacitate = 5;
-	undoList->lungime = 0;
-	undoList->elemente = malloc(sizeof(void*) * undoList->capacitate);
+	MyList* undoList = (MyList*)malloc(sizeof(MyList));
+	if (undoList != NULL)
+	{
+		undoList->capacitate = 5;
+		undoList->lungime = 0;
+		undoList->elemente = malloc(sizeof(void*) * undoList->capacitate);
+	}
 
 	return undoList;
 }
@@ -31,12 +34,12 @@ void redimensionare(MyList* undoList)
 {
 	undoList->capacitate *= 2;
 
-	MyList* newElems= realloc(undoList->elemente, undoList->capacitate * sizeof(MyList));
+	MyList* newElems = realloc(undoList->elemente, undoList->capacitate * sizeof(MyList));
 
-	undoList->elemente = newElems;
+	undoList->elemente = (void*)newElems;
 }
 
-int addElement(MyList* undoList, void* element, void* (*functie)(void *element))
+int addElement(MyList* undoList, void* element, void* (*functie)(void* element))
 {
 	if (undoList->lungime >= undoList->capacitate)
 	{

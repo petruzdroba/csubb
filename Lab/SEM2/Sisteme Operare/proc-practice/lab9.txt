@@ -1,0 +1,34 @@
+threads - mech. for implementing concurrent prog., useful for faster creation and reduced mem.
+
+int a = 1;
+
+void* functie(void*)
+{
+	a++;
+
+	SAU
+	
+	->lock(); // locks the next lines for this specific thread, until it unlocks
+	a = a + 1;
+	->unlock();
+}
+
+//va fi a 1000 la final? 
+//putin porbabil ca a sa fie 100, porb de sincronixare
+
+-> make sure a is 1000 after all threads finish, make calc. atomic	
+
+lock-. pthread_lock()
+unlock->pthread_unlock()
+
+
+eq. of fork() for threads are pthdread_create(), 4 argumente
+			-1atg, pointer la thread
+			-2arg, (...)
+			-3arg, worker function, (...) - pos sa fie called de fiecare data cand un thread este creat
+			-4arg (...)
+	wait() este pthread_join(), 2 argumente
+			-1arg , pointer la thread
+			-2arg, pointer(void* a), acelasi pointer returnat de fct worker(sau fctia din create) 
+	
+

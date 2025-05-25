@@ -1,0 +1,142 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B1948FAB-7F2C-4028-9E46-0FF83FBE10F0}|lab4\\lab4.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\TestExtins.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B1948FAB-7F2C-4028-9E46-0FF83FBE10F0}|lab4\\lab4.vcxproj|solutionrelative:lab4\\TestExtins.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1948FAB-7F2C-4028-9E46-0FF83FBE10F0}|lab4\\lab4.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\IteratorColectie.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B1948FAB-7F2C-4028-9E46-0FF83FBE10F0}|lab4\\lab4.vcxproj|solutionrelative:lab4\\IteratorColectie.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1948FAB-7F2C-4028-9E46-0FF83FBE10F0}|lab4\\lab4.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\Colectie.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B1948FAB-7F2C-4028-9E46-0FF83FBE10F0}|lab4\\lab4.vcxproj|solutionrelative:lab4\\Colectie.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1948FAB-7F2C-4028-9E46-0FF83FBE10F0}|lab4\\lab4.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\Colectie.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B1948FAB-7F2C-4028-9E46-0FF83FBE10F0}|lab4\\lab4.vcxproj|solutionrelative:lab4\\Colectie.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1948FAB-7F2C-4028-9E46-0FF83FBE10F0}|lab4\\lab4.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\App.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B1948FAB-7F2C-4028-9E46-0FF83FBE10F0}|lab4\\lab4.vcxproj|solutionrelative:lab4\\App.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1948FAB-7F2C-4028-9E46-0FF83FBE10F0}|lab4\\lab4.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\IteratorColectie.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B1948FAB-7F2C-4028-9E46-0FF83FBE10F0}|lab4\\lab4.vcxproj|solutionrelative:lab4\\IteratorColectie.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1948FAB-7F2C-4028-9E46-0FF83FBE10F0}|lab4\\lab4.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\TestScurt.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B1948FAB-7F2C-4028-9E46-0FF83FBE10F0}|lab4\\lab4.vcxproj|solutionrelative:lab4\\TestScurt.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 267,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IteratorColectie.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\IteratorColectie.h",
+              "RelativeDocumentMoniker": "lab4\\IteratorColectie.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\IteratorColectie.h",
+              "RelativeToolTip": "lab4\\IteratorColectie.h",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABIAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-13T13:00:09.772Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IteratorColectie.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\IteratorColectie.cpp",
+              "RelativeDocumentMoniker": "lab4\\IteratorColectie.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\IteratorColectie.cpp",
+              "RelativeToolTip": "lab4\\IteratorColectie.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-13T13:00:06.581Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TestScurt.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\TestScurt.cpp",
+              "RelativeDocumentMoniker": "lab4\\TestScurt.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\TestScurt.cpp",
+              "RelativeToolTip": "lab4\\TestScurt.cpp",
+              "ViewState": "AgIAAAUAAAAAAAAAAIAwwBMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-13T10:01:30.784Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TestExtins.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\TestExtins.cpp",
+              "RelativeDocumentMoniker": "lab4\\TestExtins.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\TestExtins.cpp",
+              "RelativeToolTip": "lab4\\TestExtins.cpp",
+              "ViewState": "AgIAAD8BAAAAAAAAAAAowEwBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-13T10:00:35.979Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\App.cpp",
+              "RelativeDocumentMoniker": "lab4\\App.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\App.cpp",
+              "RelativeToolTip": "lab4\\App.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-13T10:00:10.169Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Colectie.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\Colectie.cpp",
+              "RelativeDocumentMoniker": "lab4\\Colectie.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\Colectie.cpp",
+              "RelativeToolTip": "lab4\\Colectie.cpp",
+              "ViewState": "AgIAANUAAAAAAAAAAAAAAPUAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-13T09:32:17.876Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Colectie.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\Colectie.h",
+              "RelativeDocumentMoniker": "lab4\\Colectie.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab4\\lab4\\Colectie.h",
+              "RelativeToolTip": "lab4\\Colectie.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-13T09:31:47.317Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

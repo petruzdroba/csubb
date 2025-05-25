@@ -33,7 +33,7 @@ void test_modificare() {
   assert(((Cheltuiala*)lista->elemente[0])->suma== 170);
   assert(strcmp(((Cheltuiala*)lista->elemente[0])->tip, "telefon&internet") == 0);
 
-  rezultat = modificare(&lista, 10, 15, 180, "imbracaminte");
+  rezultat = modificare(lista, 10, 15, 180, "imbracaminte");
   assert(rezultat == -2);
 
   distruge_lista(lista);

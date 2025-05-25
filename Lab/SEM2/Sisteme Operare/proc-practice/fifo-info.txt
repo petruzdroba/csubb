@@ -1,0 +1,129 @@
+## Interprocess Communication Using Two FIFOs (Named Pipes)
+
+This guide demonstrates how to set up bidirectional communication between two active processes using two FIFOs. One process (Process A) is responsible for creating and deleting the FIFOs.
+
+### FIFO Setup
+
+We use two FIFOs:
+
+* `fifo1`: For messages from Process A to Process B
+* `fifo2`: For messages from Process B to Process A
+
+---
+
+### FIFO Names
+
+These are common definitions used in both processes:
+
+```c
+#define FIFO1 "fifo1"  // A to B
+#define FIFO2 "fifo2"  // B to A
+#define BUF_SIZE 100
+```
+
+---
+
+### Process A: Creates, Communicates, and Cleans Up
+
+```c
+// process_a.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <string.h>
+
+#define FIFO1 "fifo1"
+#define FIFO2 "fifo2"
+#define BUF_SIZE 100
+
+int main() {
+    // Create FIFOs
+    mkfifo(FIFO1, 0666);
+    mkfifo(FIFO2, 0666);
+
+    int write_fd = open(FIFO1, O_WRONLY);
+    int read_fd = open(FIFO2, O_RDONLY);
+
+    char buf[BUF_SIZE];
+
+    while (1) {
+        printf("A: Enter message: ");
+        if (fgets(buf, BUF_SIZE, stdin) == NULL) break;
+
+        write(write_fd, buf, strlen(buf));
+
+        int n = read(read_fd, buf, BUF_SIZE - 1);
+        if (n <= 0) break;
+        buf[n] = '\0';
+        printf("A: Received: %s", buf);
+    }
+
+    close(write_fd);
+    close(read_fd);
+
+    // Cleanup
+    unlink(FIFO1);
+    unlink(FIFO2);
+
+    return 0;
+}
+```
+
+---
+
+### Process B: Assumes FIFOs Exist
+
+```c
+// process_b.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <string.h>
+
+#define FIFO1 "fifo1"
+#define FIFO2 "fifo2"
+#define BUF_SIZE 100
+
+int main() {
+    char buf[BUF_SIZE];
+
+    int read_fd = open(FIFO1, O_RDONLY);
+    int write_fd = open(FIFO2, O_WRONLY);
+
+    while (1) {
+        int n = read(read_fd, buf, BUF_SIZE - 1);
+        if (n <= 0) break;
+        buf[n] = '\0';
+        printf("B: Received: %s", buf);
+
+        printf("B: Enter reply: ");
+        if (fgets(buf, BUF_SIZE, stdin) == NULL) break;
+        write(write_fd, buf, strlen(buf));
+    }
+
+    close(write_fd);
+    close(read_fd);
+
+    return 0;
+}
+```
+
+---
+
+### Compile and Run
+
+```bash
+gcc process_a.c -o process_a
+gcc process_b.c -o process_b
+```
+
+Open two terminals:
+
+* **Terminal 1**: `./process_a`
+* **Terminal 2**: `./process_b`
+
+This enables full-duplex communication using two FIFOs.
+

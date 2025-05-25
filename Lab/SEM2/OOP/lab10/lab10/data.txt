@@ -1,0 +1,13 @@
+Introduction to Programming,56,Lecture,John Smith
+Data Structures and Algorithms,64,Lecture,Susan Johnson
+Databases,48,Lecture,Michael Brown
+Computer Networks,52,Lab,Alice Davis
+Operating Systems,60,Lecture,David Wilson
+Software Engineering,50,Lecture,Linda Martinez
+Machine Learning,54,Seminar,Robert Garcia
+Artificial Intelligence,58,Lecture,Jennifer Lee
+Web Development,46,Lab,Chris Moore
+Cybersecurity Fundamentals,45,Lecture,Patricia Taylor
+OOP,25,Lab,Czblua Istvan
+Sport,12,Fizic,Chris Moore
+123,123,123,123

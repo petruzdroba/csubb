@@ -1,0 +1,147 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{17D0080A-E1A1-4A98-80BC-D1D3168A8F5B}|lab3\\lab3.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\App.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{17D0080A-E1A1-4A98-80BC-D1D3168A8F5B}|lab3\\lab3.vcxproj|solutionrelative:lab3\\App.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17D0080A-E1A1-4A98-80BC-D1D3168A8F5B}|lab3\\lab3.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\testLDI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{17D0080A-E1A1-4A98-80BC-D1D3168A8F5B}|lab3\\lab3.vcxproj|solutionrelative:lab3\\testLDI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17D0080A-E1A1-4A98-80BC-D1D3168A8F5B}|lab3\\lab3.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\CP.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{17D0080A-E1A1-4A98-80BC-D1D3168A8F5B}|lab3\\lab3.vcxproj|solutionrelative:lab3\\CP.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17D0080A-E1A1-4A98-80BC-D1D3168A8F5B}|lab3\\lab3.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\LDI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{17D0080A-E1A1-4A98-80BC-D1D3168A8F5B}|lab3\\lab3.vcxproj|solutionrelative:lab3\\LDI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17D0080A-E1A1-4A98-80BC-D1D3168A8F5B}|lab3\\lab3.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\CP.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{17D0080A-E1A1-4A98-80BC-D1D3168A8F5B}|lab3\\lab3.vcxproj|solutionrelative:lab3\\CP.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17D0080A-E1A1-4A98-80BC-D1D3168A8F5B}|lab3\\lab3.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\TestScurt.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{17D0080A-E1A1-4A98-80BC-D1D3168A8F5B}|lab3\\lab3.vcxproj|solutionrelative:lab3\\TestScurt.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17D0080A-E1A1-4A98-80BC-D1D3168A8F5B}|lab3\\lab3.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\TestExtins.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{17D0080A-E1A1-4A98-80BC-D1D3168A8F5B}|lab3\\lab3.vcxproj|solutionrelative:lab3\\TestExtins.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 267,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "testLDI.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\testLDI.h",
+              "RelativeDocumentMoniker": "lab3\\testLDI.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\testLDI.h",
+              "RelativeToolTip": "lab3\\testLDI.h",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAABAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-06T17:32:48.737Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TestScurt.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\TestScurt.cpp",
+              "RelativeDocumentMoniker": "lab3\\TestScurt.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\TestScurt.cpp",
+              "RelativeToolTip": "lab3\\TestScurt.cpp",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-21T16:51:37.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TestExtins.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\TestExtins.cpp",
+              "RelativeDocumentMoniker": "lab3\\TestExtins.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\TestExtins.cpp",
+              "RelativeToolTip": "lab3\\TestExtins.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-21T18:25:12.071Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LDI.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\LDI.h",
+              "RelativeDocumentMoniker": "lab3\\LDI.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\LDI.h",
+              "RelativeToolTip": "lab3\\LDI.h",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAAGkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-21T17:39:56.613Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\App.cpp",
+              "RelativeDocumentMoniker": "lab3\\App.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\App.cpp",
+              "RelativeToolTip": "lab3\\App.cpp",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADQAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-21T16:51:39.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CP.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\CP.cpp",
+              "RelativeDocumentMoniker": "lab3\\CP.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\CP.cpp",
+              "RelativeToolTip": "lab3\\CP.cpp",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAADkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-21T16:51:15.304Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CP.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\CP.h",
+              "RelativeDocumentMoniker": "lab3\\CP.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab3\\lab3\\CP.h",
+              "RelativeToolTip": "lab3\\CP.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-21T16:51:06.392Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

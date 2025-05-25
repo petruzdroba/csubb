@@ -1,4 +1,4 @@
-[2025-04-01 22:28:50] [info] Start Program:
+[2025-04-15 21:21:46] [info] Start Program:
 Path:"C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\x64\Debug\lab6.exe"
 Arguments:
 Working directory: "C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\"
@@ -9,13 +9,14 @@ Cover Children: 0
 Aggregate by file: 1
 Continue after C++ exception: 0
 Optimized build support: 0
-Export: Binary C:\Users\Petru\AppData\Local\Temp\1f3lr0je.ips 
+Export: Binary C:\Users\Petru\AppData\Local\Temp\3bszgh5l.qnv 
 Input coverage: 
 Unified diff: 
 Excluded line regular expressions: 
 Substitute pdb source paths: 
 
-[2025-04-01 22:28:50] [info] Module: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\x64\Debug\lab6.exe is selected because it matches selected pattern: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\x64\Debug\lab6.exe
-[2025-04-01 22:28:50] [info] ----------------------------------------------------
-[2025-04-01 22:28:50] [info] Coverage binary generated in file: C:\Users\Petru\AppData\Local\Temp\1f3lr0je.ips
-[2025-04-01 22:28:50] [info] ----------------------------------------------------
+[2025-04-15 21:21:46] [info] Module: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\x64\Debug\lab6.exe is selected because it matches selected pattern: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\x64\Debug\lab6.exe
+[2025-04-15 21:22:24] [info] ----------------------------------------------------
+[2025-04-15 21:22:24] [info] Coverage binary generated in file: C:\Users\Petru\AppData\Local\Temp\3bszgh5l.qnv
+[2025-04-15 21:22:24] [info] ----------------------------------------------------
+[2025-04-15 21:22:24] [error] Your program stop with error code: 1

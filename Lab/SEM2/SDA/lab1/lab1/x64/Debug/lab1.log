@@ -1,0 +1,7 @@
+﻿  IteratorVectorDinamic.cpp
+  TestExtins.cpp
+  VectorDinamic.cpp
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\SDA\lab1\lab1\VectorDinamic.cpp(130,33): warning C4101: 'exception': unreferenced local variable
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\SDA\lab1\lab1\VectorDinamic.cpp(185,33): warning C4101: 'exception': unreferenced local variable
+  Generating Code...
+  lab1.vcxproj -> C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\SDA\lab1\x64\Debug\lab1.exe

@@ -1,0 +1,148 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8A7BDE2A-BB4D-49FB-8A44-C34B6AAECA1A}|simulareRochii\\simulareRochii.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\Gui.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8A7BDE2A-BB4D-49FB-8A44-C34B6AAECA1A}|simulareRochii\\simulareRochii.vcxproj|solutionrelative:simulareRochii\\Gui.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A7BDE2A-BB4D-49FB-8A44-C34B6AAECA1A}|simulareRochii\\simulareRochii.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8A7BDE2A-BB4D-49FB-8A44-C34B6AAECA1A}|simulareRochii\\simulareRochii.vcxproj|solutionrelative:simulareRochii\\service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A7BDE2A-BB4D-49FB-8A44-C34B6AAECA1A}|simulareRochii\\simulareRochii.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\repo.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8A7BDE2A-BB4D-49FB-8A44-C34B6AAECA1A}|simulareRochii\\simulareRochii.vcxproj|solutionrelative:simulareRochii\\repo.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A7BDE2A-BB4D-49FB-8A44-C34B6AAECA1A}|simulareRochii\\simulareRochii.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\Rochie.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8A7BDE2A-BB4D-49FB-8A44-C34B6AAECA1A}|simulareRochii\\simulareRochii.vcxproj|solutionrelative:simulareRochii\\Rochie.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A7BDE2A-BB4D-49FB-8A44-C34B6AAECA1A}|simulareRochii\\simulareRochii.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\rochii.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{8A7BDE2A-BB4D-49FB-8A44-C34B6AAECA1A}|simulareRochii\\simulareRochii.vcxproj|solutionrelative:simulareRochii\\rochii.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A7BDE2A-BB4D-49FB-8A44-C34B6AAECA1A}|simulareRochii\\simulareRochii.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\teste.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8A7BDE2A-BB4D-49FB-8A44-C34B6AAECA1A}|simulareRochii\\simulareRochii.vcxproj|solutionrelative:simulareRochii\\teste.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A7BDE2A-BB4D-49FB-8A44-C34B6AAECA1A}|simulareRochii\\simulareRochii.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8A7BDE2A-BB4D-49FB-8A44-C34B6AAECA1A}|simulareRochii\\simulareRochii.vcxproj|solutionrelative:simulareRochii\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 267,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Gui.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\Gui.h",
+              "RelativeDocumentMoniker": "simulareRochii\\Gui.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\Gui.h",
+              "RelativeToolTip": "simulareRochii\\Gui.h",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAAAHoAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-22T09:48:36.606Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Rochie.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\Rochie.h",
+              "RelativeDocumentMoniker": "simulareRochii\\Rochie.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\Rochie.h",
+              "RelativeToolTip": "simulareRochii\\Rochie.h",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACwAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-22T11:42:58.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "repo.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\repo.h",
+              "RelativeDocumentMoniker": "simulareRochii\\repo.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\repo.h",
+              "RelativeToolTip": "simulareRochii\\repo.h",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAD0AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-22T10:53:00.369Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "rochii.txt",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\rochii.txt",
+              "RelativeDocumentMoniker": "simulareRochii\\rochii.txt",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\rochii.txt",
+              "RelativeToolTip": "simulareRochii\\rochii.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-05-22T10:19:17.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "service.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\service.h",
+              "RelativeDocumentMoniker": "simulareRochii\\service.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\service.h",
+              "RelativeToolTip": "simulareRochii\\service.h",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAE4AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-22T10:16:17.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "teste.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\teste.cpp",
+              "RelativeDocumentMoniker": "simulareRochii\\teste.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\teste.cpp",
+              "RelativeToolTip": "simulareRochii\\teste.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-22T09:43:52.19Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\main.cpp",
+              "RelativeDocumentMoniker": "simulareRochii\\main.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulareRochii\\simulareRochii\\main.cpp",
+              "RelativeToolTip": "simulareRochii\\main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-22T09:39:17.742Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

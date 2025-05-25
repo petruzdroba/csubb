@@ -1,0 +1,105 @@
+## Interprocess Communication Between Parent and Child Using Two Pipes
+
+This guide explains how to implement bidirectional communication between a parent and its child process using **two anonymous pipes**.
+
+### 🧭 Overview
+
+We use two pipes:
+
+* `pipe1`: For communication from **Parent ➝ Child**
+* `pipe2`: For communication from **Child ➝ Parent**
+
+Each pipe is a unidirectional byte stream. Since pipes are inherited by child processes after a `fork()`, they are suitable for this setup.
+
+---
+
+### 🔧 Definitions
+
+```c
+#define BUF_SIZE 100
+```
+
+---
+
+### 👨‍👦 Parent-Child Communication Example
+
+```c
+// parent_child_pipe.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+#define BUF_SIZE 100
+
+int main() {
+    int pipe1[2]; // Parent to Child
+    int pipe2[2]; // Child to Parent
+    char buf[BUF_SIZE];
+
+    // Create pipes
+    if (pipe(pipe1) == -1 || pipe(pipe2) == -1) {
+        perror("pipe");
+        exit(1);
+    }
+
+    int pid = fork();
+
+    if (pid < 0) {
+        perror("fork");
+        exit(1);
+    }
+    else if (pid == 0) {
+        // Child Process
+        close(pipe1[1]); // Close write end of pipe1
+        close(pipe2[0]); // Close read end of pipe2
+
+        while (1) {
+            int n = read(pipe1[0], buf, BUF_SIZE - 1);
+            if (n <= 0) break;
+            buf[n] = '\0';
+            printf("Child received: %s", buf);
+
+            printf("Child reply: ");
+            if (fgets(buf, BUF_SIZE, stdin) == NULL) break;
+            write(pipe2[1], buf, strlen(buf));
+        }
+
+        close(pipe1[0]);
+        close(pipe2[1]);
+    }
+    else {
+        // Parent Process
+        close(pipe1[0]); // Close read end of pipe1
+        close(pipe2[1]); // Close write end of pipe2
+
+        while (1) {
+            printf("Parent message: ");
+            if (fgets(buf, BUF_SIZE, stdin) == NULL) break;
+            write(pipe1[1], buf, strlen(buf));
+
+            int n = read(pipe2[0], buf, BUF_SIZE - 1);
+            if (n <= 0) break;
+            buf[n] = '\0';
+            printf("Parent received: %s", buf);
+        }
+
+        close(pipe1[1]);
+        close(pipe2[0]);
+    }
+
+    return 0;
+}
+```
+
+---
+
+### 🧪 Compile and Run
+
+```bash
+gcc parent_child_pipe.c -o parent_child_pipe
+./parent_child_pipe
+```
+
+This will launch both parent and child processes in a single terminal session, allowing them to send and receive messages using the two pipes.
+

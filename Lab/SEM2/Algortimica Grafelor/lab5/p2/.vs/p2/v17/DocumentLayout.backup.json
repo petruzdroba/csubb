@@ -1,0 +1,45 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\Algortimica Grafelor\\lab5\\p2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BEB7950B-833B-40F4-8CE8-74FCA55C47A0}|p2\\p2.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\Algortimica Grafelor\\lab5\\p2\\p2\\p2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BEB7950B-833B-40F4-8CE8-74FCA55C47A0}|p2\\p2.vcxproj|solutionrelative:p2\\p2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 267,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "p2.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\Algortimica Grafelor\\lab5\\p2\\p2\\p2.cpp",
+              "RelativeDocumentMoniker": "p2\\p2.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\Algortimica Grafelor\\lab5\\p2\\p2\\p2.cpp",
+              "RelativeToolTip": "p2\\p2.cpp",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAqwF8AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-25T09:58:33.515Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

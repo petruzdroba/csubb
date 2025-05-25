@@ -2,30 +2,28 @@
 
 using namespace std;
 
-vector<Disciplina> Repository::getAll() const
-{
-	return discipline;
-}
-
 void Repository::adauga(const Disciplina& disciplina)
 {
 	discipline.push_back(disciplina);
 }
 
-Disciplina Repository::sterge(const int pozitie)
+void Repository::sterge(const int pozitie)
 {
-	Disciplina disciplinaStearsa = getAll()[pozitie];
-	discipline.erase(discipline.begin() + pozitie);
-	return disciplinaStearsa;
+	//Disciplina disciplinaStearsa = getAll()[pozitie];
+	//Disciplina disciplinaStearsa = discipline.all()[pozitie];
+	//discipline.erase(discipline.begin() + pozitie);
+	discipline.erase(pozitie);
+	//return disciplinaStearsa;
 }
 
 void Repository::modifica(const int pozitie, const Disciplina& newDisciplina)
 {
-	discipline[pozitie] = newDisciplina;
+	//discipline[pozitie] = newDisciplina;
+	discipline.set(pozitie, newDisciplina);
 }
 
 
-int Repository::getLungime() const
+int Repository::getLungime() const noexcept
 {
-	return (int)discipline.size(); //type size_t
+	return discipline.size(); //type size_t
 }

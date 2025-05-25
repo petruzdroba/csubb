@@ -1,0 +1,10 @@
+1,dress1,s,10,1
+2,dress2,s,123,0
+3,dress3,m,123451,1
+4,dress4,s,3546,0
+5,dress5,l,5645,0
+6,dress6,s,2342,0
+7,dress7,l,34,1
+8,dress8,s,14215,1
+9,dress9,m,3423,1
+10,dress10,s,3242,1

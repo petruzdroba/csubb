@@ -1,0 +1,50 @@
+transform char to int atoi, alpha to int
+reverse either itoa, int to alpha, or +'0'
+
+in C add unistd.h to use fork pipe ond fifo
+
+pipe is between mostly parent and child proc
+
+int pc[2] = {0};
+pipe(pc) 
+
+int cp[2] = {0};
+pipe(cp)
+
+//pipe este unidirectional ori p->c ori c->p
+//sau pui 2 pipe pt comunicare bidimen intre p si c
+if fork == 0:
+	//this is the child proc
+	int got;
+	read(pc[0], &got, sizeof(int))
+
+	write(cp[1], &got, sizeof(int))
+else
+	//parent process
+	int random = rand() % 11 // pana la 10
+	write(pc[1], &random, sizeof(random)) 
+	
+	read(cp[1], &random, sizeof(int))
+	wait(0) //sys/wait.h
+
+
+fifo is pipe between standalone proc on the same computer(for now)
+--  cmd : mkfifo, unlink(delete)
+can be opened by any proc
+
+mkfifo a2b
+mkfifo b2a
+
+//parent and child here are only names for 2 diff
+//proc, but they dont need to be related
+//in child proc
+int pc = open("a2b", O_RDONLY) //fcntl.h for open
+int cp = open("b2a", O_WRONLY)
+
+//in parent proc
+int pc = open("a2b", O_WRONLY)
+int cp = open("b2a", O_RDONLY)
+
+
+
+

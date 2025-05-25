@@ -1,2 +1,98 @@
-﻿  service.cpp
+﻿  repo.cpp
+  service.cpp
+  teste.cpp
+  ui.cpp
+  Running Code Analysis for C/C++...
+  Generating Code...
   lab6.vcxproj -> C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\x64\Debug\lab6.exe
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\Disciplina.h(16): warning C26455: Default constructor should not throw. Declare it 'noexcept' (f.6).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\Disciplina.h(28): warning C26432: If you define or delete any default operation in the type 'class Disciplina', define or delete them all (c.21).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\Disciplina.cpp(39): warning C6389: Move '__empty_global_delete' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\main.cpp(31): warning C6389: Move '__empty_global_delete' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(147): warning C26481: Don't use pointer arithmetic. Use span instead (bounds.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\repo.cpp(30): warning C6389: Move '__empty_global_delete' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(65): warning C26481: Don't use pointer arithmetic. Use span instead (bounds.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(58): warning C26481: Don't use pointer arithmetic. Use span instead (bounds.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(48): warning C26481: Don't use pointer arithmetic. Use span instead (bounds.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(22): warning C26409: Avoid calling new and delete explicitly, use std::make_unique<T> instead (r.11).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(22): warning C26400: Do not assign the result of an allocation or a function call with an owner<T> return value to a raw pointer, use owner<T> instead (i.11).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(26): warning C26481: Don't use pointer arithmetic. Use span instead (bounds.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(29): warning C26823: Dereferencing a possibly null pointer 'allotemp.2' (lifetime.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\service.cpp(76): warning C6389: Move 'sortare' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\service.cpp(78): warning C26447: The function is declared 'noexcept' but calls function 'sort<Disciplina * __ptr64,bool (__cdecl*)(Disciplina const & __ptr64,Disciplina const & __ptr64)>()' which may throw exceptions (f.6).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\service.cpp(81): warning C6389: Move 'cmpDenumire' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\service.cpp(92): warning C6389: Move 'cmpTip' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\service.cpp(103): warning C6389: Move 'cmpOre' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\service.cpp(103): warning C26440: Function 'cmpOre' can be declared 'noexcept' (f.6).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\service.cpp(114): warning C6389: Move 'cmpProfesor' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\service.cpp(124): warning C6389: Move '__empty_global_delete' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(111): warning C26481: Don't use pointer arithmetic. Use span instead (bounds.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(108): warning C26481: Don't use pointer arithmetic. Use span instead (bounds.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(82): warning C26432: If you define or delete any default operation in the type 'class VectorDinamic<class Disciplina>', define or delete them all (c.21).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(85): warning C26409: Avoid calling new and delete explicitly, use std::make_unique<T> instead (r.11).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(87): warning C26481: Don't use pointer arithmetic. Use span instead (bounds.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(34): warning C26455: Default constructor should not throw. Declare it 'noexcept' (f.6).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(36): warning C26409: Avoid calling new and delete explicitly, use std::make_unique<T> instead (r.11).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(88): warning C26446: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(88): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(114): warning C26823: Dereferencing a possibly null pointer 'result.what' (lifetime.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(114): warning C26823: There are other instances of this issue:
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(114): warning C26823: Dereferencing a possibly null pointer 'result.what' (lifetime.1). at line 122
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(114): warning C26823: Dereferencing a possibly null pointer 'result.what' (lifetime.1). at line 130
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(114): warning C26823: Dereferencing a possibly null pointer 'result.what' (lifetime.1). at line 138
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(114): warning C26823: 
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(169): warning C26823: Dereferencing a possibly null pointer 'result.what' (lifetime.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(192): warning C26446: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(192): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(198): warning C26823: Dereferencing a possibly null pointer 'result.what' (lifetime.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(198): warning C26823: There are other instances of this issue:
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(198): warning C26823: Dereferencing a possibly null pointer 'result.what' (lifetime.1). at line 205
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(198): warning C26823: Dereferencing a possibly null pointer 'result.what' (lifetime.1). at line 212
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(198): warning C26823: Dereferencing a possibly null pointer 'result.what' (lifetime.1). at line 219
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(198): warning C26823: Dereferencing a possibly null pointer 'result.what' (lifetime.1). at line 226
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(198): warning C26823: Dereferencing a possibly null pointer 'result.what' (lifetime.1). at line 233
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(198): warning C26823: 
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(237): warning C6389: Move 'testFiltrareOre' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(251): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(254): warning C6389: Move 'testFiltrareProfesor' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(269): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(272): warning C6389: Move 'testSortare' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(286): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(287): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(291): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(292): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(296): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(297): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(301): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(302): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(318): warning C6389: Move 'testCopyIterate' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(330): warning C6389: Move 'testCreateCopyAssign' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(340): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(344): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(349): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(353): warning C26458: Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(378): warning C6389: Move 'testMoveCA' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\teste.cpp(415): warning C6389: Move '__empty_global_delete' to anonymous namespace or put a forward declaration in a common header included in this file.
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(124): warning C26440: Function 'VectorDinamic<Disciplina>::getLungime' can be declared 'noexcept' (f.6).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(121): warning C26481: Don't use pointer arithmetic. Use span instead (bounds.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(115): warning C26440: Function 'VectorDinamic<Disciplina>::operator[]' can be declared 'noexcept' (f.6).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(116): warning C26481: Don't use pointer arithmetic. Use span instead (bounds.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(92): warning C26432: If you define or delete any default operation in the type 'class VectorDinamic<class Disciplina>', define or delete them all (c.21).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(99): warning C26409: Avoid calling new and delete explicitly, use std::make_unique<T> instead (r.11).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(101): warning C26481: Don't use pointer arithmetic. Use span instead (bounds.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\vector.h(95): warning C26823: Dereferencing a possibly null pointer 'allotemp.2' (lifetime.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\ui.cpp(88): warning C26496: The variable 'e' does not change after construction, mark it as const (con.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\ui.cpp(148): warning C26496: The variable 'e' does not change after construction, mark it as const (con.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\ui.cpp(252): warning C26496: The variable 'e' does not change after construction, mark it as const (con.4).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\ui.cpp(56): warning C26494: Variable 'ore' is uninitialized. Always initialize an object (type.5).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\ui.cpp(119): warning C26494: Variable 'ore' is uninitialized. Always initialize an object (type.5).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\ui.cpp(161): warning C26823: Dereferencing a possibly null pointer 'd' (lifetime.1).
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\ui.cpp(161): warning C26823: There are other instances of this issue:
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\ui.cpp(161): warning C26823: Dereferencing a possibly null pointer 'd' (lifetime.1). at line 179
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\ui.cpp(161): warning C26823: Dereferencing a possibly null pointer 'd' (lifetime.1). at line 195
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\ui.cpp(161): warning C26823: Dereferencing a possibly null pointer 'd' (lifetime.1). at line 213
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\ui.cpp(161): warning C26823: Dereferencing a possibly null pointer 'd' (lifetime.1). at line 223
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\ui.cpp(161): warning C26823: Dereferencing a possibly null pointer 'd' (lifetime.1). at line 233
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\ui.cpp(161): warning C26823: Dereferencing a possibly null pointer 'd' (lifetime.1). at line 243
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\ui.cpp(161): warning C26823: 
+C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\ui.cpp(258): warning C6389: Move '__empty_global_delete' to anonymous namespace or put a forward declaration in a common header included in this file.

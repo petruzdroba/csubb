@@ -1,0 +1,22 @@
+threads maybe
+#include <pthread.h>
+
+argument pthread_join : 1 - thread , 2 - ce returnreaza 
+
+to create all threads at once in order -> bariera (mutex?) -> toti dau wait la bariera, si aia se ridica cand atatea threaduri care
+astepta la bariera
+
+pthread_barrier_t bar; init with a number representing the number of threads needed to be waiting for it to open
+pthread_barrier_init(&bar, NULL, INT) : 1 -pointer- bariera 2 -brhaviour- NULL, 3 -int- cate procese
+pthread_barrier_wait(&bar)
+
+create with pthread_create() arg : 1 - pointer la struct de tip pthread_t, 2 - atribute la cum se creeaza threadul, NULL - basic
+thread de tip proces, de tip joinable etc , 3 - functia care sa se execute pt thread, 4 - void	*- argumentele pt fct. f
+function void* f(void * a) -> cast in pthread_create vars as (void*) -> in function cast back to initial type of value
+
+create mutex - global pthread_mutex_init(pointer to mutex, arg for mutex/NULL default)
+
+semafor - numai un nr de threaduri poate fi in ciclu
+bariera - trebuie un nr de threaduri ca sa inceapa ciclul
+
+notify problem -> create a flag globally that gets set when condition is met -> then stop all threads

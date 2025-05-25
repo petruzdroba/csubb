@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>31</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>6389</DEFECTCODE>
+    <DESCRIPTION>Move '__empty_global_delete' to anonymous namespace or put a forward declaration in a common header included in this file.</DESCRIPTION>
+    <FUNCTION>__empty_global_delete</FUNCTION>
+    <DECORATED>?__empty_global_delete@@YAXPEAX@Z</DECORATED>
+    <FUNCLINE>31</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab6\lab6\</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>31</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>6389</DEFECTCODE>
+    <DESCRIPTION>Move '__empty_global_delete' to anonymous namespace or put a forward declaration in a common header included in this file.</DESCRIPTION>
+    <FUNCTION>__empty_global_delete</FUNCTION>
+    <DECORATED>?__empty_global_delete@@YAXPEAX_K@Z</DECORATED>
+    <FUNCLINE>31</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

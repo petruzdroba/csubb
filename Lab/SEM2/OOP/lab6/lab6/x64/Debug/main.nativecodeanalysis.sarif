@@ -1,0 +1,111 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C6389",
+          "message": {
+            "text": "Move '__empty_global_delete' to anonymous namespace or put a forward declaration in a common header included in this file."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/main.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/main.cpp"
+                },
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "__empty_global_delete",
+                  "decoratedName": "?__empty_global_delete@@YAXPEAX@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6389",
+          "message": {
+            "text": "Move '__empty_global_delete' to anonymous namespace or put a forward declaration in a common header included in this file."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/main.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/main.cpp"
+                },
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "__empty_global_delete",
+                  "decoratedName": "?__empty_global_delete@@YAXPEAX_K@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.43.34810.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/main.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "391be750196403cbfca23584945dfdc1624c636b2d155b62cadbf6887814fd48"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.h"
+          },
+          "hashes": {
+            "sha-256": "98ecdec998020757789620fed4000699e95b6ec7572ba535663cae6d211d64a7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/ui.h"
+          },
+          "hashes": {
+            "sha-256": "6372c05e24c81cb52523067ce29e3e15e6dc78c72f50ba49c8ca5dd149f8ee63"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\gui.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|solutionrelative:simulare\\gui.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\service.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|solutionrelative:simulare\\service.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\Repo.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|solutionrelative:simulare\\Repo.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\teste.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|solutionrelative:simulare\\teste.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\Jucator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|solutionrelative:simulare\\Jucator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|solutionrelative:simulare\\service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|solutionrelative:simulare\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\Repo.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AA8318AD-1A76-4A37-BC16-A300ADCF6089}|simulare\\simulare.vcxproj|solutionrelative:simulare\\Repo.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 267,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "gui.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\gui.h",
+              "RelativeDocumentMoniker": "simulare\\gui.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\gui.h",
+              "RelativeToolTip": "simulare\\gui.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIQAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-23T07:12:02.149Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "service.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\service.cpp",
+              "RelativeDocumentMoniker": "simulare\\service.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\service.cpp",
+              "RelativeToolTip": "simulare\\service.cpp",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAEUAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-23T07:15:58.509Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "service.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\service.h",
+              "RelativeDocumentMoniker": "simulare\\service.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\service.h",
+              "RelativeToolTip": "simulare\\service.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-23T07:14:24.619Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "teste.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\teste.cpp",
+              "RelativeDocumentMoniker": "simulare\\teste.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\teste.cpp",
+              "RelativeToolTip": "simulare\\teste.cpp",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAEwAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-23T07:08:03.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Repo.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\Repo.h",
+              "RelativeDocumentMoniker": "simulare\\Repo.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\Repo.h",
+              "RelativeToolTip": "simulare\\Repo.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-23T07:04:44.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Repo.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\Repo.cpp",
+              "RelativeDocumentMoniker": "simulare\\Repo.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\Repo.cpp",
+              "RelativeToolTip": "simulare\\Repo.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-23T07:04:34.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Jucator.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\Jucator.h",
+              "RelativeDocumentMoniker": "simulare\\Jucator.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\Jucator.h",
+              "RelativeToolTip": "simulare\\Jucator.h",
+              "ViewState": "AgIAACYAAAAAAAAAAAAIwDIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-23T07:01:56.601Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\main.cpp",
+              "RelativeDocumentMoniker": "simulare\\main.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\simulare\\simulare\\main.cpp",
+              "RelativeToolTip": "simulare\\main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-23T07:00:38.92Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

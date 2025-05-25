@@ -3,32 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\repo.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|solutionrelative:lab5\\repo.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|solutionrelative:lab5\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\ui.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|solutionrelative:lab5\\ui.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\teste.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|solutionrelative:lab5\\teste.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|solutionrelative:lab5\\service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\service.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|solutionrelative:lab5\\service.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\MyList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|solutionrelative:lab5\\MyList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\teste.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|solutionrelative:lab5\\teste.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\MyList.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|solutionrelative:lab5\\MyList.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\repo.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|solutionrelative:lab5\\repo.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\ui.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|solutionrelative:lab5\\ui.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\Cheltuieli.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -43,8 +39,12 @@
       "RelativeMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|solutionrelative:lab5\\repo.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\MyList.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|solutionrelative:lab5\\MyList.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\MyList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|solutionrelative:lab5\\MyList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3B72C0B6-A559-4193-B8CB-139A2DDB2C69}|lab5\\lab5.vcxproj|solutionrelative:lab5\\service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,33 +54,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 267,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "teste.c",
               "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\teste.c",
               "RelativeDocumentMoniker": "lab5\\teste.c",
               "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\teste.c",
               "RelativeToolTip": "lab5\\teste.c",
-              "ViewState": "AgIAANkBAAAAAAAAAAAQwPUBAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAUwCMAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-03-27T18:32:20.585Z",
               "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "main.c",
-              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\main.c",
-              "RelativeDocumentMoniker": "lab5\\main.c",
-              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\main.c",
-              "RelativeToolTip": "lab5\\main.c",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-03-29T11:28:55.707Z",
               "EditorCaption": ""
             },
             {
@@ -93,20 +80,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "main.c",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\main.c",
+              "RelativeDocumentMoniker": "lab5\\main.c",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\main.c",
+              "RelativeToolTip": "lab5\\main.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-03-29T11:28:55.707Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "ui.c",
               "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\ui.c",
               "RelativeDocumentMoniker": "lab5\\ui.c",
               "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\ui.c",
               "RelativeToolTip": "lab5\\ui.c",
-              "ViewState": "AgIAAA0BAAAAAAAAAADgvxgBAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAABgBAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-03-29T11:17:14.887Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "service.h",
               "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\service.h",
               "RelativeDocumentMoniker": "lab5\\service.h",
@@ -119,33 +119,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "service.c",
               "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\service.c",
               "RelativeDocumentMoniker": "lab5\\service.c",
               "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\service.c",
               "RelativeToolTip": "lab5\\service.c",
-              "ViewState": "AgIAAIYAAAAAAAAAAAAswJoAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAANIAAAAAAAAAAAAUwOAAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-03-28T08:43:07.166Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "MyList.c",
               "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\MyList.c",
               "RelativeDocumentMoniker": "lab5\\MyList.c",
               "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\MyList.c",
               "RelativeToolTip": "lab5\\MyList.c",
-              "ViewState": "AgIAACsAAAAAAAAAAAAqwD4AAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAUwCYAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-03-27T18:30:21.62Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "MyList.h",
               "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\MyList.h",
               "RelativeDocumentMoniker": "lab5\\MyList.h",
@@ -158,7 +158,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "Cheltuieli.h",
               "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\Cheltuieli.h",
               "RelativeDocumentMoniker": "lab5\\Cheltuieli.h",
@@ -171,7 +171,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "Cheltuieli.c",
               "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\Cheltuieli.c",
               "RelativeDocumentMoniker": "lab5\\Cheltuieli.c",
@@ -184,7 +184,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "repo.h",
               "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\repo.h",
               "RelativeDocumentMoniker": "lab5\\repo.h",
@@ -197,13 +197,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "repo.c",
               "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\repo.c",
               "RelativeDocumentMoniker": "lab5\\repo.c",
               "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\lab5\\lab5\\repo.c",
               "RelativeToolTip": "lab5\\repo.c",
-              "ViewState": "AgIAAGwAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAUwIUAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-03-28T08:16:39.696Z",
               "EditorCaption": ""

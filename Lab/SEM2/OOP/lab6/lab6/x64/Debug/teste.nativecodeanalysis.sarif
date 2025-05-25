@@ -1,0 +1,4315 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C26455",
+          "message": {
+            "text": "Default constructor should not throw. Declare it 'noexcept' (f.6)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/Disciplina.h"
+                },
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Disciplina::{ctor}",
+                  "decoratedName": "??0Disciplina@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26432",
+          "message": {
+            "text": "If you define or delete any default operation in the type 'class Disciplina', define or delete them all (c.21)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/Disciplina.h"
+                },
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Disciplina::{ctor}",
+                  "decoratedName": "??0Disciplina@@QEAA@AEBV0@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26481",
+          "message": {
+            "text": "Don't use pointer arithmetic. Use span instead (bounds.1)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 147,
+                  "startColumn": 3,
+                  "endLine": 147,
+                  "endColumn": 28
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Iterator::element",
+                  "decoratedName": "?element@Iterator@@QEBAAEAVDisciplina@@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26446",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testRepositoryModifica",
+                  "decoratedName": "?testRepositoryModifica@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testRepositoryModifica",
+                  "decoratedName": "?testRepositoryModifica@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26823",
+          "message": {
+            "text": "Dereferencing a possibly null pointer 'result.what' (lifetime.1).\nThere are other instances of this issue:\nDereferencing a possibly null pointer 'result.what' (lifetime.1). at line 122\nDereferencing a possibly null pointer 'result.what' (lifetime.1). at line 130\nDereferencing a possibly null pointer 'result.what' (lifetime.1). at line 138\n"
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 114,
+                  "startColumn": 3
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testAdaugaService",
+                  "decoratedName": "?testAdaugaService@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 91,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 93,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 93,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 94,
+                            "startColumn": 10
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 94,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 96,
+                            "startColumn": 9
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 96,
+                            "startColumn": 21
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 96,
+                            "startColumn": 44
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 96,
+                            "startColumn": 51
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 96,
+                            "startColumn": 67
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 96,
+                            "startColumn": 79
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 97,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 97,
+                            "startColumn": 25
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 99,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 99,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 99,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 99,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 100,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 100,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 100,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 100,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 101,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 101,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 101,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 101,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 103,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 103,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 103,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 103,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 104,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 104,
+                            "startColumn": 63
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 104,
+                            "startColumn": 63
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 104,
+                            "startColumn": 49
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 104,
+                            "startColumn": 49
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 104,
+                            "startColumn": 25
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 104,
+                            "startColumn": 25
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 104,
+                            "startColumn": 23
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 105,
+                            "startColumn": 43
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 105,
+                            "startColumn": 30
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 105,
+                            "startColumn": 30
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 105,
+                            "startColumn": 43
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 105,
+                            "startColumn": 43
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 105,
+                            "startColumn": 43
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 105,
+                            "startColumn": 43
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 105,
+                            "startColumn": 43
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 105,
+                            "startColumn": 43
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 105,
+                            "startColumn": 43
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 110,
+                            "startColumn": 25
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 113,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 113,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 113,
+                            "startColumn": 36
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 113,
+                            "startColumn": 36
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 114,
+                            "startColumn": 3
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 114,
+                            "startColumn": 3
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26823",
+          "message": {
+            "text": "Dereferencing a possibly null pointer 'result.what' (lifetime.1)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 169,
+                  "startColumn": 3
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testSergeService",
+                  "decoratedName": "?testSergeService@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 142,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 144,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 144,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 145,
+                            "startColumn": 10
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 145,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 147,
+                            "startColumn": 9
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 147,
+                            "startColumn": 21
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 147,
+                            "startColumn": 44
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 147,
+                            "startColumn": 51
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 147,
+                            "startColumn": 67
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 147,
+                            "startColumn": 79
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 148,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 148,
+                            "startColumn": 25
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 150,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 150,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 150,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 150,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 151,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 151,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 151,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 151,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 152,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 152,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 152,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 152,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 154,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 154,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 154,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 154,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 155,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 155,
+                            "startColumn": 63
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 155,
+                            "startColumn": 63
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 155,
+                            "startColumn": 49
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 155,
+                            "startColumn": 49
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 155,
+                            "startColumn": 25
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 155,
+                            "startColumn": 25
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 155,
+                            "startColumn": 23
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 157,
+                            "startColumn": 23
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 158,
+                            "startColumn": 23
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 159,
+                            "startColumn": 23
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 160,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 160,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 160,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 160,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 162,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 162,
+                            "startColumn": 37
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 162,
+                            "startColumn": 37
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 162,
+                            "startColumn": 34
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 162,
+                            "startColumn": 34
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 162,
+                            "startColumn": 28
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 162,
+                            "startColumn": 28
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 162,
+                            "startColumn": 26
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 164,
+                            "startColumn": 24
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 168,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 168,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 168,
+                            "startColumn": 36
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 168,
+                            "startColumn": 36
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 169,
+                            "startColumn": 3
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 169,
+                            "startColumn": 3
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26446",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 192,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testModificaService",
+                  "decoratedName": "?testModificaService@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 192,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testModificaService",
+                  "decoratedName": "?testModificaService@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26823",
+          "message": {
+            "text": "Dereferencing a possibly null pointer 'result.what' (lifetime.1).\nThere are other instances of this issue:\nDereferencing a possibly null pointer 'result.what' (lifetime.1). at line 205\nDereferencing a possibly null pointer 'result.what' (lifetime.1). at line 212\nDereferencing a possibly null pointer 'result.what' (lifetime.1). at line 219\nDereferencing a possibly null pointer 'result.what' (lifetime.1). at line 226\nDereferencing a possibly null pointer 'result.what' (lifetime.1). at line 233\n"
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 198,
+                  "startColumn": 3
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testModificaService",
+                  "decoratedName": "?testModificaService@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 174,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 176,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 176,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 177,
+                            "startColumn": 10
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 177,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 179,
+                            "startColumn": 9
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 179,
+                            "startColumn": 18
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 179,
+                            "startColumn": 41
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 179,
+                            "startColumn": 45
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 179,
+                            "startColumn": 61
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 179,
+                            "startColumn": 70
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 180,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 180,
+                            "startColumn": 22
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 182,
+                            "startColumn": 23
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 183,
+                            "startColumn": 23
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 184,
+                            "startColumn": 23
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 186,
+                            "startColumn": 9
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 186,
+                            "startColumn": 21
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 186,
+                            "startColumn": 44
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 186,
+                            "startColumn": 51
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 186,
+                            "startColumn": 67
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 186,
+                            "startColumn": 79
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 187,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 187,
+                            "startColumn": 25
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 189,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 189,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 189,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 189,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 190,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 190,
+                            "startColumn": 59
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 190,
+                            "startColumn": 59
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 190,
+                            "startColumn": 51
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 190,
+                            "startColumn": 51
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 190,
+                            "startColumn": 30
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 190,
+                            "startColumn": 30
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 190,
+                            "startColumn": 28
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 192,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 192,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 192,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 192,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 192,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 192,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 195,
+                            "startColumn": 3
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 197,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 197,
+                            "startColumn": 2
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 197,
+                            "startColumn": 36
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 197,
+                            "startColumn": 36
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 198,
+                            "startColumn": 3
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                          },
+                          "region": {
+                            "startLine": 198,
+                            "startColumn": 3
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6389",
+          "message": {
+            "text": "Move 'testFiltrareOre' to anonymous namespace or put a forward declaration in a common header included in this file."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 237,
+                  "startColumn": 6
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testFiltrareOre",
+                  "decoratedName": "?testFiltrareOre@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 251,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testFiltrareOre",
+                  "decoratedName": "?testFiltrareOre@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6389",
+          "message": {
+            "text": "Move 'testFiltrareProfesor' to anonymous namespace or put a forward declaration in a common header included in this file."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 254,
+                  "startColumn": 6
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testFiltrareProfesor",
+                  "decoratedName": "?testFiltrareProfesor@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 269,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testFiltrareProfesor",
+                  "decoratedName": "?testFiltrareProfesor@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6389",
+          "message": {
+            "text": "Move 'testSortare' to anonymous namespace or put a forward declaration in a common header included in this file."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 272,
+                  "startColumn": 6
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testSortare",
+                  "decoratedName": "?testSortare@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 286,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testSortare",
+                  "decoratedName": "?testSortare@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 287,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testSortare",
+                  "decoratedName": "?testSortare@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 291,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testSortare",
+                  "decoratedName": "?testSortare@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 292,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testSortare",
+                  "decoratedName": "?testSortare@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 296,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testSortare",
+                  "decoratedName": "?testSortare@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 297,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testSortare",
+                  "decoratedName": "?testSortare@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 301,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testSortare",
+                  "decoratedName": "?testSortare@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 302,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testSortare",
+                  "decoratedName": "?testSortare@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6389",
+          "message": {
+            "text": "Move 'testCopyIterate' to anonymous namespace or put a forward declaration in a common header included in this file."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 318,
+                  "startColumn": 27
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testCopyIterate",
+                  "decoratedName": "?testCopyIterate@@YA?AV?$VectorDinamic@VDisciplina@@@@V1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6389",
+          "message": {
+            "text": "Move 'testCreateCopyAssign' to anonymous namespace or put a forward declaration in a common header included in this file."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 330,
+                  "startColumn": 6
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testCreateCopyAssign",
+                  "decoratedName": "?testCreateCopyAssign@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 340,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testCreateCopyAssign",
+                  "decoratedName": "?testCreateCopyAssign@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 344,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testCreateCopyAssign",
+                  "decoratedName": "?testCreateCopyAssign@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 349,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testCreateCopyAssign",
+                  "decoratedName": "?testCreateCopyAssign@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26458",
+          "message": {
+            "text": "Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 353,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testCreateCopyAssign",
+                  "decoratedName": "?testCreateCopyAssign@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6389",
+          "message": {
+            "text": "Move 'testMoveCA' to anonymous namespace or put a forward declaration in a common header included in this file."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 378,
+                  "startColumn": 6
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "testMoveCA",
+                  "decoratedName": "?testMoveCA@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6389",
+          "message": {
+            "text": "Move '__empty_global_delete' to anonymous namespace or put a forward declaration in a common header included in this file."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 415,
+                  "startColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "__empty_global_delete",
+                  "decoratedName": "?__empty_global_delete@@YAXPEAX@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6389",
+          "message": {
+            "text": "Move '__empty_global_delete' to anonymous namespace or put a forward declaration in a common header included in this file."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/teste.cpp"
+                },
+                "region": {
+                  "startLine": 415,
+                  "startColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "__empty_global_delete",
+                  "decoratedName": "?__empty_global_delete@@YAXPEAX_K@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26440",
+          "message": {
+            "text": "Function 'VectorDinamic<Disciplina>::getLungime' can be declared 'noexcept' (f.6)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 124,
+                  "startColumn": 6
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::getLungime",
+                  "decoratedName": "?getLungime@?$VectorDinamic@VDisciplina@@@@QEAAHXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26481",
+          "message": {
+            "text": "Don't use pointer arithmetic. Use span instead (bounds.1)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 121,
+                  "startColumn": 3,
+                  "endLine": 121,
+                  "endColumn": 24
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::[]",
+                  "decoratedName": "??A?$VectorDinamic@VDisciplina@@@@QEBAAEBVDisciplina@@H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26440",
+          "message": {
+            "text": "Function 'VectorDinamic<Disciplina>::operator[]' can be declared 'noexcept' (f.6)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 115,
+                  "startColumn": 11
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::[]",
+                  "decoratedName": "??A?$VectorDinamic@VDisciplina@@@@QEAAAEAVDisciplina@@H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26481",
+          "message": {
+            "text": "Don't use pointer arithmetic. Use span instead (bounds.1)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 116,
+                  "startColumn": 3,
+                  "endLine": 116,
+                  "endColumn": 24
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::[]",
+                  "decoratedName": "??A?$VectorDinamic@VDisciplina@@@@QEAAAEAVDisciplina@@H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26481",
+          "message": {
+            "text": "Don't use pointer arithmetic. Use span instead (bounds.1)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 111,
+                  "startColumn": 40,
+                  "endLine": 111,
+                  "endColumn": 58
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::end",
+                  "decoratedName": "?end@?$VectorDinamic@VDisciplina@@@@QEBAPEBVDisciplina@@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26481",
+          "message": {
+            "text": "Don't use pointer arithmetic. Use span instead (bounds.1)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 108,
+                  "startColumn": 28,
+                  "endLine": 108,
+                  "endColumn": 46
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::end",
+                  "decoratedName": "?end@?$VectorDinamic@VDisciplina@@@@QEAAPEAVDisciplina@@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26432",
+          "message": {
+            "text": "If you define or delete any default operation in the type 'class VectorDinamic<class Disciplina>', define or delete them all (c.21)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 92,
+                  "startColumn": 17
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::=",
+                  "decoratedName": "??4?$VectorDinamic@VDisciplina@@@@QEAAAEAV0@AEBV0@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26409",
+          "message": {
+            "text": "Avoid calling new and delete explicitly, use std::make_unique<T> instead (r.11)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 99,
+                  "startColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::=",
+                  "decoratedName": "??4?$VectorDinamic@VDisciplina@@@@QEAAAEAV0@AEBV0@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26481",
+          "message": {
+            "text": "Don't use pointer arithmetic. Use span instead (bounds.1)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 101,
+                  "startColumn": 4,
+                  "endLine": 101,
+                  "endColumn": 34
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::=",
+                  "decoratedName": "??4?$VectorDinamic@VDisciplina@@@@QEAAAEAV0@AEBV0@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26481",
+          "message": {
+            "text": "Don't use pointer arithmetic. Use span instead (bounds.1)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 101,
+                  "startColumn": 4,
+                  "endLine": 101,
+                  "endColumn": 34
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::=",
+                  "decoratedName": "??4?$VectorDinamic@VDisciplina@@@@QEAAAEAV0@AEBV0@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26823",
+          "message": {
+            "text": "Dereferencing a possibly null pointer 'allotemp.2' (lifetime.1)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 95,
+                  "startColumn": 3
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::=",
+                  "decoratedName": "??4?$VectorDinamic@VDisciplina@@@@QEAAAEAV0@AEBV0@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 92,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 93,
+                            "startColumn": 12
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 95,
+                            "startColumn": 3
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 95,
+                            "startColumn": 3
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 95,
+                            "startColumn": 3
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26409",
+          "message": {
+            "text": "Avoid calling new and delete explicitly, use std::make_unique<T> instead (r.11)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 85,
+                  "startColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::{ctor}",
+                  "decoratedName": "??0?$VectorDinamic@VDisciplina@@@@QEAA@AEBV0@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26481",
+          "message": {
+            "text": "Don't use pointer arithmetic. Use span instead (bounds.1)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 87,
+                  "startColumn": 4,
+                  "endLine": 87,
+                  "endColumn": 34
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::{ctor}",
+                  "decoratedName": "??0?$VectorDinamic@VDisciplina@@@@QEAA@AEBV0@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26481",
+          "message": {
+            "text": "Don't use pointer arithmetic. Use span instead (bounds.1)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 87,
+                  "startColumn": 4,
+                  "endLine": 87,
+                  "endColumn": 34
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::{ctor}",
+                  "decoratedName": "??0?$VectorDinamic@VDisciplina@@@@QEAA@AEBV0@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26481",
+          "message": {
+            "text": "Don't use pointer arithmetic. Use span instead (bounds.1)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 48,
+                  "startColumn": 3,
+                  "endLine": 48,
+                  "endColumn": 23
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::push_back",
+                  "decoratedName": "?push_back@?$VectorDinamic@VDisciplina@@@@QEAAXAEBVDisciplina@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26455",
+          "message": {
+            "text": "Default constructor should not throw. Declare it 'noexcept' (f.6)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::{ctor}",
+                  "decoratedName": "??0?$VectorDinamic@VDisciplina@@@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26409",
+          "message": {
+            "text": "Avoid calling new and delete explicitly, use std::make_unique<T> instead (r.11)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::{ctor}",
+                  "decoratedName": "??0?$VectorDinamic@VDisciplina@@@@QEAA@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26409",
+          "message": {
+            "text": "Avoid calling new and delete explicitly, use std::make_unique<T> instead (r.11)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 27
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::capacityRegulator",
+                  "decoratedName": "?capacityRegulator@?$VectorDinamic@VDisciplina@@@@AEAAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26400",
+          "message": {
+            "text": "Do not assign the result of an allocation or a function call with an owner<T> return value to a raw pointer, use owner<T> instead (i.11)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 27,
+                  "endLine": 22,
+                  "endColumn": 39
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::capacityRegulator",
+                  "decoratedName": "?capacityRegulator@?$VectorDinamic@VDisciplina@@@@AEAAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26481",
+          "message": {
+            "text": "Don't use pointer arithmetic. Use span instead (bounds.1)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 4,
+                  "endLine": 26,
+                  "endColumn": 40
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::capacityRegulator",
+                  "decoratedName": "?capacityRegulator@?$VectorDinamic@VDisciplina@@@@AEAAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26481",
+          "message": {
+            "text": "Don't use pointer arithmetic. Use span instead (bounds.1)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 4,
+                  "endLine": 26,
+                  "endColumn": 40
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::capacityRegulator",
+                  "decoratedName": "?capacityRegulator@?$VectorDinamic@VDisciplina@@@@AEAAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26823",
+          "message": {
+            "text": "Dereferencing a possibly null pointer 'allotemp.2' (lifetime.1)."
+          },
+          "analysisTarget": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                },
+                "region": {
+                  "startLine": 29,
+                  "startColumn": 3
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "VectorDinamic<Disciplina>::capacityRegulator",
+                  "decoratedName": "?capacityRegulator@?$VectorDinamic@VDisciplina@@@@AEAAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 16,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 17,
+                            "startColumn": 15
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 20,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 22,
+                            "startColumn": 12
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 22,
+                            "startColumn": 27
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 22,
+                            "startColumn": 27
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 22,
+                            "startColumn": 27
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 22,
+                            "startColumn": 27
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 22,
+                            "startColumn": 27
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 24,
+                            "startColumn": 12
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 24,
+                            "startColumn": 20
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 24,
+                            "startColumn": 29
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 26,
+                            "startColumn": 24
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 24,
+                            "startColumn": 45
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 24,
+                            "startColumn": 29
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 29,
+                            "startColumn": 3
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 29,
+                            "startColumn": 3
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+                          },
+                          "region": {
+                            "startLine": 29,
+                            "startColumn": 3
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.43.34810.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "63b5837b8643ba571d2c46aaccdb2420d2b7966e1cb5d2c2acc52bc9d7f83bcd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/Disciplina.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "8af9a0ea33dd528b8e2293cefbb8ee2b9a55a842d3fd09e78a014d7266a01e12"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Petru/Desktop/UBB-IR/Lab/SEM2/OOP/lab6/lab6/vector.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "383a5fe1208566a8a3e48528c24b066c224d3bed78418d012b5b14712f26030b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/teste.h"
+          },
+          "hashes": {
+            "sha-256": "98ecdec998020757789620fed4000699e95b6ec7572ba535663cae6d211d64a7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/repo.h"
+          },
+          "hashes": {
+            "sha-256": "e02ab79fbf544e6d229bd52e4060a94ea0912e37e9647965e094a23d0684a3ca"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/petru/desktop/ubb-ir/lab/sem2/oop/lab6/lab6/service.h"
+          },
+          "hashes": {
+            "sha-256": "2794c689a268173cd1794d0707a4895b9a726738399ef6fd7c7fd34016e2b433"
+          }
+        }
+      ]
+    }
+  ]
+}

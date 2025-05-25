@@ -1,0 +1,22 @@
+[2025-05-09 10:53:34] [info] Start Program:
+Path:"C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab9\x64\Debug\lab9.exe"
+Arguments:
+Working directory: "C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab9\lab9\"
+Modules: Selected: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab9\x64\Debug\lab9.exe Excluded: 
+Sources: Selected: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab9\lab9 Excluded: main.cpp ui.cpp teste.cpp 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: Binary C:\Users\Petru\AppData\Local\Temp\2avcdaoc.lqz 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2025-05-09 10:53:34] [info] Module: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab9\x64\Debug\lab9.exe is selected because it matches selected pattern: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\lab9\x64\Debug\lab9.exe
+[2025-05-09 10:53:50] [info] ----------------------------------------------------
+[2025-05-09 10:53:50] [info] Coverage binary generated in file: C:\Users\Petru\AppData\Local\Temp\2avcdaoc.lqz
+[2025-05-09 10:53:50] [info] ----------------------------------------------------
+[2025-05-09 10:53:50] [error] Your program stop with error code: 1
