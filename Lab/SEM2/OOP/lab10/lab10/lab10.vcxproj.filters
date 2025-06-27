@@ -29,12 +29,6 @@
     <QtUic Include="lab10.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtMoc Include="lab10.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <ClCompile Include="lab10.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -88,6 +82,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ContractGUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="abstractTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

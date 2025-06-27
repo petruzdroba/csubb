@@ -1,0 +1,12 @@
+NUme7,4,4,XX--XX-X-X-XXXX-
+NUme666,4,4,-X-XXXX--XX--X-X
+NUme6,3,3,XX-X-XX-X
+NUme10,4,1,XX--
+Ronaldo,4,1,X--X
+NUme9,2,1,-X
+NUme1,1,1,-
+NUme2,1,1,-
+NUme3,1,1,-
+NUme4,1,1,-
+NUme5,1,1,-
+NUme8,1,1,-

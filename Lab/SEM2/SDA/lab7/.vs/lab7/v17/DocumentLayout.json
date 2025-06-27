@@ -1,0 +1,130 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{081F7627-2EEA-4089-9416-3EF843CA0E77}|lab7\\lab7.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\App.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{081F7627-2EEA-4089-9416-3EF843CA0E77}|lab7\\lab7.vcxproj|solutionrelative:lab7\\App.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{081F7627-2EEA-4089-9416-3EF843CA0E77}|lab7\\lab7.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\TestExtins.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{081F7627-2EEA-4089-9416-3EF843CA0E77}|lab7\\lab7.vcxproj|solutionrelative:lab7\\TestExtins.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{081F7627-2EEA-4089-9416-3EF843CA0E77}|lab7\\lab7.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\MDO.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{081F7627-2EEA-4089-9416-3EF843CA0E77}|lab7\\lab7.vcxproj|solutionrelative:lab7\\MDO.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{081F7627-2EEA-4089-9416-3EF843CA0E77}|lab7\\lab7.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\MDO.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{081F7627-2EEA-4089-9416-3EF843CA0E77}|lab7\\lab7.vcxproj|solutionrelative:lab7\\MDO.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{081F7627-2EEA-4089-9416-3EF843CA0E77}|lab7\\lab7.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\IteratorMDO.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{081F7627-2EEA-4089-9416-3EF843CA0E77}|lab7\\lab7.vcxproj|solutionrelative:lab7\\IteratorMDO.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{081F7627-2EEA-4089-9416-3EF843CA0E77}|lab7\\lab7.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\IteratorMDO.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{081F7627-2EEA-4089-9416-3EF843CA0E77}|lab7\\lab7.vcxproj|solutionrelative:lab7\\IteratorMDO.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 267,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\App.cpp",
+              "RelativeDocumentMoniker": "lab7\\App.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\App.cpp",
+              "RelativeToolTip": "lab7\\App.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-06T05:59:01.025Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TestExtins.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\TestExtins.cpp",
+              "RelativeDocumentMoniker": "lab7\\TestExtins.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\TestExtins.cpp",
+              "RelativeToolTip": "lab7\\TestExtins.cpp",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAAAMAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-06T05:14:08.809Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MDO.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\MDO.h",
+              "RelativeDocumentMoniker": "lab7\\MDO.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\MDO.h",
+              "RelativeToolTip": "lab7\\MDO.h",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAEgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-05T18:17:26.81Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MDO.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\MDO.cpp",
+              "RelativeDocumentMoniker": "lab7\\MDO.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\MDO.cpp",
+              "RelativeToolTip": "lab7\\MDO.cpp",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAAALAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-05T18:11:03.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IteratorMDO.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\IteratorMDO.h",
+              "RelativeDocumentMoniker": "lab7\\IteratorMDO.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\IteratorMDO.h",
+              "RelativeToolTip": "lab7\\IteratorMDO.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-05T18:06:57.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IteratorMDO.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\IteratorMDO.cpp",
+              "RelativeDocumentMoniker": "lab7\\IteratorMDO.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\SDA\\lab7\\lab7\\IteratorMDO.cpp",
+              "RelativeToolTip": "lab7\\IteratorMDO.cpp",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAsAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-05T18:06:55.629Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

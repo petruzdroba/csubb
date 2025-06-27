@@ -98,18 +98,18 @@
     <ClCompile Include="validator.cpp" />
     <QtRcc Include="lab10.qrc" />
     <QtUic Include="lab10.ui" />
-    <QtMoc Include="lab10.h" />
     <ClCompile Include="Disciplina.cpp" />
-    <ClCompile Include="lab10.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="abstractTable.h" />
     <ClInclude Include="Contract.h" />
     <ClInclude Include="ContractGUI.h" />
     <ClInclude Include="Disciplina.h" />
     <ClInclude Include="DisciplinaGUI.h" />
     <ClInclude Include="exception.h" />
     <ClInclude Include="MainGUI.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="repo.h" />
     <ClInclude Include="service.h" />
     <ClInclude Include="teste.h" />

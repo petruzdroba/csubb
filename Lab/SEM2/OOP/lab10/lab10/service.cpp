@@ -16,6 +16,7 @@ bool Service::adaugaService(const string& denumire, const int& ore, const string
 	Disciplina disciplina{ denumire, ore, tip, profesor };
 	repo.adauga(disciplina);
 	undoList.push_back(make_unique<UndoAdauga>(repo, disciplina));
+	this->notify();
 
 	return true;
 }
@@ -29,6 +30,7 @@ void Service::stergeService(const int pozitie)
 
 	undoList.push_back(make_unique<UndoSterge>(repo, repo.getAll()[pozitie]));
 	repo.sterge(pozitie);
+	this->notify();
 }
 
 bool Service::modificaService(const int pozitie, const string& denumire, const int& ore, const string& tip, const string& profesor)
@@ -41,6 +43,7 @@ bool Service::modificaService(const int pozitie, const string& denumire, const i
 	Disciplina disciplina{ denumire, ore, tip, profesor };
 	undoList.push_back(make_unique<UndoModifica>(repo, repo.getAll()[pozitie], disciplina));
 	repo.modifica(pozitie, disciplina);
+	this->notify();
 
 	return true;
 }
@@ -148,6 +151,7 @@ void Service::adaugaContractService(const string denumire)
 		//adaug in contract
 		Disciplina newDisciplina = *found;
 		contract.adaugaContract(newDisciplina);
+		this->notify();
 	}
 	else {
 		throw MyException("Service: Denumire inexistenta");
@@ -162,6 +166,7 @@ int Service::getContractLungime() const
 void Service::deleteAllContract()
 {
 	contract.deleteAll();
+	this->notify();
 }
 
 void Service::randomPopulateContract(const int nrDiscipline)
@@ -188,6 +193,7 @@ void Service::randomPopulateContract(const int nrDiscipline)
 		if (prevCount != contract.getLungime())
 			count++;
 	}
+	this->notify();
 }
 
 void Service::exportContract(const string path) const
@@ -236,6 +242,7 @@ void Service::undo()
 		throw MyException("Service: Undo list empty");
 
 	undoList.back()->doUndo(); //ultimul element introdus isi executa metoda
-
 	undoList.pop_back(); //eliminam
+
+	this->notify();
 }

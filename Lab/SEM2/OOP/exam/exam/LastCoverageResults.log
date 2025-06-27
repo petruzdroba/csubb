@@ -1,0 +1,21 @@
+[2025-06-26 12:35:56] [info] Start Program:
+Path:"C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\exam\x64\Debug\exam.exe"
+Arguments:
+Working directory: "C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\exam\exam\"
+Modules: Selected: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\exam\x64\Debug\exam.exe Excluded: 
+Sources: Selected: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\exam\exam Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: Binary C:\Users\Petru\AppData\Local\Temp\dzwiyhtm.qxw 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2025-06-26 12:35:56] [info] Module: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\exam\x64\Debug\exam.exe is selected because it matches selected pattern: C:\Users\Petru\Desktop\UBB-IR\Lab\SEM2\OOP\exam\x64\Debug\exam.exe
+[2025-06-26 12:36:00] [info] ----------------------------------------------------
+[2025-06-26 12:36:00] [info] Coverage binary generated in file: C:\Users\Petru\AppData\Local\Temp\dzwiyhtm.qxw
+[2025-06-26 12:36:00] [info] ----------------------------------------------------

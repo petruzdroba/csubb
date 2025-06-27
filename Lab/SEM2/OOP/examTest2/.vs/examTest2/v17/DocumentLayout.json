@@ -1,0 +1,142 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4A3B914B-35FE-4C3D-9BA6-BCB4A32CBE9C}|examTest2\\examTest2.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\Observator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4A3B914B-35FE-4C3D-9BA6-BCB4A32CBE9C}|examTest2\\examTest2.vcxproj|solutionrelative:examTest2\\Observator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A3B914B-35FE-4C3D-9BA6-BCB4A32CBE9C}|examTest2\\examTest2.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\gui.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4A3B914B-35FE-4C3D-9BA6-BCB4A32CBE9C}|examTest2\\examTest2.vcxproj|solutionrelative:examTest2\\gui.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A3B914B-35FE-4C3D-9BA6-BCB4A32CBE9C}|examTest2\\examTest2.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\guiType.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4A3B914B-35FE-4C3D-9BA6-BCB4A32CBE9C}|examTest2\\examTest2.vcxproj|solutionrelative:examTest2\\guiType.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A3B914B-35FE-4C3D-9BA6-BCB4A32CBE9C}|examTest2\\examTest2.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\produse.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{4A3B914B-35FE-4C3D-9BA6-BCB4A32CBE9C}|examTest2\\examTest2.vcxproj|solutionrelative:examTest2\\produse.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A3B914B-35FE-4C3D-9BA6-BCB4A32CBE9C}|examTest2\\examTest2.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4A3B914B-35FE-4C3D-9BA6-BCB4A32CBE9C}|examTest2\\examTest2.vcxproj|solutionrelative:examTest2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A3B914B-35FE-4C3D-9BA6-BCB4A32CBE9C}|examTest2\\examTest2.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4A3B914B-35FE-4C3D-9BA6-BCB4A32CBE9C}|examTest2\\examTest2.vcxproj|solutionrelative:examTest2\\service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A3B914B-35FE-4C3D-9BA6-BCB4A32CBE9C}|examTest2\\examTest2.vcxproj|C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\repo.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4A3B914B-35FE-4C3D-9BA6-BCB4A32CBE9C}|examTest2\\examTest2.vcxproj|solutionrelative:examTest2\\repo.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 267,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "gui.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\gui.h",
+              "RelativeDocumentMoniker": "examTest2\\gui.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\gui.h",
+              "RelativeToolTip": "examTest2\\gui.h",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAAAHoAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-25T10:53:38.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\main.cpp",
+              "RelativeDocumentMoniker": "examTest2\\main.cpp",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\main.cpp",
+              "RelativeToolTip": "examTest2\\main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-25T13:22:05.121Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Observator.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\Observator.h",
+              "RelativeDocumentMoniker": "examTest2\\Observator.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\Observator.h",
+              "RelativeToolTip": "examTest2\\Observator.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-25T13:13:27.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "produse.txt",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\produse.txt",
+              "RelativeDocumentMoniker": "examTest2\\produse.txt",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\produse.txt",
+              "RelativeToolTip": "examTest2\\produse.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-06-25T12:31:14.591Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "guiType.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\guiType.h",
+              "RelativeDocumentMoniker": "examTest2\\guiType.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\guiType.h",
+              "RelativeToolTip": "examTest2\\guiType.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAABbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-25T12:11:45.352Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "repo.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\repo.h",
+              "RelativeDocumentMoniker": "examTest2\\repo.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\repo.h",
+              "RelativeToolTip": "examTest2\\repo.h",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-25T11:21:22.976Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "service.h",
+              "DocumentMoniker": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\service.h",
+              "RelativeDocumentMoniker": "examTest2\\service.h",
+              "ToolTip": "C:\\Users\\Petru\\Desktop\\UBB-IR\\Lab\\SEM2\\OOP\\examTest2\\examTest2\\service.h",
+              "RelativeToolTip": "examTest2\\service.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-25T10:53:35.969Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

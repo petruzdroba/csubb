@@ -11,3 +11,8 @@ Cybersecurity Fundamentals,45,Lecture,Patricia Taylor
 OOP,25,Lab,Czblua Istvan
 Sport,12,Fizic,Chris Moore
 123,123,123,123
+1234,1234,123,1234
+12345,12345,123,12345
+123456,123456,123,123456
+12345678,123,123,123
+Introduction to Programming1,56,Lecture,John Smith

@@ -1,16 +1,6 @@
 #pragma once
 
-#include <QtWidgets/qwidget.h>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QListWidget>
-#include <QtWidgets/QFormLayout>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QStackedWidget>
-#include <QString>
-#include <QtWidgets/QMessageBox>
-#include <QtWidgets/QTableWidget>
+#include <QtWidgets>
 
 #include <qdebug.h>
 
@@ -19,6 +9,8 @@
 
 #include "service.h"
 #include "exception.h"
+#include "abstractTable.h"
+
 
 using namespace std;
 
@@ -28,9 +20,12 @@ private:
 	Service& service;
 	QHBoxLayout* layoutMain = new QHBoxLayout{};
 	QHBoxLayout* layoutTypes = new QHBoxLayout{};
+	QVBoxLayout* layoutLeft = new QVBoxLayout;
+
 	QPushButton* btnType;
 
-	QTableWidget* table = new QTableWidget{};
+	//QTableWidget* table = new QTableWidget{};
+	QTableView* table2;
 
 	QListWidget* lstSorted = new QListWidget;
 	QListWidget* lstFiltered = new QListWidget;
@@ -89,6 +84,7 @@ private:
 				try
 				{
 					service.adaugaService(denumire.toStdString(), stoi(ore.toStdString()), tip.toStdString(), profesor.toStdString());
+					updateTable2();
 				}
 				catch (const MyException& e)
 				{
@@ -101,27 +97,29 @@ private:
 				txtProfesor->clear();
 			}
 
-			loadData();
+
 			});
 
 		QObject::connect(btnSterge, &QPushButton::clicked, [&]() {
-			int index =table->currentRow();
+			int index = (table2->currentIndex()).row();
 			if (index != -1)
 			{
 				try
 				{
 					service.stergeService(index);
+					updateTable2();
+
 				}
 				catch (const MyException& e)
 				{
 					qDebug() << e.getMessage();
 				}
-				loadData();
+	
 			}
 			});
 
 		QObject::connect(btnModifica, &QPushButton::clicked, [&]() {
-			int index = table->currentRow();
+			int index = (table2->currentIndex()).row();
 			if (index != -1)
 			{
 				auto denumire = txtDenumire->text();
@@ -139,6 +137,8 @@ private:
 				try
 				{
 					service.modificaService(index, denumire.toStdString(), stoi(ore.toStdString()), tip.toStdString(), profesor.toStdString());
+					updateTable2();
+
 				}
 				catch (const MyException& e)
 				{
@@ -148,7 +148,7 @@ private:
 				txtOre->clear();
 				txtTip->clear();
 				txtProfesor->clear();
-				loadData();
+	
 			}
 			});
 
@@ -156,12 +156,13 @@ private:
 			try
 			{
 				service.undo();
+				updateTable2();
 			}
 			catch (const MyException& e)
 			{
 				qDebug() << e.getMessage();
 			}
-			loadData();
+
 			});
 
 		QObject::connect(btnGoToSecondPage, &QPushButton::clicked, [&]() {
@@ -213,34 +214,9 @@ private:
 			}
 			});
 
-		QObject::connect(table, &QTableWidget::currentCellChanged, this, [=](int index) {
+		QObject::connect(table2->selectionModel(), &QItemSelectionModel::currentChanged, this, [=](const QModelIndex& current) {
+			int index = current.row();
 			if (index >= 0 && index < service.getAllService().size()) {
-				table->clear();
-				table->setRowCount(service.getLungimeService());
-				table->setColumnCount(4);
-				int count = 0;
-				for (const Disciplina& d : service.getAllService())
-				{
-					QTableWidgetItem* item1 = new QTableWidgetItem(QString::fromStdString(d.getDenumire()));
-					if (count == index)
-						item1->setBackground(QBrush(Qt::gray));
-					table->setItem(count, 0, item1);
-					item1 = new QTableWidgetItem(QString::fromStdString(to_string(d.getOre())));
-					if (count == index)
-						item1->setBackground(QBrush(Qt::gray));
-					table->setItem(count, 1, item1);
-
-					item1 = new QTableWidgetItem(QString::fromStdString(d.getTip()));
-					if (count == index)
-						item1->setBackground(QBrush(Qt::gray));
-					table->setItem(count, 2, item1);
-					item1 = new QTableWidgetItem(QString::fromStdString(d.getProfesor()));
-					if (count == index)
-						item1->setBackground(QBrush(Qt::gray));
-					table->setItem(count, 3, item1);
-					count++;
-				}
-
 				const Disciplina& d = service.getAllService()[index];
 
 				txtDenumire->setText(QString::fromStdString(d.getDenumire()));
@@ -271,6 +247,47 @@ private:
 		}
 	}
 
+	QTableView* displayDiscipline() {
+		QTableView* tableView = new QTableView;
+		TableModel* model = new TableModel(this, service.getAllService());
+
+		tableView->setModel(model);
+
+		return tableView;
+	}
+
+	void updateTable2()
+	{
+		auto newTable = displayDiscipline();
+
+		QLayoutItem* item = layoutLeft->itemAt(1);
+		if (item) {
+			QWidget* oldWidget = item->widget();
+			layoutMain->removeWidget(oldWidget);
+			oldWidget->deleteLater();
+		}
+
+		layoutLeft->addWidget(newTable, 1);
+
+		QObject::connect(newTable->selectionModel(), &QItemSelectionModel::currentChanged, this, [=](const QModelIndex& current) {
+			int index = current.row();
+			if (index >= 0 && index < service.getAllService().size()) {
+				const Disciplina& d = service.getAllService()[index];
+
+				txtDenumire->setText(QString::fromStdString(d.getDenumire()));
+				txtOre->setText(QString::number(d.getOre()));
+				txtTip->setText(QString::fromStdString(d.getTip()));
+				txtProfesor->setText(QString::fromStdString(d.getProfesor()));
+			}
+			else {
+				txtDenumire->clear();
+				txtOre->clear();
+				txtTip->clear();
+				txtProfesor->clear();
+			}
+			});
+	}
+
 	void loadTypeButtons()
 	{
 		clearLayout(layoutTypes);
@@ -292,14 +309,16 @@ private:
 	{
 		mainPage->setLayout(layoutMain);
 
-		auto layoutLeft = new QVBoxLayout;
 		QLabel* lblHeader = new QLabel("Denumire | NrOre | Tip | Profesor");
 		QFont font;
 		font.setBold(true);
 		lblHeader->setFont(font);
 		layoutLeft->addWidget(lblHeader);
 		//layoutLeft->addWidget(lst);
-		layoutLeft->addWidget(table);
+		//layoutLeft->addWidget(table);
+		table2 = displayDiscipline();
+		layoutLeft->addWidget(table2);
+
 
 		layoutMain->addLayout(layoutLeft);
 
@@ -371,38 +390,6 @@ private:
 		setLayout(wrapperLayout);
 	}
 
-	void loadData()
-	{
-		//lst->clear();
-		table->clear();
-		table->setRowCount(service.getLungimeService());
-		table->setColumnCount(4);
-		int count = 0;
-		for (const Disciplina& d : service.getAllService())
-		{
-			/*QString itemText = QString::fromStdString(
-				d.getDenumire() + " | " +
-				std::to_string(d.getOre()) + " | " +
-				d.getTip() + " | " +
-				d.getProfesor()
-			);
-			lst->addItem(itemText);*/
-			QTableWidgetItem* item1 = new QTableWidgetItem(QString::fromStdString(d.getDenumire()));
-			table->setItem(count, 0, item1);
-			item1 = new QTableWidgetItem(QString::fromStdString(to_string(d.getOre())));
-			table->setItem(count, 1, item1);
-
-			item1 = new QTableWidgetItem(QString::fromStdString(d.getTip()));
-			table->setItem(count, 2, item1);
-			item1 = new QTableWidgetItem(QString::fromStdString(d.getProfesor()));
-			table->setItem(count, 3, item1);
-			count++;
-
-		}
-		loadTypeButtons();
-
-	}
-
 	void loadSorted(const vector<Disciplina>& discipline)
 	{
 		lstSorted->clear();
@@ -435,7 +422,6 @@ private:
 public:
 	DisciplinaGui(Service& s) :service{ s } {
 		initGui();
-		loadData();
 		initConnect();
 	}
 };

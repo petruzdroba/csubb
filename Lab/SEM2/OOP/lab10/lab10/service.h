@@ -1,9 +1,10 @@
 #pragma once
 #include "repo.h"
 #include "Contract.h"
+#include "Observer.h"
 #include "undo.h"
 
-class Service {
+class Service: public Observerable{
 private:
 	Repository repo;
 	Contract contract;

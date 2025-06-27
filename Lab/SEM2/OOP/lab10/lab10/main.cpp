@@ -20,8 +20,9 @@ int main(int argc, char* argv[])
 
 	ContractGUI contractGui{ service };
 	DisciplinaGui disciplinaGui{ service };
+	ContractReadOnlyGui contractReadGui{ service };
 
-	MainGUI mainGUI{disciplinaGui, contractGui};
+	MainGUI mainGUI{disciplinaGui, contractGui, contractReadGui};
 	mainGUI.show();
 
 

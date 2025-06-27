@@ -1,12 +1,13 @@
 #pragma once
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QListWidget>
-#include <QtWidgets/QFormLayout>
-#include <QtWidgets/QLineEdit>
+#include <QtWidgets>
+#include <cstdlib>
+#include <qpainter.h>
 
 #include "service.h"
+#include "Observer.h"
 
-class ContractGUI : public QWidget
+
+class ContractGUI : public QWidget, public Observer
 {
 private:
 	Service& service;
@@ -18,7 +19,7 @@ private:
 	QLineEdit* txtExport = new QLineEdit;
 	QLineEdit* txtRandom = new QLineEdit;
 
-	QPushButton* btnAdd = new QPushButton{"&Add"};
+	QPushButton* btnAdd = new QPushButton{ "&Add" };
 	QPushButton* btnDelete = new QPushButton{ "&Delete all" };
 	QPushButton* btnRandom = new QPushButton{ "&Random populate" };
 	QPushButton* btnExport = new QPushButton{ "&Export" };
@@ -149,8 +150,48 @@ private:
 public:
 	ContractGUI(Service& s) : service(s)
 	{
+		service.addObservable(this);
 		initGui();
 		loadData();
 		initConnect();
 	}
+
+	void updateData() override {
+		loadData();
+	}
+
+	~ContractGUI()
+	{
+		service.removeObservable(this);
+	}
+};
+
+class ContractReadOnlyGui : public QWidget, public Observer
+{
+private:
+	Service& service;
+public:
+
+	ContractReadOnlyGui(Service& s) : service(s) { service.addObservable(this); };
+
+	void paintEvent(QPaintEvent* ev)override
+	{
+		QPainter p{ this };
+
+		srand(time(NULL));
+		for (auto& c : service.getAllContract())
+		{
+			int x = rand() % this->width();
+			int y = rand() % this->height();
+			p.drawRect(x,y,10,10);
+		}
+	}
+
+	void updateData() override
+	{
+		this->repaint();
+		this->update();
+	}
+
+	~ContractReadOnlyGui() { service.removeObservable(this); };
 };
