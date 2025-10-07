@@ -1,0 +1,21 @@
+1.a
+
+exista(x, y1...ym)={ #returneaza True daca elementul exista si False daca elementul nu exista
+    False        m=0
+    True       y1=x
+    exista(x, y2...ym)    altfel
+}
+
+diferenta( x1...xn, y1...ym)={
+    []      n=0
+    x1 (+) diferenta( x2...xn, y1...ym)     exista(x1, y1...ym)=False
+    diferenta( x2...xn, y1...ym)            altfel
+}
+
+1.b
+
+adauga( l1...ln)={
+    []      n=0
+    l1 (+) 1 (+) adauga(l2...ln)        l1%2=0
+    l1 (+) adauga(l2...ln)          altfel
+}

@@ -1,0 +1,77 @@
+# === Compiled binaries ===
+*.o
+*.out
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+
+# === C / C++ specific ===
+*.a
+*.lib
+*.lo
+*.la
+*.lai
+*.slo
+
+# === Java specific ===
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.ipr
+*.iws
+/out/
+/target/
+/.idea/
+/*.log
+
+# === Python specific ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+ENV/
+env/
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# === Prolog specific ===
+*.qlf
+
+# === Lisp specific ===
+*.fasl
+*.fas
+*.x86f
+*.lisp-temp
+
+# === SQL ===
+*.sqlite
+*.sqlite3
+*.db
+*.log
+
+# === OS junk ===
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# === Editor/IDE junk ===
+*.swp
+*.swo
+*.bak
+*~
+.vscode/
+.idea/
