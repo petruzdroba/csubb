@@ -4,8 +4,8 @@
 
 adauga(L: lista, R: lista)
 
-L: lista sursa
-R: lista rezultat
+L: lista sursa, input
+R: lista rezultat, output
 
 Model matematic: 
 
@@ -14,6 +14,10 @@ adauga( l1...ln)={
     l1 (+) 1 (+) adauga(l2...ln)        l1 mod 2=0
     l1 (+) adauga(l2...ln)          altfel
 }
+Cazuri de testare:
+    [2,4,6] => [2,1,4,1,6,1]
+    [2,1,3] => [2,1,1,3]
+    [3,5,7] => [3,5,7]
 */
 
 adauga([], []).

@@ -16,3 +16,5 @@
 
 1:N Reference the park id, so each trail has a park id, but the park dosent hold
 all the trail ids
+
+https://dbdiagram.io/ for better generated diagrams

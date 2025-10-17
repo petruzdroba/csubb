@@ -5,8 +5,8 @@
 
 exista(X: element, Y: lista)
 
-X: elementul cautat in lista
-Y: lsita in care este cautat elementul
+X: elementul cautat in lista, input
+Y: lsita in care este cautat elementul, input
 
 Model matematic:
 
@@ -19,9 +19,9 @@ exista(x, y1...ym)={ #returneaza True daca elementul exista si False daca elemen
 
 diferenta(X: lista, Y: lista, R: lista)
 
-X: lista numarul 1
-Y: lsita numarul 2
-R: lista rezultata
+X: lista numarul 1, input
+Y: lsita numarul 2, input
+R: lista rezultata, output
 
 Model matematic:
 
@@ -30,6 +30,14 @@ diferenta( x1...xn, y1...ym)={
     x1 (+) diferenta( x2...xn, y1...ym)     exista(x1, y1...ym)=False
     diferenta( x2...xn, y1...ym)            altfel
 }
+
+Cazuri de testare:
+    [1,2,3,4] si [2,3,4] => [1]
+    [5,6,7] si [1,2,3] => [5,6,7]
+    [2,3,4] si [4,3,2] => [] 
+    
+    diferenta([1,2,3,4], [2,3,4], R).
+
 */
 
 exista(_, []) :- false.

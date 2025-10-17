@@ -1,0 +1,14 @@
+14 a.
+Determinati predecesorul unui numar natural reprezentat intr-o lista cifra cu cifra
+
+predecesor(l1...ln)={
+
+}
+
+Recursively traverse list A from left to right.
+
+Build list B by reversing A, using recursion.
+
+Once A is fully traversed (i.e., base case), now B has the digits in reverse order (so you can process the least significant digit first).
+
+Then, recursively process B to subtract 1 (handling carry/borrow).
