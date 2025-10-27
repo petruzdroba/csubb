@@ -3,6 +3,7 @@ package main.java.com.service;
 import main.java.com.domain.Card;
 import main.java.com.domain.Duck;
 import main.java.com.domain.Persoana;
+import main.java.com.exceptions.ValidationException;
 import main.java.com.repo.Repository;
 import main.java.com.validators.DuckValidator;
 import main.java.com.validators.PersoanaValidator;
@@ -30,5 +31,11 @@ public class Service {
         duckValidator.validateThrow(user);
 
         repo.addUser(user);
+    }
+
+    public void deleteUser(long userId){
+        if(userId < 0 )
+            throw new ValidationException("User id cannot be negative");
+        repo.removeUser(userId);
     }
 }

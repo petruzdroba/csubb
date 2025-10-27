@@ -3,6 +3,7 @@ package main.java.com.ui;
 import main.java.com.domain.Card;
 import main.java.com.domain.Duck;
 import main.java.com.domain.Persoana;
+import main.java.com.exceptions.RepositoryException;
 import main.java.com.exceptions.ValidationException;
 import main.java.com.service.Service;
 
@@ -28,7 +29,8 @@ public class Console {
             switch (choice) {
                 case "1" -> addPersoana();
                 case "2" -> addDuck();
-                case "3" -> running = false;
+                case "3" -> removeUser();
+                case "4" -> running = false;
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
@@ -39,7 +41,8 @@ public class Console {
         System.out.println("\n==== Main Menu ====");
         System.out.println("1. Add Persoana");
         System.out.println("2. Add Duck");
-        System.out.println("3. Exit");
+        System.out.println("3. Remove User");
+        System.out.println("4. Exit");
     }
 
     private void addPersoana() {
@@ -101,7 +104,6 @@ public class Console {
             System.out.print("Tip Rata: ");
             Duck.TipRata tip = Duck.TipRata.valueOf(scanner.nextLine().toUpperCase());
 
-
             System.out.print("Viteza (0.0 - 100.0): ");
             double viteza = Double.parseDouble(scanner.nextLine());
 
@@ -124,6 +126,26 @@ public class Console {
             System.out.println("Invalid enum value for Tip Rata.");
         } catch (ValidationException ve) {
             System.out.println("Validation errors:\n" + ve.getMessage());
+        } catch (Exception e) {
+            System.out.println("Unexpected error: " + e.getMessage());
+        }
+    }
+
+    // 🆕 New method for removing a user
+    private void removeUser() {
+        try {
+            System.out.print("Enter User ID to remove: ");
+            long userId = Long.parseLong(scanner.nextLine());
+
+            service.deleteUser(userId);
+            System.out.println("User removed successfully!");
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a valid numeric ID.");
+        } catch (ValidationException ve) {
+            System.out.println("Validation error: " + ve.getMessage());
+        } catch (RepositoryException re) {
+            System.out.println("Repository error: " + re.getMessage());
         } catch (Exception e) {
             System.out.println("Unexpected error: " + e.getMessage());
         }

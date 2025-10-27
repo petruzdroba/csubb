@@ -1,23 +1,28 @@
 package main.java.com.repo;
 
 import main.java.com.domain.User;
+import main.java.com.exceptions.RepositoryException;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Repository {
     private String filePath;
-    private List<User> users = new ArrayList<User>( );
+    private Map<Long, User> users = new HashMap<>();
 
     public Repository(String filePath) {
         this.filePath = filePath;
     }
 
-    public void addUser(User u){
-        users.add(u);
+    public void addUser(User u) throws RepositoryException {
+        if(users.containsKey(u.getId()))
+            throw new RepositoryException("User already exists");
+        users.put(u.getId(),u);
     }
 
-    public void removeUser(User u){
-        users.remove(u);
+    public void removeUser(long userId) throws RepositoryException{
+        if(!users.containsKey(userId))
+            throw new RepositoryException("User id dosent exist");
+        users.remove(userId);
     }
 }
