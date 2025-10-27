@@ -30,7 +30,9 @@ public class Console {
                 case "1" -> addPersoana();
                 case "2" -> addDuck();
                 case "3" -> removeUser();
-                case "4" -> running = false;
+                case "4" -> addFriendship();
+                case "5" -> removeFriendship();
+                case "6" -> running = false;
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
@@ -42,7 +44,9 @@ public class Console {
         System.out.println("1. Add Persoana");
         System.out.println("2. Add Duck");
         System.out.println("3. Remove User");
-        System.out.println("4. Exit");
+        System.out.println("4. Add Friendship");
+        System.out.println("5. Remove Friendship");
+        System.out.println("6. Exit");
     }
 
     private void addPersoana() {
@@ -150,4 +154,50 @@ public class Console {
             System.out.println("Unexpected error: " + e.getMessage());
         }
     }
+
+    private void addFriendship() {
+        try {
+            System.out.print("User ID 1: ");
+            long userId1 = Long.parseLong(scanner.nextLine());
+
+            System.out.print("User ID 2: ");
+            long userId2 = Long.parseLong(scanner.nextLine());
+
+            service.addFriendship(userId1, userId2);
+            System.out.println("Friendship added successfully!");
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter numeric IDs.");
+        } catch (ValidationException ve) {
+            System.out.println("Validation error: " + ve.getMessage());
+        } catch (RepositoryException re) {
+            System.out.println("Repository error: " + re.getMessage());
+        } catch (Exception e) {
+            System.out.println("Unexpected error: " + e.getMessage());
+        }
+    }
+
+
+    private void removeFriendship() {
+        try {
+            System.out.print("User ID 1: ");
+            long userId1 = Long.parseLong(scanner.nextLine());
+
+            System.out.print("User ID 2: ");
+            long userId2 = Long.parseLong(scanner.nextLine());
+
+            service.removeFriendship(userId1, userId2);
+            System.out.println("Friendship removed successfully!");
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter numeric IDs.");
+        } catch (ValidationException ve) {
+            System.out.println("Validation error: " + ve.getMessage());
+        } catch (RepositoryException re) {
+            System.out.println("Repository error: " + re.getMessage());
+        } catch (Exception e) {
+            System.out.println("Unexpected error: " + e.getMessage());
+        }
+    }
+
 }
