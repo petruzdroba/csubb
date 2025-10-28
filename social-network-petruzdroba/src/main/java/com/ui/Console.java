@@ -36,6 +36,8 @@ public class Console {
                 case "6" -> modifyPersoana();
                 case "7" -> modifyDuck();
                 case "8" -> findUserByUsername();
+                case "9" -> addCard();
+                case "10" -> removeCard();
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
@@ -53,6 +55,9 @@ public class Console {
         System.out.println("6. Modify Persoana");
         System.out.println("7. Modify Duck");
         System.out.println("8. Find User by Username");
+        System.out.println("9. Add Card");
+        System.out.println("10. Remove Card");
+
     }
 
     private void addPersoana() {
@@ -300,5 +305,40 @@ public class Console {
         }
     }
 
+    private void addCard() {
+        try {
+            System.out.print("Card ID: ");
+            long cardId = Long.parseLong(scanner.nextLine());
 
+            System.out.print("Card Name: ");
+            String cardName = scanner.nextLine();
+
+            service.addCard(cardId, cardName);
+            System.out.println("Card added successfully!");
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a numeric ID.");
+        } catch (RepositoryException re) {
+            System.out.println("Repository error: " + re.getMessage());
+        } catch (Exception e) {
+            System.out.println("Unexpected error: " + e.getMessage());
+        }
+    }
+
+    private void removeCard() {
+        try {
+            System.out.print("Enter Card ID to remove: ");
+            long cardId = Long.parseLong(scanner.nextLine());
+
+            service.removeCard(cardId);
+            System.out.println("Card removed successfully!");
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a numeric ID.");
+        } catch (RepositoryException re) {
+            System.out.println("Repository error: " + re.getMessage());
+        } catch (Exception e) {
+            System.out.println("Unexpected error: " + e.getMessage());
+        }
+    }
 }

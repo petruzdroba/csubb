@@ -33,7 +33,7 @@ public class CardValidator implements Validator<Card>{
 
     public void validateThrow(Card value) throws ValidationException {
         if(!validate(value)){
-         throw new ValidationException(getErrorMessage());
+            throw new ValidationException(getErrorMessage());
         }
     }
 

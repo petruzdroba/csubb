@@ -3,6 +3,7 @@ package main.java.com.service;
 import main.java.com.domain.*;
 import main.java.com.exceptions.ValidationException;
 import main.java.com.repo.Repository;
+import main.java.com.validators.CardValidator;
 import main.java.com.validators.DuckValidator;
 import main.java.com.validators.FriendshipValidator;
 import main.java.com.validators.PersoanaValidator;
@@ -14,6 +15,7 @@ public class Service {
     private final PersoanaValidator persoanaValidator = new PersoanaValidator();
     private final DuckValidator duckValidator = new DuckValidator();
     private final FriendshipValidator friendshipValidator = new FriendshipValidator();
+    private final CardValidator cardValidator = new CardValidator();
 
     public Service(Repository repo) {
         this.repo = repo;
@@ -60,6 +62,13 @@ public class Service {
         repo.addFriendShip(friendship);
     }
 
+    public void removeFriendship(long userId1, long userId2){
+        Friendship friendship = new Friendship(userId1, userId2);
+        friendshipValidator.validate(friendship);
+
+        repo.removeFriendship(friendship.getFriendshipId());
+    }
+
     public User findUserByName(String username){
         for(User u: repo.getAllUsers()){
             if(u.getUsername().equals(username))
@@ -69,10 +78,16 @@ public class Service {
         return null;
     }
 
-    public void removeFriendship(long userId1, long userId2){
-        Friendship friendship = new Friendship(userId1, userId2);
-        friendshipValidator.validate(friendship);
+    public void addCard(long cardId, String cardNume){
+        Card card = new Card(cardId, cardNume);
+        cardValidator.validate(card);
 
-        repo.removeFriendship(friendship.getFriendshipId());
+        repo.addCard(card);
+    }
+
+    public void removeCard(long cardId) throws ValidationException{
+        if(cardId < 0 )
+            throw new ValidationException("Card id cannot be negative");
+        repo.removeCard(cardId);
     }
 }

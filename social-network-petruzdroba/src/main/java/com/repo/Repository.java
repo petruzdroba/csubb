@@ -1,5 +1,7 @@
 package main.java.com.repo;
 
+import main.java.com.domain.Card;
+import main.java.com.domain.Duck;
 import main.java.com.domain.Friendship;
 import main.java.com.domain.User;
 import main.java.com.exceptions.RepositoryException;
@@ -9,8 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Repository {
-    private Map<Long, User> users = new HashMap<>();
-    private Map<String, Friendship> friendships = new HashMap<>();
+    protected Map<Long, User> users = new HashMap<>();
+    protected Map<String, Friendship> friendships = new HashMap<>();
+    protected Map<Long, Card> cards = new HashMap<>();
+
 
     public Repository() {}
 
@@ -22,9 +26,15 @@ public class Repository {
         return friendships.values();
     }
 
+    public Collection<Card> getAllCards(){ return cards.values();}
+
     public void addUser(User u) throws RepositoryException {
         if(users.containsKey(u.getId()))
             throw new RepositoryException("User already exists");
+
+        if( u instanceof Duck && !cards.containsKey(((Duck) u).getCardId()))
+            throw new RepositoryException("Card with id nonExistent");
+
         users.put(u.getId(),u);
     }
 
@@ -56,5 +66,17 @@ public class Repository {
         if(!friendships.containsKey(friendshipId))
             throw new RepositoryException("FriendShip id dosent exist");
         friendships.remove(friendshipId);
+    }
+
+    public void addCard(Card c){
+        if(cards.containsKey(c.getId()))
+            throw new RepositoryException("Card already exists");
+        cards.put(c.getId(),c);
+    }
+
+    public void removeCard(long cardId){
+        if(!cards.containsKey(cardId))
+            throw new RepositoryException("Card id dosent exist");
+        cards.remove(cardId);
     }
 }

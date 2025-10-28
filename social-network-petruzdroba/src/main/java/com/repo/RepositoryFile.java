@@ -10,10 +10,13 @@ import java.util.Scanner;
 public class RepositoryFile extends Repository{
     private final String userFile;
     private final String friendshipFile;
+    private final String cardFile;
 
-    public RepositoryFile(String userFile, String friendshipFile) {
+    public RepositoryFile(String userFile, String friendshipFile, String cardFile) {
         this.userFile = userFile;
         this.friendshipFile = friendshipFile;
+        this.cardFile = cardFile;
+        loadCards();
         loadUsers();
         loadFriendships();
     }
@@ -39,8 +42,8 @@ public class RepositoryFile extends Repository{
                     String ocupatie = parts[8];
                     int empatie = Integer.parseInt(parts[9]);
 
-                    Persoana p = new Persoana(id, username, email, password, nume, prenume, dataNasterii, ocupatie, empatie);
-                    super.addUser(p);
+                    User p = new Persoana(id, username, email, password, nume, prenume, dataNasterii, ocupatie, empatie);
+                    users.put(id, p);
 
                 } else if (type.equalsIgnoreCase("DUCK")) {
                     long id = Long.parseLong(parts[1]);
@@ -52,8 +55,8 @@ public class RepositoryFile extends Repository{
                     double rezistenta = Double.parseDouble(parts[7]);
                     int cardId = Integer.parseInt(parts[8]);
 
-                    Duck duck = new Duck(id, username, email, password, tip, viteza, rezistenta, cardId);
-                    super.addUser(duck);
+                    User duck = new Duck(id, username, email, password, tip, viteza, rezistenta, cardId);
+                    users.put(id, duck);
                 }
             }
         } catch (FileNotFoundException e) {
@@ -71,10 +74,31 @@ public class RepositoryFile extends Repository{
                 long u1 = Long.parseLong(parts[0]);
                 long u2 = Long.parseLong(parts[1]);
 
-                super.addFriendShip(new Friendship(u1, u2));
+                Friendship f = new Friendship(u1, u2);
+                friendships.put(f.getFriendshipId(), f);
             }
         } catch (FileNotFoundException e) {
             System.err.println("file not found");
+        }
+    }
+
+    private void loadCards() {
+        try (Scanner sc = new Scanner(new File(cardFile))) {
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine().trim();
+                if (line.isEmpty()) continue;
+
+                String[] parts = line.split(",");
+                long id = Long.parseLong(parts[0]);
+                String name = parts[1];
+
+                Card card = new Card(id, name);
+                cards.put(id, card);
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Card file not found: " + cardFile);
+        } catch (RepositoryException e) {
+            System.err.println("Card load error: " + e.getMessage());
         }
     }
 
@@ -126,6 +150,16 @@ public class RepositoryFile extends Repository{
         }
     }
 
+    private void overwriteToCard() {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(cardFile, false))) {
+            for (Card c : getAllCards()) {
+                pw.println(c.getId() + "," + c.getNumeCard());
+            }
+        } catch (IOException e) {
+            System.err.println("Error writing cards: " + e.getMessage());
+        }
+    }
+
     @Override
     public void addUser(User u) throws RepositoryException {
         super.addUser(u);
@@ -154,5 +188,17 @@ public class RepositoryFile extends Repository{
     public void removeFriendship(String friendshipId) throws RepositoryException{
         super.removeFriendship(friendshipId);
         overwriteToFriendship();
+    }
+
+    @Override
+    public void addCard(Card card) throws RepositoryException {
+        super.addCard(card);
+        overwriteToCard();
+    }
+
+    @Override
+    public void removeCard(long cardId) throws RepositoryException {
+        super.removeCard(cardId);
+        overwriteToCard();
     }
 }
