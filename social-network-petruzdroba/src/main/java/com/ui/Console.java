@@ -27,6 +27,7 @@ public class Console {
             String choice = scanner.nextLine();
 
             switch (choice) {
+                case "0" -> running = false;
                 case "1" -> addPersoana();
                 case "2" -> addDuck();
                 case "3" -> removeUser();
@@ -35,7 +36,6 @@ public class Console {
                 case "6" -> modifyPersoana();
                 case "7" -> modifyDuck();
                 case "8" -> findUserByUsername();
-                case "9" -> running = false;
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
@@ -44,6 +44,7 @@ public class Console {
 
     private void showMenu() {
         System.out.println("\n==== Main Menu ====");
+        System.out.println("0. Exit");
         System.out.println("1. Add Persoana");
         System.out.println("2. Add Duck");
         System.out.println("3. Remove User");
@@ -52,7 +53,6 @@ public class Console {
         System.out.println("6. Modify Persoana");
         System.out.println("7. Modify Duck");
         System.out.println("8. Find User by Username");
-        System.out.println("9. Exit");
     }
 
     private void addPersoana() {
@@ -123,11 +123,7 @@ public class Console {
             System.out.print("Card ID: ");
             int cardId = Integer.parseInt(scanner.nextLine());
 
-            System.out.print("Card Nume: ");
-            String cardNume = scanner.nextLine();
-
-            Card card = new Card(cardId, cardNume);
-            service.addUser(id, username, email, password, tip, viteza, rezistenta, card);
+            service.addUser(id, username, email, password, tip, viteza, rezistenta, cardId);
             System.out.println("Duck added successfully!");
 
         } catch (NumberFormatException e) {
@@ -276,11 +272,7 @@ public class Console {
             System.out.print("Card ID: ");
             int cardId = Integer.parseInt(scanner.nextLine());
 
-            System.out.print("Card Nume: ");
-            String cardNume = scanner.nextLine();
-
-            Card card = new Card(cardId, cardNume);
-            service.modifyUser(id, username, email, password, tip, viteza, rezistenta, card);
+            service.modifyUser(id, username, email, password, tip, viteza, rezistenta, cardId);
             System.out.println("Duck modified successfully!");
 
         } catch (NumberFormatException e) {

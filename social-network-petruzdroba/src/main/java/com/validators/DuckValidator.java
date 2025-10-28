@@ -8,7 +8,7 @@ public class DuckValidator extends UserValidator<Duck> {
     private final TipRataValidator tipRataValidator = new TipRataValidator();
     private final DoubleValidator vitezaValidator = new DoubleValidator(0.0, 100.0);
     private final DoubleValidator rezistentaValidator = new DoubleValidator(0.0, 10.0);
-    private final CardValidator cardValidator = new CardValidator();
+    private final IntRangeValidator cardValidator = new IntRangeValidator(0);
 
     @Override
     public boolean validate(Duck value) {
@@ -37,8 +37,8 @@ public class DuckValidator extends UserValidator<Duck> {
             valid = false;
         }
 
-        Card card = value.getCard();
-        if (!cardValidator.validate(card)) {
+        long cardId = value.getCardId();
+        if (!cardValidator.validate((int)cardId)) {
             errorMessages.add("Card: " + cardValidator.getErrorMessage());
             valid = false;
         }

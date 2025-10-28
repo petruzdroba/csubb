@@ -26,8 +26,8 @@ public class Service {
         repo.addUser(user);
     }
 
-    public void addUser(long id, String username, String email, String password, Duck.TipRata tip, double viteza, double rezistenta, Card card){
-        Duck user = new Duck(id, username,email,password, tip, viteza, rezistenta, card);
+    public void addUser(long id, String username, String email, String password, Duck.TipRata tip, double viteza, double rezistenta, long cardId){
+        Duck user = new Duck(id, username,email,password, tip, viteza, rezistenta, cardId);
         duckValidator.validateThrow(user);
 
         repo.addUser(user);
@@ -46,8 +46,8 @@ public class Service {
         repo.modifyUser(user);
     }
 
-    public void modifyUser(long id, String username, String email, String password, Duck.TipRata tip, double viteza, double rezistenta, Card card){
-        Duck user = new Duck(id, username,email,password, tip, viteza, rezistenta, card);
+    public void modifyUser(long id, String username, String email, String password, Duck.TipRata tip, double viteza, double rezistenta, long cardId){
+        Duck user = new Duck(id, username,email,password, tip, viteza, rezistenta, cardId);
         duckValidator.validateThrow(user);
 
         repo.modifyUser(user);

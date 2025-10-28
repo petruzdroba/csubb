@@ -1,6 +1,5 @@
-package main.java.com.tests;
+package main.java.com.test;
 
-import main.java.com.domain.Card;
 import main.java.com.domain.Duck;
 import main.java.com.domain.Persoana;
 import main.java.com.domain.User;
@@ -20,7 +19,7 @@ public class UserServiceTest {
         testModifyUser();
         testDeleteUser();
         testFindUserByName();
-        System.out.println("All UserService tests passed!");
+        System.out.println("✅ All UserService tests passed!");
     }
 
     private void testFindUserByName() {
@@ -52,15 +51,21 @@ public class UserServiceTest {
             service.addUser(1, "john123", "john@example.com", "password1",
                     "John", "Doe", LocalDate.of(1990,1,1), "Engineer", 5);
 
-            // Add Duck with valid password
+            // Add Duck with valid password and cardId
             service.addUser(2, "duckling", "duck@example.com", "quack12",
-                    Duck.TipRata.FLYING, 50.0, 5.0, new Card(1, "Gold"));
+                    Duck.TipRata.FLYING, 50.0, 5.0, 1L);
 
             boolean found1 = repo.getAllUsers().stream().anyMatch(u -> u.getId() == 1L);
             boolean found2 = repo.getAllUsers().stream().anyMatch(u -> u.getId() == 2L);
 
             if (!found1) throw new AssertionError("Persoana not added!");
             if (!found2) throw new AssertionError("Duck not added!");
+
+            Duck d = (Duck) repo.getAllUsers().stream()
+                    .filter(u -> u.getId() == 2).findFirst().orElseThrow();
+
+            if (d.getCardId() != 1L)
+                throw new AssertionError("Duck cardId not set correctly!");
 
         } catch (ValidationException | RepositoryException e) {
             throw new RuntimeException("testAddUser failed: " + e.getMessage());
@@ -81,13 +86,14 @@ public class UserServiceTest {
 
             // Modify Duck
             service.modifyUser(2, "duckpro", "duck_new@example.com", "quack123",
-                    Duck.TipRata.SWIMMING, 60.0, 6.0, new Card(2,"Platinum"));
+                    Duck.TipRata.SWIMMING, 60.0, 6.0, 2L);
 
             Duck d = (Duck) repo.getAllUsers().stream()
                     .filter(u -> u.getId() == 2).findFirst().orElseThrow();
 
             if (!d.getUsername().equals("duckpro")) throw new AssertionError("Duck username not updated!");
             if (d.getViteza() != 60.0) throw new AssertionError("Duck viteza not updated!");
+            if (d.getCardId() != 2L) throw new AssertionError("Duck cardId not updated!");
 
         } catch (ValidationException | RepositoryException e) {
             throw new RuntimeException("testModifyUser failed: " + e.getMessage());

@@ -8,14 +8,14 @@ public class Duck extends User{
     private TipRata tip;
     private double viteza;
     private double rezistenta;
-    private Card card;
+    private long cardId;
 
-    public Duck(long id, String username, String email, String password, TipRata tip, double viteza, double rezistenta, Card card) {
+    public Duck(long id, String username, String email, String password, TipRata tip, double viteza, double rezistenta, long cardId) {
         super(id, username, email, password);
         this.tip = tip;
         this.viteza = viteza;
         this.rezistenta = rezistenta;
-        this.card = card;
+        this.cardId = cardId;
     }
 
     public TipRata getTip() {
@@ -42,12 +42,12 @@ public class Duck extends User{
         this.rezistenta = rezistenta;
     }
 
-    public Card getCard() {
-        return card;
+    public long getCardId() {
+        return cardId;
     }
 
-    public void setCard(Card card) {
-        this.card = card;
+    public void setCardId(long cardId) {
+        this.cardId = cardId;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class Duck extends User{
                 "tip=" + tip +
                 ", viteza=" + viteza +
                 ", rezistenta=" + rezistenta +
-                ", card=" + card +
+                ", card=" + cardId +
                 '}';
     }
 }

@@ -51,10 +51,8 @@ public class RepositoryFile extends Repository{
                     double viteza = Double.parseDouble(parts[6]);
                     double rezistenta = Double.parseDouble(parts[7]);
                     int cardId = Integer.parseInt(parts[8]);
-                    String cardNume = parts[9];
 
-                    Card card = new Card(cardId, cardNume);
-                    Duck duck = new Duck(id, username, email, password, tip, viteza, rezistenta, card);
+                    Duck duck = new Duck(id, username, email, password, tip, viteza, rezistenta, cardId);
                     super.addUser(duck);
                 }
             }
@@ -106,8 +104,7 @@ public class RepositoryFile extends Repository{
                             d.getTip().name(),
                             String.valueOf(d.getViteza()),
                             String.valueOf(d.getRezistenta()),
-                            String.valueOf(d.getCard().getId()),
-                            d.getCard().getNumeCard()
+                            String.valueOf(d.getId())
                     ));
                 }
             }
