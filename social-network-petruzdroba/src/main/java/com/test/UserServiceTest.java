@@ -3,6 +3,7 @@ package main.java.com.tests;
 import main.java.com.domain.Card;
 import main.java.com.domain.Duck;
 import main.java.com.domain.Persoana;
+import main.java.com.domain.User;
 import main.java.com.exceptions.RepositoryException;
 import main.java.com.exceptions.ValidationException;
 import main.java.com.repo.Repository;
@@ -18,8 +19,32 @@ public class UserServiceTest {
         testAddUser();
         testModifyUser();
         testDeleteUser();
+        testFindUserByName();
         System.out.println("All UserService tests passed!");
     }
+
+    private void testFindUserByName() {
+        try {
+            // Add dummy users
+            service.addUser(1, "alice", "alice@example.com", "password1",
+                    "Alice", "Smith", LocalDate.of(1990, 1, 1), "Engineer", 5);
+            service.addUser(2, "bob", "bob@example.com", "password2",
+                    "Bob", "Brown", LocalDate.of(1992, 2, 2), "Doctor", 7);
+
+            // Test findUserByName
+            User u1 = service.findUserByName("alice");
+            User u2 = service.findUserByName("bob");
+            User u3 = service.findUserByName("charlie"); // does not exist
+
+            if (u1 == null || !u1.getUsername().equals("alice")) throw new AssertionError("Failed to find Alice");
+            if (u2 == null || !u2.getUsername().equals("bob")) throw new AssertionError("Failed to find Bob");
+            if (u3 != null) throw new AssertionError("Found non-existent user Charlie");
+
+        } catch (ValidationException | RepositoryException e) {
+            throw new RuntimeException("testFindUserByName failed: " + e.getMessage());
+        }
+    }
+
 
     private void testAddUser() {
         try {

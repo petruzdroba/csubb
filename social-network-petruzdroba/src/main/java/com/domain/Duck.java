@@ -49,4 +49,14 @@ public class Duck extends User{
     public void setCard(Card card) {
         this.card = card;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() +"Duck{" +
+                "tip=" + tip +
+                ", viteza=" + viteza +
+                ", rezistenta=" + rezistenta +
+                ", card=" + card +
+                '}';
+    }
 }

@@ -1,9 +1,6 @@
 package main.java.com.service;
 
-import main.java.com.domain.Card;
-import main.java.com.domain.Duck;
-import main.java.com.domain.Friendship;
-import main.java.com.domain.Persoana;
+import main.java.com.domain.*;
 import main.java.com.exceptions.ValidationException;
 import main.java.com.repo.Repository;
 import main.java.com.validators.DuckValidator;
@@ -61,6 +58,15 @@ public class Service {
         friendshipValidator.validate(friendship);
 
         repo.addFriendShip(friendship);
+    }
+
+    public User findUserByName(String username){
+        for(User u: repo.getAllUsers()){
+            if(u.getUsername().equals(username))
+                return u;
+        }
+
+        return null;
     }
 
     public void removeFriendship(long userId1, long userId2){

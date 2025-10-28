@@ -57,4 +57,16 @@ public class Persoana extends User{
     public void setNivelEmpatie(int nivelEmpatie) {
         this.nivelEmpatie = nivelEmpatie;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " Persoana{" +
+                "nume='" + nume + '\'' +
+                ", prenume='" + prenume + '\'' +
+                ", dataNasterii=" + dataNasterii +
+                ", ocupatie='" + ocupatie + '\'' +
+                ", nivelEmpatie=" + nivelEmpatie +
+                '}';
+    }
+
 }

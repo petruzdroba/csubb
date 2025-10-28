@@ -34,7 +34,8 @@ public class Console {
                 case "5" -> removeFriendship();
                 case "6" -> modifyPersoana();
                 case "7" -> modifyDuck();
-                case "8" -> running = false;
+                case "8" -> findUserByUsername();
+                case "9" -> running = false;
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
@@ -50,7 +51,8 @@ public class Console {
         System.out.println("5. Remove Friendship");
         System.out.println("6. Modify Persoana");
         System.out.println("7. Modify Duck");
-        System.out.println("8. Exit");
+        System.out.println("8. Find User by Username");
+        System.out.println("9. Exit");
     }
 
     private void addPersoana() {
@@ -293,5 +295,18 @@ public class Console {
             System.out.println("Unexpected error: " + e.getMessage());
         }
     }
+
+    private void findUserByUsername() {
+        System.out.print("Enter username to search: ");
+        String username = scanner.nextLine();
+
+        var user = service.findUserByName(username);
+        if (user == null) {
+            System.out.println("User not found!");
+        } else {
+            System.out.println(user.toString());
+        }
+    }
+
 
 }
