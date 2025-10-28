@@ -13,7 +13,7 @@ import main.java.com.validators.PersoanaValidator;
 import java.time.LocalDate;
 
 public class Service {
-    private Repository repo;
+    private final Repository repo;
     private final PersoanaValidator persoanaValidator = new PersoanaValidator();
     private final DuckValidator duckValidator = new DuckValidator();
     private final FriendshipValidator friendshipValidator = new FriendshipValidator();
@@ -36,10 +36,24 @@ public class Service {
         repo.addUser(user);
     }
 
-    public void deleteUser(long userId){
+    public void deleteUser(long userId) throws ValidationException{
         if(userId < 0 )
             throw new ValidationException("User id cannot be negative");
         repo.removeUser(userId);
+    }
+
+    public void modifyUser(long id, String username, String email, String password, String nume, String prenume, LocalDate dataNasterii, String ocupatie, int nivelEmpatie){
+        Persoana user = new Persoana(id, username,email,password, nume,prenume,dataNasterii,ocupatie,nivelEmpatie);
+        persoanaValidator.validateThrow(user);
+
+        repo.modifyUser(user);
+    }
+
+    public void modifyUser(long id, String username, String email, String password, Duck.TipRata tip, double viteza, double rezistenta, Card card){
+        Duck user = new Duck(id, username,email,password, tip, viteza, rezistenta, card);
+        duckValidator.validateThrow(user);
+
+        repo.modifyUser(user);
     }
 
     public void addFriendship(long userId1, long userId2){

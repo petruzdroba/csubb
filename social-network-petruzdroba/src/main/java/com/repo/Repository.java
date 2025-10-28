@@ -4,16 +4,22 @@ import main.java.com.domain.Friendship;
 import main.java.com.domain.User;
 import main.java.com.exceptions.RepositoryException;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Repository {
-    private String filePath;
     private Map<Long, User> users = new HashMap<>();
     private Map<String, Friendship> friendships = new HashMap<>();
 
-    public Repository(String filePath) {
-        this.filePath = filePath;
+    public Repository() {}
+
+    public Collection<User> getAllUsers() {
+        return users.values();
+    }
+
+    public Collection<Friendship> getAllFriendships(){
+        return friendships.values();
     }
 
     public void addUser(User u) throws RepositoryException {
@@ -26,6 +32,12 @@ public class Repository {
         if(!users.containsKey(userId))
             throw new RepositoryException("User id dosent exist");
         users.remove(userId);
+    }
+
+    public void modifyUser(User u) throws  RepositoryException{
+        if(!users.containsKey(u.getId()))
+            throw new RepositoryException("User id dosent exist");
+        users.put(u.getId(),u);
     }
 
     public void addFriendShip(Friendship friendship) throws RepositoryException{

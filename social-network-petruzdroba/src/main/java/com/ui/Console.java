@@ -32,7 +32,9 @@ public class Console {
                 case "3" -> removeUser();
                 case "4" -> addFriendship();
                 case "5" -> removeFriendship();
-                case "6" -> running = false;
+                case "6" -> modifyPersoana();
+                case "7" -> modifyDuck();
+                case "8" -> running = false;
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
@@ -46,7 +48,9 @@ public class Console {
         System.out.println("3. Remove User");
         System.out.println("4. Add Friendship");
         System.out.println("5. Remove Friendship");
-        System.out.println("6. Exit");
+        System.out.println("6. Modify Persoana");
+        System.out.println("7. Modify Duck");
+        System.out.println("8. Exit");
     }
 
     private void addPersoana() {
@@ -135,7 +139,6 @@ public class Console {
         }
     }
 
-    // 🆕 New method for removing a user
     private void removeUser() {
         try {
             System.out.print("Enter User ID to remove: ");
@@ -193,6 +196,97 @@ public class Console {
             System.out.println("Invalid number format. Please enter numeric IDs.");
         } catch (ValidationException ve) {
             System.out.println("Validation error: " + ve.getMessage());
+        } catch (RepositoryException re) {
+            System.out.println("Repository error: " + re.getMessage());
+        } catch (Exception e) {
+            System.out.println("Unexpected error: " + e.getMessage());
+        }
+    }
+
+
+    private void modifyPersoana() {
+        try {
+            System.out.print("ID of Persoana to modify: ");
+            long id = Long.parseLong(scanner.nextLine());
+
+            System.out.print("Username: ");
+            String username = scanner.nextLine();
+
+            System.out.print("Email: ");
+            String email = scanner.nextLine();
+
+            System.out.print("Password: ");
+            String password = scanner.nextLine();
+
+            System.out.print("Nume: ");
+            String nume = scanner.nextLine();
+
+            System.out.print("Prenume: ");
+            String prenume = scanner.nextLine();
+
+            System.out.print("Data nasterii (yyyy-mm-dd): ");
+            LocalDate dataNasterii = LocalDate.parse(scanner.nextLine());
+
+            System.out.print("Ocupatie: ");
+            String ocupatie = scanner.nextLine();
+
+            System.out.print("Nivel Empatie (0-10): ");
+            int nivelEmpatie = Integer.parseInt(scanner.nextLine());
+
+            service.modifyUser(id, username, email, password, nume, prenume, dataNasterii, ocupatie, nivelEmpatie);
+            System.out.println("Persoana modified successfully!");
+
+        } catch (NumberFormatException | DateTimeParseException e) {
+            System.out.println("Invalid input type. Please try again.");
+        } catch (ValidationException ve) {
+            System.out.println("Validation errors:\n" + ve.getMessage());
+        } catch (RepositoryException re) {
+            System.out.println("Repository error: " + re.getMessage());
+        } catch (Exception e) {
+            System.out.println("Unexpected error: " + e.getMessage());
+        }
+    }
+
+    private void modifyDuck() {
+        try {
+            System.out.print("ID of Duck to modify: ");
+            long id = Long.parseLong(scanner.nextLine());
+
+            System.out.print("Username: ");
+            String username = scanner.nextLine();
+
+            System.out.print("Email: ");
+            String email = scanner.nextLine();
+
+            System.out.print("Password: ");
+            String password = scanner.nextLine();
+
+            System.out.println("Tip Rata options: FLYING, SWIMMING, FLYING_AND_SWIMMING");
+            System.out.print("Tip Rata: ");
+            Duck.TipRata tip = Duck.TipRata.valueOf(scanner.nextLine().toUpperCase());
+
+            System.out.print("Viteza (0.0 - 100.0): ");
+            double viteza = Double.parseDouble(scanner.nextLine());
+
+            System.out.print("Rezistenta (0.0 - 10.0): ");
+            double rezistenta = Double.parseDouble(scanner.nextLine());
+
+            System.out.print("Card ID: ");
+            int cardId = Integer.parseInt(scanner.nextLine());
+
+            System.out.print("Card Nume: ");
+            String cardNume = scanner.nextLine();
+
+            Card card = new Card(cardId, cardNume);
+            service.modifyUser(id, username, email, password, tip, viteza, rezistenta, card);
+            System.out.println("Duck modified successfully!");
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please try again.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid enum value for Tip Rata.");
+        } catch (ValidationException ve) {
+            System.out.println("Validation errors:\n" + ve.getMessage());
         } catch (RepositoryException re) {
             System.out.println("Repository error: " + re.getMessage());
         } catch (Exception e) {
