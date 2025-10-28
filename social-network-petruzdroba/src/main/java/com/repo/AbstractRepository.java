@@ -13,6 +13,10 @@ public abstract class AbstractRepository<K, T> {
         return data.values();
     }
 
+    public Collection<K> getKeys(){
+        return data.keySet();
+    }
+
     public void add(K key, T newData) throws RepositoryException{
         if(data.containsKey(key))
             throw new RepositoryException("Data already exists");

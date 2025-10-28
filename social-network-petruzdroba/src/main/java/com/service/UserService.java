@@ -11,12 +11,11 @@ import main.java.com.validators.PersoanaValidator;
 import java.time.LocalDate;
 
 public class UserService extends AbstractService<Long, User> {
-
     private final PersoanaValidator persoanaValidator =  new PersoanaValidator();
     private final DuckValidator duckValidator = new DuckValidator();
 
-    public UserService(AbstractRepository<Long, User> repository) {
-        super(repository);
+    public UserService(AbstractRepository<Long, User> repository, AbstractRepository<Object, Object> cardRepo) {
+        super(repository, cardRepo);
 
     }
 
@@ -33,6 +32,10 @@ public class UserService extends AbstractService<Long, User> {
                     Duck.TipRata tip, double viteza, double rezistenta, long cardId) {
         Duck user = new Duck(id, username, email, password, tip, viteza, rezistenta, cardId);
         duckValidator.validateThrow(user);
+
+        if(dependencyRepository != null && !dependencyRepository.getKeys().contains(cardId))
+            throw new ValidationException("Card id not found");
+
         repository.add(id, user);
     }
 
@@ -46,6 +49,9 @@ public class UserService extends AbstractService<Long, User> {
     public void modify(long id, String username, String email, String password, Duck.TipRata tip, double viteza, double rezistenta, long cardId){
         Duck user = new Duck(id, username,email,password, tip, viteza, rezistenta, cardId);
         duckValidator.validateThrow(user);
+
+        if(dependencyRepository != null && !dependencyRepository.getKeys().contains(cardId))
+            throw new ValidationException("Card id not found");
 
         repository.modify(id, user);
     }
