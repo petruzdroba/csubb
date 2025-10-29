@@ -40,3 +40,9 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+*.js
+*html
+element-list
+legal/
+resource-files/

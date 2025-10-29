@@ -81,6 +81,6 @@ public class CardConsole extends AbstractConsole {
     }
 
     private void length(){
-        System.out.println("Number of communities: " + service.getAll().toArray().length);
+        System.out.println("Number of cards: " + service.getAll().toArray().length);
     }
 }

@@ -23,6 +23,7 @@ public class FriendshipConsole extends AbstractConsole {
                 case "0" -> running = false;
                 case "1" -> add();
                 case "2" -> remove();
+                case "3" -> communitiesSize();
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
@@ -35,6 +36,7 @@ public class FriendshipConsole extends AbstractConsole {
         System.out.println("0. Exit");
         System.out.println("1. Add Friendship");
         System.out.println("2. Remove Friendship");
+        System.out.println("3. Community Count");
     }
 
     @Override
@@ -84,5 +86,9 @@ public class FriendshipConsole extends AbstractConsole {
         } catch (Exception e) {
             System.out.println("Unexpected error: " + e.getMessage());
         }
+    }
+
+    private void communitiesSize(){
+        System.out.println("Number of communities: " + service.getCommunityCount());
     }
 }
