@@ -22,6 +22,7 @@ public class CardConsole extends AbstractConsole {
                 case "0" -> running = false;
                 case "1" -> add();
                 case "2" -> remove();
+                case "3" -> length();
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
@@ -34,6 +35,7 @@ public class CardConsole extends AbstractConsole {
         System.out.println("0. Exit");
         System.out.println("1. Add Card");
         System.out.println("2. Remove Card");
+        System.out.println("3. Number of cards");
     }
 
     @Override
@@ -76,5 +78,9 @@ public class CardConsole extends AbstractConsole {
         } catch (Exception e) {
             System.out.println("Unexpected error: " + e.getMessage());
         }
+    }
+
+    private void length(){
+        System.out.println("Number of communities: " + service.getAll().toArray().length);
     }
 }

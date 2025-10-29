@@ -23,6 +23,14 @@ public class CardRepository extends AbstractFileRepository<Long, Card>{
                 String name = parts[1];
 
                 Card card = new Card(id, name);
+
+                if (parts.length == 3 && !parts[2].isEmpty()) {
+                    String[] duckIds = parts[2].split(";");
+                    for (String duckIdStr : duckIds) {
+                        card.addDuck(Long.parseLong(duckIdStr));
+                    }
+                }
+
                 data.put(id, card);
             }
         } catch (FileNotFoundException e) {
@@ -36,7 +44,10 @@ public class CardRepository extends AbstractFileRepository<Long, Card>{
     protected void overwriteFile() {
         try (PrintWriter pw = new PrintWriter(new FileWriter(filePath, false))) {
             for (Card c : getAll()) {
-                pw.println(c.getId() + "," + c.getNumeCard());
+                String membriStr = String.join(";",
+                        c.getMembri().stream().map(String::valueOf).toList()
+                );
+                pw.println(c.getId() + "," + c.getNumeCard() + "," + membriStr);
             }
         } catch (IOException e) {
             System.err.println("Error writing cards: " + e.getMessage());

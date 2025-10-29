@@ -35,7 +35,7 @@ public class MainConsole extends AbstractConsole {
 
     @Override
     protected void showMenu() {
-        System.out.println("\n==== Facade Menu ====");
+        System.out.println("\n==== Main Menu ====");
         System.out.println("0. Exit");
         for (int i = 0; i < consoles.size(); i++) {
             System.out.printf("%d. %s%n", i + 1, consoles.get(i));
@@ -44,6 +44,6 @@ public class MainConsole extends AbstractConsole {
 
     @Override
     public String toString() {
-        return "Facade Console";
+        return "Main Console";
     }
 }

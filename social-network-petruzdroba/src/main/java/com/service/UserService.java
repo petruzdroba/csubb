@@ -1,10 +1,12 @@
 package main.java.com.service;
 
+import main.java.com.domain.Card;
 import main.java.com.domain.Duck;
 import main.java.com.domain.Persoana;
 import main.java.com.domain.User;
 import main.java.com.exceptions.ValidationException;
 import main.java.com.repo.AbstractRepository;
+import main.java.com.repo.CardRepository;
 import main.java.com.validators.DuckValidator;
 import main.java.com.validators.PersoanaValidator;
 
@@ -37,6 +39,13 @@ public class UserService extends AbstractService<Long, User> {
             throw new ValidationException("Card id not found");
 
         repository.add(id, user);
+
+        AbstractRepository<Long, Card> cardRepo = (AbstractRepository<Long, Card>) dependencyRepository;
+        Card card = cardRepo.find(cardId);
+        if (card != null) {
+            card.addDuck(id);
+            cardRepo.modify(cardId, card);
+        }
     }
 
     public void modify(long id, String username, String email, String password, String nume, String prenume, LocalDate dataNasterii, String ocupatie, int nivelEmpatie){
