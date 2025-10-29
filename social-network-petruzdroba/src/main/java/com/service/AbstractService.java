@@ -12,7 +12,7 @@ public abstract class AbstractService<K, T> {
         this.dependencyRepository = null;
     }
 
-    public AbstractService(AbstractRepository<K, T> repository, AbstractRepository<Object, Object> dependencyRepository) {
+    public AbstractService(AbstractRepository<K, T> repository, AbstractRepository<?, ?> dependencyRepository) {
         this.repository = repository;
         this.dependencyRepository = dependencyRepository;
     }

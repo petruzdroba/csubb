@@ -8,7 +8,7 @@ import main.java.com.validators.FriendshipValidator;
 public class FriendshipService extends AbstractService<String, Friendship>{
     private final FriendshipValidator friendshipValidator = new FriendshipValidator();
 
-    public FriendshipService(AbstractRepository<String, Friendship> repository, AbstractRepository<Object, Object> userRepository) {
+    public FriendshipService(AbstractRepository<String, Friendship> repository, AbstractRepository<?, ?> userRepository) {
         super(repository, userRepository);
     }
 

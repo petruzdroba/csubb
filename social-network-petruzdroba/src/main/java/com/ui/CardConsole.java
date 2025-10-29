@@ -36,6 +36,11 @@ public class CardConsole extends AbstractConsole {
         System.out.println("2. Remove Card");
     }
 
+    @Override
+    public String toString() {
+        return "Card Menu";
+    }
+
     private void add() {
         try {
             System.out.print("Card ID: ");

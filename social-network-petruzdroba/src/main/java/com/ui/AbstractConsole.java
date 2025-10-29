@@ -8,4 +8,6 @@ public abstract class AbstractConsole {
     public abstract void run();
 
     protected abstract void showMenu();
+
+    public abstract String toString();
 }

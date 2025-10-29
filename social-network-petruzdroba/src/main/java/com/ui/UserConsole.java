@@ -49,6 +49,11 @@ public class UserConsole extends AbstractConsole{
         System.out.println("6. Find User by Username");
     }
 
+    @Override
+    public String toString() {
+        return "User Menu";
+    }
+
     private void addPersoana() {
         try {
             System.out.print("ID: ");

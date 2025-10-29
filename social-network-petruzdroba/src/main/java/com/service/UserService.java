@@ -14,7 +14,7 @@ public class UserService extends AbstractService<Long, User> {
     private final PersoanaValidator persoanaValidator =  new PersoanaValidator();
     private final DuckValidator duckValidator = new DuckValidator();
 
-    public UserService(AbstractRepository<Long, User> repository, AbstractRepository<Object, Object> cardRepo) {
+    public UserService(AbstractRepository<Long, User> repository, AbstractRepository<?, ?> cardRepo) {
         super(repository, cardRepo);
 
     }

@@ -37,6 +37,11 @@ public class FriendshipConsole extends AbstractConsole {
         System.out.println("2. Remove Friendship");
     }
 
+    @Override
+    public String toString() {
+        return "Friendship Menu";
+    }
+
     private void add() {
         try {
             System.out.print("User ID 1: ");
