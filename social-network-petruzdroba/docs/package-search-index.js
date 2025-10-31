@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"main.java.com"},{"l":"main.java.com.domain"},{"l":"main.java.com.exceptions"},{"l":"main.java.com.repo"},{"l":"main.java.com.service"},{"l":"main.java.com.ui"},{"l":"main.java.com.validators"}];updateSearchResults();
