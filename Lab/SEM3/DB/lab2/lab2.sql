@@ -252,7 +252,7 @@ GROUP BY  m.maintainer;
 
 --distinct facilities
 SELECT t.name AS trail_name, COUNT(trail_id) AS facility_nr FROM Trail t
-LEFT JOIN trailfacilities n ON n.trail_id = t.id
+JOIN trailfacilities n ON n.trail_id = t.id
 GROUP BY t.id, t.name
 HAVING COUNT(trail_id) > 0;
 

@@ -1,8 +1,15 @@
 14 a.
 Determinati predecesorul unui numar natural reprezentat intr-o lista cifra cu cifra
 
-predecesor(l1...ln)={
+reverse(x1...xn, y1...ym) = {
+    y1...ym     daca n=0
+    x1 (+) y1...ym, reverse(x2...xn, y1...ym) altfel
+}//returneaza in B valoarea lui A reversed
 
+scade(x1...xn, b) = {
+    []          daca n = 0
+    9 (+) scade(x2...xn, 1) daca x1=0
+    (x1 - b) (+) scade(x2...xn, 0) altfel
 }
 
 Recursively traverse list A from left to right.
@@ -12,3 +19,19 @@ Build list B by reversing A, using recursion.
 Once A is fully traversed (i.e., base case), now B has the digits in reverse order (so you can process the least significant digit first).
 
 Then, recursively process B to subtract 1 (handling carry/borrow).
+
+predecesor(x1...xn) = {
+    B = reverse(x1...xn, []) 
+    C = scade(B, 1)                   
+    reverse(C, [])
+}
+
+14 b
+
+asumam is_list ca fiind e_lista in limbaj matematic
+
+eterogen(x1...xn) = {
+    []      daca n = 0
+    predecesor(x1) (+) eterogen(x2...xn)    daca e_lista(x1)
+    x1 (+) eterogen(x2...xn)            altfel
+}
