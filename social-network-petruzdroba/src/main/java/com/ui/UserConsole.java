@@ -1,6 +1,7 @@
 package main.java.com.ui;
 
 import main.java.com.domain.Duck;
+import main.java.com.domain.User;
 import main.java.com.exceptions.RepositoryException;
 import main.java.com.exceptions.ValidationException;
 import main.java.com.service.UserService;
@@ -31,6 +32,7 @@ public class UserConsole extends AbstractConsole{
                 case "4" -> modifyPersoana();
                 case "5" -> modifyDuck();
                 case "6" -> findUserByUsername();
+                case "7" -> showAll();
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
@@ -47,6 +49,7 @@ public class UserConsole extends AbstractConsole{
         System.out.println("4. Modify Persoana");
         System.out.println("5. Modify Duck");
         System.out.println("6. Find User by Username");
+        System.out.println("7. Show all Users");
     }
 
     @Override
@@ -250,6 +253,12 @@ public class UserConsole extends AbstractConsole{
             System.out.println("User not found!");
         } else {
             System.out.println(user.toString());
+        }
+    }
+
+    private void showAll(){
+        for(User u: service.getAll()){
+            System.out.println(u);
         }
     }
 }

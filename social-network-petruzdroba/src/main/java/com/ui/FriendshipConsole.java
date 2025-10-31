@@ -5,6 +5,8 @@ import main.java.com.exceptions.RepositoryException;
 import main.java.com.exceptions.ValidationException;
 import main.java.com.service.FriendshipService;
 
+import java.util.Map;
+
 public class FriendshipConsole extends AbstractConsole {
     private final FriendshipService service;
 
@@ -26,6 +28,7 @@ public class FriendshipConsole extends AbstractConsole {
                 case "2" -> remove();
                 case "3" -> communitiesSize();
                 case "4" -> biggestCommunity();
+                case "5" -> showAll();
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
@@ -40,6 +43,7 @@ public class FriendshipConsole extends AbstractConsole {
         System.out.println("2. Remove Friendship");
         System.out.println("3. Community Count");
         System.out.println("4. Biggest Community");
+        System.out.println("5. Show all Friendships");
     }
 
     @Override
@@ -102,5 +106,11 @@ public class FriendshipConsole extends AbstractConsole {
             System.out.println(" - " + user.getUsername() + " (" + user.getId() + ")");
         }
 
+    }
+
+    private void showAll(){
+        for(Map.Entry<User, User> pair: service.getAllPretty()){
+            System.out.println(pair.getKey().getUsername() + " <-> " + pair.getValue().getUsername());
+        }
     }
 }

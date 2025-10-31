@@ -162,4 +162,28 @@ public class FriendshipService extends AbstractService<String, Friendship> {
 
         return dist.values().stream().mapToInt(i -> i).max().orElse(0);
     }
+
+    public Collection<Map.Entry<User, User>> getAllPretty() {
+        List<Map.Entry<User, User>> prettyList = new ArrayList<>();
+
+        if (dependencyRepository == null)
+            throw new IllegalStateException("User repository not linked to FriendshipService.");
+
+        @SuppressWarnings("unchecked")
+        AbstractRepository<Long, User> userRepo = (AbstractRepository<Long, User>) dependencyRepository;
+
+        for (Friendship f : repository.getAll()) {
+            User user1 = userRepo.find(f.getUserId1());
+            User user2 = userRepo.find(f.getUserId2());
+
+            if (user1 != null && user2 != null) {
+                prettyList.add(new AbstractMap.SimpleEntry<>(user1, user2));
+            } else {
+                System.out.println("Warning: friendship references missing user(s): " + f);
+            }
+        }
+
+        return prettyList;
+    }
+
 }

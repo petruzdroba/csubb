@@ -34,4 +34,13 @@ public class Card {
     public List<Long> getMembri() {
         return membri;
     }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id=" + id +
+                ", numeCard='" + numeCard + '\'' +
+                ", membri=" + membri +
+                '}';
+    }
 }

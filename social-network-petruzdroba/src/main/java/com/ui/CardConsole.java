@@ -1,5 +1,6 @@
 package main.java.com.ui;
 
+import main.java.com.domain.Card;
 import main.java.com.exceptions.RepositoryException;
 import main.java.com.service.CardService;
 
@@ -23,6 +24,7 @@ public class CardConsole extends AbstractConsole {
                 case "1" -> add();
                 case "2" -> remove();
                 case "3" -> length();
+                case "4" -> showAll();
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
@@ -36,6 +38,7 @@ public class CardConsole extends AbstractConsole {
         System.out.println("1. Add Card");
         System.out.println("2. Remove Card");
         System.out.println("3. Number of cards");
+        System.out.println("4. Show all Cards");
     }
 
     @Override
@@ -82,5 +85,11 @@ public class CardConsole extends AbstractConsole {
 
     private void length(){
         System.out.println("Number of cards: " + service.getAll().toArray().length);
+    }
+
+    private void showAll(){
+        for(Card c: service.getAll()){
+            System.out.println(c);
+        }
     }
 }
