@@ -15,6 +15,19 @@ public class FriendshipService extends AbstractService<String, Friendship> {
         super(repository, userRepository);
     }
 
+    /**
+     * Adauga o prietenie{@link Friendship} intre doi utilizatori.
+     * <p>
+     * Creeaza un obiect Friendship si il valideaza. Daca exista repository de utilizatori,
+     * verifica ca ambele id-uri sa existe inainte de a adauga prietenia.
+     *
+     * @param userId1 Id-ul primului utilizator.
+     * @param userId2 Id-ul celui de-al doilea utilizator.
+     * @throws ValidationException Daca vreun id nu exista in repository-ul de utilizatori, sau id uri negative
+     * @throws main.java.com.exceptions.RepositoryException daca exista o prietenie deja intre utilizatori
+     * @see main.java.com.validators.FriendshipValidator
+     * @see main.java.com.repo.AbstractRepository#add(Object, Object)
+     */
     public void add(long userId1, long userId2) {
         Friendship friendship = new Friendship(userId1, userId2);
         friendshipValidator.validate(friendship);
@@ -27,6 +40,18 @@ public class FriendshipService extends AbstractService<String, Friendship> {
         repository.add(friendship.getFriendshipId(), friendship);
     }
 
+    /**
+     * Sterge o prietenie {@link Friendship} intre doi utilizatori.
+     *
+     * Creeaza un obiect Friendship -> pentru friendship Id, apoi il sterge din repository.
+     *
+     * @param userId1 Id-ul primului utilizator.
+     * @param userId2 Id-ul celui de-al doilea utilizator.
+     * @throws ValidationException daca oricare dintre user id sunt negative
+     * @throws main.java.com.exceptions.RepositoryException daca utilizatorii nu sunt priteteni
+     * @see main.java.com.validators.FriendshipValidator
+     * @see main.java.com.repo.AbstractRepository#remove(Object)
+     */
     public void remove(long userId1, long userId2) {
         Friendship friendship = new Friendship(userId1, userId2);
         friendshipValidator.validate(friendship);
@@ -34,6 +59,15 @@ public class FriendshipService extends AbstractService<String, Friendship> {
         repository.remove(friendship.getFriendshipId());
     }
 
+    /**
+     * Returneaza numarul de comunitati din retea.
+     *<p>
+     * O comunitate este definita ca un component conectat in graful prieteniilor.
+     *
+     * @return Numarul de comunitati.
+     * @see #buildGraph() pentru construirea grafului de prietenii.
+     * @see #bfs(Long, Map, Set) pentru parcurgerea componentelor conectate.
+     */
     public int getCommunityCount() {
         Map<Long, Set<Long>> graph = buildGraph();
         Set<Long> visited = new HashSet<>();
@@ -83,6 +117,17 @@ public class FriendshipService extends AbstractService<String, Friendship> {
         }
     }
 
+    /**
+     * Returneaza comunitatea cea mai sociabila.
+     *
+     * Cauta toate comunitatile si returneaza setul de utilizatori {@link User} din componenta
+     * cu diametru maxim (cel mai sociabil grup).
+     *
+     * @return Set de utilizatori din comunitatea cea mai sociabila.
+     * @see #buildGraph()
+     * @see #bfsCollect(Long, Map, Set)
+     * @see #computeDiameter(Set, Map)
+     */
     public Set<User> getMostSociableCommunity() {
         Map<Long, Set<Long>> graph = buildGraph();
         Set<Long> visited = new HashSet<>();
@@ -163,6 +208,15 @@ public class FriendshipService extends AbstractService<String, Friendship> {
         return dist.values().stream().mapToInt(i -> i).max().orElse(0);
     }
 
+    /**
+     * Returneaza toate prieteniile sub forma de perechi de utilizatori {@link User}.
+     *<p>
+     * Creeaza o colectie cu toate prieteniile, fiecare reprezentata ca o pereche de obiecte User.
+     * Afiseaza un mesaj de warning daca vreun utilizator lipseste.
+     *
+     * @return Colectie de perechi User-User reprezentand prieteniile.
+     * @throws IllegalStateException Daca repository-ul de utilizatori nu este conectat.
+     */
     public Collection<Map.Entry<User, User>> getAllPretty() {
         List<Map.Entry<User, User>> prettyList = new ArrayList<>();
 

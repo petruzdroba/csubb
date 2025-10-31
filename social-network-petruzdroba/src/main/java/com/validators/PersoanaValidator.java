@@ -8,7 +8,7 @@ public class PersoanaValidator extends UserValidator<Persoana>{
     private final StringValidator numeValidator = new StringValidator(1,50);
     private final StringValidator prenumeValidator = new StringValidator(1,50);
     private final LocalDateValidator dataNasteriiValidator = new LocalDateValidator();
-    private final StringValidator ocupatieValidator = new StringValidator(0,20);
+    private final StringValidator ocupatieValidator = new StringValidator(1,20);
     private final IntRangeValidator nivelEmpatieValidator = new IntRangeValidator(0,10);
 
 
