@@ -1,5 +1,6 @@
 package main.java.com.ui;
 
+import main.java.com.domain.User;
 import main.java.com.exceptions.RepositoryException;
 import main.java.com.exceptions.ValidationException;
 import main.java.com.service.FriendshipService;
@@ -24,6 +25,7 @@ public class FriendshipConsole extends AbstractConsole {
                 case "1" -> add();
                 case "2" -> remove();
                 case "3" -> communitiesSize();
+                case "4" -> biggestCommunity();
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
@@ -37,6 +39,7 @@ public class FriendshipConsole extends AbstractConsole {
         System.out.println("1. Add Friendship");
         System.out.println("2. Remove Friendship");
         System.out.println("3. Community Count");
+        System.out.println("4. Biggest Community");
     }
 
     @Override
@@ -90,5 +93,14 @@ public class FriendshipConsole extends AbstractConsole {
 
     private void communitiesSize(){
         System.out.println("Number of communities: " + service.getCommunityCount());
+    }
+
+    private void biggestCommunity(){
+
+        System.out.println("Most sociable community:");
+        for (User user : service.getMostSociableCommunity()) {
+            System.out.println(" - " + user.getUsername() + " (" + user.getId() + ")");
+        }
+
     }
 }
