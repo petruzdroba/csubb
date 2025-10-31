@@ -42,4 +42,18 @@ public class FriendshipRepository extends AbstractFileRepository<String, Friends
             System.err.println("Error writing friendships: " + e.getMessage());
         }
     }
+    
+    /**
+    *Gaseste toate prieteniile care il au pe user {@link main.java.com.domain.User} cu userId
+     *  si sterge prieteniile care il contin
+     *  
+     * @param userId, id-ul userului care a fost sters, cascade delete freindships
+     * @see main.java.com.repo.AbstractRepository#remove(Object)
+     * */
+    public void removeUserFriendships(long userId){
+        getAll().forEach(f -> {
+            if(f.getUserId1() == userId || f.getUserId2() == userId)
+                remove(f.getFriendshipId());
+        });
+    }
 }

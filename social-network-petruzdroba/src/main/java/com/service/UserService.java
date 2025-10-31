@@ -7,6 +7,7 @@ import main.java.com.domain.User;
 import main.java.com.exceptions.ValidationException;
 import main.java.com.repo.AbstractRepository;
 import main.java.com.repo.CardRepository;
+import main.java.com.repo.FriendshipRepository;
 import main.java.com.validators.DuckValidator;
 import main.java.com.validators.PersoanaValidator;
 
@@ -159,6 +160,11 @@ public class UserService extends AbstractService<Long, User> {
         if(userId < 0 )
             throw new ValidationException("User id cannot be negative");
         repository.remove(userId);
+
+//        if(dependencyRepository != null){
+//            FriendshipRepository friendshipRepository = (FriendshipRepository) dependencyRepository;
+//            friendshipRepository.removeUserFriendships(userId);
+//        }
     }
 
     /**
