@@ -7,7 +7,6 @@ import main.java.com.domain.User;
 import main.java.com.exceptions.ValidationException;
 import main.java.com.repo.AbstractRepository;
 import main.java.com.repo.CardRepository;
-import main.java.com.repo.FriendshipRepository;
 import main.java.com.validators.DuckValidator;
 import main.java.com.validators.PersoanaValidator;
 
@@ -17,8 +16,8 @@ public class UserService extends AbstractService<Long, User> {
     private final PersoanaValidator persoanaValidator =  new PersoanaValidator();
     private final DuckValidator duckValidator = new DuckValidator();
 
-    public UserService(AbstractRepository<Long, User> repository, AbstractRepository<?, ?> cardRepo) {
-        super(repository, cardRepo);
+    public UserService(AbstractRepository<Long, User> repository) {
+        super(repository);
 
     }
 
@@ -78,13 +77,6 @@ public class UserService extends AbstractService<Long, User> {
             throw new ValidationException("Card id not found");
 
         repository.add(id, user);
-
-        AbstractRepository<Long, Card> cardRepo = (AbstractRepository<Long, Card>) dependencyRepository;
-        Card card = cardRepo.find(cardId);
-        if (card != null) {
-            card.addDuck(id);
-            cardRepo.modify(cardId, card);
-        }
     }
 
     /**
@@ -137,9 +129,6 @@ public class UserService extends AbstractService<Long, User> {
     public void modify(long id, String username, String email, String password, Duck.TipRata tip, double viteza, double rezistenta, long cardId){
         Duck user = new Duck(id, username,email,password, tip, viteza, rezistenta, cardId);
         duckValidator.validateThrow(user);
-
-        if(dependencyRepository != null && !dependencyRepository.getKeys().contains(cardId))
-            throw new ValidationException("Card id not found");
 
         repository.modify(id, user);
     }

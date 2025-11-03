@@ -2,17 +2,21 @@ package main.java.com.service;
 
 import main.java.com.domain.Friendship;
 import main.java.com.domain.User;
+import main.java.com.exceptions.RepositoryException;
 import main.java.com.exceptions.ValidationException;
 import main.java.com.repo.AbstractRepository;
+import main.java.com.repo.UserRepository;
 import main.java.com.validators.FriendshipValidator;
 
 import java.util.*;
 
 public class FriendshipService extends AbstractService<String, Friendship> {
     private final FriendshipValidator friendshipValidator = new FriendshipValidator();
+    private final UserRepository userRepository;
 
-    public FriendshipService(AbstractRepository<String, Friendship> repository, AbstractRepository<?, ?> userRepository) {
-        super(repository, userRepository);
+    public FriendshipService(AbstractRepository<String, Friendship> repository, UserRepository userRepository) {
+        super(repository);
+        this.userRepository = userRepository;
     }
 
     /**
@@ -24,33 +28,31 @@ public class FriendshipService extends AbstractService<String, Friendship> {
      * @param userId1 Id-ul primului utilizator.
      * @param userId2 Id-ul celui de-al doilea utilizator.
      * @throws ValidationException Daca vreun id nu exista in repository-ul de utilizatori, sau id uri negative
-     * @throws main.java.com.exceptions.RepositoryException daca exista o prietenie deja intre utilizatori
-     * @see main.java.com.validators.FriendshipValidator
-     * @see main.java.com.repo.AbstractRepository#add(Object, Object)
+     * @throws RepositoryException daca exista o prietenie deja intre utilizatori
+     * @see FriendshipValidator
+     * @see AbstractRepository#add(Object, Object)
      */
     public void add(long userId1, long userId2) {
         Friendship friendship = new Friendship(userId1, userId2);
         friendshipValidator.validate(friendship);
 
-        if (dependencyRepository != null) {
-            if (!dependencyRepository.getKeys().contains(userId1) || !dependencyRepository.getKeys().contains(userId2))
-                throw new ValidationException("User with an id cannot be found");
-        }
+        if (!userRepository.getKeys().contains(userId1) || !userRepository.getKeys().contains(userId2))
+            throw new ValidationException("User with an id cannot be found");
 
         repository.add(friendship.getFriendshipId(), friendship);
     }
 
     /**
      * Sterge o prietenie {@link Friendship} intre doi utilizatori.
-     *
+     * <p>
      * Creeaza un obiect Friendship -> pentru friendship Id, apoi il sterge din repository.
      *
      * @param userId1 Id-ul primului utilizator.
      * @param userId2 Id-ul celui de-al doilea utilizator.
      * @throws ValidationException daca oricare dintre user id sunt negative
-     * @throws main.java.com.exceptions.RepositoryException daca utilizatorii nu sunt priteteni
-     * @see main.java.com.validators.FriendshipValidator
-     * @see main.java.com.repo.AbstractRepository#remove(Object)
+     * @throws RepositoryException daca utilizatorii nu sunt priteteni
+     * @see FriendshipValidator
+     * @see AbstractRepository#remove(Object)
      */
     public void remove(long userId1, long userId2) {
         Friendship friendship = new Friendship(userId1, userId2);
@@ -61,7 +63,7 @@ public class FriendshipService extends AbstractService<String, Friendship> {
 
     /**
      * Returneaza numarul de comunitati din retea.
-     *<p>
+     * <p>
      * O comunitate este definita ca un component conectat in graful prieteniilor.
      *
      * @return Numarul de comunitati.
@@ -85,10 +87,8 @@ public class FriendshipService extends AbstractService<String, Friendship> {
     private Map<Long, Set<Long>> buildGraph() {
         Map<Long, Set<Long>> graph = new HashMap<>();
 
-        if (dependencyRepository != null) {
-            for (Object key : dependencyRepository.getKeys()) {//using UserService to get access to all user keys
-                if (key instanceof Long id) graph.put(id, new HashSet<>());
-            }
+        for (Object key : userRepository.getKeys()) {//using UserService to get access to all user keys
+            if (key instanceof Long id) graph.put(id, new HashSet<>());
         }
 
         for (Friendship f : repository.getAll()) {
@@ -119,7 +119,7 @@ public class FriendshipService extends AbstractService<String, Friendship> {
 
     /**
      * Returneaza comunitatea cea mai sociabila.
-     *
+     * <p>
      * Cauta toate comunitatile si returneaza setul de utilizatori {@link User} din componenta
      * cu diametru maxim (cel mai sociabil grup).
      *
@@ -147,14 +147,10 @@ public class FriendshipService extends AbstractService<String, Friendship> {
         }
 
         Set<User> result = new HashSet<>();
-        if (dependencyRepository != null) {
-            AbstractRepository<Long, User> userRepo = (AbstractRepository<Long, User>) dependencyRepository;
 
-            for (Long userId : bestComponent) {
-                User user = userRepo.find(userId);
-                if (user != null) result.add(user);
-            }
-
+        for (Long userId : bestComponent) {
+            User user = userRepository.find(userId);
+            if (user != null) result.add(user);
         }
 
         return result;
@@ -210,7 +206,7 @@ public class FriendshipService extends AbstractService<String, Friendship> {
 
     /**
      * Returneaza toate prieteniile sub forma de perechi de utilizatori {@link User}.
-     *<p>
+     * <p>
      * Creeaza o colectie cu toate prieteniile, fiecare reprezentata ca o pereche de obiecte User.
      * Afiseaza un mesaj de warning daca vreun utilizator lipseste.
      *
@@ -220,15 +216,11 @@ public class FriendshipService extends AbstractService<String, Friendship> {
     public Collection<Map.Entry<User, User>> getAllPretty() {
         List<Map.Entry<User, User>> prettyList = new ArrayList<>();
 
-        if (dependencyRepository == null)
-            throw new IllegalStateException("User repository not linked to FriendshipService.");
 
-        @SuppressWarnings("unchecked")
-        AbstractRepository<Long, User> userRepo = (AbstractRepository<Long, User>) dependencyRepository;
 
         for (Friendship f : repository.getAll()) {
-            User user1 = userRepo.find(f.getUserId1());
-            User user2 = userRepo.find(f.getUserId2());
+            User user1 = userRepository.find(f.getUserId1());
+            User user2 = userRepository.find(f.getUserId2());
 
             if (user1 != null && user2 != null) {
                 prettyList.add(new AbstractMap.SimpleEntry<>(user1, user2));
