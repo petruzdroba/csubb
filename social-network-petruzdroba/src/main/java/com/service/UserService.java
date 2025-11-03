@@ -1,8 +1,10 @@
 package main.java.com.service;
 
 import main.java.com.domain.*;
+import main.java.com.exceptions.RepositoryException;
 import main.java.com.exceptions.ValidationException;
 import main.java.com.repo.AbstractRepository;
+import main.java.com.repo.CardRepository;
 import main.java.com.repo.FriendshipRepository;
 import main.java.com.validators.DuckValidator;
 import main.java.com.validators.PersoanaValidator;
@@ -13,10 +15,12 @@ public class UserService extends AbstractService<Long, User> {
     private final PersoanaValidator persoanaValidator = new PersoanaValidator();
     private final DuckValidator duckValidator = new DuckValidator();
     private final FriendshipRepository friendshipRepository;
+    private final CardRepository cardRepository;
 
-    public UserService(AbstractRepository<Long, User> repository, FriendshipRepository friendshipRepository) {
+    public UserService(AbstractRepository<Long, User> repository, FriendshipRepository friendshipRepository, CardRepository cardRepository) {
         super(repository);
         this.friendshipRepository = friendshipRepository;
+        this.cardRepository = cardRepository;
     }
 
     /**
@@ -78,6 +82,7 @@ public class UserService extends AbstractService<Long, User> {
         duckValidator.validateThrow(user);
 
         repository.add(id, user);
+        cardRepository.addDuck(tip, id);
     }
 
     /**
@@ -160,6 +165,11 @@ public class UserService extends AbstractService<Long, User> {
         repository.remove(userId);
 
         friendshipRepository.removeUserFriendships(userId);
+
+        User user = repository.find(userId);
+        if (user instanceof Duck duck) {
+            cardRepository.removeDuck(duck.getTip(), userId);
+        }
     }
 
     /**
