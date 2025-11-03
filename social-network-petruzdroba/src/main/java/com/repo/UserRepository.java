@@ -1,8 +1,6 @@
 package main.java.com.repo;
 
-import main.java.com.domain.Duck;
-import main.java.com.domain.Persoana;
-import main.java.com.domain.User;
+import main.java.com.domain.*;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -46,9 +44,16 @@ public class UserRepository extends AbstractFileRepository<Long, User>{
                     Duck.TipRata tip = Duck.TipRata.valueOf(parts[5]);
                     double viteza = Double.parseDouble(parts[6]);
                     double rezistenta = Double.parseDouble(parts[7]);
-                    int cardId = Integer.parseInt(parts[8]);
 
-                    User duck = new Duck(id, username, email, password, tip, viteza, rezistenta, cardId);
+                    User duck;
+                    if(tip == Duck.TipRata.FLYING) {
+                        duck = new FlyingDuck(id, username, email, password, tip, viteza, rezistenta);
+                    }else if(tip == Duck.TipRata.SWIMMING){
+                        duck = new SwimmingDuck(id, username, email, password, tip, viteza, rezistenta);
+                    }else {
+                        duck = new SwimmingFlyingDuck(id, username, email, password, tip, viteza, rezistenta);
+                    }
+
                     data.put(id, duck);
                 }
             }
@@ -83,8 +88,7 @@ public class UserRepository extends AbstractFileRepository<Long, User>{
                             d.getPassword(),
                             d.getTip().name(),
                             String.valueOf(d.getViteza()),
-                            String.valueOf(d.getRezistenta()),
-                            String.valueOf(d.getCardId())
+                            String.valueOf(d.getRezistenta())
                     ));
                 }
             }

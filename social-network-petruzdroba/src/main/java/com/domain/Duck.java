@@ -1,6 +1,6 @@
 package main.java.com.domain;
 
-public class Duck extends User{
+public abstract class Duck extends User{
     public enum TipRata{
         FLYING, SWIMMING, FLYING_AND_SWIMMING
     }
@@ -8,14 +8,12 @@ public class Duck extends User{
     private TipRata tip;
     private double viteza;
     private double rezistenta;
-    private long cardId;
 
-    public Duck(long id, String username, String email, String password, TipRata tip, double viteza, double rezistenta, long cardId) {
+    public Duck(long id, String username, String email, String password, TipRata tip, double viteza, double rezistenta) {
         super(id, username, email, password);
         this.tip = tip;
         this.viteza = viteza;
         this.rezistenta = rezistenta;
-        this.cardId = cardId;
     }
 
     public TipRata getTip() {
@@ -42,21 +40,12 @@ public class Duck extends User{
         this.rezistenta = rezistenta;
     }
 
-    public long getCardId() {
-        return cardId;
-    }
-
-    public void setCardId(long cardId) {
-        this.cardId = cardId;
-    }
-
     @Override
     public String toString() {
         return super.toString() +"Duck{" +
                 "tip=" + tip +
                 ", viteza=" + viteza +
                 ", rezistenta=" + rezistenta +
-                ", card=" + cardId +
                 '}';
     }
 }

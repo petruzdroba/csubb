@@ -20,7 +20,7 @@ public class Main {
         FriendshipRepository friendshipRepo = new FriendshipRepository("resources/friendships.in");
         CardRepository cardRepo = new CardRepository("resources/card.in");
 
-        UserService userService = new UserService(userRepo);
+        UserService userService = new UserService(userRepo, friendshipRepo);
         FriendshipService friendshipService = new FriendshipService(friendshipRepo, userRepo);
         CardService cardService = new CardService(cardRepo);
 

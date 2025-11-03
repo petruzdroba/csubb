@@ -122,10 +122,7 @@ public class UserConsole extends AbstractConsole{
             System.out.print("Rezistenta (0.0 - 10.0): ");
             double rezistenta = Double.parseDouble(scanner.nextLine());
 
-            System.out.print("Card ID: ");
-            int cardId = Integer.parseInt(scanner.nextLine());
-
-            service.add(id, username, email, password, tip, viteza, rezistenta, cardId);
+            service.add(id, username, email, password, tip, viteza, rezistenta);
             System.out.println("Duck added successfully!");
 
         } catch (NumberFormatException e) {
@@ -225,10 +222,7 @@ public class UserConsole extends AbstractConsole{
             System.out.print("Rezistenta (0.0 - 10.0): ");
             double rezistenta = Double.parseDouble(scanner.nextLine());
 
-            System.out.print("Card ID: ");
-            int cardId = Integer.parseInt(scanner.nextLine());
-
-            service.modify(id, username, email, password, tip, viteza, rezistenta, cardId);
+            service.modify(id, username, email, password, tip, viteza, rezistenta);
             System.out.println("Duck modified successfully!");
 
         } catch (NumberFormatException e) {
