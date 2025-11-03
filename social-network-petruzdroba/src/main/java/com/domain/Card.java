@@ -3,15 +3,15 @@ package main.java.com.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Card {
+public class Card<T extends Duck> {
     private long id;
     private String numeCard;
-    private List<Long> membri;
+    private List<T> membri;
 
     public Card(long id, String numeCard) {
         this.id = id;
         this.numeCard = numeCard;
-        this.membri = new ArrayList<Long>();
+        this.membri = new ArrayList<T>();
     }
 
     public double getPerformantaMedie(){
@@ -27,11 +27,11 @@ public class Card {
         return numeCard;
     }
 
-    public void addDuck(long duckId){
-        membri.add(duckId);
+    public void addDuck(T duck){
+        membri.add(duck);
     }
 
-    public List<Long> getMembri() {
+    public List<T> getMembri() {
         return membri;
     }
 

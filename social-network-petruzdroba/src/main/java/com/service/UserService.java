@@ -3,7 +3,6 @@ package main.java.com.service;
 import main.java.com.domain.*;
 import main.java.com.exceptions.ValidationException;
 import main.java.com.repo.AbstractRepository;
-import main.java.com.repo.CardRepository;
 import main.java.com.repo.FriendshipRepository;
 import main.java.com.validators.DuckValidator;
 import main.java.com.validators.PersoanaValidator;
