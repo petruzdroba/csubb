@@ -5,8 +5,8 @@ import main.java.com.exceptions.DomainException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event {
-    private List<User> subscribers;
+public abstract class Event {
+    protected List<User> subscribers;
 
     public Event() {
         this.subscribers = new ArrayList<User>();
@@ -34,6 +34,10 @@ public class Event {
         if(!subscribers.contains(u))
             throw new DomainException("User isnt subscribed \n");
         subscribers.remove(u);
+    }
+
+    public String notification(){
+        return "notified";
     }
 
     /**

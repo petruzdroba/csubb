@@ -36,7 +36,7 @@ public abstract class User{
      * @see Event#notifySubscribers()
      */
     public void notify(Event e) {
-        System.out.println(this.getUsername() + " was notified about " + e);
+        System.out.println(this.getUsername() + e.notification());
     }
 
     @Override
