@@ -25,20 +25,18 @@ public abstract class User{
         return email;
     }
 
-    public void login(){
-
-    }
-
-    public void logout(){
-
-    }
-
-    public void sendMessage(){}
-
-    public void receiveMessage(){}
-
     public String getPassword() {
         return password;
+    }
+
+    /**
+     * Called when this user is notified about an event.
+     *
+     * @param e the event that triggered the notification
+     * @see Event#notifySubscribers()
+     */
+    public void notify(Event e) {
+        System.out.println(this.getUsername() + " was notified about " + e);
     }
 
     @Override

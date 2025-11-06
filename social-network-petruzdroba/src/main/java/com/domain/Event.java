@@ -1,0 +1,48 @@
+package main.java.com.domain;
+
+import main.java.com.exceptions.DomainException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Event {
+    private List<User> subscribers;
+
+    public Event() {
+        this.subscribers = new ArrayList<User>();
+    }
+
+    /**
+     * Subscribes a user to this event.
+     *
+     * @param u the user to subscribe
+     * @throws DomainException if the user is already subscribed
+     */
+    public void subscribe(User u) throws DomainException{
+        if(subscribers.contains(u))
+            throw new DomainException("User already subscribed \n");
+        subscribers.add(u);
+    }
+
+    /**
+     * Unsubscribes a user from this event.
+     *
+     * @param u the user to unsubscribe
+     * @throws DomainException if the user is not currently subscribed
+     */
+    public void unsubscribe(User u) throws DomainException{
+        if(!subscribers.contains(u))
+            throw new DomainException("User isnt subscribed \n");
+        subscribers.remove(u);
+    }
+
+    /**
+     * Notifies all subscribed users by calling their notify(Event) method.
+     * @see User#notify(Event) 
+     */
+    public void notifySubscribers(){
+        for(User u: subscribers){
+            u.notify(this);
+        }
+    }
+}
