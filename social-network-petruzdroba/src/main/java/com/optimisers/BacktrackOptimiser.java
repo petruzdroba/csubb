@@ -17,6 +17,14 @@ public class BacktrackOptimiser {
         this.container = container;
     }
 
+    /**
+     * Gaseste timpul minim necesar pentru desfasurarea cursei si alocarea optima a ratelor.
+     *
+     * @return {@link OptimiserResult} care contine timpul minim si alocarea ratelor
+     *
+     * @see DuckRaceContainer
+     * @see OptimiserResult
+     */
     public OptimiserResult findMinimumTime() {
         Collection<Culoar> culoareCol = container.getCuloare();
         Collection<Duck> ducksCol = container.getDucks();
@@ -36,6 +44,21 @@ public class BacktrackOptimiser {
         return new OptimiserResult((bestTime[0] * 100.0) / 100.0, bestAssignment);
     }
 
+    /**
+     * Metoda recursiva pentru backtracking.
+     * <p>
+     * Nu este apelata din exterior.
+     *
+     * @param ducks          lista de {@link Duck}
+     * @param culoare        lista de {@link Culoar}
+     * @param N              numarul total de rate
+     * @param M              numarul total de culoare
+     * @param start          indicele de start in lista de rate
+     * @param depth          adancimea curenta in backtracking
+     * @param chosen         vector cu ratele alese pentru culoare
+     * @param bestTime       vector cu timpul minim gasit
+     * @param bestAssignment vector cu id-urile ratelor pentru alocarea optima
+     */
     private void backtrack(List<Duck> ducks, List<Culoar> culoare, int N, int M,
                            int start, int depth, int[] chosen, double[] bestTime, int[] bestAssignment) {
 

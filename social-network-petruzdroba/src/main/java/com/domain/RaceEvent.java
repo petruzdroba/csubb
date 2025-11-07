@@ -1,7 +1,5 @@
 package main.java.com.domain;
 
-import java.util.Arrays;
-
 public class RaceEvent extends Event{
     private OptimiserResult raceResult;
 
