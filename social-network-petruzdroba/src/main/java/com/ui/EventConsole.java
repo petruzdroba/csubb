@@ -1,21 +1,19 @@
 package main.java.com.ui;
 
 import main.java.com.domain.Culoar;
-import main.java.com.domain.RaceEvent;
-import main.java.com.domain.User;
 import main.java.com.exceptions.DomainException;
-import main.java.com.service.EventService;
-import main.java.com.repo.UserRepository;
+import main.java.com.exceptions.ValidationException;
+import main.java.com.service.RaceEventService;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 
 public class EventConsole extends AbstractConsole {
-    private final EventService eventService;
+    private final RaceEventService raceEventService;
 
-    public EventConsole(EventService eventService) {
-        this.eventService = eventService;
+    public EventConsole(RaceEventService raceEventService) {
+        this.raceEventService = raceEventService;
     }
 
     @Override
@@ -55,7 +53,7 @@ public class EventConsole extends AbstractConsole {
         try {
             System.out.print("Enter User ID to subscribe: ");
             long userId = Long.parseLong(scanner.nextLine());
-            eventService.subscribe(userId);
+            raceEventService.subscribe(userId);
             System.out.println("User subscribed successfully!");
         } catch (NumberFormatException e) {
             System.out.println("Invalid numeric input.");
@@ -70,7 +68,7 @@ public class EventConsole extends AbstractConsole {
         try {
             System.out.print("Enter User ID to unsubscribe: ");
             long userId = Long.parseLong(scanner.nextLine());
-            eventService.unsubscribe(userId);
+            raceEventService.unsubscribe(userId);
             System.out.println("User unsubscribed successfully!");
         } catch (NumberFormatException e) {
             System.out.println("Invalid numeric input.");
@@ -97,8 +95,10 @@ public class EventConsole extends AbstractConsole {
                     .sorted(Comparator.comparingInt(Culoar::getDistanta))
                     .toList();
 
-            eventService.startRace(culoars);
+            raceEventService.startRace(culoars);
             System.out.println("Race started! Subscribers have been notified.");
+        } catch(ValidationException ve){
+            System.out.println("Validation error: " + ve.getMessage());
         } catch (NumberFormatException e) {
             System.out.println("Invalid number format.");
         } catch (DomainException de) {

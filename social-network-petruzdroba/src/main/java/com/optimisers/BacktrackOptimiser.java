@@ -53,7 +53,11 @@ public class BacktrackOptimiser {
 
             if (maxTime < bestTime[0]) {
                 bestTime[0] = maxTime;
-                System.arraycopy(chosen, 0, bestAssignment, 0, M);
+                for (int i = 0; i < M; i++) {
+                    int chosenIdx = chosen[i];
+                    bestAssignment[i] = Math.toIntExact(ducks.get(chosenIdx).getId());
+                }
+
             }
             return;
         }

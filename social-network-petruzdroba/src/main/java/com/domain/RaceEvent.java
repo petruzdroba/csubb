@@ -14,8 +14,15 @@ public class RaceEvent extends Event{
         if (raceResult == null) {
             return "Race result not yet available.";
         }
-        return " notified, time: " + String.format("%.2f", raceResult.getBestTime())
-                + " " + Arrays.toString(raceResult.getBestAssignment());
+        StringBuilder sb = new StringBuilder();
+        sb.append(" notified, time: ").append(String.format("%.2f", raceResult.getBestTime())).append("\n");
+
+        int[] assignment = raceResult.getBestAssignment();
+        for (int lane = 0; lane < assignment.length; lane++) {
+            sb.append("Lane ").append(lane + 1).append(": Duck ").append(assignment[lane]).append("\n");
+        }
+
+        return sb.toString().trim();
     }
 
 
