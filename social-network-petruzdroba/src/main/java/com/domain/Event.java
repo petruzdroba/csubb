@@ -7,10 +7,30 @@ import java.util.List;
 
 public abstract class Event {
     protected List<User> subscribers;
+    protected long id;
 
-    public Event() {
+    public Event(long id) {
         this.subscribers = new ArrayList<User>();
+        this.id = id;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<User> getSubscribers() {
+        return subscribers;
+    }
+
+    public void setSubscribers(List<User> subscribers) {
+        this.subscribers = subscribers;
+    }
+
+    public abstract void start();
 
     /**
      * Subscribes a user to this event.
@@ -48,5 +68,13 @@ public abstract class Event {
         for(User u: subscribers){
             u.notify(this);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "subscribers=" + subscribers +
+                ", id=" + id +
+                '}';
     }
 }
