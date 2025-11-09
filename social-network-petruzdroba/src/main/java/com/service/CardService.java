@@ -73,7 +73,7 @@ public class CardService extends AbstractService<Duck.TipRata, Card> {
 
         List<Duck> ducks = new ArrayList<>();
         for (Long duckId : card.getMembri()) {
-            Duck duck = (Duck) userRepository.find(duckId); // fetch actual Duck object
+            Duck duck = (Duck) userRepository.find(duckId);
             if (duck != null) {
                 ducks.add(duck);
             }

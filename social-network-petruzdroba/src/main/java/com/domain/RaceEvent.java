@@ -1,10 +1,23 @@
 package main.java.com.domain;
 
+import main.java.com.containers.DuckRaceContainer;
+import main.java.com.optimisers.BacktrackOptimiser;
+
 public class RaceEvent extends Event{
     private OptimiserResult raceResult;
+    private final DuckRaceContainer container;
+    private final BacktrackOptimiser optimiser;
 
-    public RaceEvent() {
+    public RaceEvent(long id, DuckRaceContainer container) {
+        super(id);
+        this.container = container;
+        optimiser = new BacktrackOptimiser(container);
         raceResult = null;
+    }
+
+    @Override
+    public void start() {
+        raceResult = optimiser.findMinimumTime();
     }
 
     @Override
@@ -26,5 +39,9 @@ public class RaceEvent extends Event{
 
     public void setRaceResult(OptimiserResult result){
         this.raceResult = result;
+    }
+
+    public DuckRaceContainer getContainer() {
+        return container;
     }
 }
