@@ -69,4 +69,12 @@ public abstract class Event {
             u.notify(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "subscribers=" + subscribers +
+                ", id=" + id +
+                '}';
+    }
 }

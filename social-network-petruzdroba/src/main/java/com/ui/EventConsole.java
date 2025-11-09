@@ -1,6 +1,7 @@
 package main.java.com.ui;
 
 import main.java.com.domain.Culoar;
+import main.java.com.domain.Event;
 import main.java.com.exceptions.DomainException;
 import main.java.com.exceptions.ValidationException;
 import main.java.com.service.EventService;
@@ -32,6 +33,7 @@ public class EventConsole extends AbstractConsole {
                 case "3" -> subscribeUser();
                 case "4" -> unsubscribeUser();
                 case "5" -> startRace();
+                case "6" -> allEvents();
                 default -> System.out.println("Invalid option.");
             }
         }
@@ -47,6 +49,7 @@ public class EventConsole extends AbstractConsole {
         System.out.println("3. Subscribe User to Event");
         System.out.println("4. Unsubscribe User from Event");
         System.out.println("5. Start Race");
+        System.out.println("6. See all events");
     }
 
     @Override
@@ -125,6 +128,17 @@ public class EventConsole extends AbstractConsole {
             eventService.startRace(eventId);
             System.out.println("Race executed. Subscribers notified.");
         } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private void allEvents(){
+        try{
+            System.out.println("All evebtns");
+
+            for(Event e: eventService.getAll())
+                System.out.println(e);
+        }catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
     }

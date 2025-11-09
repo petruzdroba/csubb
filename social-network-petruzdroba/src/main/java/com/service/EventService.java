@@ -1,10 +1,8 @@
 package main.java.com.service;
 
 import main.java.com.containers.DuckRaceContainer;
-import main.java.com.domain.Culoar;
-import main.java.com.domain.Duck;
-import main.java.com.domain.Event;
-import main.java.com.domain.RaceEvent;
+import main.java.com.domain.*;
+import main.java.com.exceptions.DomainException;
 import main.java.com.exceptions.ValidationException;
 import main.java.com.repo.AbstractRepository;
 import main.java.com.repo.UserRepository;
@@ -26,6 +24,20 @@ public class EventService extends AbstractService<Long, Event>{
         this.userRepository = userRepository;
     }
 
+    /**
+     * Adauga un nou eveniment {@link RaceEvent} cu un set de culoare {@link Culoar}.
+     * <p>
+     * Creeaza containerul {@link DuckRaceContainer} folosind ratele de tip {@link Duck.TipRata#SWIMMING}.
+     * Valideaza culoarele si evenimentul inainte de adaugare.
+     *
+     * @param id       Identificatorul unic al evenimentului
+     * @param culoars  Colectia de {@link Culoar} asociate evenimentului
+     * @throws ValidationException Daca orice culoar sau eveniment nu trece validarea
+     * @see DuckRaceContainer
+     * @see RaceEvent
+     * @see CuloarValidator
+     * @see EventValidator
+     */
     public void add(long id, Collection<Culoar> culoars) throws ValidationException {
         for(Culoar c: culoars)
             culoarValidator.validateThrow(c);
@@ -39,25 +51,66 @@ public class EventService extends AbstractService<Long, Event>{
         repository.add(id, event);
     }
 
+
+    /**
+     * Sterge un eveniment existent dupa id.
+     *
+     * @param id Identificatorul evenimentului
+     * @throws ValidationException Daca id-ul este negativ
+     */
     public void remove(long id) throws ValidationException {
         if(id < 0)
             throw new ValidationException("Event id cannot be negative\n");
         repository.remove(id);
     }
 
+    /**
+     * Inscrie un utilizator {@link User} la un eveniment {@link Event}.
+     *
+     * @param eventId Id-ul evenimentului
+     * @param userId  Id-ul utilizatorului
+     * @throws DomainException Daca utilizatorul este deja inscris la eveniment
+     * @see Event#subscribe(User)
+     */
     public void subscribe(long eventId, long userId){
         repository.find(eventId).subscribe(userRepository.find(userId));
     }
 
-    public void unsubscribe(long eventId, long userId){
+
+    /**
+     * Dezaboneaza un utilizator {@link User} de la un eveniment {@link Event}.
+     *
+     * @param eventId Id-ul evenimentului
+     * @param userId  Id-ul utilizatorului
+     * @throws DomainException Daca utilizatorul nu este inscris la eveniment
+     * @see Event#unsubscribe(User)
+     */
+    public void unsubscribe(long eventId, long userId) throws DomainException {
         repository.find(eventId).unsubscribe(userRepository.find(userId));
     }
 
+    /**
+     * Porneste cursa asociata unui eveniment {@link RaceEvent}, notifica toti utilizatorii inscrisi
+     * si elimina evenimentul din sistem, deoarece cursa a fost incheiata.
+     *
+     * @param raceId Id-ul evenimentului/cursei
+     * @see RaceEvent#start()
+     * @see Event#notifySubscribers()
+     */
     public void startRace(long raceId){
         Event event = repository.find(raceId);
         repository.remove(raceId);
 
         event.start();
         event.notifySubscribers();
+    }
+
+    /**
+     * Returneaza toate evenimentele {@link Event} existente in repository.
+     *
+     * @return Colectie cu toate evenimentele
+     */
+    public Collection<Event> getAll(){
+        return repository.getAll();
     }
 }
