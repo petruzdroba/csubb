@@ -1,10 +1,10 @@
-package main.java.com.ui;
+package com.ui;
 
-import main.java.com.domain.Card;
-import main.java.com.domain.Duck;
-import main.java.com.domain.User;
-import main.java.com.exceptions.RepositoryException;
-import main.java.com.service.CardService;
+import com.domain.Card;
+import com.domain.Duck;
+import com.domain.User;
+import com.exceptions.RepositoryException;
+import com.service.CardService;
 
 import java.util.Collection;
 

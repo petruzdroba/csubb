@@ -1,12 +1,12 @@
-package main.java.com.service;
+package com.service;
 
-import main.java.com.domain.Friendship;
-import main.java.com.domain.User;
-import main.java.com.exceptions.RepositoryException;
-import main.java.com.exceptions.ValidationException;
-import main.java.com.repo.AbstractRepository;
-import main.java.com.repo.UserRepository;
-import main.java.com.validators.FriendshipValidator;
+import com.domain.Friendship;
+import com.domain.User;
+import com.exceptions.RepositoryException;
+import com.exceptions.ValidationException;
+import com.repo.AbstractRepository;
+import com.repo.UserRepository;
+import com.validators.FriendshipValidator;
 
 import java.util.*;
 

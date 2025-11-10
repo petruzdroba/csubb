@@ -1,6 +1,6 @@
-package main.java.com.repo;
+package com.repo;
 
-import main.java.com.domain.Friendship;
+import com.domain.Friendship;
 
 import java.io.*;
 import java.util.Scanner;
@@ -44,11 +44,11 @@ public class FriendshipRepository extends AbstractFileRepository<String, Friends
     }
     
     /**
-    *Gaseste toate prieteniile care il au pe user {@link main.java.com.domain.User} cu userId
+    *Gaseste toate prieteniile care il au pe user {@link com.domain.User} cu userId
      *  si sterge prieteniile care il contin
      *  
      * @param userId, id-ul userului care a fost sters, cascade delete freindships
-     * @see main.java.com.repo.AbstractRepository#remove(Object)
+     * @see com.repo.AbstractRepository#remove(Object)
      * */
     public void removeUserFriendships(long userId){
         getAll().forEach(f -> {

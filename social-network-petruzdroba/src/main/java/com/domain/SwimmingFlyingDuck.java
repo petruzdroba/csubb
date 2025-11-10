@@ -1,4 +1,4 @@
-package main.java.com.domain;
+package com.domain;
 
 public class SwimmingFlyingDuck extends Duck implements Inotator, Zburator{
     public SwimmingFlyingDuck(long id, String username, String email, String password, TipRata tip, double viteza, double rezistenta) {

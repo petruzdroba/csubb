@@ -1,9 +1,9 @@
-package main.java.com.ui;
+package com.ui;
 
-import main.java.com.domain.User;
-import main.java.com.exceptions.RepositoryException;
-import main.java.com.exceptions.ValidationException;
-import main.java.com.service.FriendshipService;
+import com.domain.User;
+import com.exceptions.RepositoryException;
+import com.exceptions.ValidationException;
+import com.service.FriendshipService;
 
 import java.util.Map;
 

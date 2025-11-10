@@ -1,4 +1,4 @@
-package main.java.com.validators;
+package com.validators;
 
 public class DoubleValidator implements Validator<Double> {
     private String errorMessage;

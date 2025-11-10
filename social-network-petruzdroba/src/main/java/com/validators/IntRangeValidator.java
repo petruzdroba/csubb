@@ -1,4 +1,4 @@
-package main.java.com.validators;
+package com.validators;
 
 public class IntRangeValidator implements Validator<Integer>{
     private final int min;

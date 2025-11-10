@@ -1,6 +1,6 @@
-package main.java.com.repo;
+package com.repo;
 
-import main.java.com.domain.*;
+import com.domain.*;
 
 import java.io.*;
 import java.time.LocalDate;

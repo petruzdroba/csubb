@@ -1,14 +1,14 @@
-package main.java.com;
+package com;
 
-import main.java.com.repo.CardRepository;
-import main.java.com.repo.EventRepository;
-import main.java.com.repo.UserRepository;
-import main.java.com.repo.FriendshipRepository;
-import main.java.com.service.CardService;
-import main.java.com.service.EventService;
-import main.java.com.service.FriendshipService;
-import main.java.com.service.UserService;
-import main.java.com.ui.*;
+import com.repo.CardRepository;
+import com.repo.EventRepository;
+import com.repo.UserRepository;
+import com.repo.FriendshipRepository;
+import com.service.CardService;
+import com.service.EventService;
+import com.service.FriendshipService;
+import com.service.UserService;
+import com.ui.*;
 
 import java.util.List;
 

@@ -1,10 +1,10 @@
-package main.java.com.ui;
+package com.ui;
 
-import main.java.com.domain.Duck;
-import main.java.com.domain.User;
-import main.java.com.exceptions.RepositoryException;
-import main.java.com.exceptions.ValidationException;
-import main.java.com.service.UserService;
+import com.domain.Duck;
+import com.domain.User;
+import com.exceptions.RepositoryException;
+import com.exceptions.ValidationException;
+import com.service.UserService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;

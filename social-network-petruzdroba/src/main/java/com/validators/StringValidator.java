@@ -1,4 +1,4 @@
-package main.java.com.validators;
+package com.validators;
 
 public class StringValidator implements Validator<String>{
     private int minLength = 0;

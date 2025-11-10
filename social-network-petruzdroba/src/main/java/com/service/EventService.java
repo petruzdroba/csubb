@@ -1,13 +1,13 @@
-package main.java.com.service;
+package com.service;
 
-import main.java.com.containers.DuckRaceContainer;
-import main.java.com.domain.*;
-import main.java.com.exceptions.DomainException;
-import main.java.com.exceptions.ValidationException;
-import main.java.com.repo.AbstractRepository;
-import main.java.com.repo.UserRepository;
-import main.java.com.validators.CuloarValidator;
-import main.java.com.validators.EventValidator;
+import com.containers.DuckRaceContainer;
+import com.domain.*;
+import com.exceptions.DomainException;
+import com.exceptions.ValidationException;
+import com.repo.AbstractRepository;
+import com.repo.UserRepository;
+import com.validators.CuloarValidator;
+import com.validators.EventValidator;
 
 import java.util.Collection;
 

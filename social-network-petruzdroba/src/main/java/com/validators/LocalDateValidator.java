@@ -1,4 +1,4 @@
-package main.java.com.validators;
+package com.validators;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

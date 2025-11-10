@@ -1,7 +1,7 @@
-package main.java.com.validators;
+package com.validators;
 
-import main.java.com.domain.Event;
-import main.java.com.exceptions.ValidationException;
+import com.domain.Event;
+import com.exceptions.ValidationException;
 
 import java.util.ArrayList;
 import java.util.List;

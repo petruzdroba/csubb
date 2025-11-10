@@ -1,4 +1,4 @@
-package main.java.com.domain;
+package com.domain;
 
 public class FlyingDuck extends Duck implements Zburator{
     public FlyingDuck(long id, String username, String email, String password, TipRata tip, double viteza, double rezistenta) {

@@ -1,10 +1,10 @@
-package main.java.com.service;
+package com.service;
 
-import main.java.com.domain.Card;
-import main.java.com.domain.Duck;
-import main.java.com.exceptions.RepositoryException;
-import main.java.com.repo.AbstractRepository;
-import main.java.com.repo.UserRepository;
+import com.domain.Card;
+import com.domain.Duck;
+import com.exceptions.RepositoryException;
+import com.repo.AbstractRepository;
+import com.repo.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;

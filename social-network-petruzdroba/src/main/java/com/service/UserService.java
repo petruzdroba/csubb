@@ -1,13 +1,13 @@
-package main.java.com.service;
+package com.service;
 
-import main.java.com.domain.*;
-import main.java.com.exceptions.RepositoryException;
-import main.java.com.exceptions.ValidationException;
-import main.java.com.repo.AbstractRepository;
-import main.java.com.repo.CardRepository;
-import main.java.com.repo.FriendshipRepository;
-import main.java.com.validators.DuckValidator;
-import main.java.com.validators.PersoanaValidator;
+import com.domain.*;
+import com.exceptions.RepositoryException;
+import com.exceptions.ValidationException;
+import com.repo.AbstractRepository;
+import com.repo.CardRepository;
+import com.repo.FriendshipRepository;
+import com.validators.DuckValidator;
+import com.validators.PersoanaValidator;
 
 import java.time.LocalDate;
 
@@ -37,9 +37,9 @@ public class UserService extends AbstractService<Long, User> {
      * @param dataNasterii Data nașterii persoanei.
      * @param ocupatie     Ocupația persoanei.
      * @throws ValidationException                          id negativ, string length negativ sau peste 50, nivel empatie negativ sau peste 10.
-     * @throws main.java.com.exceptions.RepositoryException daca exista un alt utilizator {@link User} cu acelasi id
-     * @see main.java.com.validators.PersoanaValidator
-     * @see main.java.com.repo.AbstractRepository#add(Object, Object)
+     * @throws com.exceptions.RepositoryException daca exista un alt utilizator {@link User} cu acelasi id
+     * @see com.validators.PersoanaValidator
+     * @see com.repo.AbstractRepository#add(Object, Object)
      */
     public void add(long id, String username, String email, String password,
                     String nume, String prenume, LocalDate dataNasterii,
@@ -63,11 +63,11 @@ public class UserService extends AbstractService<Long, User> {
      * @param tip        Tipul de Duck (TipRata).
      * @param viteza     Valoarea vitezei Duck-ului.
      * @param rezistenta Valoarea rezistenței Duck-ului.
-     * @throws ValidationException                          daca id negativ, string length negativ sau peste 50, TipRata nu apartine {@link main.java.com.domain.Duck.TipRata}.
+     * @throws ValidationException                          daca id negativ, string length negativ sau peste 50, TipRata nu apartine {@link com.domain.Duck.TipRata}.
      * @throws ValidationException                          daca nu exista cardul cu cardId, {@link Card}
-     * @throws main.java.com.exceptions.RepositoryException daca exista un utilizator cu id
-     * @see main.java.com.repo.AbstractRepository#add(Object, Object)
-     * @see main.java.com.validators.DuckValidator
+     * @throws com.exceptions.RepositoryException daca exista un utilizator cu id
+     * @see com.repo.AbstractRepository#add(Object, Object)
+     * @see com.validators.DuckValidator
      */
     public void add(long id, String username, String email, String password,
                     Duck.TipRata tip, double viteza, double rezistenta) {
@@ -101,9 +101,9 @@ public class UserService extends AbstractService<Long, User> {
      * @param ocupatie     Ocupatia persoanei.
      * @param nivelEmpatie Nivelul de empatie al persoanei (0-10).
      * @throws ValidationException                          Daca id-ul este negativ, lungimea string-urilor este negativa sau peste 50, sau nivelEmpatie este in afara intervalului 0-10.
-     * @throws main.java.com.exceptions.RepositoryException Daca exista conflicte de id in repository sau persoana nu exista.
-     * @see main.java.com.validators.PersoanaValidator
-     * @see main.java.com.repo.AbstractRepository#modify(Object, Object)
+     * @throws com.exceptions.RepositoryException Daca exista conflicte de id in repository sau persoana nu exista.
+     * @see com.validators.PersoanaValidator
+     * @see com.repo.AbstractRepository#modify(Object, Object)
      */
     public void modify(long id, String username, String email, String password, String nume, String prenume, LocalDate dataNasterii, String ocupatie, int nivelEmpatie) {
         Persoana user = new Persoana(id, username, email, password, nume, prenume, dataNasterii, ocupatie, nivelEmpatie);
@@ -127,9 +127,9 @@ public class UserService extends AbstractService<Long, User> {
      * @param rezistenta Valoarea rezistentei Duck-ului.
      * @throws ValidationException                          Daca id-ul este negativ, lungimea string-urilor este negativa sau peste 50, sau tipul nu este valid {@link Duck.TipRata}.
      * @throws ValidationException                          Daca cardId-ul nu exista in {@link CardRepository}.
-     * @throws main.java.com.exceptions.RepositoryException Daca exista deja un utilizator cu acelasi id in repository.
-     * @see main.java.com.repo.AbstractRepository#modify(Object, Object)
-     * @see main.java.com.validators.DuckValidator
+     * @throws com.exceptions.RepositoryException Daca exista deja un utilizator cu acelasi id in repository.
+     * @see com.repo.AbstractRepository#modify(Object, Object)
+     * @see com.validators.DuckValidator
      */
     public void modify(long id, String username, String email, String password, Duck.TipRata tip, double viteza, double rezistenta) {
         Duck user;
@@ -155,9 +155,9 @@ public class UserService extends AbstractService<Long, User> {
      *
      * @param userId Identificatorul unic al utilizatorului care trebuie sters.
      * @throws ValidationException                          Daca userId este negativ.
-     * @throws main.java.com.exceptions.RepositoryException daca nu exista id-ul
-     * @see main.java.com.repo.AbstractRepository#remove(Object)
-     * @see main.java.com.repo.FriendshipRepository#removeUserFriendships(long)
+     * @throws com.exceptions.RepositoryException daca nu exista id-ul
+     * @see com.repo.AbstractRepository#remove(Object)
+     * @see com.repo.FriendshipRepository#removeUserFriendships(long)
      */
     public void remove(long userId) throws ValidationException {
         if (userId < 0)
@@ -181,7 +181,7 @@ public class UserService extends AbstractService<Long, User> {
      *
      * @param username Numele de utilizator cautat.
      * @return Obiectul {@link User} corespunzator username-ului, sau null daca nu este gasit.
-     * @see main.java.com.repo.AbstractRepository#getAll()
+     * @see com.repo.AbstractRepository#getAll()
      */
     public User findUserByName(String username) {
         for (User u : repository.getAll()) {
