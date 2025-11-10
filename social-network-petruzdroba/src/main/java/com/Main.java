@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
 
         UserRepository userRepo = new UserRepository("jdbc:postgresql://localhost:5432/social_network", "sn_user", "sn_pass");
-        FriendshipRepository friendshipRepo = new FriendshipRepository("resources/friendships.in");
+        FriendshipRepository friendshipRepo = new FriendshipRepository("jdbc:postgresql://localhost:5432/social_network", "sn_user", "sn_pass");
         CardRepository cardRepository = new CardRepository("resources/card.in");
         EventRepository eventRepository = new EventRepository("resources/event.in", userRepo);
 
