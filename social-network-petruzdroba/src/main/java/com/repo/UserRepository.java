@@ -1,99 +1,102 @@
 package com.repo;
-
 import com.domain.*;
 
-import java.io.*;
-import java.time.LocalDate;
-import java.util.Scanner;
+import java.sql.*;
 
-public class UserRepository extends AbstractFileRepository<Long, User>{
-
-    public UserRepository(String filePath) {
-        super(filePath);
+public class UserRepository extends AbstractDatabaseRepository<Long, User>{
+    public UserRepository(String url, String user, String password) {
+        super(url, user, password);
     }
 
     @Override
-    protected void loadFile() {
-        try (Scanner sc = new Scanner(new File(filePath))) {
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine().trim();
-                if (line.isEmpty()) continue;
+    protected void addToDb(Long key, User entity) throws SQLException {
+        String sql = "INSERT INTO users (id, username, email, password, user_type, tip_rata, viteza, rezistenta, nume, prenume, data_nasterii, ocupatie, nivel_empatie)\n"+
+                " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-                String[] parts = line.split(",");
-                String type = parts[0];
+        try(Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)){
 
-                if (type.equalsIgnoreCase("PERSONA")) {
-                    long id = Long.parseLong(parts[1]);
-                    String username = parts[2];
-                    String email = parts[3];
-                    String password = parts[4];
-                    String nume = parts[5];
-                    String prenume = parts[6];
-                    LocalDate dataNasterii = LocalDate.parse(parts[7]);
-                    String ocupatie = parts[8];
-                    int empatie = Integer.parseInt(parts[9]);
+            ps.setLong(1, entity.getId());
+            ps.setString(2, entity.getUsername());
+            ps.setString(3, entity.getEmail());
+            ps.setString(4, entity.getPassword());
 
-                    User p = new Persoana(id, username, email, password, nume, prenume, dataNasterii, ocupatie, empatie);
-                    data.put(id, p);
-
-                } else if (type.equalsIgnoreCase("DUCK")) {
-                    long id = Long.parseLong(parts[1]);
-                    String username = parts[2];
-                    String email = parts[3];
-                    String password = parts[4];
-                    Duck.TipRata tip = Duck.TipRata.valueOf(parts[5]);
-                    double viteza = Double.parseDouble(parts[6]);
-                    double rezistenta = Double.parseDouble(parts[7]);
-
-                    User duck;
-                    if(tip == Duck.TipRata.FLYING) {
-                        duck = new FlyingDuck(id, username, email, password, tip, viteza, rezistenta);
-                    }else if(tip == Duck.TipRata.SWIMMING){
-                        duck = new SwimmingDuck(id, username, email, password, tip, viteza, rezistenta);
-                    }else {
-                        duck = new SwimmingFlyingDuck(id, username, email, password, tip, viteza, rezistenta);
-                    }
-
-                    data.put(id, duck);
-                }
+            if (entity instanceof Duck duck) {
+                ps.setString(5, "DUCK");
+                ps.setString(6, duck.getTip().name());
+                ps.setDouble(7, duck.getViteza());
+                ps.setDouble(8, duck.getRezistenta());
+                ps.setNull(9, Types.VARCHAR);
+                ps.setNull(10, Types.VARCHAR);
+                ps.setNull(11, Types.DATE);
+                ps.setNull(12, Types.VARCHAR);
+                ps.setNull(13, Types.INTEGER);
+            } else if (entity instanceof Persoana p) {
+                ps.setString(5, "PERSONA");
+                ps.setNull(6, Types.VARCHAR);
+                ps.setNull(7, Types.DOUBLE);
+                ps.setNull(8, Types.DOUBLE);
+                ps.setString(9, p.getNume());
+                ps.setString(10, p.getPrenume());
+                ps.setDate(11, Date.valueOf(p.getDataNasterii()));
+                ps.setString(12, p.getOcupatie());
+                ps.setInt(13, p.getNivelEmpatie());
             }
-        } catch (FileNotFoundException e) {
-            System.err.println("file not found");
+            ps.executeUpdate();
         }
     }
 
     @Override
-    protected void overwriteFile() {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(filePath, false))) {
-            for (User u : getAll()) {
-                if (u instanceof Persoana p) {
-                    pw.println(String.join(",",
-                            "PERSONA",
-                            String.valueOf(p.getId()),
-                            p.getUsername(),
-                            p.getEmail(),
-                            p.getPassword(),
-                            p.getNume(),
-                            p.getPrenume(),
-                            p.getDataNasterii().toString(),
-                            p.getOcupatie(),
-                            String.valueOf(p.getNivelEmpatie())
-                    ));
-                } else if (u instanceof Duck d) {
-                    pw.println(String.join(",",
-                            "DUCK",
-                            String.valueOf(d.getId()),
-                            d.getUsername(),
-                            d.getEmail(),
-                            d.getPassword(),
-                            d.getTip().name(),
-                            String.valueOf(d.getViteza()),
-                            String.valueOf(d.getRezistenta())
-                    ));
-                }
+    protected void removeFromDb(Long key) throws SQLException {
+        String sql = "DELETE FROM users WHERE id = ?";
+        try(Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setLong(1, key);
+            ps.executeUpdate();
+        }
+    }
+
+    @Override
+    protected void modifyInDb(Long key, User entity) throws SQLException {
+        String sql = """
+        UPDATE users SET 
+            username = ?, email = ?, password = ?, user_type = ?, 
+            tip_rata = ?, viteza = ?, rezistenta = ?,
+            nume = ?, prenume = ?, data_nasterii = ?, ocupatie = ?, nivel_empatie = ?
+        WHERE id = ?
+    """;
+
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setString(1, entity.getUsername());
+            ps.setString(2, entity.getEmail());
+            ps.setString(3, entity.getPassword());
+
+            if (entity instanceof Duck duck) {
+                ps.setString(4, "DUCK");
+                ps.setString(5, duck.getTip().name());
+                ps.setDouble(6, duck.getViteza());
+                ps.setDouble(7, duck.getRezistenta());
+                ps.setNull(8, Types.VARCHAR);
+                ps.setNull(9, Types.VARCHAR);
+                ps.setNull(10, Types.DATE);
+                ps.setNull(11, Types.VARCHAR);
+                ps.setNull(12, Types.INTEGER);
+            } else if (entity instanceof Persoana p) {
+                ps.setString(4, "PERSONA");
+                ps.setNull(5, Types.VARCHAR);
+                ps.setNull(6, Types.DOUBLE);
+                ps.setNull(7, Types.DOUBLE);
+                ps.setString(8, p.getNume());
+                ps.setString(9, p.getPrenume());
+                ps.setDate(10, Date.valueOf(p.getDataNasterii()));
+                ps.setString(11, p.getOcupatie());
+                ps.setInt(12, p.getNivelEmpatie());
             }
-        } catch (IOException e) {
-            System.err.println("Error writing users: " + e.getMessage());
+
+            ps.setLong(13, key);
+            ps.executeUpdate();
         }
     }
 }
