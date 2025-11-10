@@ -2,11 +2,61 @@ package com.repo;
 import com.domain.*;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class UserRepository extends AbstractDatabaseRepository<Long, User>{
     public UserRepository(String url, String user, String password) {
         super(url, user, password);
     }
+
+    @Override
+    protected void loadFromDb() {
+        String sql = "SELECT * FROM users";
+
+        try (Connection conn = getConnection();
+             var stmt = conn.createStatement();
+             var rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                long id = rs.getLong("id");
+                String username = rs.getString("username");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                String userType = rs.getString("user_type");
+
+                User user;
+
+                if ("DUCK".equalsIgnoreCase(userType)) {
+                    Duck.TipRata tip = Duck.TipRata.valueOf(rs.getString("tip_rata"));
+                    double viteza = rs.getDouble("viteza");
+                    double rezistenta = rs.getDouble("rezistenta");
+
+                    if (tip == Duck.TipRata.FLYING) {
+                        user = new FlyingDuck(id, username, email, password, tip, viteza, rezistenta);
+                    } else if (tip == Duck.TipRata.SWIMMING) {
+                        user = new SwimmingDuck(id, username, email, password, tip, viteza, rezistenta);
+                    } else {
+                        user = new SwimmingFlyingDuck(id, username, email, password, tip, viteza, rezistenta);
+                    }
+
+                } else {
+                    String nume = rs.getString("nume");
+                    String prenume = rs.getString("prenume");
+                    LocalDate dataNasterii = rs.getDate("data_nasterii").toLocalDate();
+                    String ocupatie = rs.getString("ocupatie");
+                    int nivelEmpatie = rs.getInt("nivel_empatie");
+
+                    user = new Persoana(id, username, email, password, nume, prenume, dataNasterii, ocupatie, nivelEmpatie);
+                }
+
+                data.put(id, user);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to load users from DB", e);
+        }
+    }
+
 
     @Override
     protected void addToDb(Long key, User entity) throws SQLException {

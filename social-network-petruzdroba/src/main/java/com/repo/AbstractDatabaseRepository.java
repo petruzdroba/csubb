@@ -15,6 +15,7 @@ public abstract class AbstractDatabaseRepository<K,T> extends AbstractRepository
         this.url = url;
         this.user = user;
         this.password = password;
+        loadFromDb();
     }
 
     protected Connection getConnection() throws SQLException {
@@ -26,6 +27,7 @@ public abstract class AbstractDatabaseRepository<K,T> extends AbstractRepository
         return DriverManager.getConnection(url, user, password);
     }
 
+    protected abstract void loadFromDb();
     protected abstract void addToDb(K key, T entity) throws SQLException;
     protected abstract void removeFromDb(K key) throws SQLException;
     protected abstract void modifyInDb(K key, T entity) throws SQLException;
