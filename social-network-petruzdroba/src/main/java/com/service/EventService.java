@@ -39,8 +39,7 @@ public class EventService extends AbstractService<Long, Event>{
      * @see EventValidator
      */
     public void add(long id, Collection<Culoar> culoars) throws ValidationException {
-        for(Culoar c: culoars)
-            culoarValidator.validateThrow(c);
+        culoars.forEach(culoarValidator::validateThrow);
 
         Collection<Duck> swimmers = cardService.getDucksInCard(Duck.TipRata.SWIMMING);
         DuckRaceContainer container = new DuckRaceContainer(swimmers, culoars);

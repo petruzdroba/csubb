@@ -9,6 +9,7 @@ import com.repo.UserRepository;
 import com.validators.FriendshipValidator;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class FriendshipService extends AbstractService<String, Friendship> {
     private final FriendshipValidator friendshipValidator = new FriendshipValidator();
@@ -73,23 +74,25 @@ public class FriendshipService extends AbstractService<String, Friendship> {
     public int getCommunityCount() {
         Map<Long, Set<Long>> graph = buildGraph();
         Set<Long> visited = new HashSet<>();
-        int count = 0;
+        AtomicInteger count = new AtomicInteger();
 
-        for (Long userId : graph.keySet()) {
-            if (!visited.contains(userId)) {
-                bfs(userId, graph, visited);
-                count++;
-            }
-        }
-        return count;
+        graph.keySet().stream()
+                .filter(userId -> !visited.contains(userId))
+                .forEach(userId -> {
+                    bfs(userId, graph, visited);
+                    count.getAndIncrement();
+                });
+
+        return count.get();
     }
 
     private Map<Long, Set<Long>> buildGraph() {
         Map<Long, Set<Long>> graph = new HashMap<>();
 
-        for (Object key : userRepository.getKeys()) {//using UserService to get access to all user keys
-            if (key instanceof Long id) graph.put(id, new HashSet<>());
-        }
+        userRepository.getKeys().stream()
+                .filter(key -> key instanceof Long)
+                .map(key -> (Long) key)
+                .forEach(id -> graph.put(id, new HashSet<>()));
 
         for (Friendship f : repository.getAll()) {
             graph.putIfAbsent(f.getUserId1(), new HashSet<>());

@@ -1,7 +1,6 @@
 package com.service;
 
 import com.domain.*;
-import com.exceptions.RepositoryException;
 import com.exceptions.ValidationException;
 import com.repo.AbstractRepository;
 import com.repo.CardRepository;
@@ -184,11 +183,9 @@ public class UserService extends AbstractService<Long, User> {
      * @see com.repo.AbstractRepository#getAll()
      */
     public User findUserByName(String username) {
-        for (User u : repository.getAll()) {
-            if (u.getUsername().equals(username))
-                return u;
-        }
-
-        return null;
+        return repository.getAll().stream()
+                .filter( u -> u.getUsername().equals(username))
+                .findFirst().
+                orElse(null);
     }
 }

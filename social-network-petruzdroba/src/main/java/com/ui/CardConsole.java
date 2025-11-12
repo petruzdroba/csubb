@@ -53,9 +53,7 @@ public class CardConsole extends AbstractConsole {
         if (cards.isEmpty()) {
             System.out.println("No cards available.");
         } else {
-            for (Card card : cards) {
-                System.out.println(card);
-            }
+            cards.forEach(System.out::println);
         }
     }
 
@@ -63,11 +61,11 @@ public class CardConsole extends AbstractConsole {
         try {
             Duck.TipRata tip = promptTipRata();
             if (tip == null) return;
-            for(Duck u: service.getDucksInCard(tip)){
-                System.out.println(u);
-            }
+            service.getDucksInCard(tip).forEach(System.out::println);
         } catch (IllegalArgumentException e) {
             System.out.println("Invalid Tip Rata value.");
+        } catch(Exception e){
+            System.out.println("Unexpected error" + e.getMessage());
         }
     }
 
