@@ -1,10 +1,10 @@
-package main.java.com.ui;
+package com.ui;
 
-import main.java.com.domain.Culoar;
-import main.java.com.domain.Event;
-import main.java.com.exceptions.DomainException;
-import main.java.com.exceptions.ValidationException;
-import main.java.com.service.EventService;
+import com.domain.Culoar;
+import com.domain.Event;
+import com.exceptions.DomainException;
+import com.exceptions.ValidationException;
+import com.service.EventService;
 
 import java.util.ArrayList;
 import java.util.Collection;

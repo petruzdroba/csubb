@@ -1,8 +1,8 @@
-package main.java.com.validators;
+package com.validators;
 
-import main.java.com.domain.Card;
-import main.java.com.domain.Duck;
-import main.java.com.exceptions.ValidationException;
+import com.domain.Card;
+import com.domain.Duck;
+import com.exceptions.ValidationException;
 
 public class DuckValidator extends UserValidator<Duck> {
     private final TipRataValidator tipRataValidator = new TipRataValidator();

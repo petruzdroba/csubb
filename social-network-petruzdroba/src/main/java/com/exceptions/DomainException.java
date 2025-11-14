@@ -1,4 +1,4 @@
-package main.java.com.exceptions;
+package com.exceptions;
 
 public class DomainException extends RuntimeException {
     public DomainException(String message) {

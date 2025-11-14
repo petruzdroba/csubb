@@ -1,8 +1,8 @@
-package main.java.com.validators;
+package com.validators;
 
-import main.java.com.domain.Duck;
-import main.java.com.domain.Persoana;
-import main.java.com.exceptions.ValidationException;
+import com.domain.Duck;
+import com.domain.Persoana;
+import com.exceptions.ValidationException;
 
 public class PersoanaValidator extends UserValidator<Persoana>{
     private final StringValidator numeValidator = new StringValidator(1,50);

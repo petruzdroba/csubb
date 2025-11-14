@@ -1,8 +1,8 @@
-package main.java.com.validators;
+package com.validators;
 
-import main.java.com.domain.Culoar;
-import main.java.com.domain.Persoana;
-import main.java.com.exceptions.ValidationException;
+import com.domain.Culoar;
+import com.domain.Persoana;
+import com.exceptions.ValidationException;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
-package main.java.com.domain;
+package com.domain;
 
-import main.java.com.exceptions.DomainException;
+import com.exceptions.DomainException;
 
 import java.util.ArrayList;
 import java.util.List;

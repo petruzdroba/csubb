@@ -1,6 +1,6 @@
-package main.java.com.service;
+package com.service;
 
-import main.java.com.repo.AbstractRepository;
+import com.repo.AbstractRepository;
 
 import java.util.Collection;
 
@@ -22,7 +22,7 @@ public abstract class AbstractService<K, T> {
      * Returneaza toate elementele T din Repository
      * <p>
      * @return o colectie ce contine toate elementele de tip T din Repository
-     * @see main.java.com.repo.AbstractRepository#getAll()
+     * @see com.repo.AbstractRepository#getAll()
      */
     public Collection<T> getAll(){
         return repository.getAll();

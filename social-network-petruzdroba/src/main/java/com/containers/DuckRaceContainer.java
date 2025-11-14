@@ -1,8 +1,8 @@
-package main.java.com.containers;
+package com.containers;
 
 
-import main.java.com.domain.Culoar;
-import main.java.com.domain.Duck;
+import com.domain.Culoar;
+import com.domain.Duck;
 
 import java.util.ArrayList;
 import java.util.Collection;

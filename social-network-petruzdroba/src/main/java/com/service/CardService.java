@@ -1,14 +1,16 @@
-package main.java.com.service;
+package com.service;
 
-import main.java.com.domain.Card;
-import main.java.com.domain.Duck;
-import main.java.com.exceptions.RepositoryException;
-import main.java.com.repo.AbstractRepository;
-import main.java.com.repo.UserRepository;
+import com.domain.Card;
+import com.domain.Duck;
+import com.exceptions.RepositoryException;
+import com.repo.AbstractRepository;
+import com.repo.UserRepository;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class CardService extends AbstractService<Duck.TipRata, Card> {
     private final UserRepository userRepository;
@@ -46,18 +48,16 @@ public class CardService extends AbstractService<Duck.TipRata, Card> {
         Card card = repository.find(tip);
         if (card == null || card.getMembri().isEmpty()) return 0.0;
 
-        double total = 0.0;
-        int count = 0;
+        AtomicReference<Double> total = new AtomicReference<>(0.0);
 
-        for (long duckId : card.getMembri()) {
-            Duck duck = (Duck) userRepository.find(duckId);
-            if (duck != null) {
-                total += (duck.getViteza() + duck.getRezistenta()) / 2.0;
-                count++;
-            }
-        }
-
-        return count == 0 ? 0.0 : total / count;
+        return card.getMembri().stream()
+                .map(userRepository::find)
+                .filter(Objects::nonNull)
+                .filter(Duck.class::isInstance)
+                .map(Duck.class::cast)
+                .mapToDouble(duck -> (duck.getViteza() + duck.getRezistenta()) / 2.0)
+                .average()
+                .orElse(0.0);
     }
 
 
@@ -71,15 +71,12 @@ public class CardService extends AbstractService<Duck.TipRata, Card> {
         Card card = repository.find(type);
         if (card == null) return List.of();
 
-        List<Duck> ducks = new ArrayList<>();
-        for (Long duckId : card.getMembri()) {
-            Duck duck = (Duck) userRepository.find(duckId);
-            if (duck != null) {
-                ducks.add(duck);
-            }
-        }
-
-        return ducks;
+        return card.getMembri().stream()
+                .map(userRepository::find)
+                .filter(Objects::nonNull)
+                .filter(Duck.class::isInstance)
+                .map(Duck.class::cast)
+                .toList();
     }
 
 

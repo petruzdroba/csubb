@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2025-11-09">
-<meta name="description" content="declaration: package: main.java.com.repo, class: AbstractRepository">
+<meta name="description" content="declaration: package: com.repo, class: AbstractRepository">
 <meta name="generator" content="javadoc/ClassWriter">
 <link rel="stylesheet" type="text/css" href="../../../../resource-files/jquery-ui.min.css">
 <link rel="stylesheet" type="text/css" href="../../../../resource-files/stylesheet.css">
@@ -41,7 +41,7 @@ loadScripts(document, 'script');</script>
 <div class="sub-nav">
 <div class="nav-content">
 <ol class="sub-nav-list">
-<li><a href="package-summary.html">main.java.com.repo</a></li>
+<li><a href="package-summary.html">com.repo</a></li>
 <li><a href="AbstractRepository.html" class="current-selection">AbstractRepository</a></li>
 </ol>
 <div class="nav-list-search"><input type="text" id="search-input" disabled placeholder="Search documentation (type /)" aria-label="Search in documentation" autocomplete="off" spellcheck="false"><input type="reset" id="reset-search" disabled value="Reset"></div>
@@ -86,7 +86,7 @@ loadScripts(document, 'script');</script>
 <h1 title="Class AbstractRepository" class="title">Class AbstractRepository&lt;K,<wbr>T&gt;</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">main.java.com.repo.AbstractRepository&lt;K,<wbr>T&gt;</div>
+<div class="inheritance">com.repo.AbstractRepository&lt;K,<wbr>T&gt;</div>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
@@ -96,7 +96,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="AbstractFileRepository.html" title="class in main.java.com.repo">AbstractFileRepository</a></code></dd>
+<dd><code><a href="AbstractFileRepository.html" title="class in com.repo">AbstractFileRepository</a></code></dd>
 </dl>
 <hr>
 <div class="horizontal-scroll">
@@ -259,14 +259,14 @@ loadScripts(document, 'script');</script>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">add</span><wbr><span class="parameters">(<a href="#type-param-K" title="type parameter in AbstractRepository">K</a>&nbsp;key,
  <a href="#type-param-T" title="type parameter in AbstractRepository">T</a>&nbsp;newData)</span>
-         throws <span class="exceptions"><a href="../exceptions/RepositoryException.html" title="class in main.java.com.exceptions">RepositoryException</a></span></div>
+         throws <span class="exceptions"><a href="../exceptions/RepositoryException.html" title="class in com.exceptions">RepositoryException</a></span></div>
 <div class="block">Adauga un obiect in repository.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>key</code> - Cheia obiectului.</dd>
 <dd><code>newData</code> - Obiectul de adaugat.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../exceptions/RepositoryException.html" title="class in main.java.com.exceptions">RepositoryException</a></code> - Daca cheia exista deja in repository.</dd>
+<dd><code><a href="../exceptions/RepositoryException.html" title="class in com.exceptions">RepositoryException</a></code> - Daca cheia exista deja in repository.</dd>
 </dl>
 </div>
 </section>
@@ -276,13 +276,13 @@ loadScripts(document, 'script');</script>
 <h3 id="remove(java.lang.Object)">remove</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">remove</span><wbr><span class="parameters">(<a href="#type-param-K" title="type parameter in AbstractRepository">K</a>&nbsp;key)</span>
-            throws <span class="exceptions"><a href="../exceptions/RepositoryException.html" title="class in main.java.com.exceptions">RepositoryException</a></span></div>
+            throws <span class="exceptions"><a href="../exceptions/RepositoryException.html" title="class in com.exceptions">RepositoryException</a></span></div>
 <div class="block">Sterge un obiect din repository dupa cheia sa.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>key</code> - Cheia obiectului de sters.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../exceptions/RepositoryException.html" title="class in main.java.com.exceptions">RepositoryException</a></code> - Daca cheia nu exista in repository.</dd>
+<dd><code><a href="../exceptions/RepositoryException.html" title="class in com.exceptions">RepositoryException</a></code> - Daca cheia nu exista in repository.</dd>
 </dl>
 </div>
 </section>
@@ -293,14 +293,14 @@ loadScripts(document, 'script');</script>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">modify</span><wbr><span class="parameters">(<a href="#type-param-K" title="type parameter in AbstractRepository">K</a>&nbsp;key,
  <a href="#type-param-T" title="type parameter in AbstractRepository">T</a>&nbsp;newData)</span>
-            throws <span class="exceptions"><a href="../exceptions/RepositoryException.html" title="class in main.java.com.exceptions">RepositoryException</a></span></div>
+            throws <span class="exceptions"><a href="../exceptions/RepositoryException.html" title="class in com.exceptions">RepositoryException</a></span></div>
 <div class="block">Modifica un obiect existent in repository.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>key</code> - Cheia obiectului de modificat.</dd>
 <dd><code>newData</code> - Obiectul actualizat.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../exceptions/RepositoryException.html" title="class in main.java.com.exceptions">RepositoryException</a></code> - Daca cheia nu exista in repository.</dd>
+<dd><code><a href="../exceptions/RepositoryException.html" title="class in com.exceptions">RepositoryException</a></code> - Daca cheia nu exista in repository.</dd>
 </dl>
 </div>
 </section>

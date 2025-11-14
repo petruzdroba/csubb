@@ -1,8 +1,7 @@
-package main.java.com.repo;
+package com.repo;
 
-import main.java.com.containers.DuckRaceContainer;
-import main.java.com.domain.*;
-import main.java.com.exceptions.RepositoryException;
+import com.containers.DuckRaceContainer;
+import com.domain.*;
 
 import java.io.*;
 import java.util.*;

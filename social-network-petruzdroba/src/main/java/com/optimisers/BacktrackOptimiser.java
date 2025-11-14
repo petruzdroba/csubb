@@ -1,9 +1,9 @@
-package main.java.com.optimisers;
+package com.optimisers;
 
-import main.java.com.containers.DuckRaceContainer;
-import main.java.com.domain.Culoar;
-import main.java.com.domain.Duck;
-import main.java.com.domain.OptimiserResult;
+import com.containers.DuckRaceContainer;
+import com.domain.Culoar;
+import com.domain.Duck;
+import com.domain.OptimiserResult;
 
 import java.util.ArrayList;
 import java.util.Collection;

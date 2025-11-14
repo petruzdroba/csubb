@@ -1,7 +1,7 @@
-package main.java.com.domain;
+package com.domain;
 
-import main.java.com.containers.DuckRaceContainer;
-import main.java.com.optimisers.BacktrackOptimiser;
+import com.containers.DuckRaceContainer;
+import com.optimisers.BacktrackOptimiser;
 
 public class RaceEvent extends Event{
     private OptimiserResult raceResult;

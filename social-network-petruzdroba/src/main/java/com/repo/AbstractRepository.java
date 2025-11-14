@@ -1,6 +1,6 @@
-package main.java.com.repo;
+package com.repo;
 
-import main.java.com.exceptions.RepositoryException;
+import com.exceptions.RepositoryException;
 
 import java.util.Collection;
 import java.util.HashMap;

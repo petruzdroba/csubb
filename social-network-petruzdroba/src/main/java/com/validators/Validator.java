@@ -1,4 +1,4 @@
-package main.java.com.validators;
+package com.validators;
 
 public interface Validator<T> {
     boolean validate(T value);

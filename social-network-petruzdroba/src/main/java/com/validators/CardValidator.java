@@ -1,7 +1,7 @@
-package main.java.com.validators;
+package com.validators;
 
-import main.java.com.domain.Card;
-import main.java.com.exceptions.ValidationException;
+import com.domain.Card;
+import com.exceptions.ValidationException;
 
 import java.util.ArrayList;
 import java.util.List;

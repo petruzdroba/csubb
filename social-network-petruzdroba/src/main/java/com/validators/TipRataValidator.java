@@ -1,6 +1,6 @@
-package main.java.com.validators;
+package com.validators;
 
-import main.java.com.domain.Duck;
+import com.domain.Duck;
 
 public class TipRataValidator implements Validator<Duck.TipRata> {
     private String errorMessage;

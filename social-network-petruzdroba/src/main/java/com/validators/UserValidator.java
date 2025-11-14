@@ -1,7 +1,7 @@
-package main.java.com.validators;
+package com.validators;
 
-import main.java.com.domain.Persoana;
-import main.java.com.domain.User;
+import com.domain.Persoana;
+import com.domain.User;
 
 import java.util.ArrayList;
 import java.util.List;
