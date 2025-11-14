@@ -5,6 +5,7 @@ import com.domain.*;
 import com.exceptions.DomainException;
 import com.exceptions.ValidationException;
 import com.repo.AbstractRepository;
+import com.repo.EventRepository;
 import com.repo.UserRepository;
 import com.validators.CuloarValidator;
 import com.validators.EventValidator;
@@ -72,7 +73,8 @@ public class EventService extends AbstractService<Long, Event>{
      * @see Event#subscribe(User)
      */
     public void subscribe(long eventId, long userId){
-        repository.find(eventId).subscribe(userRepository.find(userId));
+        if(repository instanceof EventRepository)
+            ((EventRepository) repository).subscribe(eventId, userRepository.find(userId));
     }
 
 
@@ -85,7 +87,8 @@ public class EventService extends AbstractService<Long, Event>{
      * @see Event#unsubscribe(User)
      */
     public void unsubscribe(long eventId, long userId) throws DomainException {
-        repository.find(eventId).unsubscribe(userRepository.find(userId));
+        if(repository instanceof EventRepository)
+            ((EventRepository) repository).unsubscribe(eventId, userRepository.find(userId));
     }
 
     /**

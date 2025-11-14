@@ -3,6 +3,7 @@ package com.ui;
 import com.domain.Culoar;
 import com.domain.Event;
 import com.exceptions.DomainException;
+import com.exceptions.RepositoryException;
 import com.exceptions.ValidationException;
 import com.service.EventService;
 
@@ -81,6 +82,8 @@ public class EventConsole extends AbstractConsole {
             System.out.println("Invalid numeric input.");
         } catch (ValidationException ve) {
             System.out.println("Validation error: " + ve.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
@@ -92,6 +95,8 @@ public class EventConsole extends AbstractConsole {
             System.out.println("Event removed.");
         } catch (ValidationException ve) {
             System.out.println("Validation error: " + ve.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
@@ -105,6 +110,10 @@ public class EventConsole extends AbstractConsole {
             System.out.println("User subscribed.");
         } catch (DomainException de) {
             System.out.println("Error: " + de.getMessage());
+        }catch(RepositoryException re){
+            System.out.println("Event or User not found: " + re.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
@@ -118,6 +127,8 @@ public class EventConsole extends AbstractConsole {
             System.out.println("User unsubscribed.");
         } catch (DomainException de) {
             System.out.println("Error: " + de.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 

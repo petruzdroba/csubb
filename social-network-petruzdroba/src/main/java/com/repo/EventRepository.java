@@ -2,6 +2,7 @@ package com.repo;
 
 import com.containers.DuckRaceContainer;
 import com.domain.*;
+import com.exceptions.RepositoryException;
 
 import java.io.*;
 import java.util.*;
@@ -12,6 +13,24 @@ public class EventRepository extends AbstractFileRepository<Long, Event> {
     public EventRepository(String filePath, UserRepository userRepo) {
         this.userRepo = userRepo;
         super(filePath);
+    }
+
+    public void subscribe(long eventId, User u) throws RepositoryException{
+        Event e = find(eventId);
+        if(e == null)
+            throw new RepositoryException("Event not found");
+
+        e.subscribe(u);
+        overwriteFile();
+    }
+
+    public void unsubscribe(long eventId, User u) throws RepositoryException{
+        Event e = find(eventId);
+        if(e == null)
+            throw new RepositoryException("Event not found");
+
+        e.unsubscribe(u);
+        overwriteFile();
     }
 
     @Override
