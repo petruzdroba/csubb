@@ -6,6 +6,7 @@ import com.exceptions.RepositoryException;
 import com.repo.AbstractRepository;
 import com.repo.UserRepository;
 
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -44,14 +45,18 @@ public class CardService extends AbstractService<Duck.TipRata, Card> {
      * @param tip Duck.TipRata type (SWIMMING or FLYING)
      * @return the average performance, or 0.0 if no ducks exist in the card
      */
-    public double getPerformantaMedie(Duck.TipRata tip) {
+    public double getPerformantaMedie(Duck.TipRata tip) throws RepositoryException {
         Card card = repository.find(tip);
         if (card == null || card.getMembri().isEmpty()) return 0.0;
 
-        AtomicReference<Double> total = new AtomicReference<>(0.0);
-
         return card.getMembri().stream()
-                .map(userRepository::find)
+                .map(userId -> {
+                    try {
+                        return userRepository.find(userId);
+                    } catch (SQLException e) {
+                        throw new RepositoryException(e.getMessage());
+                    }
+                })
                 .filter(Objects::nonNull)
                 .filter(Duck.class::isInstance)
                 .map(Duck.class::cast)
@@ -60,19 +65,24 @@ public class CardService extends AbstractService<Duck.TipRata, Card> {
                 .orElse(0.0);
     }
 
-
     /**
      * Returns the list of duck IDs in a Card.
      *
      * @param type Duck.TipRata type
      * @return list of duck IDs
      */
-    public Collection<Duck> getDucksInCard(Duck.TipRata type) {
+    public Collection<Duck> getDucksInCard(Duck.TipRata type) throws RepositoryException {
         Card card = repository.find(type);
         if (card == null || card.getMembri().isEmpty()) return List.of();
 
         return card.getMembri().stream()
-                .map(userRepository::find)
+                .map(userId -> {
+                    try {
+                        return userRepository.find(userId);
+                    } catch (SQLException e) {
+                        throw new RepositoryException(e.getMessage());
+                    }
+                })
                 .filter(Objects::nonNull)
                 .filter(Duck.class::isInstance)
                 .map(Duck.class::cast)

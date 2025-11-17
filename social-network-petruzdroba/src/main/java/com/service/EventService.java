@@ -3,6 +3,7 @@ package com.service;
 import com.containers.DuckRaceContainer;
 import com.domain.*;
 import com.exceptions.DomainException;
+import com.exceptions.RepositoryException;
 import com.exceptions.ValidationException;
 import com.repo.AbstractRepository;
 import com.repo.EventRepository;
@@ -10,6 +11,7 @@ import com.repo.UserRepository;
 import com.validators.CuloarValidator;
 import com.validators.EventValidator;
 
+import java.sql.SQLException;
 import java.util.Collection;
 
 public class EventService extends AbstractService<Long, Event>{
@@ -72,10 +74,15 @@ public class EventService extends AbstractService<Long, Event>{
      * @throws DomainException Daca utilizatorul este deja inscris la eveniment
      * @see Event#subscribe(User)
      */
-    public void subscribe(long eventId, long userId){
-        if(repository instanceof EventRepository)
-            ((EventRepository) repository).subscribe(eventId, userRepository.find(userId));
+    public void subscribe(long eventId, long userId) throws RepositoryException {
+        try {
+            if(repository instanceof EventRepository)
+                ((EventRepository) repository).subscribe(eventId, userRepository.find(userId));
+        } catch (SQLException e) {
+            throw new RepositoryException(e.getMessage());
+        }
     }
+
 
 
     /**
@@ -87,8 +94,12 @@ public class EventService extends AbstractService<Long, Event>{
      * @see Event#unsubscribe(User)
      */
     public void unsubscribe(long eventId, long userId) throws DomainException {
-        if(repository instanceof EventRepository)
-            ((EventRepository) repository).unsubscribe(eventId, userRepository.find(userId));
+        try {
+            if(repository instanceof EventRepository)
+                ((EventRepository) repository).unsubscribe(eventId, userRepository.find(userId));
+        } catch (SQLException e) {
+            throw new RepositoryException(e.getMessage());
+        }
     }
 
     /**

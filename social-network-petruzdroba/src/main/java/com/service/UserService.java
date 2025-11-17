@@ -150,20 +150,18 @@ public class UserService extends AbstractService<Long, User> {
      * Metoda verifica daca id-ul este valid (pozitiv) si apoi sterge utilizatorul
      * din repository-ul corespunzator. Aceasta metoda functioneaza atat pentru
      * Duck cat si pentru Persoana/User.
-     * Cascade delete cu prieteniile also
+     * Cascade delete cu prieteniile also -> ON CASCADE DELETE ON DATABASE
      *
      * @param userId Identificatorul unic al utilizatorului care trebuie sters.
      * @throws ValidationException                          Daca userId este negativ.
      * @throws com.exceptions.RepositoryException daca nu exista id-ul
      * @see com.repo.AbstractRepository#remove(Object)
-     * @see com.repo.FriendshipRepository#removeUserFriendships(long)
      */
     public void remove(long userId) throws ValidationException {
         if (userId < 0)
             throw new ValidationException("User id cannot be negative");
         repository.remove(userId);
 
-        friendshipRepository.removeUserFriendships(userId);
 
         User user = repository.find(userId);
         if (user instanceof Duck duck) {

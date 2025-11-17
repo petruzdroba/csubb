@@ -8,6 +8,7 @@ import com.repo.AbstractRepository;
 import com.repo.UserRepository;
 import com.validators.FriendshipValidator;
 
+import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -131,7 +132,7 @@ public class FriendshipService extends AbstractService<String, Friendship> {
      * @see #bfsCollect(Long, Map, Set)
      * @see #computeDiameter(Set, Map)
      */
-    public Set<User> getMostSociableCommunity() {
+    public Set<User> getMostSociableCommunity() throws RepositoryException {
         Map<Long, Set<Long>> graph = buildGraph();
         Set<Long> visited = new HashSet<>();
 
@@ -152,8 +153,12 @@ public class FriendshipService extends AbstractService<String, Friendship> {
         Set<User> result = new HashSet<>();
 
         for (Long userId : bestComponent) {
-            User user = userRepository.find(userId);
-            if (user != null) result.add(user);
+            try {
+                User user = userRepository.find(userId);
+                if (user != null) result.add(user);
+            } catch (SQLException e) {
+                throw new RepositoryException(e.getMessage());
+            }
         }
 
         return result;
@@ -220,15 +225,18 @@ public class FriendshipService extends AbstractService<String, Friendship> {
         List<Map.Entry<User, User>> prettyList = new ArrayList<>();
 
 
-
         for (Friendship f : repository.getAll()) {
-            User user1 = userRepository.find(f.getUserId1());
-            User user2 = userRepository.find(f.getUserId2());
+            try {
+                User user1 = userRepository.find(f.getUserId1());
+                User user2 = userRepository.find(f.getUserId2());
 
-            if (user1 != null && user2 != null) {
-                prettyList.add(new AbstractMap.SimpleEntry<>(user1, user2));
-            } else {
-                System.out.println("Warning: friendship references missing user(s): " + f);
+                if (user1 != null && user2 != null) {
+                    prettyList.add(new AbstractMap.SimpleEntry<>(user1, user2));
+                } else {
+                    System.out.println("Warning: friendship references missing user(s): " + f);
+                }
+            } catch (SQLException e) {
+                throw new RepositoryException(e.getMessage());
             }
         }
 
