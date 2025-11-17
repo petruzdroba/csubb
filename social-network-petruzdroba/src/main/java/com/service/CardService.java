@@ -69,7 +69,7 @@ public class CardService extends AbstractService<Duck.TipRata, Card> {
      */
     public Collection<Duck> getDucksInCard(Duck.TipRata type) {
         Card card = repository.find(type);
-        if (card == null) return List.of();
+        if (card == null || card.getMembri().isEmpty()) return List.of();
 
         return card.getMembri().stream()
                 .map(userRepository::find)
