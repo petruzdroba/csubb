@@ -5,7 +5,7 @@ import com.domain.*;
 import com.exceptions.DomainException;
 import com.exceptions.RepositoryException;
 import com.exceptions.ValidationException;
-import com.repo.AbstractRepository;
+import com.repo.AbstractDatabaseRepository;
 import com.repo.EventRepository;
 import com.repo.UserRepository;
 import com.validators.CuloarValidator;
@@ -21,7 +21,7 @@ public class EventService extends AbstractService<Long, Event>{
     private final CuloarValidator culoarValidator = new CuloarValidator();
 
 
-    public EventService(AbstractRepository<Long, Event> repository, CardService cardService, UserRepository userRepository) {
+    public EventService(AbstractDatabaseRepository<Long, Event> repository, CardService cardService, UserRepository userRepository) {
         super(repository);
         this.cardService = cardService;
         this.userRepository = userRepository;
@@ -41,7 +41,7 @@ public class EventService extends AbstractService<Long, Event>{
      * @see CuloarValidator
      * @see EventValidator
      */
-    public void add(long id, Collection<Culoar> culoars) throws ValidationException {
+    public void add(long id, Collection<Culoar> culoars) throws ValidationException, SQLException {
         culoars.forEach(culoarValidator::validateThrow);
 
         Collection<Duck> swimmers = cardService.getDucksInCard(Duck.TipRata.SWIMMING);
@@ -60,7 +60,7 @@ public class EventService extends AbstractService<Long, Event>{
      * @param id Identificatorul evenimentului
      * @throws ValidationException Daca id-ul este negativ
      */
-    public void remove(long id) throws ValidationException {
+    public void remove(long id) throws ValidationException, SQLException {
         if(id < 0)
             throw new ValidationException("Event id cannot be negative\n");
         repository.remove(id);
@@ -110,7 +110,7 @@ public class EventService extends AbstractService<Long, Event>{
      * @see RaceEvent#start()
      * @see Event#notifySubscribers()
      */
-    public void startRace(long raceId){
+    public void startRace(long raceId) throws SQLException {
         Event event = repository.find(raceId);
         repository.remove(raceId);
 

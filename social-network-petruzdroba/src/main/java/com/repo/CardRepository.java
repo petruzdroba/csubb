@@ -2,10 +2,8 @@ package com.repo;
 
 import com.domain.Card;
 import com.domain.Duck;
-import com.domain.User;
 import com.exceptions.RepositoryException;
 
-import java.nio.file.ReadOnlyFileSystemException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,18 +28,23 @@ public class CardRepository extends AbstractDatabaseRepository<Duck.TipRata, Car
     }
 
     public void addDuck(Duck.TipRata type, long duckId) throws SQLException {
-        Card card = find(type);
-        if (card == null)
-            throw new RepositoryException(type + " card nu exista");
-
         String sql = "INSERT INTO card_members (card_id, duck_id) VALUES (?, ?)";
 
         try (Connection connection = getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setLong(1, card.getId());
-            ps.setLong(2, duckId);
 
-            ps.executeQuery();
+            if (type == Duck.TipRata.FLYING || type == Duck.TipRata.FLYING_AND_SWIMMING) {
+                ps.setLong(1, 1); // FLYING card ID
+                ps.setLong(2, duckId);
+                ps.executeUpdate();
+            }
+
+            if (type == Duck.TipRata.SWIMMING || type == Duck.TipRata.FLYING_AND_SWIMMING) {
+                ps.setLong(1, 2); // SWIMMING card ID
+                ps.setLong(2, duckId);
+                ps.executeUpdate();
+            }
+
         } catch (SQLException e) {
             throw new RepositoryException("Failed to add duck to card: " + e.getMessage());
         }

@@ -4,6 +4,7 @@ import com.domain.Friendship;
 import com.domain.User;
 import com.exceptions.RepositoryException;
 import com.exceptions.ValidationException;
+import com.repo.AbstractDatabaseRepository;
 import com.repo.AbstractRepository;
 import com.repo.UserRepository;
 import com.validators.FriendshipValidator;
@@ -16,7 +17,7 @@ public class FriendshipService extends AbstractService<String, Friendship> {
     private final FriendshipValidator friendshipValidator = new FriendshipValidator();
     private final UserRepository userRepository;
 
-    public FriendshipService(AbstractRepository<String, Friendship> repository, UserRepository userRepository) {
+    public FriendshipService(AbstractDatabaseRepository<String, Friendship> repository, UserRepository userRepository) {
         super(repository);
         this.userRepository = userRepository;
     }
@@ -34,7 +35,7 @@ public class FriendshipService extends AbstractService<String, Friendship> {
      * @see FriendshipValidator
      * @see AbstractRepository#add(Object, Object)
      */
-    public void add(long userId1, long userId2) {
+    public void add(long userId1, long userId2) throws SQLException {
         Friendship friendship = new Friendship(userId1, userId2);
         friendshipValidator.validate(friendship);
 
@@ -56,7 +57,7 @@ public class FriendshipService extends AbstractService<String, Friendship> {
      * @see FriendshipValidator
      * @see AbstractRepository#remove(Object)
      */
-    public void remove(long userId1, long userId2) {
+    public void remove(long userId1, long userId2) throws SQLException {
         Friendship friendship = new Friendship(userId1, userId2);
         friendshipValidator.validate(friendship);
 
