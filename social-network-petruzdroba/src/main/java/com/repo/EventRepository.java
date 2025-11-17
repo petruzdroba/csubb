@@ -24,7 +24,7 @@ public class EventRepository extends AbstractDatabaseRepository<Long, Event> {
 
         String insertEvent = "INSERT INTO events(id) VALUES(?)";
         String insertDucks = "INSERT INTO event_ducks(event_id, duck_id) VALUES(?, ?)";
-        String insertLanes = "INSERT INTO event_lanes(event_id, distanta, lane_index) VALUES(?, ?, ?)";
+        String insertLanes = "INSERT INTO event_lanes(event_id, distance, lane_index) VALUES(?, ?, ?)";
         String insertSubs = "INSERT INTO event_subscribers(event_id, user_id) VALUES(?, ?)";
 
         try (Connection conn = getConnection()) {
@@ -198,7 +198,7 @@ public class EventRepository extends AbstractDatabaseRepository<Long, Event> {
             ps.setLong(1, eventId);
             ps.setLong(2, user.getId());
 
-            ps.executeQuery();
+            ps.executeUpdate();
         } catch (SQLException e) {
             throw new RepositoryException(e.getMessage());
         }
