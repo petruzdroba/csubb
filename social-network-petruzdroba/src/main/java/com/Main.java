@@ -17,7 +17,7 @@ public class Main {
 
         UserRepository userRepo = new UserRepository("jdbc:postgresql://localhost:5432/social_network", "sn_user", "sn_pass");
         FriendshipRepository friendshipRepo = new FriendshipRepository("jdbc:postgresql://localhost:5432/social_network", "sn_user", "sn_pass");
-        CardRepository cardRepository = new CardRepository("resources/card.in");
+        CardRepository cardRepository = new CardRepository("jdbc:postgresql://localhost:5432/social_network", "sn_user", "sn_pass");
         EventRepository eventRepository = new EventRepository("resources/event.in", userRepo);
 
         UserService userService = new UserService(userRepo, friendshipRepo, cardRepository);

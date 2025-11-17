@@ -1,6 +1,7 @@
 package com.service;
 
 import com.domain.*;
+import com.exceptions.RepositoryException;
 import com.exceptions.ValidationException;
 import com.repo.AbstractRepository;
 import com.repo.CardRepository;
@@ -8,6 +9,7 @@ import com.repo.FriendshipRepository;
 import com.validators.DuckValidator;
 import com.validators.PersoanaValidator;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class UserService extends AbstractService<Long, User> {
@@ -81,7 +83,12 @@ public class UserService extends AbstractService<Long, User> {
         duckValidator.validateThrow(user);
 
         repository.add(id, user);
+
+        try{
         cardRepository.addDuck(tip, id);
+        } catch (SQLException e) {
+            throw new RepositoryException(e.getMessage());
+        }
     }
 
     /**
@@ -165,7 +172,12 @@ public class UserService extends AbstractService<Long, User> {
 
         User user = repository.find(userId);
         if (user instanceof Duck duck) {
+            try{
             cardRepository.removeDuck(duck.getTip(), userId);
+
+            } catch (SQLException e) {
+                throw new RepositoryException(e.getMessage());
+            }
         }
     }
 
