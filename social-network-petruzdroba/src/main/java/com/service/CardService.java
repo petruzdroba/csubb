@@ -3,6 +3,7 @@ package com.service;
 import com.domain.Card;
 import com.domain.Duck;
 import com.exceptions.RepositoryException;
+import com.repo.AbstractDatabaseRepository;
 import com.repo.AbstractRepository;
 import com.repo.UserRepository;
 
@@ -16,7 +17,7 @@ import java.util.concurrent.atomic.AtomicReference;
 public class CardService extends AbstractService<Duck.TipRata, Card> {
     private final UserRepository userRepository;
 
-    public CardService(AbstractRepository<Duck.TipRata, Card> repository, UserRepository userRepository) {
+    public CardService(AbstractDatabaseRepository<Duck.TipRata, Card> repository, UserRepository userRepository) {
         super(repository);
         this.userRepository = userRepository;
     }
@@ -28,7 +29,7 @@ public class CardService extends AbstractService<Duck.TipRata, Card> {
      * @param type   Duck.TipRata type (SWIMMING or FLYING)
      * @throws RepositoryException if the card does not exist
      */
-    public void addDuckToCard(long duckId, Duck.TipRata type) throws RepositoryException {
+    public void addDuckToCard(long duckId, Duck.TipRata type) throws RepositoryException, SQLException {
         Card card = repository.find(type);
         if (card == null) {
             throw new RepositoryException("Card of type " + type + " does not exist");
@@ -45,7 +46,7 @@ public class CardService extends AbstractService<Duck.TipRata, Card> {
      * @param tip Duck.TipRata type (SWIMMING or FLYING)
      * @return the average performance, or 0.0 if no ducks exist in the card
      */
-    public double getPerformantaMedie(Duck.TipRata tip) throws RepositoryException {
+    public double getPerformantaMedie(Duck.TipRata tip) throws RepositoryException, SQLException {
         Card card = repository.find(tip);
         if (card == null || card.getMembri().isEmpty()) return 0.0;
 
@@ -71,7 +72,7 @@ public class CardService extends AbstractService<Duck.TipRata, Card> {
      * @param type Duck.TipRata type
      * @return list of duck IDs
      */
-    public Collection<Duck> getDucksInCard(Duck.TipRata type) throws RepositoryException {
+    public Collection<Duck> getDucksInCard(Duck.TipRata type) throws RepositoryException, SQLException {
         Card card = repository.find(type);
         if (card == null || card.getMembri().isEmpty()) return List.of();
 

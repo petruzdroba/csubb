@@ -116,7 +116,7 @@ public class CardRepository extends AbstractDatabaseRepository<Duck.TipRata, Car
     @Override
     public Collection<Card> getAll() {
         String sqlCards = "SELECT * FROM cards";
-        String sqlCardDucks = "SELECT duck_id FROM card_ducks WHERE card_id = ?";
+        String sqlCardDucks = "SELECT duck_id FROM card_members WHERE card_id = ?";
 
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
@@ -125,7 +125,7 @@ public class CardRepository extends AbstractDatabaseRepository<Duck.TipRata, Car
             List<Card> cards = new ArrayList<>();
             while (rsCards.next()) {
                 long cardId = rsCards.getLong("id");
-                String name = rsCards.getString("name");
+                String name = rsCards.getString("nume_card");
 
                 Card card = new Card(cardId, name);
 
