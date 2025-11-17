@@ -1,0 +1,9 @@
+181.180.140.0/24
+
+N1: 40 ip-uri + 3 (defauklt gateway, broadcast, retea)
+N2: 44 ip-uri
+N3: 16 ip-uri
+N4: 12 ip-uri
+N5: 4 ip-uri
+
+Routerul separa retele

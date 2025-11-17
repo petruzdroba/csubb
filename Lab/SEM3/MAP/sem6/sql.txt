@@ -1,0 +1,7 @@
+CREATE TABLE movies (
+   id serial primary key,
+   title varchar(100) not null,
+   director varchar(50) not null,
+   year smallint not null
+);
+insert into movies(title, director, year) values ('title', 'director', 2020);

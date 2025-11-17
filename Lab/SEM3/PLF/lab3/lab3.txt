@@ -1,2 +1,15 @@
 lab3.txt
 problema 6
+
+6. Sa se genereze toate sirurile de n paranteze ce se inchid corect. Exemplu:
+n=4 sunt 2 solutii: (()) si ()()
+
+paranteze(open, close, rez) ={
+    [rez]                                     if open = 0 and close = 0
+    paranteze(open - 1, close, rez ++ ['('] )   if open > 0
+    paranteze(open, close - 1, rez ++ [')'] )   if close > open
+}
+
+main_paranteze(N) = {
+    paranteze(N, N, "")
+}
