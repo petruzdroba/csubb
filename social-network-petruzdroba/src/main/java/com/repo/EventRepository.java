@@ -19,60 +19,80 @@ public class EventRepository extends AbstractDatabaseRepository<Long, Event> {
     }
 
     @Override
-    public void add(Long key, Event entity) throws SQLException {
-        if (!(entity instanceof RaceEvent re)) throw new IllegalArgumentException("Only RaceEvent supported");
+    public void add(Long key, Event event) throws SQLException {
+        if (!(event instanceof RaceEvent re)) throw new IllegalArgumentException("Only RaceEvent supported");
 
-        String insertEvent = "INSERT INTO events(id) VALUES(?)";
-        String insertDucks = "INSERT INTO event_ducks(event_id, duck_id) VALUES(?, ?)";
-        String insertLanes = "INSERT INTO event_lanes(event_id, distance, lane_index) VALUES(?, ?, ?)";
-        String insertSubs = "INSERT INTO event_subscribers(event_id, user_id) VALUES(?, ?)";
+        try (Connection connection = getConnection()) {
+            connection.setAutoCommit(false);
+            try {
+                insertEventId(connection, event.getId());
+                insertDucks(connection, event.getId(), re.getContainer().getDucks());
+                insertLanes(connection, event.getId(), re.getContainer().getCuloare());
+                insertSubscribers(connection, event.getId(), re.getSubscribers());
 
-        try (Connection conn = getConnection()) {
-            conn.setAutoCommit(false);
-
-            try (PreparedStatement psEvent = conn.prepareStatement(insertEvent);
-                 PreparedStatement psDucks = conn.prepareStatement(insertDucks);
-                 PreparedStatement psLanes = conn.prepareStatement(insertLanes);
-                 PreparedStatement psSubs = conn.prepareStatement(insertSubs)) {
-
-                // Insert event
-                psEvent.setLong(1, re.getId());
-                psEvent.executeUpdate();
-
-                // Insert ducks
-                for (Duck d : re.getContainer().getDucks()) {
-                    psDucks.setLong(1, re.getId());
-                    psDucks.setLong(2, d.getId());
-                    psDucks.addBatch();
-                }
-                psDucks.executeBatch();
-
-                // Insert culoars
-                for (Culoar lane : re.getContainer().getCuloare()) {
-                    psLanes.setLong(1, re.getId());
-                    psLanes.setInt(2, lane.getDistanta());
-                    psLanes.setInt(3, lane.getId());
-                    psLanes.addBatch();
-                }
-                psLanes.executeBatch();
-
-                // Insert subscribers
-                for (User u : re.getSubscribers()) {
-                    psSubs.setLong(1, re.getId());
-                    psSubs.setLong(2, u.getId());
-                    psSubs.addBatch();
-                }
-                psSubs.executeBatch();
-
-                conn.commit();
-            } catch (SQLException ex) {
-                conn.rollback();
-                throw ex;
-            } finally {
-                conn.setAutoCommit(true);
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                throw e;
             }
         }
     }
+
+    private void insertEventId(Connection connection, Long eventId) throws SQLException {
+        String sql = "INSERT INTO events (id) VALUES (?)";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, eventId);
+            ps.executeUpdate();
+        }
+    }
+
+    private void insertDucks(Connection connection, long eventId, Collection<Duck> ducks) throws SQLException {
+        String sql = "INSERT INTO event_ducks (event_id, duck_id) VALUES (?, ?)";
+        // event_id foreing key -> to event
+        // duck_id foreign key -> to duck Cascade both, users table
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            for (Duck d : ducks) {
+                ps.setLong(1, eventId);
+                ps.setLong(2, d.getId());
+                ps.addBatch(); // pregatim mai multe instructiuni, queue
+            }
+            ps.executeBatch(); // executam tot deoatata
+
+        }
+    }
+
+    private void insertLanes(Connection connection, long eventId, Collection<Culoar> lanes) throws SQLException {
+        String sql = "INSERT INTO event_lanes(event_id, distance, lane_index) VALUES(?, ?, ?)";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            for (Culoar c : lanes) {
+                ps.setLong(1, eventId);
+                ps.setInt(2, c.getDistanta());
+                ps.setLong(3, c.getId());
+                ps.addBatch();
+            }
+            ps.executeBatch();
+        }
+    }
+
+    private void insertSubscribers(Connection connection, long eventId, Collection<User> subscribers) throws SQLException {
+        String sql = "INSERT INTO event_subscribers(event_id, user_id) VALUES(?, ?)";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            for (User u : subscribers) {
+                ps.setLong(1, eventId);
+                ps.setLong(2, u.getId());
+                ps.addBatch();
+            }
+            ps.executeBatch();
+        }
+    }
+
 
     @Override
     public void remove(Long key) throws SQLException {
@@ -92,53 +112,18 @@ public class EventRepository extends AbstractDatabaseRepository<Long, Event> {
 
     @Override
     public Event find(Long key) throws SQLException {
-        String eventQuery = "SELECT id FROM events WHERE id=?";
-        String ducksQuery = "SELECT duck_id FROM event_ducks WHERE event_id=?";
-        String lanesQuery = "SELECT distance, lane_index FROM event_lanes WHERE event_id=?";
-        String subsQuery = "SELECT user_id FROM event_subscribers WHERE event_id=?";
+        String sql = "SELECT id FROM events WHERE id=?";
 
-        try (Connection conn = getConnection();
-             PreparedStatement psEvent = conn.prepareStatement(eventQuery)) {
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            psEvent.setLong(1, key);
-            try (ResultSet rsEvent = psEvent.executeQuery()) {
-                if (!rsEvent.next()) return null;
+            ps.setLong(1, key);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) return null;
 
-                // Fetch ducks
-                List<Duck> ducks = new ArrayList<>();
-                try (PreparedStatement psDucks = conn.prepareStatement(ducksQuery)) {
-                    psDucks.setLong(1, key);
-                    try (ResultSet rsDucks = psDucks.executeQuery()) {
-                        while (rsDucks.next()) {
-                            long duckId = rsDucks.getLong("duck_id");
-                            Duck d = (Duck) userRepo.find(duckId);
-                            if (d != null) ducks.add(d);
-                        }
-                    }
-                }
-
-                // Fetch lanes
-                List<Culoar> lanes = new ArrayList<>();
-                try (PreparedStatement psLanes = conn.prepareStatement(lanesQuery)) {
-                    psLanes.setLong(1, key);
-                    try (ResultSet rsLanes = psLanes.executeQuery()) {
-                        while (rsLanes.next()) {
-                            lanes.add(new Culoar(rsLanes.getInt("distance"), rsLanes.getInt("lane_index")));
-                        }
-                    }
-                }
-
-                // Fetch subscribers
-                List<User> subs = new ArrayList<>();
-                try (PreparedStatement psSubs = conn.prepareStatement(subsQuery)) {
-                    psSubs.setLong(1, key);
-                    try (ResultSet rsSubs = psSubs.executeQuery()) {
-                        while (rsSubs.next()) {
-                            User u = userRepo.find(rsSubs.getLong("user_id"));
-                            if (u != null) subs.add(u);
-                        }
-                    }
-                }
+                List<Duck> ducks = fetchDucks(connection, key);
+                List<Culoar> lanes = fetchLanes(connection, key);
+                List<User> subs = fetchSubscribers(connection, key);
 
                 DuckRaceContainer container = new DuckRaceContainer(ducks, lanes);
                 RaceEvent event = new RaceEvent(key, container);
@@ -147,6 +132,55 @@ public class EventRepository extends AbstractDatabaseRepository<Long, Event> {
             }
         }
     }
+
+    private List<Duck> fetchDucks(Connection connection, Long eventId) throws SQLException {
+        String sql = "SELECT duck_id FROM event_ducks WHERE event_id=?";
+        List<Duck> ducks = new ArrayList<>();
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, eventId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    long duckId = rs.getLong("duck_id");
+                    Duck d = (Duck) userRepo.find(duckId);
+                    if (d != null) ducks.add(d);
+                }
+            }
+        }
+        return ducks;
+    }
+
+    private List<Culoar> fetchLanes(Connection connection, Long eventId) throws SQLException {
+        String sql = "SELECT distance, lane_index FROM event_lanes WHERE event_id=?";
+        List<Culoar> lanes = new ArrayList<>();
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, eventId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    lanes.add(new Culoar(rs.getInt("distance"), rs.getInt("lane_index")));
+                }
+            }
+        }
+        return lanes;
+    }
+
+    private List<User> fetchSubscribers(Connection connection, Long eventId) throws SQLException {
+        String sql = "SELECT user_id FROM event_subscribers WHERE event_id=?";
+        List<User> subs = new ArrayList<>();
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, eventId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    User u = userRepo.find(rs.getLong("user_id"));
+                    if (u != null) subs.add(u);
+                }
+            }
+        }
+        return subs;
+    }
+
 
     @Override
     public Collection<Event> getAll() {

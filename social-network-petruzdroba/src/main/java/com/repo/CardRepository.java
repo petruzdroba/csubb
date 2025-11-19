@@ -96,21 +96,14 @@ public class CardRepository extends AbstractDatabaseRepository<Duck.TipRata, Car
 
         try (Connection connection = getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
+
             ps.setLong(1, cardId);
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (!rs.next()) return null;
-                Card card = new Card(rs.getLong("id"), rs.getString("nume_card"));
 
-                // load members
-                try (PreparedStatement ps2 = connection.prepareStatement("SELECT duck_id FROM card_members WHERE card_id=?")) {
-                    ps2.setLong(1, card.getId());
-                    try (ResultSet rs2 = ps2.executeQuery()) {
-                        while (rs2.next()) {
-                            card.addDuck(rs2.getLong("duck_id"));
-                        }
-                    }
-                }
+                Card card = new Card(rs.getLong("id"), rs.getString("nume_card"));
+                loadCardMembers(connection, card);
                 return card;
             }
         }
@@ -118,35 +111,39 @@ public class CardRepository extends AbstractDatabaseRepository<Duck.TipRata, Car
 
     @Override
     public Collection<Card> getAll() {
-        String sqlCards = "SELECT * FROM cards";
-        String sqlCardDucks = "SELECT duck_id FROM card_members WHERE card_id = ?";
+        String sql = "SELECT * FROM cards";
 
-        try (Connection conn = getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rsCards = stmt.executeQuery(sqlCards)) {
+        try (Connection connection = getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
 
             List<Card> cards = new ArrayList<>();
-            while (rsCards.next()) {
-                long cardId = rsCards.getLong("id");
-                String name = rsCards.getString("nume_card");
+
+            while (rs.next()) {
+                long cardId = rs.getLong("id");
+                String name = rs.getString("nume_card");
 
                 Card card = new Card(cardId, name);
-
-                try (PreparedStatement ps = conn.prepareStatement(sqlCardDucks)) {
-                    ps.setLong(1, cardId);
-                    try (ResultSet rsDucks = ps.executeQuery()) {
-                        List<Long> duckIds = new ArrayList<>();
-                        while (rsDucks.next()) {
-                            duckIds.add(rsDucks.getLong("duck_id"));
-                        }
-                        card.setDuckIds(duckIds);
-                    }
-                }
+                loadCardMembers(connection, card);
                 cards.add(card);
             }
+
             return cards;
         } catch (SQLException e) {
             throw new RepositoryException("Failed to fetch values from DB: " + e.getMessage());
+        }
+    }
+
+    private void loadCardMembers(Connection connection, Card card) throws SQLException {
+        String sql = "SELECT duck_id FROM card_members WHERE card_id=?";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, card.getId());
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    card.addDuck(rs.getLong("duck_id"));
+                }
+            }
         }
     }
 
