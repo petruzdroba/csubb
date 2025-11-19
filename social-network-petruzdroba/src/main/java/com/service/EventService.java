@@ -3,12 +3,15 @@ package com.service;
 import com.containers.DuckRaceContainer;
 import com.domain.*;
 import com.exceptions.DomainException;
+import com.exceptions.RepositoryException;
 import com.exceptions.ValidationException;
-import com.repo.AbstractRepository;
+import com.repo.AbstractDatabaseRepository;
+import com.repo.EventRepository;
 import com.repo.UserRepository;
 import com.validators.CuloarValidator;
 import com.validators.EventValidator;
 
+import java.sql.SQLException;
 import java.util.Collection;
 
 public class EventService extends AbstractService<Long, Event>{
@@ -18,7 +21,7 @@ public class EventService extends AbstractService<Long, Event>{
     private final CuloarValidator culoarValidator = new CuloarValidator();
 
 
-    public EventService(AbstractRepository<Long, Event> repository, CardService cardService, UserRepository userRepository) {
+    public EventService(AbstractDatabaseRepository<Long, Event> repository, CardService cardService, UserRepository userRepository) {
         super(repository);
         this.cardService = cardService;
         this.userRepository = userRepository;
@@ -38,7 +41,7 @@ public class EventService extends AbstractService<Long, Event>{
      * @see CuloarValidator
      * @see EventValidator
      */
-    public void add(long id, Collection<Culoar> culoars) throws ValidationException {
+    public void add(long id, Collection<Culoar> culoars) throws ValidationException, SQLException {
         culoars.forEach(culoarValidator::validateThrow);
 
         Collection<Duck> swimmers = cardService.getDucksInCard(Duck.TipRata.SWIMMING);
@@ -57,7 +60,7 @@ public class EventService extends AbstractService<Long, Event>{
      * @param id Identificatorul evenimentului
      * @throws ValidationException Daca id-ul este negativ
      */
-    public void remove(long id) throws ValidationException {
+    public void remove(long id) throws ValidationException, SQLException {
         if(id < 0)
             throw new ValidationException("Event id cannot be negative\n");
         repository.remove(id);
@@ -71,9 +74,15 @@ public class EventService extends AbstractService<Long, Event>{
      * @throws DomainException Daca utilizatorul este deja inscris la eveniment
      * @see Event#subscribe(User)
      */
-    public void subscribe(long eventId, long userId){
-        repository.find(eventId).subscribe(userRepository.find(userId));
+    public void subscribe(long eventId, long userId) throws RepositoryException {
+        try {
+            if(repository instanceof EventRepository)
+                ((EventRepository) repository).subscribe(eventId, userRepository.find(userId));
+        } catch (SQLException e) {
+            throw new RepositoryException(e.getMessage());
+        }
     }
+
 
 
     /**
@@ -85,7 +94,12 @@ public class EventService extends AbstractService<Long, Event>{
      * @see Event#unsubscribe(User)
      */
     public void unsubscribe(long eventId, long userId) throws DomainException {
-        repository.find(eventId).unsubscribe(userRepository.find(userId));
+        try {
+            if(repository instanceof EventRepository)
+                ((EventRepository) repository).unsubscribe(eventId, userRepository.find(userId));
+        } catch (SQLException e) {
+            throw new RepositoryException(e.getMessage());
+        }
     }
 
     /**
@@ -96,7 +110,7 @@ public class EventService extends AbstractService<Long, Event>{
      * @see RaceEvent#start()
      * @see Event#notifySubscribers()
      */
-    public void startRace(long raceId){
+    public void startRace(long raceId) throws SQLException {
         Event event = repository.find(raceId);
         repository.remove(raceId);
 

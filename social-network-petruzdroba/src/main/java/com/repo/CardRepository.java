@@ -1,105 +1,174 @@
 package com.repo;
 
 import com.domain.Card;
+import com.domain.DataBaseConfig;
 import com.domain.Duck;
 import com.exceptions.RepositoryException;
 
-import java.io.*;
-import java.util.Arrays;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class CardRepository extends AbstractFileRepository<Duck.TipRata, Card> {
+public class CardRepository extends AbstractDatabaseRepository<Duck.TipRata, Card> {
 
-    public CardRepository(String filePath) {
-        super(filePath);
-        if (!data.containsKey(Duck.TipRata.SWIMMING))
-            data.put(Duck.TipRata.SWIMMING, new Card(1, "SwimMasters"));
-        if (!data.containsKey(Duck.TipRata.FLYING))
-            data.put(Duck.TipRata.FLYING, new Card(2, "SkyFlyers"));
+    public CardRepository(String url, String user, String password) {
+        super(url, user, password);
     }
 
-    public void addDuck(Duck.TipRata type, long duckId) throws RepositoryException {
-        if (type == Duck.TipRata.SWIMMING || type == Duck.TipRata.FLYING_AND_SWIMMING) {
-            Card swimmingCard = data.get(Duck.TipRata.SWIMMING);
-            if (swimmingCard == null) throw new RepositoryException("Swimming card does not exist");
-            swimmingCard.addDuck(duckId);
-        }
-
-        if (type == Duck.TipRata.FLYING || type == Duck.TipRata.FLYING_AND_SWIMMING) {
-            Card flyingCard = data.get(Duck.TipRata.FLYING);
-            if (flyingCard == null) throw new RepositoryException("Flying card does not exist");
-            flyingCard.addDuck(duckId);
-        }
-
-        overwriteFile();
+    public CardRepository(DataBaseConfig config) {
+        super(config);
     }
-
-    public void removeDuck(Duck.TipRata type, long duckId) throws RepositoryException {
-        if (type == Duck.TipRata.SWIMMING || type == Duck.TipRata.FLYING_AND_SWIMMING) {
-            Card swimmingCard = data.get(Duck.TipRata.SWIMMING);
-            if (swimmingCard == null) throw new RepositoryException("Swimming card does not exist");
-            if (!swimmingCard.getMembri().remove(duckId)) {
-                throw new RepositoryException("Duck ID not found in Swimming card");
-            }
-        }
-
-        if (type == Duck.TipRata.FLYING || type == Duck.TipRata.FLYING_AND_SWIMMING) {
-            Card flyingCard = data.get(Duck.TipRata.FLYING);
-            if (flyingCard == null) throw new RepositoryException("Flying card does not exist");
-            if (!flyingCard.getMembri().remove(duckId)) {
-                throw new RepositoryException("Duck ID not found in Flying card");
-            }
-        }
-
-        overwriteFile();
-    }
-
-
 
     @Override
-    protected void loadFile() {
-        File file = new File(filePath);
-        if (!file.exists()) return;
+    public void add(Duck.TipRata key, Card entity) throws SQLException {
+        String sql = "INSERT INTO cards (id, nume_card) VALUES (?, ?)";
 
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                if (line.isBlank()) continue;
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, entity.getId());
+            ps.setString(2, entity.getNumeCard());
+            ps.executeUpdate();
+        }
+    }
 
-                String[] parts = line.split(";");
-                Duck.TipRata type = Duck.TipRata.valueOf(parts[0]);
-                long cardId = Long.parseLong(parts[1]);
-                String name = parts[2];
+    public void addDuck(Duck.TipRata type, long duckId) throws SQLException {
+        String sql = "INSERT INTO card_members (card_id, duck_id) VALUES (?, ?)";
+
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            if (type == Duck.TipRata.FLYING || type == Duck.TipRata.FLYING_AND_SWIMMING) {
+                ps.setLong(1, 1); // FLYING card ID
+                ps.setLong(2, duckId);
+                ps.executeUpdate();
+            }
+
+            if (type == Duck.TipRata.SWIMMING || type == Duck.TipRata.FLYING_AND_SWIMMING) {
+                ps.setLong(1, 2); // SWIMMING card ID
+                ps.setLong(2, duckId);
+                ps.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            throw new RepositoryException("Failed to add duck to card: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void remove(Duck.TipRata key) throws SQLException {
+        Card card = find(key);
+        if (card == null) return;
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement("DELETE FROM cards WHERE id=?")) {
+            ps.setLong(1, card.getId());
+            ps.executeUpdate();
+        }
+    }
+
+    public void removeDuck(Duck.TipRata type, long duckId) throws SQLException {
+        Card card = find(type);
+        if (card == null) throw new RepositoryException(type + " card does not exist");
+
+        String sql = "DELETE FROM card_members WHERE card_id=? AND duck_id=?";
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, card.getId());
+            ps.setLong(2, duckId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RepositoryException("Failed to remove duck from card: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void modify(Duck.TipRata key, Card entity) throws SQLException {
+        String sql = " UPDATE cards SET nume_card=? WHERE id=?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, entity.getNumeCard());
+            ps.setLong(2, entity.getId());
+
+            ps.executeUpdate();
+        }
+    }
+
+    @Override
+    public Card find(Duck.TipRata key) throws SQLException {
+        String sql = "SELECT * from cards WHERE id=?";
+        long cardId = key == Duck.TipRata.SWIMMING ? 1 : 2;
+
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setLong(1, cardId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) return null;
+
+                Card card = new Card(rs.getLong("id"), rs.getString("nume_card"));
+                loadCardMembers(connection, card);
+                return card;
+            }
+        }
+    }
+
+    @Override
+    public Collection<Card> getAll() {
+        String sql = "SELECT * FROM cards";
+
+        try (Connection connection = getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            List<Card> cards = new ArrayList<>();
+
+            while (rs.next()) {
+                long cardId = rs.getLong("id");
+                String name = rs.getString("nume_card");
+
                 Card card = new Card(cardId, name);
-
-                if (parts.length > 3) {
-                    List<Long> duckIds = Arrays.stream(parts[3].split(","))
-                            .map(Long::parseLong)
-                            .collect(Collectors.toList());
-                    card.setDuckIds(duckIds);
-                }
-
-                data.put(type, card);
+                loadCardMembers(connection, card);
+                cards.add(card);
             }
-        } catch (IOException e) {
-            System.err.println("Error loading cards: " + e.getMessage());
+
+            return cards;
+        } catch (SQLException e) {
+            throw new RepositoryException("Failed to fetch values from DB: " + e.getMessage());
+        }
+    }
+
+    private void loadCardMembers(Connection connection, Card card) throws SQLException {
+        String sql = "SELECT duck_id FROM card_members WHERE card_id=?";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, card.getId());
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    card.addDuck(rs.getLong("duck_id"));
+                }
+            }
         }
     }
 
     @Override
-    protected void overwriteFile() {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(filePath))) {
-            for (var entry : data.entrySet()) {
-                Duck.TipRata type = entry.getKey();
-                Card card = entry.getValue();
-                String ids = card.getMembri().stream()
-                        .map(String::valueOf)
-                        .collect(Collectors.joining(","));
-                pw.println(type + ";" + card.getId() + ";" + card.getNumeCard() + ";" + ids);
+    public Collection<Duck.TipRata> getKeys() {
+        String sql = "SELECT DISTINCT type FROM cards";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            List<Duck.TipRata> types = new ArrayList<>();
+            while (rs.next()) {
+                types.add(Duck.TipRata.valueOf(rs.getString("type")));
             }
-        } catch (IOException e) {
-            System.err.println("Error writing cards: " + e.getMessage());
+            return types;
+
+        } catch (SQLException e) {
+            throw new RepositoryException("Failed to fetch keys from DB: " + e.getMessage());
         }
     }
+
 }

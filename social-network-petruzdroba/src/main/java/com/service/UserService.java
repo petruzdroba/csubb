@@ -1,13 +1,16 @@
 package com.service;
 
 import com.domain.*;
+import com.exceptions.RepositoryException;
 import com.exceptions.ValidationException;
+import com.repo.AbstractDatabaseRepository;
 import com.repo.AbstractRepository;
 import com.repo.CardRepository;
 import com.repo.FriendshipRepository;
 import com.validators.DuckValidator;
 import com.validators.PersoanaValidator;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class UserService extends AbstractService<Long, User> {
@@ -16,7 +19,7 @@ public class UserService extends AbstractService<Long, User> {
     private final FriendshipRepository friendshipRepository;
     private final CardRepository cardRepository;
 
-    public UserService(AbstractRepository<Long, User> repository, FriendshipRepository friendshipRepository, CardRepository cardRepository) {
+    public UserService(AbstractDatabaseRepository<Long, User> repository, FriendshipRepository friendshipRepository, CardRepository cardRepository) {
         super(repository);
         this.friendshipRepository = friendshipRepository;
         this.cardRepository = cardRepository;
@@ -42,7 +45,7 @@ public class UserService extends AbstractService<Long, User> {
      */
     public void add(long id, String username, String email, String password,
                     String nume, String prenume, LocalDate dataNasterii,
-                    String ocupatie, int nivelEmpatie) {
+                    String ocupatie, int nivelEmpatie) throws SQLException {
         Persoana user = new Persoana(id, username, email, password,
                 nume, prenume, dataNasterii, ocupatie, nivelEmpatie);
         persoanaValidator.validateThrow(user);
@@ -69,7 +72,7 @@ public class UserService extends AbstractService<Long, User> {
      * @see com.validators.DuckValidator
      */
     public void add(long id, String username, String email, String password,
-                    Duck.TipRata tip, double viteza, double rezistenta) {
+                    Duck.TipRata tip, double viteza, double rezistenta) throws SQLException {
         Duck user;
         if (tip == Duck.TipRata.FLYING) {
             user = new FlyingDuck(id, username, email, password, tip, viteza, rezistenta);
@@ -81,7 +84,12 @@ public class UserService extends AbstractService<Long, User> {
         duckValidator.validateThrow(user);
 
         repository.add(id, user);
+
+        try{
         cardRepository.addDuck(tip, id);
+        } catch (SQLException e) {
+            throw new RepositoryException(e.getMessage());
+        }
     }
 
     /**
@@ -104,7 +112,7 @@ public class UserService extends AbstractService<Long, User> {
      * @see com.validators.PersoanaValidator
      * @see com.repo.AbstractRepository#modify(Object, Object)
      */
-    public void modify(long id, String username, String email, String password, String nume, String prenume, LocalDate dataNasterii, String ocupatie, int nivelEmpatie) {
+    public void modify(long id, String username, String email, String password, String nume, String prenume, LocalDate dataNasterii, String ocupatie, int nivelEmpatie) throws SQLException {
         Persoana user = new Persoana(id, username, email, password, nume, prenume, dataNasterii, ocupatie, nivelEmpatie);
         persoanaValidator.validateThrow(user);
 
@@ -130,7 +138,7 @@ public class UserService extends AbstractService<Long, User> {
      * @see com.repo.AbstractRepository#modify(Object, Object)
      * @see com.validators.DuckValidator
      */
-    public void modify(long id, String username, String email, String password, Duck.TipRata tip, double viteza, double rezistenta) {
+    public void modify(long id, String username, String email, String password, Duck.TipRata tip, double viteza, double rezistenta) throws SQLException {
         Duck user;
         if (tip == Duck.TipRata.FLYING) {
             user = new FlyingDuck(id, username, email, password, tip, viteza, rezistenta);
@@ -150,24 +158,27 @@ public class UserService extends AbstractService<Long, User> {
      * Metoda verifica daca id-ul este valid (pozitiv) si apoi sterge utilizatorul
      * din repository-ul corespunzator. Aceasta metoda functioneaza atat pentru
      * Duck cat si pentru Persoana/User.
-     * Cascade delete cu prieteniile also
+     * Cascade delete cu prieteniile also -> ON CASCADE DELETE ON DATABASE
      *
      * @param userId Identificatorul unic al utilizatorului care trebuie sters.
      * @throws ValidationException                          Daca userId este negativ.
      * @throws com.exceptions.RepositoryException daca nu exista id-ul
      * @see com.repo.AbstractRepository#remove(Object)
-     * @see com.repo.FriendshipRepository#removeUserFriendships(long)
      */
-    public void remove(long userId) throws ValidationException {
+    public void remove(long userId) throws ValidationException, SQLException {
         if (userId < 0)
             throw new ValidationException("User id cannot be negative");
         repository.remove(userId);
 
-        friendshipRepository.removeUserFriendships(userId);
 
         User user = repository.find(userId);
         if (user instanceof Duck duck) {
+            try{
             cardRepository.removeDuck(duck.getTip(), userId);
+
+            } catch (SQLException e) {
+                throw new RepositoryException(e.getMessage());
+            }
         }
     }
 

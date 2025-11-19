@@ -6,6 +6,7 @@ import com.domain.User;
 import com.exceptions.RepositoryException;
 import com.service.CardService;
 
+import java.sql.SQLException;
 import java.util.Collection;
 
 public class CardConsole extends AbstractConsole {
@@ -77,6 +78,8 @@ public class CardConsole extends AbstractConsole {
             System.out.printf("Average performance for %s: %.2f%n", tip, avg);
         } catch (IllegalArgumentException e) {
             System.out.println("Invalid Tip Rata value.");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 
