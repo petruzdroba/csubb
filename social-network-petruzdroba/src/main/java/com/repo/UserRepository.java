@@ -9,8 +9,13 @@ import java.util.Collection;
 import java.util.List;
 
 public class UserRepository extends AbstractDatabaseRepository<Long, User>{
+
     public UserRepository(String url, String user, String password) {
         super(url, user, password);
+    }
+
+    public UserRepository(DataBaseConfig config) {
+        super(config);
     }
 
     @Override

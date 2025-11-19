@@ -1,5 +1,6 @@
 package com;
 
+import com.domain.DataBaseConfig;
 import com.repo.CardRepository;
 import com.repo.EventRepository;
 import com.repo.UserRepository;
@@ -14,11 +15,12 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        DataBaseConfig config = new DataBaseConfig("jdbc:postgresql://localhost:5432/social_network", "sn_user", "sn_pass");
 
-        UserRepository userRepo = new UserRepository("jdbc:postgresql://localhost:5432/social_network", "sn_user", "sn_pass");
-        FriendshipRepository friendshipRepo = new FriendshipRepository("jdbc:postgresql://localhost:5432/social_network", "sn_user", "sn_pass");
-        CardRepository cardRepository = new CardRepository("jdbc:postgresql://localhost:5432/social_network", "sn_user", "sn_pass");
-        EventRepository eventRepository = new EventRepository("jdbc:postgresql://localhost:5432/social_network", "sn_user", "sn_pass", userRepo);
+        UserRepository userRepo = new UserRepository(config);
+        FriendshipRepository friendshipRepo = new FriendshipRepository(config);
+        CardRepository cardRepository = new CardRepository(config);
+        EventRepository eventRepository = new EventRepository(config, userRepo);
 
         UserService userService = new UserService(userRepo, friendshipRepo, cardRepository);
         FriendshipService friendshipService = new FriendshipService(friendshipRepo, userRepo);

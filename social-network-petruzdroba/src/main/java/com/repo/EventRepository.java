@@ -18,6 +18,11 @@ public class EventRepository extends AbstractDatabaseRepository<Long, Event> {
         this.userRepo = userRepo;
     }
 
+    public EventRepository(DataBaseConfig config, UserRepository userRepo) {
+        super(config);
+        this.userRepo = userRepo;
+    }
+
     @Override
     public void add(Long key, Event event) throws SQLException {
         if (!(event instanceof RaceEvent re)) throw new IllegalArgumentException("Only RaceEvent supported");

@@ -1,6 +1,7 @@
 package com.repo;
 
 import com.domain.Card;
+import com.domain.DataBaseConfig;
 import com.domain.Duck;
 import com.exceptions.RepositoryException;
 
@@ -13,6 +14,10 @@ public class CardRepository extends AbstractDatabaseRepository<Duck.TipRata, Car
 
     public CardRepository(String url, String user, String password) {
         super(url, user, password);
+    }
+
+    public CardRepository(DataBaseConfig config) {
+        super(config);
     }
 
     @Override

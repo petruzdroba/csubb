@@ -1,5 +1,6 @@
 package com.repo;
 
+import com.domain.DataBaseConfig;
 import com.exceptions.RepositoryException;
 
 import java.sql.Connection;
@@ -8,14 +9,14 @@ import java.sql.SQLException;
 import java.util.Collection;
 
 public abstract class AbstractDatabaseRepository<K,T>{
-    protected final String url;
-    protected final String user;
-    protected final String password;
+    protected final DataBaseConfig config;
 
     public AbstractDatabaseRepository(String url, String user, String password) {
-        this.url = url;
-        this.user = user;
-        this.password = password;
+        config = new DataBaseConfig(url, user, password);
+    }
+
+    public AbstractDatabaseRepository(DataBaseConfig config) {
+        this.config = config;
     }
 
     protected Connection getConnection() throws SQLException {
@@ -24,7 +25,7 @@ public abstract class AbstractDatabaseRepository<K,T>{
         } catch (ClassNotFoundException e) {
             throw new RepositoryException(e.getMessage());
         }
-        return DriverManager.getConnection(url, user, password);
+        return DriverManager.getConnection(config.getUrl(), config.getUser(), config.getPassword());
     }
 
     public abstract void add(K key, T entity) throws SQLException;

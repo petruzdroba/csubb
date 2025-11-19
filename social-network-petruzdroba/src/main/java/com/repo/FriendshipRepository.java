@@ -1,21 +1,23 @@
 package com.repo;
 
+import com.domain.DataBaseConfig;
 import com.domain.Friendship;
-import com.domain.User;
 import com.exceptions.RepositoryException;
 
-import javax.xml.transform.Result;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Scanner;
 
 public class FriendshipRepository extends AbstractDatabaseRepository<String, Friendship> {
 
     public FriendshipRepository(String url, String user, String password) {
         super(url, user, password);
+    }
+
+    public FriendshipRepository(DataBaseConfig config) {
+        super(config);
     }
 
     @Override
