@@ -1,0 +1,7 @@
+adaugat o retea cu ip fals 167.167.67.x cu subnet mask base
+
+configurat switchuri sa comunice pe 0/10 si 0/20 -> iar switch N2 sa comunice cu R2 pe 0/24
+
+R2 -> 0/0 nimic special no shut no ip add 
+    0/0.10 sa comunice cu vlan 10 pt N2 switch
+    0/0.20 sa comunice cu vlan 10 cu N7 i guess
