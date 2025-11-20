@@ -1,0 +1,92 @@
+Configurare vlan:
+
+C     C
+ \   /
+  SW1
+ / | \ 
+C  |  C
+   |
+   |
+C  |  C
+ \ | /
+  SW2
+ /   \ 
+C     C  
+
+Pe fiecare switch:
+> enable
+# configure terminal
+# vlan 10 (10 este numele vlan-ului)
+# exit
+# vlan 20 (20 este numele vlan-ului)
+# exit
+
+MODE ACCESS
+- switch-urile se interconecteaza cu doua cabluri pe porturile 0/10, 0/20
+
+# interface range fastethernet 0/2-10
+# switchport access vlan 10
+# exit
+# interface range fastethernet 0/12-20
+# switchport access vlan 20
+# exit
+
+MODE TRUNK
+- switch-urile se interconecteaza cu un cablu pe portul 0/1
+
+# interface fastethernet 0/1
+# switchport mode trunk
+# switchport trunk allowed vlan all
+
+PENTRU COMUNICARE INTRE VLAN-uri
+
+pe router:
+    - se adauga un router
+    - se creeaza legatura TRUNK intre router si switch
+	- se configureaza subinterfetele de retea
+	
+CONECTAM ROUTER LA SWITCH in port 24
+# interface fastethernet 0/24
+# switchport mode trunk
+# switchport trunk allowed vlan all
+
+conf t
+interface fast 0/0
+no ip add
+no shut
+exit
+
+int fast 0/0.10
+encapsulation dot1Q 10
+ip address 192.168.10.1 255.255.255.0
+no shut
+exit
+
+int fast 0/0.20
+encapsulation dot1Q 20
+ip address 192.168.20.1 255.255.255.0
+no shut
+exit
+
+do show run
+
+
+pe calculatoare
+    - se seteaza default gateway
+
+
+ALTE INFORMATII:
+
+Pentru a iesi din meniu in parinte
+# exit
+
+Pentru a iesi din meniu in root
+# CTRL + Z
+
+Pentru a afla mai multe detalii despre comenzi sau parametrii
+# ?
+# numecomanda ?
+
+
+
+
