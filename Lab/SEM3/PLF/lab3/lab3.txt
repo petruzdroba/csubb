@@ -11,5 +11,20 @@ paranteze(open, close, rez) ={
 }
 
 main_paranteze(N) = {
-    paranteze(N, N, "")
+    paranteze(N/2, N/2, "")
 }
+
+% convert a list of parentheses chars to a string
+list_to_string(L, S) :-
+    atomic_list_concat(L, '', S).
+
+% print all sequences in a pretty way
+print_paranteze(N) :-
+    main_paranteze(N, R),
+    forall(
+        member(X, R),
+        (
+            list_to_string(X, S),
+            write(S), nl
+        )
+    ).

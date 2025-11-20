@@ -2,9 +2,8 @@
     6. Sa se genereze toate sirurile de n paranteze ce se inchid corect
 
     paranteze(Open: numar, Close: numar, Acc: lista, R:lista)
-    -daca poate adauga o (, dupa se imparte pe doua ramuri unde adauga ( pe o ramura sau ) pe alta
-    e backtracking
-    suntem siguri ca nu inchidem mai multe paranteze decat am deschis
+    - fix invers ca la cealalta, daca se poate adauga o paranteza inchisa, se adauga
+    dupa se imparte in ramuri, unde se mai adauga una sau se adauga una deschisa -> nu vor fi mai multe deschise ca inchise
 
     Open: numarul de paranteze ramase deschise
     Close: numarul de paranteze ramase inchise
@@ -16,24 +15,8 @@
     Model matematic:
         paranteze(open, close, l1...ln) =
            1. reverse(l1...ln)        open = 0 si close = 0
-           2. paranteze(open - 1, close, '(' (+) l1...ln)     open > 0
-           3. paranteze(open, close - 1, ')' (+) l1...ln)     daca close > open
-
-    reverse(A: lista, B: lista, R:lista)
-    -intoarce lista A folosind B([]) in R
-
-    A: lista originiala, input
-    B: lista peste care se adauga inversul lui A, input
-    R: lista rezultata, output
-
-    Model matematic:
-        reverse(x1...xn, y1...ym) = {
-        y1...ym     daca n=0
-        reverse(x2...xn, x1 (+) y1...ym) altfel
-        }
-    
-    Model de fluz (i,i,o)
-
+           2. paranteze(open, close - 1, ')' (+) l1...ln)     close > 0
+           3. paranteze(open - 1, close, '(' (+) l1...ln)     daca open > close
 
     main_paranteze(N: numar, R:lista)
 
@@ -52,22 +35,18 @@
         6 ->((())),(()()),(())(),()(()),()()()
         2 -> ()
 */
-reverse([], B, B).
-reverse([H|T], BTail, B) :-
-    reverse(T, [H|BTail], B).
 
-paranteze(0,0,Acc,R) :-
-    reverse(Acc, [], R).
+paranteze(0,0,Acc,Acc).
 
 paranteze(Open, Close, Acc, R) :-
-    Open > 0,
-    Open1 is Open - 1,
-    paranteze(Open1, Close, ['('|Acc], R).
-
-paranteze(Open, Close, Acc, R) :-
-    Close > Open,
+    Close > 0,
     Close1 is Close - 1,
     paranteze(Open, Close1, [')'|Acc], R).
+
+paranteze(Open, Close, Acc, R) :-
+    Open > Close,
+    Open1 is Open - 1,
+    paranteze(Open1, Close, ['('|Acc], R).
 
 main_paranteze(N,R) :- Half is N // 2, findall(X, paranteze(Half, Half, [], X), R).
 
