@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Button?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.controllers.UsersViewController">
+    <Button text="Exit" onAction="#onExitButtonClick"/>
+
+    <TableView fx:id="tableView" prefHeight="300" prefWidth="500">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="100"/>
+            <TableColumn fx:id="usernameColumn" text="Name" prefWidth="200"/>
+            <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
+            <TableColumn fx:id="vitezaColumn" text="Viteza" prefWidth="200"/>
+            <TableColumn fx:id="rezistentaColumn" text="Rezitenta" prefWidth="200"/>
+        </columns>
+    </TableView>
+
+</VBox>

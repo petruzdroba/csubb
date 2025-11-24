@@ -12,6 +12,8 @@ import com.validators.PersoanaValidator;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 
 public class UserService extends AbstractService<Long, User> {
     private final PersoanaValidator persoanaValidator = new PersoanaValidator();
@@ -198,5 +200,9 @@ public class UserService extends AbstractService<Long, User> {
                 .filter( u -> u.getUsername().equals(username))
                 .findFirst().
                 orElse(null);
+    }
+
+    public Collection<Duck> getAllDucks() {
+        return repository.getAll().stream().filter(Duck.class::isInstance).map(Duck.class::cast).toList();
     }
 }
