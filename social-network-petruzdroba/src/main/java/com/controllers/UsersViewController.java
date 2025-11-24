@@ -13,11 +13,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UsersViewController {
     private UserService userService;
 
-    public UsersViewController() {}
+    public UsersViewController() {
+    }
 
     public void loadData(List<Duck> ducks) {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -32,24 +34,39 @@ public class UsersViewController {
 
         tableView.setItems(data);
     }
-    @FXML private TableView<Duck> tableView;
-    @FXML private TableColumn<Duck, Integer> idColumn;
-    @FXML private TableColumn<Duck, String> usernameColumn;
-    @FXML private TableColumn<Duck, String> emailColumn;
-    @FXML private TableColumn<Duck, Integer> vitezaColumn;
-    @FXML private TableColumn<Duck, Integer> rezistentaColumn;
-    @FXML private TableColumn<Duck, Duck.TipRata> typeColumn;
 
-    @FXML private ComboBox<String> comboBox;
+    @FXML
+    private TableView<Duck> tableView;
+    @FXML
+    private TableColumn<Duck, Integer> idColumn;
+    @FXML
+    private TableColumn<Duck, String> usernameColumn;
+    @FXML
+    private TableColumn<Duck, String> emailColumn;
+    @FXML
+    private TableColumn<Duck, Integer> vitezaColumn;
+    @FXML
+    private TableColumn<Duck, Integer> rezistentaColumn;
+    @FXML
+    private TableColumn<Duck, Duck.TipRata> typeColumn;
 
-    @FXML public void initialize() {
-        comboBox.setItems(FXCollections.observableArrayList("All", "Flying", "Swimming", "Flying and Swimming"
+    @FXML
+    private ComboBox<String> comboBox;
+
+    @FXML
+    public void initialize() {
+        comboBox.setItems(FXCollections.observableArrayList("ALL", "FLYING", "SWIMMING", "FLYING_AND_SWIMMING"
         ));
+        comboBox.setValue("ALL");
 
-        // Optional: handle selection changes
         comboBox.setOnAction(event -> {
             String selected = comboBox.getValue();
-            System.out.println("Selected: " + selected);
+            if (selected.equals("ALL")) {
+                loadData(new ArrayList<>(userService.getAllDucks()));
+            } else
+                loadData(userService.getAllDucks().stream()
+                        .filter(d -> d.getTip() == Duck.TipRata.valueOf(selected))
+                        .collect(Collectors.toList()));
         });
     }
 

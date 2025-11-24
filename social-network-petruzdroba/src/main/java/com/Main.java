@@ -47,6 +47,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         stage.setTitle("Test JavaFX Screen");
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.show();
     }
 
