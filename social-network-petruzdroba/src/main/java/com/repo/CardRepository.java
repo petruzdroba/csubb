@@ -38,16 +38,17 @@ public class CardRepository extends AbstractDatabaseRepository<Duck.TipRata, Car
         try (Connection connection = getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            if (type == Duck.TipRata.FLYING || type == Duck.TipRata.FLYING_AND_SWIMMING) {
-                ps.setLong(1, 1); // FLYING card ID
+            Card card = find(type);
+            if (card != null) {
+                ps.setLong(1, card.getId());
                 ps.setLong(2, duckId);
                 ps.executeUpdate();
-            }
 
-            if (type == Duck.TipRata.SWIMMING || type == Duck.TipRata.FLYING_AND_SWIMMING) {
-                ps.setLong(1, 2); // SWIMMING card ID
-                ps.setLong(2, duckId);
-                ps.executeUpdate();
+                if (type == Duck.TipRata.FLYING_AND_SWIMMING) {
+                    ps.setLong(1, card.getId() - 1);
+                    ps.setLong(2, duckId);
+                    ps.executeUpdate();
+                }
             }
 
         } catch (SQLException e) {

@@ -4,15 +4,12 @@ import com.domain.Card;
 import com.domain.Duck;
 import com.exceptions.RepositoryException;
 import com.repo.AbstractDatabaseRepository;
-import com.repo.AbstractRepository;
 import com.repo.UserRepository;
 
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class CardService extends AbstractService<Duck.TipRata, Card> {
     private final UserRepository userRepository;
