@@ -9,11 +9,13 @@ import com.service.CardService;
 import com.service.EventService;
 import com.service.FriendshipService;
 import com.service.UserService;
-import com.ui.*;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-import java.util.List;
 
-public class Main {
+public class Main extends Application {
     public static void main(String[] args) {
         DataBaseConfig config = new DataBaseConfig("jdbc:postgresql://localhost:5432/social_network", "sn_user", "sn_pass");
 
@@ -27,16 +29,19 @@ public class Main {
         CardService cardService = new CardService(cardRepository, userRepo);
         EventService eventService = new EventService(eventRepository, cardService, userRepo);
 
+        launch();
+    }
 
-        UserConsole userConsole = new UserConsole(userService);
-        FriendshipConsole friendshipConsole = new FriendshipConsole(friendshipService);
-        CardConsole cardConsole = new CardConsole(cardService);
-        EventConsole eventConsole = new EventConsole(eventService);
-
-        MainConsole mainConsole = new MainConsole(
-                List.of(userConsole, friendshipConsole, cardConsole, eventConsole)
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                getClass().getResource("/duck-view.fxml")
         );
 
-        mainConsole.run();
+        Scene scene = new Scene(fxmlLoader.load());
+
+        stage.setTitle("Test JavaFX Screen");
+        stage.setScene(scene);
+        stage.show();
     }
 }
