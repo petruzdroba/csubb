@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.controllers.UsersViewController">
     <Button text="Exit" onAction="#onExitButtonClick"/>
 
@@ -14,8 +15,10 @@
             <TableColumn fx:id="usernameColumn" text="Name" prefWidth="200"/>
             <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
             <TableColumn fx:id="vitezaColumn" text="Viteza" prefWidth="200"/>
-            <TableColumn fx:id="rezistentaColumn" text="Rezitenta" prefWidth="200"/>
+            <TableColumn fx:id="rezistentaColumn" text="Rezistenta" prefWidth="200"/>
+            <TableColumn fx:id="typeColumn" text="Tip Rata" prefWidth="200"/>
         </columns>
     </TableView>
 
+    <ComboBox fx:id="comboBox" prefWidth="150.0" />
 </VBox>

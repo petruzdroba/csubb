@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,6 +25,8 @@ public class UsersViewController {
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         rezistentaColumn.setCellValueFactory(new PropertyValueFactory<>("rezistenta"));
         vitezaColumn.setCellValueFactory(new PropertyValueFactory<>("viteza"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("tip"));
+
 
         ObservableList<Duck> data = FXCollections.observableList(ducks);
 
@@ -35,6 +38,21 @@ public class UsersViewController {
     @FXML private TableColumn<Duck, String> emailColumn;
     @FXML private TableColumn<Duck, Integer> vitezaColumn;
     @FXML private TableColumn<Duck, Integer> rezistentaColumn;
+    @FXML private TableColumn<Duck, Duck.TipRata> typeColumn;
+
+    @FXML private ComboBox<String> comboBox;
+
+    @FXML public void initialize() {
+        comboBox.setItems(FXCollections.observableArrayList("All", "Flying", "Swimming", "Flying and Swimming"
+        ));
+
+        // Optional: handle selection changes
+        comboBox.setOnAction(event -> {
+            String selected = comboBox.getValue();
+            System.out.println("Selected: " + selected);
+        });
+    }
+
 
     public void setUserService(UserService userService) {
         this.userService = userService;
