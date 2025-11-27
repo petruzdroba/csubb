@@ -1,0 +1,48 @@
+Rutare statica:
+- din GUI, prin adaugarea rutelor catre clasele care nu le stie routerul
+ 
+C2 ----------- R1 ------------- R2 -------------- C2
+   10.0.0.0/24    172.16.0.0/16    192.168.0.0/24
+
+Rutare dinamica
+Rutare dinamica:
+
+Folosim RIP versiunea 2 deoarece:
+
+- suporta utilizarea subclaselor de adrese
+ 
+pe R1:
+
+CTRL + Z
+
+conf t
+
+router rip
+
+version 2
+
+no auto summary
+
+network 10.0.0.0
+
+network 172.16.0.0
+ 
+pe R2:
+
+CTRL + Z
+
+conf t
+
+router rip
+
+version 2
+
+no auto summary
+
+network 192.168.0.0
+
+network 172.16.0.0
+ 
+Pe fiecare router se poate da apoi show ip route pentru a analiza tabelele de rutare
+ 
+ 

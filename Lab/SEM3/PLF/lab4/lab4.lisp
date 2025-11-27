@@ -10,6 +10,11 @@
        main_elimina(l1...lm, n)={
             elimina(l1...lm, 1, n)
        }
+
+    Cazuri de testare:
+        (main_elimina '(0 1 0 1 0 1 0 1) 2) -> [0 0 0 0]
+        (main_elimina '(1 2 3 4 5 6 7 8 9) 1) -> NIL
+        (main_elimina '(1 2 3 4 5 6 7 8 9) 3) -> [1 2 4 5 7 8]
  |#
 
 (defun elimina (l i n)
@@ -40,6 +45,13 @@
             0   daca    l1<l2
             vale(l1...ln, 0)
         }
+
+    Cazuri de testare:
+        (main_vale '(1 2 3 4)) -> 0
+        (main_vale '(4 3 2 1)) -> 0
+        (main_vale '(4 3 2 1 5)) -> 1
+
+        T - true , Nil - False
  |#
 
 (defun vale (lista flag)
@@ -62,11 +74,11 @@
     14 c -> numarul atomilor numerici minimi dintr-o lista
 
     Model matematic:
-        flatten(l1...ln)={
+        flatten(l)={ si elimina atomii nenumerici din lista
             []      daca    n=0
-            [l1]    daca    n=1 si atom(l1)
-            flatten(l1)(+)flatten(l2...ln)  daca    lista(l1)
-            [l1](+)flatten(l2...ln)         daca    atom(l1)
+            []      daca    atom(l) si numar(l)= 0
+            [l]    daca    n=1 si atom(l)
+            flatten(l)(+)flatten(l2...ln)  daca    lista(l)
         }
 
         minim(e, l1...ln)={
@@ -85,11 +97,18 @@
             x1...xn = flatten(l1...ln)
             count(minim(x1...xn), x1...xn)
         }
+    
+    Cazuri de testare:
+        ( min_count '(1 2 3 4 5 6 7)) -> 1
+        ( min_count '(1 2 3 (1 2) ((1) 1 2) ) ) -> 4
+        ( min_count '(((((1)))))) -> 1
+
  |#
 
  (defun flatten (lst)
     (cond
         ((null lst) nil)
+        ((and (atom lst) (not (numberp lst))) nil)
         ((atom lst) (list lst))
         (T (append ( flatten (car lst)) (flatten (cdr lst))))
     )
@@ -122,37 +141,51 @@
     Model matematic:
         maxim(e, l1...ln)={
 			e	daca	n=0
+            maxim(e, l2...ln)   dac     numar(l1)=0
 			maxim(l1, l2...ln)	daca	l1 > e
 			maxim(e, l2...ln)	altfel
 		}
 
-        elimina(l1...ln, e)={
+        elimina2(l1...ln, e)={
 			[]	daca	n=0
-			elimina(l2...ln,e)	daca	l1=e
-			l1(+)elimina(l2...ln,e)		altfel	
+            l1(+)elimina2(l2...ln, 2)   numar(l1)=0
+			elimina2(l2...ln,e)	daca	l1=e
+			l1(+)elimina2(l2...ln,e)		altfel	
 		}
 
-		main_elimina(l1...ln)={
-			elimina(l1...ln, maxim(l1, l2...ln))
+		main_elimina2(l1...ln)={
+            l1(+)main_elimina2(l2...ln)     daca    numar(l1)=0
+			elimina2(l1...ln, maxim(l1, l2...ln))
 		}
+
+    Cazuri de testare:
+        (main_elimina2 '(1 2 3 4 5 6 7)) -> [1 2 3 4 5 6]
+        (main_elimina2 '(5 5 5 5 5)) -> NIL
+        (main_elimina2 '(6 1 6 2 6 3 6 4 6 5 6 6)) -> [1 2 3 4 5]
+
  |#
 
  (defun maxim (elem list) 
     (cond
         ((null list) elem)
+        ((not (numberp (car list))) (maxim elem (cdr list)))
         ((< elem (car list)) (maxim (car list) (cdr list)))
         (T (maxim elem (cdr list)))
     )
  )
 
- (defun elimina (list elem)
+ (defun elimina2 (list elem)
     (cond 
         ((null list) nil)
-        ((= elem (car list)) (elimina (cdr list) elem))
-        (T (cons (car list) (elimina(cdr list) elem)))
+        ((not (numberp (car list))) (cons (car list) (elimina2 (cdr list) elem)))
+        ((= elem (car list)) (elimina2 (cdr list) elem))
+        (T (cons (car list) (elimina2(cdr list) elem)))
     )
  )
 
- (defun main_elimina (list)
-    (elimina list (maxim (car list) (cdr list)))
+ (defun main_elimina2 (list)
+    (cond
+        ((not (numberp (car list))) (cons (car list) (main_elimina2(cdr list))))
+        (T(elimina2 list (maxim (car list) (cdr list))))
+    )
  )
