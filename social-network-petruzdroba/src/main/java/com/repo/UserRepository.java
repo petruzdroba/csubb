@@ -1,4 +1,5 @@
 package com.repo;
+
 import com.domain.*;
 import com.exceptions.RepositoryException;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class UserRepository extends AbstractDatabaseRepository<Long, User>{
+public class UserRepository extends AbstractDatabaseRepository<Long, User> {
 
     public UserRepository(String url, String user, String password) {
         super(url, user, password);
@@ -20,11 +21,11 @@ public class UserRepository extends AbstractDatabaseRepository<Long, User>{
 
     @Override
     public void add(Long key, User entity) throws SQLException {
-        String sql = "INSERT INTO users (id, username, email, password, user_type, tip_rata, viteza, rezistenta, nume, prenume, data_nasterii, ocupatie, nivel_empatie)\n"+
+        String sql = "INSERT INTO users (id, username, email, password, user_type, tip_rata, viteza, rezistenta, nume, prenume, data_nasterii, ocupatie, nivel_empatie)\n" +
                 " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try(Connection connection = getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setLong(1, entity.getId());
             ps.setString(2, entity.getUsername());
@@ -59,8 +60,8 @@ public class UserRepository extends AbstractDatabaseRepository<Long, User>{
     @Override
     public void remove(Long key) throws SQLException {
         String sql = "DELETE FROM users WHERE id = ?";
-        try(Connection connection = getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setLong(1, key);
             ps.executeUpdate();
         }
@@ -69,12 +70,12 @@ public class UserRepository extends AbstractDatabaseRepository<Long, User>{
     @Override
     public void modify(Long key, User entity) throws SQLException {
         String sql = """
-        UPDATE users SET 
-            username = ?, email = ?, password = ?, user_type = ?, 
-            tip_rata = ?, viteza = ?, rezistenta = ?,
-            nume = ?, prenume = ?, data_nasterii = ?, ocupatie = ?, nivel_empatie = ?
-        WHERE id = ?
-    """;
+                    UPDATE users SET 
+                        username = ?, email = ?, password = ?, user_type = ?, 
+                        tip_rata = ?, viteza = ?, rezistenta = ?,
+                        nume = ?, prenume = ?, data_nasterii = ?, ocupatie = ?, nivel_empatie = ?
+                    WHERE id = ?
+                """;
 
         try (Connection connection = getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -114,8 +115,8 @@ public class UserRepository extends AbstractDatabaseRepository<Long, User>{
     public User find(Long key) throws SQLException {
         String sql = "SELECT * FROM users WHERE id=?";
 
-        try(Connection connection = getConnection();
-        PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setLong(1, key);
 
             try (ResultSet rs = ps.executeQuery()) {
@@ -167,11 +168,11 @@ public class UserRepository extends AbstractDatabaseRepository<Long, User>{
             double rezistenta = rs.getDouble("rezistenta");
 
             if (tip == Duck.TipRata.FLYING) {
-                return  new FlyingDuck(id, username, email, password, tip, viteza, rezistenta);
+                return new FlyingDuck(id, username, email, password, tip, viteza, rezistenta);
             } else if (tip == Duck.TipRata.SWIMMING) {
                 return new SwimmingDuck(id, username, email, password, tip, viteza, rezistenta);
             } else {
-                return  new SwimmingFlyingDuck(id, username, email, password, tip, viteza, rezistenta);
+                return new SwimmingFlyingDuck(id, username, email, password, tip, viteza, rezistenta);
             }
 
         } else { // PERSONA
@@ -181,7 +182,7 @@ public class UserRepository extends AbstractDatabaseRepository<Long, User>{
             String ocupatie = rs.getString("ocupatie");
             int nivelEmpatie = rs.getInt("nivel_empatie");
 
-            return  new Persoana(id, username, email, password, nume, prenume, dataNasterii, ocupatie, nivelEmpatie);
+            return new Persoana(id, username, email, password, nume, prenume, dataNasterii, ocupatie, nivelEmpatie);
         }
     }
 
@@ -223,5 +224,42 @@ public class UserRepository extends AbstractDatabaseRepository<Long, User>{
         } catch (SQLException e) {
             throw new RepositoryException("Failed to fetch keys from DB: " + e.getMessage());
         }
+    }
+
+    public List<Duck> getAllDucksByType(Duck.TipRata duckType) {
+        String sql = "SELECT * FROM users WHERE tip_rata= ?";
+
+        List<Duck> ducks = new ArrayList<>();
+
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, duckType.name());
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+
+                    long id = rs.getLong("id");
+                    String username = rs.getString("username");
+                    String email = rs.getString("email");
+                    String password = rs.getString("password");
+
+                    double viteza = rs.getDouble("viteza");
+                    double rezistenta = rs.getDouble("rezistenta");
+
+                    Duck duck = switch (duckType) {
+                        case FLYING -> new FlyingDuck(id, username, email, password, duckType, viteza, rezistenta);
+                        case SWIMMING -> new SwimmingDuck(id, username, email, password, duckType, viteza, rezistenta);
+                        default -> new SwimmingFlyingDuck(id, username, email, password, duckType, viteza, rezistenta);
+                    };
+
+                    ducks.add(duck);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return ducks;
     }
 }

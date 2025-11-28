@@ -3,15 +3,15 @@ package com.service;
 import com.domain.*;
 import com.exceptions.RepositoryException;
 import com.exceptions.ValidationException;
-import com.repo.AbstractDatabaseRepository;
-import com.repo.AbstractRepository;
-import com.repo.CardRepository;
-import com.repo.FriendshipRepository;
+import com.repo.*;
 import com.validators.DuckValidator;
 import com.validators.PersoanaValidator;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class UserService extends AbstractService<Long, User> {
     private final PersoanaValidator persoanaValidator = new PersoanaValidator();
@@ -198,5 +198,15 @@ public class UserService extends AbstractService<Long, User> {
                 .filter( u -> u.getUsername().equals(username))
                 .findFirst().
                 orElse(null);
+    }
+
+    public Collection<Duck> getAllDucks() {
+        return repository.getAll().stream().filter(Duck.class::isInstance).map(Duck.class::cast).toList();
+    }
+
+    public List<Duck> getDucksByType(Duck.TipRata duckType) throws RuntimeException{
+        if(repository instanceof UserRepository)
+            return ((UserRepository) repository).getAllDucksByType(duckType);
+        throw new RuntimeException("User service constructed wrong");
     }
 }

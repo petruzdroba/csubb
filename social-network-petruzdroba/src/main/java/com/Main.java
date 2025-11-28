@@ -1,21 +1,18 @@
 package com;
 
 import com.domain.DataBaseConfig;
-import com.repo.CardRepository;
-import com.repo.EventRepository;
-import com.repo.UserRepository;
-import com.repo.FriendshipRepository;
-import com.service.CardService;
-import com.service.EventService;
-import com.service.FriendshipService;
-import com.service.UserService;
+import com.repo.*;
+import com.service.*;
 import com.ui.*;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        DataBaseConfig config = new DataBaseConfig("jdbc:postgresql://localhost:5432/social_network", "sn_user", "sn_pass");
+        DataBaseConfig config = new DataBaseConfig(
+                "jdbc:postgresql://localhost:5432/social_network",
+                "sn_user", "sn_pass"
+        );
 
         UserRepository userRepo = new UserRepository(config);
         FriendshipRepository friendshipRepo = new FriendshipRepository(config);
@@ -27,7 +24,6 @@ public class Main {
         CardService cardService = new CardService(cardRepository, userRepo);
         EventService eventService = new EventService(eventRepository, cardService, userRepo);
 
-
         UserConsole userConsole = new UserConsole(userService);
         FriendshipConsole friendshipConsole = new FriendshipConsole(friendshipService);
         CardConsole cardConsole = new CardConsole(cardService);
@@ -36,7 +32,8 @@ public class Main {
         MainConsole mainConsole = new MainConsole(
                 List.of(userConsole, friendshipConsole, cardConsole, eventConsole)
         );
-
+        DuckApplication.main(args);
         mainConsole.run();
+
     }
 }
