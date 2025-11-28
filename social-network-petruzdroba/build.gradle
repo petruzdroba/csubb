@@ -13,7 +13,7 @@ repositories {
 }
 
 application {
-    mainClass = 'com.Main'
+    mainClass.set('com.DuckApplication.java')
 }
 
 

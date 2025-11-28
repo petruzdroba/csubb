@@ -64,9 +64,13 @@ public class UsersViewController {
             if (selected.equals("ALL")) {
                 loadData(new ArrayList<>(userService.getAllDucks()));
             } else
-                loadData(userService.getAllDucks().stream()
-                        .filter(d -> d.getTip() == Duck.TipRata.valueOf(selected))
-                        .collect(Collectors.toList()));
+                try {
+                    loadData(userService.getDucksByType(Duck.TipRata.valueOf(selected)));
+                }
+                catch (RuntimeException e){
+                    System.out.println(e.getMessage());
+                    Platform.exit();
+                }
         });
     }
 
