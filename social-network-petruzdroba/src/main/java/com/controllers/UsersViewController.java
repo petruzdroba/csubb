@@ -5,23 +5,27 @@ import com.service.UserService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class UsersViewController {
     private UserService userService;
+    private int pageCount = 1;
+    private int pageSize = 6;
 
     public UsersViewController() {
     }
 
     public void loadData(List<Duck> ducks) {
+        double rowHeight = 24;
+        tableView.setFixedCellSize(rowHeight);
+        tableView.setPrefHeight(5 * rowHeight + 28);
+
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -54,34 +58,84 @@ public class UsersViewController {
     private ComboBox<String> comboBox;
 
     @FXML
+    private Button prevButton;
+    @FXML
+    private Button nextButton;
+    @FXML
+    private Label pageLabel;
+
+
+    @FXML
     public void initialize() {
-        comboBox.setItems(FXCollections.observableArrayList("ALL", "FLYING", "SWIMMING", "FLYING_AND_SWIMMING"
-        ));
+        comboBox.setItems(FXCollections.observableArrayList("ALL", "FLYING", "SWIMMING", "FLYING_AND_SWIMMING"));
         comboBox.setValue("ALL");
 
         comboBox.setOnAction(event -> {
-            String selected = comboBox.getValue();
-            if (selected.equals("ALL")) {
-                loadData(new ArrayList<>(userService.getAllDucks()));
-            } else
-                try {
-                    loadData(userService.getDucksByType(Duck.TipRata.valueOf(selected)));
-                }
-                catch (RuntimeException e){
-                    System.out.println(e.getMessage());
-                    Platform.exit();
-                }
+            pageCount = 1;
+            loadCurrentPage();
         });
+
+        loadCurrentPage();
+    }
+
+    private void loadCurrentPage() {
+        if (userService == null) return;
+
+        int offset = (pageCount - 1) * pageSize;
+        String selected = comboBox.getValue();
+
+        try {
+            if (selected.equals("ALL")) {
+                loadData(new ArrayList<Duck>(userService.getAllDucksPage(offset, pageSize)));
+            } else {
+                loadData(userService.getPaginatedDucksByType(Duck.TipRata.valueOf(selected), offset, pageSize));
+            }
+            pageLabel.setText("Page: " + pageCount);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            Platform.exit();
+        }
     }
 
 
     public void setUserService(UserService userService) {
         this.userService = userService;
-        loadData(new ArrayList<>(userService.getAllDucks()));
+        loadCurrentPage();
     }
 
     @FXML
     private void onExitButtonClick() {
         Platform.exit();
     }
+
+    public void onPrevPage() {
+        if (pageCount > 1) {
+            pageCount--;
+            loadCurrentPage();
+        }
+    }
+
+    public void onNextPage() {
+        int offset = pageCount * pageSize;
+        String selected = comboBox.getValue();
+
+        List<Duck> nextPage;
+
+        if (selected.equals("ALL")) {
+            nextPage = new ArrayList<>(userService.getAllDucksPage(offset, pageSize));
+        } else {
+            nextPage = userService.getPaginatedDucksByType(
+                    Duck.TipRata.valueOf(selected),
+                    offset,
+                    pageSize
+            );
+        }
+
+        if (!nextPage.isEmpty()) {
+            pageCount++;
+            loadData(nextPage);
+            pageLabel.setText("Page: " + pageCount);
+        }
+    }
+
 }

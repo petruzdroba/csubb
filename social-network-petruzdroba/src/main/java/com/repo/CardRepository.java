@@ -204,5 +204,25 @@ public class CardRepository extends AbstractDatabaseRepository<Duck.TipRata, Car
         }
     }
 
+    @Override
+    public int pageCount(int pageSize) {
+        String sql = "SELECT COUNT(*) AS total FROM caards";
+
+        try (Connection connection = getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (rs.next()) {
+                int totalRows = rs.getInt("total");
+                return (int) Math.ceil((double) totalRows / pageSize);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to get page count: " + e.getMessage());
+        }
+
+        return 0;
+    }
+
 
 }

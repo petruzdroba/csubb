@@ -204,9 +204,22 @@ public class UserService extends AbstractService<Long, User> {
         return repository.getAll().stream().filter(Duck.class::isInstance).map(Duck.class::cast).toList();
     }
 
+    public Collection<Duck> getAllDucksPage(int offset, int limit) {
+        return repository.getPage(offset, limit).stream().filter(Duck.class::isInstance).map(Duck.class::cast).toList();
+    }
+
     public List<Duck> getDucksByType(Duck.TipRata duckType) throws RuntimeException{
         if(repository instanceof UserRepository)
             return ((UserRepository) repository).getAllDucksByType(duckType);
+        throw new RuntimeException("User service constructed wrong");
+    }
+
+    public List<Duck> getPaginatedDucksByType(Duck.TipRata duckType, int offset, int limit) throws RuntimeException,ValidationException{
+        if(offset < 0 || limit < 1)
+            throw new ValidationException("Offset or Limit values below 0");
+
+        if(repository instanceof UserRepository)
+            return ((UserRepository) repository).getPaginatedDucksByType(duckType, offset, limit);
         throw new RuntimeException("User service constructed wrong");
     }
 }

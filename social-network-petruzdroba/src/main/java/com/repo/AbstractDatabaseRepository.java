@@ -35,5 +35,6 @@ public abstract class AbstractDatabaseRepository<K,T>{
     public abstract Collection<T> getAll();
     public abstract Collection<K> getKeys();
 
-    public abstract Collection<T> getPage(int offset, int limit) throws SQLException;
+    public abstract Collection<T> getPage(int offset, int limit);
+    public abstract int pageCount(int pageSize);
 }

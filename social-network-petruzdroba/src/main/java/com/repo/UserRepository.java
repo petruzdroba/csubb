@@ -251,6 +251,26 @@ public class UserRepository extends AbstractDatabaseRepository<Long, User> {
         }
     }
 
+    @Override
+    public int pageCount(int pageSize) {
+        String sql = "SELECT COUNT(*) AS total FROM users";
+
+        try (Connection connection = getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (rs.next()) {
+                int totalRows = rs.getInt("total");
+                return (int) Math.ceil((double) totalRows / pageSize);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to get page count: " + e.getMessage());
+        }
+
+        return 0;
+    }
+
     public List<Duck> getAllDucksByType(Duck.TipRata duckType) {
         String sql = "SELECT * FROM users WHERE tip_rata= ?";
 

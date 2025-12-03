@@ -1,5 +1,6 @@
 package com.service;
 
+import com.exceptions.RepositoryException;
 import com.repo.AbstractDatabaseRepository;
 import com.repo.AbstractRepository;
 
@@ -27,5 +28,14 @@ public abstract class AbstractService<K, T> {
      */
     public Collection<T> getAll(){
         return repository.getAll();
+    }
+
+    public Collection<T> getPage(int offset, int limit) {return  repository.getPage(offset, limit); }
+
+    public int pageCount(int pageSize) throws RepositoryException {
+        if(pageSize < 1)
+            throw new RepositoryException("Page Size cannot be negative");
+
+        return repository.pageCount(pageSize);
     }
 }
