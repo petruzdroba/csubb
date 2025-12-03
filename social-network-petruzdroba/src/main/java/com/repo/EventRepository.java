@@ -229,6 +229,34 @@ public class EventRepository extends AbstractDatabaseRepository<Long, Event> {
         return keys;
     }
 
+    @Override
+    public Collection<Event> getPage(int offset, int limit) throws SQLException {
+        String sql = "SELECT id FROM events ORDER BY id LIMIT ? OFFSET ?";
+        List<Event> events = new ArrayList<>();
+
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, limit);
+            ps.setInt(2, offset);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    long id = rs.getLong("id");
+                    Event e = find(id);
+                    if (e != null) {
+                        events.add(e);
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RepositoryException(e.getMessage());
+        }
+
+        return events;
+    }
+
     public void subscribe(long eventId, User user) {
         String sql = "INSERT INTO event_subscribers (event_id, user_id) VALUES (?, ?)";
 

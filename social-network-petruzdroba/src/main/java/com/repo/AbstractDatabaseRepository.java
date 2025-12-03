@@ -34,4 +34,6 @@ public abstract class AbstractDatabaseRepository<K,T>{
     public abstract T find(K key) throws  SQLException;
     public abstract Collection<T> getAll();
     public abstract Collection<K> getKeys();
+
+    public abstract Collection<T> getPage(int offset, int limit) throws SQLException;
 }

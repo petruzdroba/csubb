@@ -116,4 +116,29 @@ public class FriendshipRepository extends AbstractDatabaseRepository<String, Fri
             throw new RepositoryException("Failed to fetch keys from DB: " + e.getMessage());
         }
     }
+
+    @Override
+    public Collection<Friendship> getPage(int offset, int limit) {
+        String sql = "SELECT * FROM friendships ORDER BY friendship_id LIMIT ? OFFSET ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, limit);
+            stmt.setInt(2, offset);
+
+            ResultSet rs = stmt.executeQuery();
+
+            List<Friendship> values = new ArrayList<>();
+            while (rs.next()) {
+                Friendship entity = mapResultSetToEntity(rs);
+                values.add(entity);
+            }
+
+            return values;
+
+        } catch (SQLException e) {
+            throw new RepositoryException("Failed to fetch paginated values: " + e.getMessage());
+        }
+    }
 }
