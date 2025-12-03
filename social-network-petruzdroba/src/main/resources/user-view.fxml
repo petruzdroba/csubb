@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.ui.controllers.UserViewController"
+            prefHeight="400.0" prefWidth="600.0">
+    <Label text="Select type:"/>
+    <ComboBox fx:id="typeSelector"/>
+
+    <TextField fx:id="idField" promptText="Id"/>
+    <TextField fx:id="usernameField" promptText="Username"/>
+    <TextField fx:id="emailField" promptText="Email"/>
+    <TextField fx:id="passwordField" promptText="Password"/>
+
+
+    <VBox fx:id="persoanaForm" visible="false" managed="false">
+        <TextField fx:id="persoanaNume" promptText="Nume"/>
+        <TextField fx:id="persoanaPrenume" promptText="Prenume"/>
+        <TextField fx:id="persoanaOcupatie" promptText="Ocupatie"/>
+        <TextField fx:id="persoanaEmpatie" promptText="Empatie"/>
+        <DatePicker fx:id="persoanaDataNasterii" promptText="MM-dd-yyyy"/>
+        <Button text="Add Persoana" onAction="#addPersoana"/>
+    </VBox>
+
+    <VBox fx:id="duckForm" visible="false" managed="false">
+        <ComboBox fx:id="duckType"/>
+        <TextField fx:id="duckViteza" promptText="Viteza"/>
+        <TextField fx:id="duckRezistenta" promptText="Rezistenta"/>
+
+        <Button text="Add Duck" onAction="#addDuck"/>
+    </VBox>
+
+</VBox>

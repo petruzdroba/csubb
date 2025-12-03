@@ -1,9 +1,7 @@
-package com.ui;
+package com.ui.console;
 
 import com.domain.Card;
 import com.domain.Duck;
-import com.domain.User;
-import com.exceptions.RepositoryException;
 import com.service.CardService;
 
 import java.sql.SQLException;
