@@ -1,0 +1,15 @@
+DHCP 
+Router(config)#
+
+Router(config)#ip dhcp pool retea10
+
+Router(dhcp-config)#network 10.0.0.0 255.255.255.0
+
+Router(dhcp-config)#default-router 10.0.0.1
+
+Router(dhcp-config)#dns-server 172.30.16.7
+
+Router(dhcp-config)#exit
+
+Router(config)#ip dhcp excluded-address 10.0.0.1 10.0.0.10
+ 
