@@ -43,6 +43,7 @@ public class FriendshipService extends AbstractService<String, Friendship> {
             throw new ValidationException("User with an id cannot be found");
 
         repository.add(friendship.getFriendshipId(), friendship);
+        notifyObservers();
     }
 
     /**
@@ -62,6 +63,7 @@ public class FriendshipService extends AbstractService<String, Friendship> {
         friendshipValidator.validate(friendship);
 
         repository.remove(friendship.getFriendshipId());
+        notifyObservers();
     }
 
     /**
@@ -227,6 +229,28 @@ public class FriendshipService extends AbstractService<String, Friendship> {
 
 
         for (Friendship f : repository.getAll()) {
+            try {
+                User user1 = userRepository.find(f.getUserId1());
+                User user2 = userRepository.find(f.getUserId2());
+
+                if (user1 != null && user2 != null) {
+                    prettyList.add(new AbstractMap.SimpleEntry<>(user1, user2));
+                } else {
+                    System.out.println("Warning: friendship references missing user(s): " + f);
+                }
+            } catch (SQLException e) {
+                throw new RepositoryException(e.getMessage());
+            }
+        }
+
+        return prettyList;
+    }
+
+    public Collection<Map.Entry<User, User>> getAllPretty(int offset, int limit) {
+        List<Map.Entry<User, User>> prettyList = new ArrayList<>();
+
+
+        for (Friendship f : repository.getPage(offset, limit)) {
             try {
                 User user1 = userRepository.find(f.getUserId1());
                 User user2 = userRepository.find(f.getUserId2());

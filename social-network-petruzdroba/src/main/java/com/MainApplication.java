@@ -1,11 +1,13 @@
 package com;
 
+import com.service.FriendshipService;
 import com.ui.controllers.DuckFilterController;
 import com.domain.DataBaseConfig;
 import com.repo.CardRepository;
 import com.repo.UserRepository;
 import com.repo.FriendshipRepository;
 import com.service.UserService;
+import com.ui.controllers.FriendshipViewController;
 import com.ui.controllers.UserViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,14 +27,25 @@ public class MainApplication extends Application {
         Scene userScene = new Scene(userLoader.load());
         UserViewController userController = userLoader.getController();
 
+        FXMLLoader friendshipLoader = new FXMLLoader(getClass().getResource("/friendship-view.fxml"));
+        Scene friendshipScene = new Scene(friendshipLoader.load());
+        FriendshipViewController friendshipController = friendshipLoader.getController();
+
         DataBaseConfig config = new DataBaseConfig(
                 "jdbc:postgresql://localhost:5432/social_network",
                 "sn_user",
                 "sn_pass"
         );
+        UserRepository userRepository = new UserRepository(config);
+
         UserService userService = new UserService(
-                new UserRepository(config),
+                userRepository,
                 new CardRepository(config)
+        );
+
+        FriendshipService friendshipService = new FriendshipService(
+                new FriendshipRepository(config),
+                userRepository
         );
 
         controller.setUserService(userService);
@@ -46,6 +59,12 @@ public class MainApplication extends Application {
         userStage.setTitle("User View");
         userStage.setScene(userScene);
         userStage.show();
+
+        friendshipController.setFriendshipService(friendshipService);
+        Stage friendshipStage = new Stage();
+        friendshipStage.setTitle("Friendship View");
+        friendshipStage.setScene(friendshipScene);
+        friendshipStage.show();
     }
 
     public static void main(String[] args) {
