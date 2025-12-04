@@ -6,13 +6,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.geometry.Insets?>
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.ui.controllers.UserViewController"
-      spacing="10"
-      prefWidth="800">
+      spacing="20"
+      prefWidth="800"
+      alignment="TOP_CENTER">
 
-    <VBox HBox.hgrow="ALWAYS">
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <VBox HBox.hgrow="ALWAYS" spacing="15" alignment="TOP_CENTER">
         <TableView fx:id="tableView" prefHeight="300" prefWidth="500">
             <columns>
                 <TableColumn fx:id="idColumn" text="ID" prefWidth="100"/>
@@ -28,17 +34,18 @@
         </HBox>
     </VBox>
 
-    <VBox prefWidth="250" maxWidth="300">
-        <Label text="Select type:"/>
-        <ComboBox fx:id="typeSelector"/>
-
+    <VBox prefWidth="250" maxWidth="300" spacing="10">
         <TextField fx:id="idField" promptText="Id"/>
         <TextField fx:id="usernameField" promptText="Username"/>
         <TextField fx:id="emailField" promptText="Email"/>
         <TextField fx:id="passwordField" promptText="Password"/>
 
+        <HBox spacing="5" alignment="CENTER_LEFT">
+            <Label text="Select type:"/>
+            <ComboBox fx:id="typeSelector"/>
+        </HBox>
 
-        <VBox fx:id="persoanaForm" visible="false" managed="false">
+        <VBox fx:id="persoanaForm" visible="false" managed="false" spacing="8">
             <TextField fx:id="persoanaNume" promptText="Nume"/>
             <TextField fx:id="persoanaPrenume" promptText="Prenume"/>
             <TextField fx:id="persoanaOcupatie" promptText="Ocupatie"/>
@@ -47,13 +54,19 @@
             <Button text="Add Persoana" onAction="#addPersoana"/>
         </VBox>
 
-        <VBox fx:id="duckForm" visible="false" managed="false">
-            <ComboBox fx:id="duckType"/>
+        <VBox fx:id="duckForm" visible="false" managed="false" spacing="8">
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label text="Duck type:"/>
+                <ComboBox fx:id="duckType"/>
+            </HBox>
             <TextField fx:id="duckViteza" promptText="Viteza"/>
             <TextField fx:id="duckRezistenta" promptText="Rezistenta"/>
-
             <Button text="Add Duck" onAction="#addDuck"/>
         </VBox>
-    </VBox>
 
+        <HBox spacing="10">
+            <Button text="Clear" onAction="#clearForm"/>
+            <Button text="Delete" onAction="#deleteUser"/>
+        </HBox>
+    </VBox>
 </HBox>

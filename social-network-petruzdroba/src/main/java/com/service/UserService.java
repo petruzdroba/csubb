@@ -35,7 +35,7 @@ public class UserService extends AbstractService<Long, User> {
      * @param prenume      Prenumele persoanei.
      * @param dataNasterii Data nașterii persoanei.
      * @param ocupatie     Ocupația persoanei.
-     * @throws ValidationException                          id negativ, string length negativ sau peste 50, nivel empatie negativ sau peste 10.
+     * @throws ValidationException                id negativ, string length negativ sau peste 50, nivel empatie negativ sau peste 10.
      * @throws com.exceptions.RepositoryException daca exista un alt utilizator {@link User} cu acelasi id
      * @see com.validators.PersoanaValidator
      * @see com.repo.AbstractRepository#add(Object, Object)
@@ -63,8 +63,8 @@ public class UserService extends AbstractService<Long, User> {
      * @param tip        Tipul de Duck (TipRata).
      * @param viteza     Valoarea vitezei Duck-ului.
      * @param rezistenta Valoarea rezistenței Duck-ului.
-     * @throws ValidationException                          daca id negativ, string length negativ sau peste 50, TipRata nu apartine {@link com.domain.Duck.TipRata}.
-     * @throws ValidationException                          daca nu exista cardul cu cardId, {@link Card}
+     * @throws ValidationException                daca id negativ, string length negativ sau peste 50, TipRata nu apartine {@link com.domain.Duck.TipRata}.
+     * @throws ValidationException                daca nu exista cardul cu cardId, {@link Card}
      * @throws com.exceptions.RepositoryException daca exista un utilizator cu id
      * @see com.repo.AbstractRepository#add(Object, Object)
      * @see com.validators.DuckValidator
@@ -84,8 +84,8 @@ public class UserService extends AbstractService<Long, User> {
         repository.add(id, user);
         notifyObservers();
 
-        try{
-        cardRepository.addDuck(tip, id);
+        try {
+            cardRepository.addDuck(tip, id);
         } catch (SQLException e) {
             throw new RepositoryException(e.getMessage());
         }
@@ -106,7 +106,7 @@ public class UserService extends AbstractService<Long, User> {
      * @param dataNasterii Data nasterii persoanei.
      * @param ocupatie     Ocupatia persoanei.
      * @param nivelEmpatie Nivelul de empatie al persoanei (0-10).
-     * @throws ValidationException                          Daca id-ul este negativ, lungimea string-urilor este negativa sau peste 50, sau nivelEmpatie este in afara intervalului 0-10.
+     * @throws ValidationException                Daca id-ul este negativ, lungimea string-urilor este negativa sau peste 50, sau nivelEmpatie este in afara intervalului 0-10.
      * @throws com.exceptions.RepositoryException Daca exista conflicte de id in repository sau persoana nu exista.
      * @see com.validators.PersoanaValidator
      * @see com.repo.AbstractRepository#modify(Object, Object)
@@ -131,8 +131,8 @@ public class UserService extends AbstractService<Long, User> {
      * @param tip        Tipul de Duck (TipRata).
      * @param viteza     Valoarea vitezei Duck-ului.
      * @param rezistenta Valoarea rezistentei Duck-ului.
-     * @throws ValidationException                          Daca id-ul este negativ, lungimea string-urilor este negativa sau peste 50, sau tipul nu este valid {@link Duck.TipRata}.
-     * @throws ValidationException                          Daca cardId-ul nu exista in {@link CardRepository}.
+     * @throws ValidationException                Daca id-ul este negativ, lungimea string-urilor este negativa sau peste 50, sau tipul nu este valid {@link Duck.TipRata}.
+     * @throws ValidationException                Daca cardId-ul nu exista in {@link CardRepository}.
      * @throws com.exceptions.RepositoryException Daca exista deja un utilizator cu acelasi id in repository.
      * @see com.repo.AbstractRepository#modify(Object, Object)
      * @see com.validators.DuckValidator
@@ -160,7 +160,7 @@ public class UserService extends AbstractService<Long, User> {
      * Cascade delete cu prieteniile also -> ON CASCADE DELETE ON DATABASE
      *
      * @param userId Identificatorul unic al utilizatorului care trebuie sters.
-     * @throws ValidationException                          Daca userId este negativ.
+     * @throws ValidationException                Daca userId este negativ.
      * @throws com.exceptions.RepositoryException daca nu exista id-ul
      * @see com.repo.AbstractRepository#remove(Object)
      */
@@ -168,12 +168,12 @@ public class UserService extends AbstractService<Long, User> {
         if (userId < 0)
             throw new ValidationException("User id cannot be negative");
         repository.remove(userId);
-
+        notifyObservers();
 
         User user = repository.find(userId);
         if (user instanceof Duck duck) {
-            try{
-            cardRepository.removeDuck(duck.getTip(), userId);
+            try {
+                cardRepository.removeDuck(duck.getTip(), userId);
 
             } catch (SQLException e) {
                 throw new RepositoryException(e.getMessage());
@@ -194,7 +194,7 @@ public class UserService extends AbstractService<Long, User> {
      */
     public User findUserByName(String username) {
         return repository.getAll().stream()
-                .filter( u -> u.getUsername().equals(username))
+                .filter(u -> u.getUsername().equals(username))
                 .findFirst().
                 orElse(null);
     }
@@ -207,17 +207,17 @@ public class UserService extends AbstractService<Long, User> {
         return repository.getPage(offset, limit).stream().filter(Duck.class::isInstance).map(Duck.class::cast).toList();
     }
 
-    public List<Duck> getDucksByType(Duck.TipRata duckType) throws RuntimeException{
-        if(repository instanceof UserRepository)
+    public List<Duck> getDucksByType(Duck.TipRata duckType) throws RuntimeException {
+        if (repository instanceof UserRepository)
             return ((UserRepository) repository).getAllDucksByType(duckType);
         throw new RuntimeException("User service constructed wrong");
     }
 
-    public List<Duck> getPaginatedDucksByType(Duck.TipRata duckType, int offset, int limit) throws RuntimeException,ValidationException{
-        if(offset < 0 || limit < 1)
+    public List<Duck> getPaginatedDucksByType(Duck.TipRata duckType, int offset, int limit) throws RuntimeException, ValidationException {
+        if (offset < 0 || limit < 1)
             throw new ValidationException("Offset or Limit values below 0");
 
-        if(repository instanceof UserRepository)
+        if (repository instanceof UserRepository)
             return ((UserRepository) repository).getPaginatedDucksByType(duckType, offset, limit);
         throw new RuntimeException("User service constructed wrong");
     }

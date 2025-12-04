@@ -2,11 +2,13 @@ package com.ui.controllers;
 
 import com.domain.Duck;
 import com.domain.Observer;
+import com.domain.Persoana;
 import com.domain.User;
 import com.service.UserService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -19,7 +21,7 @@ import java.util.List;
 public class UserViewController implements Observer {
     private UserService userService;
     private int pageCount = 1;
-    private int pageSize = 5;
+    private final int pageSize = 5;
 
     @FXML
     private ComboBox<String> typeSelector;
@@ -78,6 +80,7 @@ public class UserViewController implements Observer {
         this.userService = userService;
         this.userService.addObserver(this);
         loadCurrentPage();
+        updatePageButtons();
     }
 
     @FXML
@@ -91,6 +94,36 @@ public class UserViewController implements Observer {
 
         duckType.setItems(FXCollections.observableArrayList("FLYING", "SWIMMING", "FLYING_AND_SWIMMING"));
         duckType.setValue("FLYING");
+
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, selectedUser) -> {
+            if (selectedUser != null) {
+                idField.setText(String.valueOf(selectedUser.getId()));
+                usernameField.setText(selectedUser.getUsername());
+                emailField.setText(selectedUser.getEmail());
+                passwordField.setText(selectedUser.getPassword());
+
+                if (selectedUser instanceof Duck duck) {
+                    typeSelector.setValue("Duck");
+                    updateFormVisibility();
+
+                    duckViteza.setText(String.valueOf(duck.getViteza()));
+                    duckRezistenta.setText(String.valueOf(duck.getRezistenta()));
+                    duckType.setValue(duck.getTip().name());
+
+                } else {
+                    typeSelector.setValue("Persoana");
+                    updateFormVisibility();
+
+                    Persoana persoana = (Persoana) selectedUser;
+                    persoanaNume.setText(persoana.getNume());
+                    persoanaPrenume.setText(persoana.getPrenume());
+                    persoanaOcupatie.setText(persoana.getOcupatie());
+                    persoanaEmpatie.setText(String.valueOf(persoana.getNivelEmpatie()));
+                    persoanaDataNasterii.setValue(persoana.getDataNasterii());
+                }
+            }
+        });
+
 
         loadCurrentPage();
     }
@@ -125,9 +158,9 @@ public class UserViewController implements Observer {
             clearForm();
 
         } catch (NumberFormatException e) {
-            System.out.println("ID and Empatie must be numbers");
+            showError("ID and Empatie must be numbers");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            showError(e.getMessage());
         }
     }
 
@@ -154,7 +187,7 @@ public class UserViewController implements Observer {
             loadData(new ArrayList<User>(userService.getPage(offset, pageSize)));
             pageLabel.setText("Page: " + pageCount);
         } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+            showError(e.getMessage());
             Platform.exit();
         }
     }
@@ -169,8 +202,8 @@ public class UserViewController implements Observer {
             String email = emailField.getText().trim();
             String password = passwordField.getText().trim();
 
-            int viteza = Integer.parseInt(duckViteza.getText().trim());
-            int rezistenta = Integer.parseInt(duckRezistenta.getText().trim());
+            double viteza = Double.parseDouble(duckViteza.getText().trim());
+            double rezistenta = Double.parseDouble(duckRezistenta.getText().trim());
 
             String type = duckType.getValue();
 
@@ -187,13 +220,14 @@ public class UserViewController implements Observer {
             clearForm();
 
         } catch (NumberFormatException e) {
-            System.out.println("ID, viteza, and rezistenta must be numbers");
+            showError("ID, viteza, and rezistenta must be numbers");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            showError(e.getMessage());
         }
     }
 
 
+    @FXML
     private void clearForm() {
         idField.clear();
         usernameField.clear();
@@ -210,18 +244,47 @@ public class UserViewController implements Observer {
         duckType.setValue("FLYING");
     }
 
+    private void updatePageButtons() {
+        prevButton.setDisable(pageCount <= 1);
+        nextButton.setDisable(pageCount >= userService.pageCount(pageSize));
+    }
+
     public void onPrevPage() {
         if (pageCount > 1) {
             pageCount--;
             loadCurrentPage();
         }
+
+        updatePageButtons();
     }
 
     public void onNextPage() {
-        if(pageCount < userService.pageCount(pageSize)){
+        if (pageCount < userService.pageCount(pageSize)) {
             pageCount++;
             loadCurrentPage();
         }
+
+        updatePageButtons();
+    }
+
+    public void deleteUser() {
+        try{
+            long id = Long.parseLong(idField.getText().trim());
+            userService.remove(id);
+            clearForm();
+        }catch (NumberFormatException e) {
+            showError("ID must be numbers");
+        } catch (Exception e) {
+            showError(e.getMessage());
+        }
+    }
+
+    private void showError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @Override

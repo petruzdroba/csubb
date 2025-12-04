@@ -1,7 +1,6 @@
 package com.ui.controllers;
 
 import com.domain.Duck;
-import com.domain.Observable;
 import com.domain.Observer;
 import com.service.UserService;
 import javafx.application.Platform;
@@ -17,7 +16,21 @@ import java.util.List;
 public class DuckFilterController implements Observer {
     private UserService userService;
     private int pageCount = 1;
-    private int pageSize = 6;
+    private final int pageSize = 7;
+
+    @FXML private TableView<Duck> tableView;
+    @FXML private TableColumn<Duck, Integer> idColumn;
+    @FXML private TableColumn<Duck, String> usernameColumn;
+    @FXML private TableColumn<Duck, String> emailColumn;
+    @FXML private TableColumn<Duck, Integer> vitezaColumn;
+    @FXML private TableColumn<Duck, Integer> rezistentaColumn;
+    @FXML private TableColumn<Duck, Duck.TipRata> typeColumn;
+
+    @FXML private ComboBox<String> comboBox;
+
+    @FXML private Button prevButton;
+    @FXML private Button nextButton;
+    @FXML private Label pageLabel;
 
     public DuckFilterController() {
     }
@@ -29,9 +42,11 @@ public class DuckFilterController implements Observer {
     }
 
     public void loadData(List<Duck> ducks) {
-        double rowHeight = 24;
+        double rowHeight = 26;
         tableView.setFixedCellSize(rowHeight);
-        tableView.setPrefHeight(5 * rowHeight + 28);
+
+        int rows = ducks.size();
+        tableView.setPrefHeight(rows * rowHeight + 28);
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -45,32 +60,6 @@ public class DuckFilterController implements Observer {
 
         tableView.setItems(data);
     }
-
-    @FXML
-    private TableView<Duck> tableView;
-    @FXML
-    private TableColumn<Duck, Integer> idColumn;
-    @FXML
-    private TableColumn<Duck, String> usernameColumn;
-    @FXML
-    private TableColumn<Duck, String> emailColumn;
-    @FXML
-    private TableColumn<Duck, Integer> vitezaColumn;
-    @FXML
-    private TableColumn<Duck, Integer> rezistentaColumn;
-    @FXML
-    private TableColumn<Duck, Duck.TipRata> typeColumn;
-
-    @FXML
-    private ComboBox<String> comboBox;
-
-    @FXML
-    private Button prevButton;
-    @FXML
-    private Button nextButton;
-    @FXML
-    private Label pageLabel;
-
 
     @FXML
     public void initialize() {
@@ -118,7 +107,7 @@ public class DuckFilterController implements Observer {
     }
 
     public void onNextPage() {
-        int offset = pageCount * pageSize;
+        int offset = pageCount * pageSize ;
         String selected = comboBox.getValue();
 
         List<Duck> nextPage;
