@@ -8,7 +8,6 @@ import com.service.UserService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,10 +17,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserViewController implements Observer {
-    private UserService userService;
-    private int pageCount = 1;
-    private final int pageSize = 5;
+public class UserViewController extends AbstractViewController<Long, User> implements Observer {
 
     @FXML
     private ComboBox<String> typeSelector;
@@ -38,13 +34,6 @@ public class UserViewController implements Observer {
     private TableColumn<User, String> usernameColumn;
     @FXML
     private TableColumn<User, String> emailColumn;
-
-    @FXML
-    private Button prevButton;
-    @FXML
-    private Button nextButton;
-    @FXML
-    private Label pageLabel;
 
     @FXML
     private TextField idField;
@@ -77,8 +66,8 @@ public class UserViewController implements Observer {
     }
 
     public void setUserService(UserService userService) {
-        this.userService = userService;
-        this.userService.addObserver(this);
+        this.service = userService;
+        userService.addObserver(this);
         loadCurrentPage();
         updatePageButtons();
     }
@@ -87,9 +76,7 @@ public class UserViewController implements Observer {
     public void initialize() {
         typeSelector.setItems(FXCollections.observableArrayList("Persoana", "Duck"));
         typeSelector.setValue("Persoana");
-
         typeSelector.setOnAction(event -> updateFormVisibility());
-
         updateFormVisibility();
 
         duckType.setItems(FXCollections.observableArrayList("FLYING", "SWIMMING", "FLYING_AND_SWIMMING"));
@@ -105,15 +92,12 @@ public class UserViewController implements Observer {
                 if (selectedUser instanceof Duck duck) {
                     typeSelector.setValue("Duck");
                     updateFormVisibility();
-
                     duckViteza.setText(String.valueOf(duck.getViteza()));
                     duckRezistenta.setText(String.valueOf(duck.getRezistenta()));
                     duckType.setValue(duck.getTip().name());
-
                 } else {
                     typeSelector.setValue("Persoana");
                     updateFormVisibility();
-
                     Persoana persoana = (Persoana) selectedUser;
                     persoanaNume.setText(persoana.getNume());
                     persoanaPrenume.setText(persoana.getPrenume());
@@ -123,40 +107,33 @@ public class UserViewController implements Observer {
                 }
             }
         });
-
-
-        loadCurrentPage();
     }
 
     private void updateFormVisibility() {
-        String selected = typeSelector.getValue();
-        persoanaForm.setVisible("Persoana".equals(selected));
-        persoanaForm.setManaged("Persoana".equals(selected));
-        duckForm.setVisible("Duck".equals(selected));
-        duckForm.setManaged("Duck".equals(selected));
+        boolean isPersoana = "Persoana".equals(typeSelector.getValue());
+        persoanaForm.setVisible(isPersoana);
+        persoanaForm.setManaged(isPersoana);
+
+        boolean isDuck = "Duck".equals(typeSelector.getValue());
+        duckForm.setVisible(isDuck);
+        duckForm.setManaged(isDuck);
     }
 
     @FXML
-    private void addPersoana() {
+    public void addPersoana() {
         try {
             long id = Long.parseLong(idField.getText().trim());
-
             String username = usernameField.getText().trim();
             String email = emailField.getText().trim();
             String password = passwordField.getText().trim();
             String nume = persoanaNume.getText().trim();
             String prenume = persoanaPrenume.getText().trim();
             String ocupatie = persoanaOcupatie.getText().trim();
-
             LocalDate dataNasterii = persoanaDataNasterii.getValue();
-
             int nivelEmpatie = Integer.parseInt(persoanaEmpatie.getText().trim());
 
-            userService.add(id, username, email, password,
-                    nume, prenume, dataNasterii, ocupatie, nivelEmpatie);
-
+            ((UserService) service).add(id, username, email, password, nume, prenume, dataNasterii, ocupatie, nivelEmpatie);
             clearForm();
-
         } catch (NumberFormatException e) {
             showError("ID and Empatie must be numbers");
         } catch (Exception e) {
@@ -164,68 +141,25 @@ public class UserViewController implements Observer {
         }
     }
 
-    public void loadData(List<User> users) {
-        double rowHeight = 24;
-        tableView.setFixedCellSize(rowHeight);
-        tableView.setPrefHeight(5 * rowHeight + 28);
-
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-
-        ObservableList<User> data = FXCollections.observableList(users);
-
-        tableView.setItems(data);
-    }
-
-    private void loadCurrentPage() {
-        if (userService == null) return;
-
-        int offset = (pageCount - 1) * pageSize;
-
-        try {
-            loadData(new ArrayList<User>(userService.getPage(offset, pageSize)));
-            pageLabel.setText("Page: " + pageCount);
-        } catch (RuntimeException e) {
-            showError(e.getMessage());
-            Platform.exit();
-        }
-    }
-
-
     @FXML
     public void addDuck() {
         try {
             long id = Long.parseLong(idField.getText().trim());
-
             String username = usernameField.getText().trim();
             String email = emailField.getText().trim();
             String password = passwordField.getText().trim();
-
             double viteza = Double.parseDouble(duckViteza.getText().trim());
             double rezistenta = Double.parseDouble(duckRezistenta.getText().trim());
-
             String type = duckType.getValue();
 
-            userService.add(
-                    id,
-                    username,
-                    email,
-                    password,
-                    Duck.TipRata.valueOf(type),
-                    viteza,
-                    rezistenta
-            );
-
+            ((UserService) service).add(id, username, email, password, Duck.TipRata.valueOf(type), viteza, rezistenta);
             clearForm();
-
         } catch (NumberFormatException e) {
             showError("ID, viteza, and rezistenta must be numbers");
         } catch (Exception e) {
             showError(e.getMessage());
         }
     }
-
 
     @FXML
     private void clearForm() {
@@ -238,53 +172,42 @@ public class UserViewController implements Observer {
         persoanaOcupatie.clear();
         persoanaEmpatie.clear();
         persoanaDataNasterii.setValue(null);
-
         duckRezistenta.clear();
         duckViteza.clear();
         duckType.setValue("FLYING");
     }
 
-    private void updatePageButtons() {
-        prevButton.setDisable(pageCount <= 1);
-        nextButton.setDisable(pageCount >= userService.pageCount(pageSize));
-    }
-
-    public void onPrevPage() {
-        if (pageCount > 1) {
-            pageCount--;
-            loadCurrentPage();
-        }
-
-        updatePageButtons();
-    }
-
-    public void onNextPage() {
-        if (pageCount < userService.pageCount(pageSize)) {
-            pageCount++;
-            loadCurrentPage();
-        }
-
-        updatePageButtons();
-    }
-
+    @FXML
     public void deleteUser() {
-        try{
+        try {
             long id = Long.parseLong(idField.getText().trim());
-            userService.remove(id);
+            ((UserService) service).remove(id);
             clearForm();
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             showError("ID must be numbers");
         } catch (Exception e) {
             showError(e.getMessage());
         }
     }
 
-    private void showError(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    public void loadData(List<User> users) {
+        double rowHeight = 24;
+        tableView.setFixedCellSize(rowHeight);
+        tableView.setPrefHeight(5 * rowHeight + 28);
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        ObservableList<User> data = FXCollections.observableList(users);
+        tableView.setItems(data);
+    }
+
+    @Override
+    public void loadCurrentPage() {
+        if (service == null) return;
+        int offset = (pageCount - 1) * pageSize;
+        loadData(new ArrayList<>(service.getPage(offset, pageSize)));
+        pageLabel.setText("Page: " + pageCount);
+        updatePageButtons();
     }
 
     @Override

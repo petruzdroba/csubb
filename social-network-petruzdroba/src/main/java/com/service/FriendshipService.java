@@ -78,25 +78,21 @@ public class FriendshipService extends AbstractService<String, Friendship> {
     public int getCommunityCount() {
         Map<Long, Set<Long>> graph = buildGraph();
         Set<Long> visited = new HashSet<>();
-        AtomicInteger count = new AtomicInteger();
+        int count = 0;
 
-        graph.keySet().stream()
-                .filter(userId -> !visited.contains(userId))
-                .forEach(userId -> {
-                    bfs(userId, graph, visited);
-                    count.getAndIncrement();
-                });
+        for (Long userId : graph.keySet()) {
+            if (!visited.contains(userId)) {
+                bfs(userId, graph, visited);
+                count++;
+            }
+        }
 
-        return count.get();
+        return count;
     }
+
 
     private Map<Long, Set<Long>> buildGraph() {
         Map<Long, Set<Long>> graph = new HashMap<>();
-
-        userRepository.getKeys().stream()
-                .filter(key -> key instanceof Long)
-                .map(key -> (Long) key)
-                .forEach(id -> graph.put(id, new HashSet<>()));
 
         for (Friendship f : repository.getAll()) {
             graph.putIfAbsent(f.getUserId1(), new HashSet<>());
@@ -107,6 +103,7 @@ public class FriendshipService extends AbstractService<String, Friendship> {
 
         return graph;
     }
+
 
     private void bfs(Long start, Map<Long, Set<Long>> graph, Set<Long> visited) {
         Queue<Long> q = new LinkedList<>();
