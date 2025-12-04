@@ -3,6 +3,7 @@ package com.repo;
 import com.domain.Card;
 import com.domain.DataBaseConfig;
 import com.domain.Duck;
+import com.domain.Event;
 import com.exceptions.RepositoryException;
 
 import java.sql.*;
@@ -171,5 +172,57 @@ public class CardRepository extends AbstractDatabaseRepository<Duck.TipRata, Car
             throw new RepositoryException("Failed to fetch keys from DB: " + e.getMessage());
         }
     }
+
+    @Override
+    public Collection<Card> getPage(int offset, int limit) {
+        String sql = "SELECT * FROM cards ORDER BY id LIMIT ? OFFSET ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, limit);
+            ps.setInt(2, offset);
+
+            try (ResultSet rs = ps.executeQuery()) {
+
+                List<Card> cards = new ArrayList<>();
+
+                while (rs.next()) {
+                    long cardId = rs.getLong("id");
+                    String name = rs.getString("nume_card");
+
+                    Card card = new Card(cardId, name);
+                    loadCardMembers(connection, card);
+                    cards.add(card);
+                }
+
+                return cards;
+            }
+
+        } catch (SQLException e) {
+            throw new RepositoryException("Failed to fetch paginated values from DB: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public int pageCount(int pageSize) {
+        String sql = "SELECT COUNT(*) AS total FROM caards";
+
+        try (Connection connection = getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (rs.next()) {
+                int totalRows = rs.getInt("total");
+                return (int) Math.ceil((double) totalRows / pageSize);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to get page count: " + e.getMessage());
+        }
+
+        return 0;
+    }
+
 
 }

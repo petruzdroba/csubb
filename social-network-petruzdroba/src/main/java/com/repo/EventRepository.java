@@ -4,10 +4,7 @@ import com.containers.DuckRaceContainer;
 import com.domain.*;
 import com.exceptions.RepositoryException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
 
 public class EventRepository extends AbstractDatabaseRepository<Long, Event> {
@@ -227,6 +224,54 @@ public class EventRepository extends AbstractDatabaseRepository<Long, Event> {
         }
 
         return keys;
+    }
+
+    @Override
+    public Collection<Event> getPage(int offset, int limit) {
+        String sql = "SELECT id FROM events ORDER BY id LIMIT ? OFFSET ?";
+        List<Event> events = new ArrayList<>();
+
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, limit);
+            ps.setInt(2, offset);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    long id = rs.getLong("id");
+                    Event e = find(id);
+                    if (e != null) {
+                        events.add(e);
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RepositoryException(e.getMessage());
+        }
+
+        return events;
+    }
+
+    @Override
+    public int pageCount(int pageSize) {
+        String sql = "SELECT COUNT(*) AS total FROM events";
+
+        try (Connection connection = getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (rs.next()) {
+                int totalRows = rs.getInt("total");
+                return (int) Math.ceil((double) totalRows / pageSize);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to get page count: " + e.getMessage());
+        }
+
+        return 0;
     }
 
     public void subscribe(long eventId, User user) {

@@ -1,4 +1,4 @@
-package com.ui;
+package com.ui.console;
 
 import com.domain.Culoar;
 import com.domain.Event;

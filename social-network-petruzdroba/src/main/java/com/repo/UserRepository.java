@@ -226,6 +226,51 @@ public class UserRepository extends AbstractDatabaseRepository<Long, User> {
         }
     }
 
+    @Override
+    public Collection<User> getPage(int offset, int limit) {
+        String sql = "SELECT * FROM users ORDER BY id LIMIT ? OFFSET ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, limit);
+            stmt.setInt(2, offset);
+
+            ResultSet rs = stmt.executeQuery();
+
+            List<User> values = new ArrayList<>();
+            while (rs.next()) {
+                User entity = mapResultSetToEntity(rs);
+                values.add(entity);
+            }
+
+            return values;
+
+        } catch (SQLException e) {
+            throw new RepositoryException("Failed to fetch paginated values: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public int pageCount(int pageSize) {
+        String sql = "SELECT COUNT(*) AS total FROM users";
+
+        try (Connection connection = getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (rs.next()) {
+                int totalRows = rs.getInt("total");
+                return (int) Math.ceil((double) totalRows / pageSize);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to get page count: " + e.getMessage());
+        }
+
+        return 0;
+    }
+
     public List<Duck> getAllDucksByType(Duck.TipRata duckType) {
         String sql = "SELECT * FROM users WHERE tip_rata= ?";
 
@@ -234,6 +279,45 @@ public class UserRepository extends AbstractDatabaseRepository<Long, User> {
         try (Connection connection = getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, duckType.name());
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+
+                    long id = rs.getLong("id");
+                    String username = rs.getString("username");
+                    String email = rs.getString("email");
+                    String password = rs.getString("password");
+
+                    double viteza = rs.getDouble("viteza");
+                    double rezistenta = rs.getDouble("rezistenta");
+
+                    Duck duck = switch (duckType) {
+                        case FLYING -> new FlyingDuck(id, username, email, password, duckType, viteza, rezistenta);
+                        case SWIMMING -> new SwimmingDuck(id, username, email, password, duckType, viteza, rezistenta);
+                        default -> new SwimmingFlyingDuck(id, username, email, password, duckType, viteza, rezistenta);
+                    };
+
+                    ducks.add(duck);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return ducks;
+    }
+
+    public List<Duck> getPaginatedDucksByType(Duck.TipRata duckType, int offset, int limit){
+        String sql = "SELECT * FROM users WHERE tip_rata= ? ORDER BY id LIMIT ? OFFSET ?";
+
+        List<Duck> ducks = new ArrayList<>();
+
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, duckType.name());
+            ps.setInt(2, limit);
+            ps.setInt(3,offset);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
