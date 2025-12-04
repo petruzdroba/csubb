@@ -9,19 +9,16 @@ import com.validators.PersoanaValidator;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public class UserService extends AbstractService<Long, User> {
     private final PersoanaValidator persoanaValidator = new PersoanaValidator();
     private final DuckValidator duckValidator = new DuckValidator();
-    private final FriendshipRepository friendshipRepository;
     private final CardRepository cardRepository;
 
-    public UserService(AbstractDatabaseRepository<Long, User> repository, FriendshipRepository friendshipRepository, CardRepository cardRepository) {
+    public UserService(AbstractDatabaseRepository<Long, User> repository, CardRepository cardRepository) {
         super(repository);
-        this.friendshipRepository = friendshipRepository;
         this.cardRepository = cardRepository;
     }
 
@@ -50,6 +47,7 @@ public class UserService extends AbstractService<Long, User> {
                 nume, prenume, dataNasterii, ocupatie, nivelEmpatie);
         persoanaValidator.validateThrow(user);
         repository.add(id, user);
+        notifyObservers();
     }
 
     /**
@@ -84,6 +82,7 @@ public class UserService extends AbstractService<Long, User> {
         duckValidator.validateThrow(user);
 
         repository.add(id, user);
+        notifyObservers();
 
         try{
         cardRepository.addDuck(tip, id);

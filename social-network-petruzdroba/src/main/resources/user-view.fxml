@@ -6,34 +6,54 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.ui.controllers.UserViewController"
-            prefHeight="400.0" prefWidth="600.0">
-    <Label text="Select type:"/>
-    <ComboBox fx:id="typeSelector"/>
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.ui.controllers.UserViewController"
+      spacing="10"
+      prefWidth="800">
 
-    <TextField fx:id="idField" promptText="Id"/>
-    <TextField fx:id="usernameField" promptText="Username"/>
-    <TextField fx:id="emailField" promptText="Email"/>
-    <TextField fx:id="passwordField" promptText="Password"/>
+    <VBox HBox.hgrow="ALWAYS">
+        <TableView fx:id="tableView" prefHeight="300" prefWidth="500">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="100"/>
+                <TableColumn fx:id="usernameColumn" text="Name" prefWidth="200"/>
+                <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
+            </columns>
+        </TableView>
 
-
-    <VBox fx:id="persoanaForm" visible="false" managed="false">
-        <TextField fx:id="persoanaNume" promptText="Nume"/>
-        <TextField fx:id="persoanaPrenume" promptText="Prenume"/>
-        <TextField fx:id="persoanaOcupatie" promptText="Ocupatie"/>
-        <TextField fx:id="persoanaEmpatie" promptText="Empatie"/>
-        <DatePicker fx:id="persoanaDataNasterii" promptText="MM-dd-yyyy"/>
-        <Button text="Add Persoana" onAction="#addPersoana"/>
+        <HBox alignment="CENTER" spacing="10">
+            <Button fx:id="prevButton" text="Prev" onAction="#onPrevPage"/>
+            <Button fx:id="nextButton" text="Next" onAction="#onNextPage"/>
+            <Label fx:id="pageLabel" text="Page: 1"/>
+        </HBox>
     </VBox>
 
-    <VBox fx:id="duckForm" visible="false" managed="false">
-        <ComboBox fx:id="duckType"/>
-        <TextField fx:id="duckViteza" promptText="Viteza"/>
-        <TextField fx:id="duckRezistenta" promptText="Rezistenta"/>
+    <VBox prefWidth="250" maxWidth="300">
+        <Label text="Select type:"/>
+        <ComboBox fx:id="typeSelector"/>
 
-        <Button text="Add Duck" onAction="#addDuck"/>
+        <TextField fx:id="idField" promptText="Id"/>
+        <TextField fx:id="usernameField" promptText="Username"/>
+        <TextField fx:id="emailField" promptText="Email"/>
+        <TextField fx:id="passwordField" promptText="Password"/>
+
+
+        <VBox fx:id="persoanaForm" visible="false" managed="false">
+            <TextField fx:id="persoanaNume" promptText="Nume"/>
+            <TextField fx:id="persoanaPrenume" promptText="Prenume"/>
+            <TextField fx:id="persoanaOcupatie" promptText="Ocupatie"/>
+            <TextField fx:id="persoanaEmpatie" promptText="Empatie"/>
+            <DatePicker fx:id="persoanaDataNasterii" promptText="MM-dd-yyyy"/>
+            <Button text="Add Persoana" onAction="#addPersoana"/>
+        </VBox>
+
+        <VBox fx:id="duckForm" visible="false" managed="false">
+            <ComboBox fx:id="duckType"/>
+            <TextField fx:id="duckViteza" promptText="Viteza"/>
+            <TextField fx:id="duckRezistenta" promptText="Rezistenta"/>
+
+            <Button text="Add Duck" onAction="#addDuck"/>
+        </VBox>
     </VBox>
 
-</VBox>
+</HBox>

@@ -32,7 +32,6 @@ public class MainApplication extends Application {
         );
         UserService userService = new UserService(
                 new UserRepository(config),
-                new FriendshipRepository(config),
                 new CardRepository(config)
         );
 

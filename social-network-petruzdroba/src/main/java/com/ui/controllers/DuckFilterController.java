@@ -1,6 +1,8 @@
 package com.ui.controllers;
 
 import com.domain.Duck;
+import com.domain.Observable;
+import com.domain.Observer;
 import com.service.UserService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -12,12 +14,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DuckFilterController {
+public class DuckFilterController implements Observer {
     private UserService userService;
     private int pageCount = 1;
     private int pageSize = 6;
 
     public DuckFilterController() {
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+        this.userService.addObserver(this);
+        loadCurrentPage();
     }
 
     public void loadData(List<Duck> ducks) {
@@ -97,11 +105,6 @@ public class DuckFilterController {
     }
 
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-        loadCurrentPage();
-    }
-
     @FXML
     private void onExitButtonClick() {
         Platform.exit();
@@ -137,4 +140,8 @@ public class DuckFilterController {
         }
     }
 
+    @Override
+    public void update() {
+        loadCurrentPage();
+    }
 }
