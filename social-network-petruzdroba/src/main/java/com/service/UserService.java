@@ -15,10 +15,12 @@ import java.util.List;
 public class UserService extends AbstractService<Long, User> {
     private final PersoanaValidator persoanaValidator = new PersoanaValidator();
     private final DuckValidator duckValidator = new DuckValidator();
+    private final FriendshipService friendshipService;
     private final CardRepository cardRepository;
 
-    public UserService(AbstractDatabaseRepository<Long, User> repository, CardRepository cardRepository) {
+    public UserService(AbstractDatabaseRepository<Long, User> repository, FriendshipService friendshipService, CardRepository cardRepository) {
         super(repository);
+        this.friendshipService = friendshipService;
         this.cardRepository = cardRepository;
     }
 
@@ -171,6 +173,9 @@ public class UserService extends AbstractService<Long, User> {
         notifyObservers();
 
         User user = repository.find(userId);
+
+        friendshipService.notifyObservers();
+
         if (user instanceof Duck duck) {
             try {
                 cardRepository.removeDuck(duck.getTip(), userId);

@@ -38,14 +38,15 @@ public class MainApplication extends Application {
         );
         UserRepository userRepository = new UserRepository(config);
 
-        UserService userService = new UserService(
-                userRepository,
-                new CardRepository(config)
-        );
-
         FriendshipService friendshipService = new FriendshipService(
                 new FriendshipRepository(config),
                 userRepository
+        );
+
+        UserService userService = new UserService(
+                userRepository,
+                friendshipService,
+        new CardRepository(config)
         );
 
         controller.setUserService(userService);
