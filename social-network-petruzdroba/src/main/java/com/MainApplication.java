@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 
 public class MainApplication extends Application {
 
-    @Override
     public void start(Stage primaryStage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/duck-filter-view.fxml"));
@@ -30,6 +29,11 @@ public class MainApplication extends Application {
         FXMLLoader friendshipLoader = new FXMLLoader(getClass().getResource("/friendship-view.fxml"));
         Scene friendshipScene = new Scene(friendshipLoader.load());
         FriendshipViewController friendshipController = friendshipLoader.getController();
+
+        String darkTheme = getClass().getResource("/dark-theme.css").toExternalForm();
+        duckScene.getStylesheets().add(darkTheme);
+        userScene.getStylesheets().add(darkTheme);
+        friendshipScene.getStylesheets().add(darkTheme);
 
         DataBaseConfig config = new DataBaseConfig(
                 "jdbc:postgresql://localhost:5432/social_network",
@@ -46,7 +50,7 @@ public class MainApplication extends Application {
         UserService userService = new UserService(
                 userRepository,
                 friendshipService,
-        new CardRepository(config)
+                new CardRepository(config)
         );
 
         controller.setUserService(userService);
@@ -67,6 +71,7 @@ public class MainApplication extends Application {
         friendshipStage.setScene(friendshipScene);
         friendshipStage.show();
     }
+
 
     public static void main(String[] args) {
         launch(args);
