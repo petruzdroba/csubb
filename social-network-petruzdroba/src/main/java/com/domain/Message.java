@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Message {
-    private final long id;
-    private final User from;
+    private  long id;
+    private  User from;
     private List<User> to;
     private String message;
     private LocalDateTime data;
-    private final Message reply;
+    private  Message reply;
 
     //Constructor mesaj nou
     public Message(long id, User from, String message, LocalDateTime data) {
@@ -62,5 +62,21 @@ public class Message {
 
     public List<User> getTo() {
         return to;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setFrom(User from) {
+        this.from = from;
+    }
+
+    public void setTo(List<User> to) {
+        this.to = to;
+    }
+
+    public void setReply(Message reply) {
+        this.reply = reply;
     }
 }

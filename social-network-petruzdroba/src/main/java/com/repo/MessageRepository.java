@@ -4,6 +4,7 @@ import com.domain.CurrentUser;
 import com.domain.DataBaseConfig;
 import com.domain.Message;
 import com.domain.User;
+import com.exceptions.RepositoryException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,9 +33,8 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
         try (Connection connection = getConnection()) {
             connection.setAutoCommit(false);
             try {
-
-                insertMessage(connection, entity);
-                insertReceivers(connection, key, entity.getTo());
+                long messageId = insertMessage(connection, entity);
+                insertReceivers(connection, messageId, entity.getTo());
 
                 connection.commit();
             } catch (SQLException e) {
@@ -44,28 +44,38 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
         }
     }
 
-    private void insertMessage(Connection connection, Message message) throws SQLException{
-        String sql = "INSERT INTO messages (id, from_user_id, message, data, reply_id) VALUES (?,?,?,?,?)";
 
-        try(PreparedStatement ps=connection.prepareStatement(sql)){
-            ps.setLong(1,message.getId());
-            ps.setLong(2, message.getFrom().getId());
-            ps.setString(3,message.getMessage());
-            ps.setTimestamp(4, java.sql.Timestamp.valueOf(message.getData()));
+    private long insertMessage(Connection connection, Message message) throws SQLException {
+        String sql = "INSERT INTO messages (from_user_id, message, data, reply_id) VALUES (?, ?, ?, ?)";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            ps.setLong(1, message.getFrom().getId());
+            ps.setString(2, message.getMessage());
+            ps.setTimestamp(3, java.sql.Timestamp.valueOf(message.getData()));
             if (message.getReply() != null) {
-                ps.setLong(5, message.getReply().getId());
+                ps.setLong(4, message.getReply().getId());
             } else {
-                ps.setNull(5, java.sql.Types.BIGINT);
+                ps.setNull(4, java.sql.Types.BIGINT);
             }
+
             ps.executeUpdate();
+
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                if (rs.next()) {
+                    return rs.getLong(1);//db genearted id
+                } else {
+                    throw new SQLException("Failed to get generated ID for message");
+                }
+            }
         }
     }
 
-    private void insertReceivers(Connection connection,Long messageId, List<User> receivers) throws SQLException {
+
+    private void insertReceivers(Connection connection, long messageId, List<User> receivers) throws SQLException {
         String sql = "INSERT INTO message_to (message_id, user_id) VALUES (?, ?)";
 
-        try(PreparedStatement ps= connection.prepareStatement(sql)){
-            for(User u: receivers){
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            for (User u : receivers) {
                 ps.setLong(1, messageId);
                 ps.setLong(2, u.getId());
                 ps.addBatch();
@@ -76,7 +86,7 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
 
     @Override
     public void remove(Long key) throws SQLException {
-        String sql = "DELETE FROM emessages WHERE id=?";
+        String sql = "DELETE FROM messages WHERE id=?";
 
         try(Connection connection = getConnection();
         PreparedStatement ps = connection.prepareStatement(sql)){
@@ -148,6 +158,9 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
     @Override
     public Collection<Message> getAll() {
         User current = CurrentUser.getInstance().getUser();
+        if(current == null)
+            throw new RepositoryException("User is not logged in");
+
         String sql = "SELECT * FROM messages m " +
                 "JOIN message_to mt ON m.id = mt.message_id " +
                 "WHERE m.from_user_id = ? OR mt.user_id = ? " +
@@ -175,12 +188,40 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
 
     @Override
     public Collection<Long> getKeys() {
-        return List.of();
+        User current = CurrentUser.getInstance().getUser();
+        if(current == null)
+            throw new RepositoryException("User is not logged in");
+
+        String sql = "SELECT DISTINCT m.id FROM messages m " +
+                "JOIN message_to mt ON m.id = mt.message_id " +
+                "WHERE m.from_user_id = ? OR mt.user_id = ?";
+
+        List<Long> keys = new ArrayList<>();
+
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setLong(1, current.getId());
+            ps.setLong(2, current.getId());
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    keys.add(rs.getLong("id"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return keys;
     }
+
 
     @Override
     public Collection<Message> getPage(int offset, int limit) {
         User current = CurrentUser.getInstance().getUser();
+        if(current == null)
+            throw new RepositoryException("User is not logged in");
 
         String sql = "SELECT DISTINCT m.id FROM messages m " +
                 "JOIN message_to mt ON m.id = mt.message_id " +
@@ -218,3 +259,22 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
     }
 
 }
+
+/*
+* CREATE TABLE messages (
+    id BIGSERIAL PRIMARY KEY,
+    from_user_id BIGINT NOT NULL,
+    message TEXT NOT NULL,
+    data TIMESTAMP NOT NULL,
+    reply_id BIGINT,
+    FOREIGN KEY (from_user_id) REFERENCES users(id),
+    FOREIGN KEY (reply_id) REFERENCES messages(id)
+);
+CREATE TABLE message_to (
+    message_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    PRIMARY KEY (message_id, user_id),
+    FOREIGN KEY (message_id) REFERENCES messages(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+* */
