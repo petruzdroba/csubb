@@ -5,7 +5,6 @@ import com.domain.Observer;
 import com.domain.Persoana;
 import com.domain.User;
 import com.service.UserService;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,7 +16,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserViewController extends AbstractViewController<Long, User> implements Observer {
+public class UserPagedViewController extends AbstractPagedViewController<Long, User> implements Observer {
 
     @FXML
     private ComboBox<String> typeSelector;
@@ -62,7 +61,7 @@ public class UserViewController extends AbstractViewController<Long, User> imple
     @FXML
     private ComboBox<String> duckType;
 
-    public UserViewController() {
+    public UserPagedViewController() {
     }
 
     public void setUserService(UserService userService) {

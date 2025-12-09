@@ -3,7 +3,6 @@ package com.ui.controllers;
 import com.domain.Observer;
 import com.domain.User;
 import com.domain.Friendship;
-import com.service.AbstractService;
 import com.service.FriendshipService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class FriendshipViewController extends AbstractViewController<String, Friendship> implements Observer {
+public class FriendshipPagedViewController extends AbstractPagedViewController<String, Friendship> implements Observer {
 
     @FXML private TableView<Map.Entry<User, User>> tableView;
     @FXML private TableColumn<Map.Entry<User, User>, Long> id1Column;

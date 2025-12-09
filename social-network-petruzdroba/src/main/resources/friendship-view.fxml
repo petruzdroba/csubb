@@ -9,7 +9,7 @@
 <?import javafx.geometry.Insets?>
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.ui.controllers.FriendshipViewController"
+      fx:controller="com.ui.controllers.FriendshipPagedViewController"
       spacing="20"
       prefWidth="800"
       alignment="TOP_CENTER">

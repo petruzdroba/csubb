@@ -9,7 +9,7 @@
 <?import javafx.geometry.Insets?>
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.ui.controllers.UserViewController"
+      fx:controller="com.ui.controllers.UserPagedViewController"
       spacing="20"
       prefWidth="800"
       alignment="TOP_CENTER">
