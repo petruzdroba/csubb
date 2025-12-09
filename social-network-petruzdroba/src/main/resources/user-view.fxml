@@ -9,7 +9,7 @@
 <?import javafx.geometry.Insets?>
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.ui.controllers.UserViewController"
+      fx:controller="com.ui.controllers.UserPagedViewController"
       spacing="20"
       prefWidth="800"
       alignment="TOP_CENTER">
@@ -38,7 +38,7 @@
         <TextField fx:id="idField" promptText="Id"/>
         <TextField fx:id="usernameField" promptText="Username"/>
         <TextField fx:id="emailField" promptText="Email"/>
-        <TextField fx:id="passwordField" promptText="Password"/>
+        <PasswordField fx:id="passwordField" promptText="Password"/>
 
         <HBox spacing="5" alignment="CENTER_LEFT">
             <Label text="Select type:"/>

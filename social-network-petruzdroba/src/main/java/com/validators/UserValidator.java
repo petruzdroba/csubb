@@ -12,7 +12,7 @@ public abstract class UserValidator<T extends User> implements Validator<T> {
     protected final IntRangeValidator idValidator = new IntRangeValidator(0);
     protected final StringValidator usernameValidator = new StringValidator(3, 15);
     protected final StringValidator emailValidator = new StringValidator(5, 50);
-    protected final StringValidator passwordValidator = new StringValidator(6, 20);
+    protected final StringValidator passwordValidator = new StringValidator(6, 60);
 
 
     @Override

@@ -125,32 +125,24 @@ public class UserRepository extends AbstractDatabaseRepository<Long, User> {
                     return null;
                 }
 
-                long id = rs.getLong("id");
-                String username = rs.getString("username");
-                String email = rs.getString("email");
-                String password = rs.getString("password");
-                String userType = rs.getString("user_type");
+                return mapResultSetToEntity(rs);
+            }
+        }
+    }
 
-                if ("DUCK".equalsIgnoreCase(userType)) {
-                    Duck.TipRata tip = Duck.TipRata.valueOf(rs.getString("tip_rata"));
-                    double viteza = rs.getDouble("viteza");
-                    double rezistenta = rs.getDouble("rezistenta");
+    public User findByEmail(String email) throws SQLException{
+        String sql = "SELECT * FROM users WHERE email=?";
 
-                    return switch (tip) {
-                        case FLYING -> new FlyingDuck(id, username, email, password, tip, viteza, rezistenta);
-                        case SWIMMING -> new SwimmingDuck(id, username, email, password, tip, viteza, rezistenta);
-                        default -> new SwimmingFlyingDuck(id, username, email, password, tip, viteza, rezistenta);
-                    };
+        try(Connection connection = getConnection();
+        PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setString(1, email);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) {
+                    return null;
                 }
 
-                // Persona
-                String nume = rs.getString("nume");
-                String prenume = rs.getString("prenume");
-                LocalDate dataNasterii = rs.getDate("data_nasterii").toLocalDate();
-                String ocupatie = rs.getString("ocupatie");
-                int nivelEmpatie = rs.getInt("nivel_empatie");
-
-                return new Persoana(id, username, email, password, nume, prenume, dataNasterii, ocupatie, nivelEmpatie);
+                return mapResultSetToEntity(rs);
             }
         }
     }
@@ -167,14 +159,11 @@ public class UserRepository extends AbstractDatabaseRepository<Long, User> {
             double viteza = rs.getDouble("viteza");
             double rezistenta = rs.getDouble("rezistenta");
 
-            if (tip == Duck.TipRata.FLYING) {
-                return new FlyingDuck(id, username, email, password, tip, viteza, rezistenta);
-            } else if (tip == Duck.TipRata.SWIMMING) {
-                return new SwimmingDuck(id, username, email, password, tip, viteza, rezistenta);
-            } else {
-                return new SwimmingFlyingDuck(id, username, email, password, tip, viteza, rezistenta);
-            }
-
+            return switch (tip) {
+                case FLYING -> new FlyingDuck(id, username, email, password, tip, viteza, rezistenta);
+                case SWIMMING -> new SwimmingDuck(id, username, email, password, tip, viteza, rezistenta);
+                default -> new SwimmingFlyingDuck(id, username, email, password, tip, viteza, rezistenta);
+            };
         } else { // PERSONA
             String nume = rs.getString("nume");
             String prenume = rs.getString("prenume");
@@ -185,7 +174,6 @@ public class UserRepository extends AbstractDatabaseRepository<Long, User> {
             return new Persoana(id, username, email, password, nume, prenume, dataNasterii, ocupatie, nivelEmpatie);
         }
     }
-
 
     @Override
     public Collection<User> getAll() {
@@ -346,4 +334,28 @@ public class UserRepository extends AbstractDatabaseRepository<Long, User> {
 
         return ducks;
     }
+
+    public int pageCountDuck(int pageSize, Duck.TipRata type) {
+        String sql = "SELECT COUNT(*) AS total FROM users WHERE tip_rata = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setString(1, type.name());
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    int totalRows = rs.getInt("total");
+
+                    return (int) Math.ceil((double) totalRows / pageSize);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to get page count: " + e.getMessage(), e);
+        }
+
+        return 0;
+    }
+
 }

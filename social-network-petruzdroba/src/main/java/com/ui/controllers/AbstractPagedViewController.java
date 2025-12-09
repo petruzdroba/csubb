@@ -6,7 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public abstract class AbstractViewController<K, T> {
+public abstract class AbstractPagedViewController<K, T> {
     protected AbstractService<K,T> service;
     protected int pageCount = 1;
     protected final int pageSize = 5;

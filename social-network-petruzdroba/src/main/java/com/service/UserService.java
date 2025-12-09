@@ -1,11 +1,13 @@
 package com.service;
 
 import com.domain.*;
+import com.exceptions.AlreadyLoggedInException;
 import com.exceptions.RepositoryException;
 import com.exceptions.ValidationException;
 import com.repo.*;
 import com.validators.DuckValidator;
 import com.validators.PersoanaValidator;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -15,10 +17,12 @@ import java.util.List;
 public class UserService extends AbstractService<Long, User> {
     private final PersoanaValidator persoanaValidator = new PersoanaValidator();
     private final DuckValidator duckValidator = new DuckValidator();
+    private final FriendshipService friendshipService;
     private final CardRepository cardRepository;
 
-    public UserService(AbstractDatabaseRepository<Long, User> repository, CardRepository cardRepository) {
+    public UserService(AbstractDatabaseRepository<Long, User> repository, FriendshipService friendshipService, CardRepository cardRepository) {
         super(repository);
+        this.friendshipService = friendshipService;
         this.cardRepository = cardRepository;
     }
 
@@ -42,8 +46,11 @@ public class UserService extends AbstractService<Long, User> {
      */
     public void add(long id, String username, String email, String password,
                     String nume, String prenume, LocalDate dataNasterii,
-                    String ocupatie, int nivelEmpatie) throws SQLException {
-        Persoana user = new Persoana(id, username, email, password,
+                    String ocupatie, int nivelEmpatie) throws SQLException, ValidationException {
+        if(password.length() < 6 || password.length() > 30)
+            throw new ValidationException("Password must be at least 6 characters");
+
+        Persoana user = new Persoana(id, username, email, BCrypt.hashpw(password, BCrypt.gensalt()),
                 nume, prenume, dataNasterii, ocupatie, nivelEmpatie);
         persoanaValidator.validateThrow(user);
         repository.add(id, user);
@@ -70,14 +77,18 @@ public class UserService extends AbstractService<Long, User> {
      * @see com.validators.DuckValidator
      */
     public void add(long id, String username, String email, String password,
-                    Duck.TipRata tip, double viteza, double rezistenta) throws SQLException {
+                    Duck.TipRata tip, double viteza, double rezistenta) throws SQLException, ValidationException {
+        if(password.length() < 6 || password.length() > 30)
+            throw new ValidationException("Password must be at least 6 characters");
+
         Duck user;
+        String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
         if (tip == Duck.TipRata.FLYING) {
-            user = new FlyingDuck(id, username, email, password, tip, viteza, rezistenta);
+            user = new FlyingDuck(id, username, email, hashed, tip, viteza, rezistenta);
         } else if (tip == Duck.TipRata.SWIMMING) {
-            user = new SwimmingDuck(id, username, email, password, tip, viteza, rezistenta);
+            user = new SwimmingDuck(id, username, email, hashed, tip, viteza, rezistenta);
         } else {
-            user = new SwimmingFlyingDuck(id, username, email, password, tip, viteza, rezistenta);
+            user = new SwimmingFlyingDuck(id, username, email, hashed, tip, viteza, rezistenta);
         }
         duckValidator.validateThrow(user);
 
@@ -171,6 +182,9 @@ public class UserService extends AbstractService<Long, User> {
         notifyObservers();
 
         User user = repository.find(userId);
+
+        friendshipService.notifyObservers();
+
         if (user instanceof Duck duck) {
             try {
                 cardRepository.removeDuck(duck.getTip(), userId);
@@ -220,5 +234,31 @@ public class UserService extends AbstractService<Long, User> {
         if (repository instanceof UserRepository)
             return ((UserRepository) repository).getPaginatedDucksByType(duckType, offset, limit);
         throw new RuntimeException("User service constructed wrong");
+    }
+
+    public int getPageDuck(int pageSize, Duck.TipRata type){
+        if(pageSize < 1)
+            throw new ValidationException("Page size cannot be below 1");
+        return ((UserRepository) repository).pageCountDuck(pageSize, type);
+    }
+
+    public boolean logIn(String email, String password) throws SQLException {
+        User user = ((UserRepository) repository).findByEmail(email);
+        if(user == null)
+            throw new RepositoryException("User with email " + email + " not found");
+
+        if(BCrypt.checkpw(password, user.getPassword())){
+            if(CurrentUser.getInstance().getUser() != null)
+                throw new AlreadyLoggedInException("User already logged in");
+
+            CurrentUser.getInstance().setUser(user);
+            return true;
+        }
+
+        return false;
+    }
+
+    public void logOut(){
+        CurrentUser.getInstance().logout();
     }
 }

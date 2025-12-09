@@ -9,7 +9,7 @@
 <?import javafx.geometry.Insets?>
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.ui.controllers.FriendshipViewController"
+      fx:controller="com.ui.controllers.FriendshipPagedViewController"
       spacing="20"
       prefWidth="800"
       alignment="TOP_CENTER">
@@ -19,7 +19,7 @@
     </padding>
 
     <VBox HBox.hgrow="ALWAYS" spacing="15" alignment="TOP_CENTER">
-        <TableView fx:id="tableView" prefHeight="300" prefWidth="500">
+        <TableView fx:id="tableView" prefHeight="300" prefWidth="400">
             <columns>
                 <TableColumn fx:id="username1Column" text="Username" prefWidth="100"/>
                 <TableColumn fx:id="id1Column" text="ID" prefWidth="100"/>
@@ -37,7 +37,7 @@
         </HBox>
     </VBox>
 
-    <VBox prefWidth="250" maxWidth="300" spacing="10">
+    <VBox spacing="15" alignment="TOP_CENTER" prefWidth="400" maxWidth="400">
         <TextField fx:id="id1Field" promptText="Id1"/>
         <TextField fx:id="id2Field" promptText="Id2"/>
 
