@@ -12,24 +12,33 @@ public class Message {
     private LocalDateTime data;
     private  Message reply;
 
+    
+    
     //Constructor mesaj nou
-    public Message(long id, User from, String message, LocalDateTime data) {
-        this.id = id;
+    public Message(User from, String message, LocalDateTime data, List<User> to) {
         this.from = from;
         this.message = message;
         this.data = data;
-        this.to = new ArrayList<User>();
+        this.to = to;
         this.reply = null; //mesaj nou
     }
 
     //Constructor Reply
-    public Message(long id, User from, String message, LocalDateTime data, Message reply, List<User> to) {
-        this.id = id;
+    public Message(User from, String message, LocalDateTime data, Message reply, List<User> to) {
         this.from = from;
         this.message = message;
         this.data = data;
         this.reply = reply;
         this.to = to;
+    }
+
+    public Message(long id, User fromUser, String messageText, LocalDateTime date, Message replyMessage, List<User> receivers) {
+        this.id = id;
+        this.from=fromUser;
+        this.message=messageText;
+        this.data=date;
+        this.reply=replyMessage;
+        this.to=receivers;
     }
 
     public long getId() {

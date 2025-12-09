@@ -4,6 +4,7 @@ import com.domain.CurrentUser;
 import com.domain.DataBaseConfig;
 import com.domain.Message;
 import com.domain.User;
+import com.exceptions.NotLoggedIn;
 import com.exceptions.RepositoryException;
 
 import java.sql.Connection;
@@ -159,7 +160,7 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
     public Collection<Message> getAll() {
         User current = CurrentUser.getInstance().getUser();
         if(current == null)
-            throw new RepositoryException("User is not logged in");
+            throw new NotLoggedIn("User is not logged in");
 
         String sql = "SELECT * FROM messages m " +
                 "JOIN message_to mt ON m.id = mt.message_id " +
@@ -190,7 +191,7 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
     public Collection<Long> getKeys() {
         User current = CurrentUser.getInstance().getUser();
         if(current == null)
-            throw new RepositoryException("User is not logged in");
+            throw new NotLoggedIn("User is not logged in");
 
         String sql = "SELECT DISTINCT m.id FROM messages m " +
                 "JOIN message_to mt ON m.id = mt.message_id " +
@@ -221,7 +222,7 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
     public Collection<Message> getPage(int offset, int limit) {
         User current = CurrentUser.getInstance().getUser();
         if(current == null)
-            throw new RepositoryException("User is not logged in");
+            throw new NotLoggedIn("User is not logged in");
 
         String sql = "SELECT DISTINCT m.id FROM messages m " +
                 "JOIN message_to mt ON m.id = mt.message_id " +
