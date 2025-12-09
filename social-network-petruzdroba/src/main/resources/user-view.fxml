@@ -38,7 +38,7 @@
         <TextField fx:id="idField" promptText="Id"/>
         <TextField fx:id="usernameField" promptText="Username"/>
         <TextField fx:id="emailField" promptText="Email"/>
-        <TextField fx:id="passwordField" promptText="Password"/>
+        <PasswordField fx:id="passwordField" promptText="Password"/>
 
         <HBox spacing="5" alignment="CENTER_LEFT">
             <Label text="Select type:"/>

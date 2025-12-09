@@ -6,6 +6,7 @@ import com.exceptions.ValidationException;
 import com.repo.*;
 import com.validators.DuckValidator;
 import com.validators.PersoanaValidator;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -44,8 +45,11 @@ public class UserService extends AbstractService<Long, User> {
      */
     public void add(long id, String username, String email, String password,
                     String nume, String prenume, LocalDate dataNasterii,
-                    String ocupatie, int nivelEmpatie) throws SQLException {
-        Persoana user = new Persoana(id, username, email, password,
+                    String ocupatie, int nivelEmpatie) throws SQLException, ValidationException {
+        if(password.length() < 6 || password.length() > 30)
+            throw new ValidationException("Password must be at least 6 characters");
+
+        Persoana user = new Persoana(id, username, email, BCrypt.hashpw(password, BCrypt.gensalt()),
                 nume, prenume, dataNasterii, ocupatie, nivelEmpatie);
         persoanaValidator.validateThrow(user);
         repository.add(id, user);
@@ -72,14 +76,18 @@ public class UserService extends AbstractService<Long, User> {
      * @see com.validators.DuckValidator
      */
     public void add(long id, String username, String email, String password,
-                    Duck.TipRata tip, double viteza, double rezistenta) throws SQLException {
+                    Duck.TipRata tip, double viteza, double rezistenta) throws SQLException, ValidationException {
+        if(password.length() < 6 || password.length() > 30)
+            throw new ValidationException("Password must be at least 6 characters");
+
         Duck user;
+        String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
         if (tip == Duck.TipRata.FLYING) {
-            user = new FlyingDuck(id, username, email, password, tip, viteza, rezistenta);
+            user = new FlyingDuck(id, username, email, hashed, tip, viteza, rezistenta);
         } else if (tip == Duck.TipRata.SWIMMING) {
-            user = new SwimmingDuck(id, username, email, password, tip, viteza, rezistenta);
+            user = new SwimmingDuck(id, username, email, hashed, tip, viteza, rezistenta);
         } else {
-            user = new SwimmingFlyingDuck(id, username, email, password, tip, viteza, rezistenta);
+            user = new SwimmingFlyingDuck(id, username, email, hashed, tip, viteza, rezistenta);
         }
         duckValidator.validateThrow(user);
 

@@ -42,7 +42,7 @@ public class UserViewController extends AbstractViewController<Long, User> imple
     @FXML
     private TextField emailField;
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
 
     @FXML
     private TextField persoanaNume;

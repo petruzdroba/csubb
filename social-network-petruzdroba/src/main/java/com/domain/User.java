@@ -1,10 +1,10 @@
 package com.domain;
 
 public abstract class User{
-    private long id;
-    private String username;
-    private String email;
-    private String password;
+    private final long id;
+    private final String username;
+    private final String email;
+    private final String password;
 
     public User(long id, String username, String email, String password) {
         this.id = id;
@@ -25,10 +25,6 @@ public abstract class User{
         return email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     /**
      * Called when this user is notified about an event.
      *
@@ -46,5 +42,9 @@ public abstract class User{
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
