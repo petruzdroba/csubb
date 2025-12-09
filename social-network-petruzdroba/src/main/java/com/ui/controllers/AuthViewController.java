@@ -1,6 +1,7 @@
 package com.ui.controllers;
 
 import com.exceptions.RepositoryException;
+import com.service.MessageService;
 import com.service.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,7 @@ import java.sql.SQLException;
 
 public class AuthViewController {
     private UserService service;
+    private MessageService messageService;
 
     public AuthViewController() {}
 
@@ -59,12 +61,14 @@ public class AuthViewController {
 
             Scene scene = new Scene(root);
             controller.setUserService(service);
+            controller.setMessageService(messageService);
             scene.getStylesheets().add(darkTheme);
             stage.setScene(scene);
             stage.setTitle("Message Screen");
             stage.show();
 
         } catch (IOException e) {
+            e.printStackTrace();
             showError("Cannot load message screen: " + e.getMessage());
         }
     }
@@ -75,5 +79,9 @@ public class AuthViewController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void setMessageService(MessageService messageService) {
+        this.messageService = messageService;
     }
 }

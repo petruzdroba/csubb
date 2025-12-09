@@ -88,4 +88,11 @@ public class Message {
     public void setReply(Message reply) {
         this.reply = reply;
     }
+
+    @Override
+    public String toString() {
+        String fromUsername = (from != null) ? from.getUsername() : "unknown";
+        return fromUsername + ": " + message.substring(0, 20)+"...";
+    }
+
 }

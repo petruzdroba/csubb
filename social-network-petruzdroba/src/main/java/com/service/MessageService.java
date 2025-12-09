@@ -22,15 +22,15 @@ public class MessageService extends AbstractService<Long, Message> {
         this.userRepository = userRepository;
     }
 
-    public void sendMessage(List<Long> receiverIds, String text) throws SQLException {
+    public void sendMessage(List<String> receiverEmail, String text) throws SQLException {
         User from = CurrentUser.getInstance().getUser();
         if (from == null)
             throw new NotLoggedIn("No user logged in");
 
 
         List<User> receivers = new ArrayList<>();
-        for (Long id : receiverIds) {
-            User u = userRepository.find(id);
+        for (String email: receiverEmail) {
+            User u = userRepository.findByEmail(email);
             if (u != null) receivers.add(u);
         }
 

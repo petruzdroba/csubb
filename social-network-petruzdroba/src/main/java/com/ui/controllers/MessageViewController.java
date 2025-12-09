@@ -1,51 +1,130 @@
 package com.ui.controllers;
 
 import com.domain.CurrentUser;
+import com.domain.Message;
 import com.domain.User;
+import com.exceptions.NotLoggedIn;
+import com.service.MessageService;
 import com.service.UserService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MessageViewController {
 
-    private UserService service;
-
-    public MessageViewController() {}
-
-    public void setUserService(UserService userService) {
-        this.service = userService;
-    }
+    private UserService userService;
+    private MessageService messageService;
 
     @FXML private Button logOutButton;
     @FXML private Label userLabel;
 
+    @FXML private ListView<Message> messageListView;
+
+    @FXML private Label fromLabel;
+    @FXML private Label toLabel;
+    @FXML private Label dateLabel;
+    @FXML private Label replyLabel;
+    @FXML private TextArea messageBody;
+
+    @FXML protected Button prevButton;
+    @FXML protected Button nextButton;
+    @FXML protected Label pageLabel;
+
+    private final ObservableList<Message> messageItems = FXCollections.observableArrayList();
+    private final List<Message> messages = new ArrayList<>();
+
+    private int pageCount = 1;
+    private int pageSize = 20;
+
+    public void setUserService(UserService service) {
+        this.userService = service;
+    }
+
+    public void setMessageService(MessageService service) {
+        this.messageService = service;
+        loadCurrentPage();
+        updatePageButtons();
+    }
+
     @FXML
-    public void initialize(){
+    public void initialize() {
         User currentUser = CurrentUser.getInstance().getUser();
-        if(currentUser != null) {
+        if (currentUser != null) {
             userLabel.setText(currentUser.getUsername() + " (" + currentUser.getEmail() + ")");
         }
+
+        messageListView.setItems(messageItems);
+
+        messageListView.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((obs, oldMsg, newMsg) -> {
+                    if (newMsg == null) {
+                        clearDetails();
+                        return;
+                    }
+
+                    fromLabel.setText(newMsg.getFrom().getEmail());
+                    toLabel.setText(formatUsers(newMsg.getTo()));
+                    dateLabel.setText(newMsg.getData().toString());
+                    replyLabel.setText(
+                            newMsg.getReply() != null
+                                    ? newMsg.getReply().getMessage().substring(0,20)+"..."
+                                    : "-"
+                    );
+                    messageBody.setText(newMsg.getMessage());
+                });
+    }
+
+    public void loadData(List<Message> msgs) {
+        messages.clear();
+        messages.addAll(msgs);
+
+        messageItems.clear();
+        messageItems.addAll(msgs);
+    }
+
+    private String formatUsers(List<User> users) {
+        if (users == null || users.isEmpty()) return "-";
+
+        StringBuilder sb = new StringBuilder();
+        for (User u : users) {
+            sb.append(u.getEmail()).append(", ");
+        }
+        sb.setLength(sb.length() - 2);
+        return sb.toString();
+    }
+
+    public void loadCurrentPage() {
+        if (messageService == null) return;
+
+        User current = CurrentUser.getInstance().getUser();
+        if (current == null) throw new NotLoggedIn("User not logged in");
+
+        int offset = (pageCount - 1) * pageSize;
+
+        List<Message> pageMessages = new ArrayList<>(messageService.getPage(offset, pageSize));
+        loadData(pageMessages);
+        pageLabel.setText("Page: " + pageCount);
     }
 
     @FXML
     private void handleLogout() {
-        System.out.println("Logging out: "+CurrentUser.getInstance().getUser());
-        service.logOut();
-
+        userService.logOut();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/auth-view.fxml"));
             Parent root = loader.load();
-
             AuthViewController controller = loader.getController();
-            controller.setUserService(service);
+            controller.setUserService(userService);
+            controller.setMessageService(messageService);
 
             Stage stage = (Stage) logOutButton.getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -57,6 +136,15 @@ public class MessageViewController {
         }
     }
 
+    private void clearDetails() {
+        fromLabel.setText("");
+        toLabel.setText("");
+        dateLabel.setText("");
+        replyLabel.setText("");
+        messageBody.setText("");
+    }
+
+    @FXML
     protected void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -64,4 +152,96 @@ public class MessageViewController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    protected void updatePageButtons() {
+        prevButton.setDisable(pageCount <= 1);
+        nextButton.setDisable(pageCount >= messageService.pageCount(pageSize));
+    }
+
+    public void onPrevPage() {
+        if (pageCount > 1) {
+            pageCount--;
+            loadCurrentPage();
+        }
+        updatePageButtons();
+    }
+
+    public void onNextPage() {
+        if (pageCount < messageService.pageCount(pageSize)) {
+            pageCount++;
+            loadCurrentPage();
+        }
+        updatePageButtons();
+    }
+
+    @FXML
+    public void handleSend() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/send-message-view.fxml"));
+            Parent root = loader.load();
+
+            SendMessageViewController controller = loader.getController();
+            controller.setUserService(userService);
+            controller.setMessageService(messageService);
+
+            Stage stage = new Stage();
+            stage.setTitle("Send Message");
+
+            Scene scene = new Scene(root);
+            String darkTheme = getClass().getResource("/dark-theme.css").toExternalForm();
+            scene.getStylesheets().add(darkTheme);
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            showError("Cannot load send message screen: " + e.getMessage());
+        }
+    }
+
+    private void openReplyWindow(Message original, boolean replyAll) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/send-message-view.fxml"));
+            Parent root = loader.load();
+
+            SendMessageViewController controller = loader.getController();
+            controller.setUserService(userService);
+            controller.setMessageService(messageService);
+            controller.setReplyToMessage(original, replyAll);
+
+            Stage stage = new Stage();
+            stage.setTitle("Send Message");
+
+            Scene scene = new Scene(root);
+            String darkTheme = getClass().getResource("/dark-theme.css").toExternalForm();
+            scene.getStylesheets().add(darkTheme);
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            showError("Cannot load send message screen: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    public void handleReply() {
+        int index = messageListView.getSelectionModel().getSelectedIndex();
+        if (index < 0 || index >= messages.size()) {
+            showError("Select a message to reply to");
+            return;
+        }
+        openReplyWindow(messages.get(index), false);
+    }
+
+    @FXML
+    public void handleReplyAll() {
+        int index = messageListView.getSelectionModel().getSelectedIndex();
+        if (index < 0 || index >= messages.size()) {
+            showError("Select a message to reply to");
+            return;
+        }
+        openReplyWindow(messages.get(index), true);
+    }
+
 }

@@ -1,6 +1,8 @@
 package com;
 
+import com.repo.MessageRepository;
 import com.service.FriendshipService;
+import com.service.MessageService;
 import com.ui.controllers.AuthViewController;
 import com.ui.controllers.DuckFilterController;
 import com.domain.DataBaseConfig;
@@ -47,6 +49,7 @@ public class MainApplication extends Application {
                 "sn_pass"
         );
         UserRepository userRepository = new UserRepository(config);
+        MessageRepository messageRepository = new MessageRepository(config, userRepository);
 
         FriendshipService friendshipService = new FriendshipService(
                 new FriendshipRepository(config),
@@ -58,6 +61,8 @@ public class MainApplication extends Application {
                 friendshipService,
                 new CardRepository(config)
         );
+
+        MessageService messageService = new MessageService(messageRepository, userRepository);
 
         controller.setUserService(userService);
         Stage duckStage = new Stage();
@@ -78,6 +83,7 @@ public class MainApplication extends Application {
 //        friendshipStage.show();
 
         authController.setUserService(userService);
+        authController.setMessageService(messageService);
         Stage authStage = new Stage();
         authStage.setTitle("Friendship View");
         authStage.setScene(authScene);

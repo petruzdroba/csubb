@@ -209,3 +209,18 @@
     -fx-text-fill: #e0e0e0;
     -fx-padding: 0 0 15 0;
     }
+
+.button:disabled {
+    -fx-background-color: #1f1f1f;
+    -fx-text-fill: #555555;
+    -fx-effect: innershadow(gaussian, #000000, 10, 0.5, 0, 0);
+    -fx-opacity: 0.7;
+}
+
+.button:hover:not(:disabled) {
+    -fx-background-color: #4b4e50;
+}
+
+.button:pressed:not(:disabled) {
+    -fx-background-color: #5c5f61;
+}

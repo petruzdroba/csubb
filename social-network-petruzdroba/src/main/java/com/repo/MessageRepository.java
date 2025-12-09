@@ -138,7 +138,7 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
     }
 
     private List<User> fetchReceivers(Connection connection, Long messageId) throws SQLException {
-        String sql = "SELECT user_id FROM messages_to WHERE message_id=?";
+        String sql = "SELECT user_id FROM message_to WHERE message_id=?";
         List<User> receivers = new ArrayList<>();
 
         try(PreparedStatement ps = connection.prepareStatement(sql)){
@@ -162,10 +162,10 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
         if(current == null)
             throw new NotLoggedIn("User is not logged in");
 
-        String sql = "SELECT * FROM messages m " +
+        String sql = "SELECT DISTINCT m.id, m.data FROM messages m " +
                 "JOIN message_to mt ON m.id = mt.message_id " +
-                "WHERE m.from_user_id = ? OR mt.user_id = ? " +
-                "ORDER BY m.data";
+                "WHERE mt.user_id = ? " +
+                "ORDER BY m.data ";
 
         List<Message> messages = new ArrayList<>();
 
@@ -173,7 +173,6 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setLong(1, current.getId());
-            ps.setLong(2, current.getId());
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -195,7 +194,7 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
 
         String sql = "SELECT DISTINCT m.id FROM messages m " +
                 "JOIN message_to mt ON m.id = mt.message_id " +
-                "WHERE m.from_user_id = ? OR mt.user_id = ?";
+                "WHERE mt.user_id = ?";
 
         List<Long> keys = new ArrayList<>();
 
@@ -203,7 +202,6 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setLong(1, current.getId());
-            ps.setLong(2, current.getId());
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -224,9 +222,9 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
         if(current == null)
             throw new NotLoggedIn("User is not logged in");
 
-        String sql = "SELECT DISTINCT m.id FROM messages m " +
+        String sql = "SELECT DISTINCT m.id, m.data FROM messages m " +
                 "JOIN message_to mt ON m.id = mt.message_id " +
-                "WHERE m.from_user_id = ? OR mt.user_id = ? " +
+                "WHERE mt.user_id = ? " +
                 "ORDER BY m.data " +
                 "LIMIT ? OFFSET ?";
 
@@ -236,9 +234,8 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setLong(1, current.getId());
-            ps.setLong(2, current.getId());
-            ps.setInt(3, limit);
-            ps.setInt(4, offset);
+            ps.setInt(2, limit);
+            ps.setInt(3, offset);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -248,7 +245,6 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         return page;
     }
 
