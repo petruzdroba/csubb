@@ -226,4 +226,10 @@ public class UserService extends AbstractService<Long, User> {
             return ((UserRepository) repository).getPaginatedDucksByType(duckType, offset, limit);
         throw new RuntimeException("User service constructed wrong");
     }
+
+    public int getPageDuck(int pageSize, Duck.TipRata type){
+        if(pageSize < 1)
+            throw new ValidationException("Page size cannot be below 1");
+        return ((UserRepository) repository).pageCountDuck(pageSize, type);
+    }
 }

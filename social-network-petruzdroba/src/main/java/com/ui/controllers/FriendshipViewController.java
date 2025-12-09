@@ -144,6 +144,10 @@ public class FriendshipViewController extends AbstractViewController<String, Fri
             long id2 = Long.parseLong(id2Field.getText().trim());
             ((FriendshipService) service).remove(id1, id2);
             clearForm();
+            if(pageCount > service.pageCount(pageSize)){
+                pageCount--;
+                loadCurrentPage();
+            }
         } catch (NumberFormatException e) {
             showError("IDs must be numbers");
         } catch (Exception e) {

@@ -183,6 +183,10 @@ public class UserViewController extends AbstractViewController<Long, User> imple
             long id = Long.parseLong(idField.getText().trim());
             ((UserService) service).remove(id);
             clearForm();
+            if(pageCount > service.pageCount(pageSize)){
+                pageCount--;
+                loadCurrentPage();
+            }
         } catch (NumberFormatException e) {
             showError("ID must be numbers");
         } catch (Exception e) {
