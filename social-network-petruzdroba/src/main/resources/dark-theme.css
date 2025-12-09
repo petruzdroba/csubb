@@ -202,3 +202,10 @@
 .tool-bar {
     -fx-background-color: #2b2b2b;
 }
+
+.label-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e0e0e0;
+    -fx-padding: 0 0 15 0;
+    }
