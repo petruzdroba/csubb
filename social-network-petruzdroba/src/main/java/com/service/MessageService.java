@@ -1,6 +1,8 @@
 package com.service;
 
 import com.domain.Message;
+import com.domain.Observable;
+import com.domain.Observer;
 import com.domain.User;
 import com.exceptions.NotLoggedIn;
 import com.exceptions.ValidationException;
@@ -32,7 +34,7 @@ public class MessageService extends AbstractService<Long, Message> {
     }
 
 
-    public Collection<Message> getReceivedPage(User user, int offset, int limit){
+    public Collection<Message> getReceivedPage(User user, int offset, int limit) {
         if (user == null)
             throw new NotLoggedIn("User must not be null.");
 
@@ -59,13 +61,13 @@ public class MessageService extends AbstractService<Long, Message> {
     }
 
 
-    public void sendMessage(User from,List<String> receiverEmail, String text) throws SQLException {
+    public void sendMessage(User from, List<String> receiverEmail, String text) throws SQLException {
         if (from == null)
             throw new NotLoggedIn("No user logged in");
 
 
         List<User> receivers = new ArrayList<>();
-        for (String email: receiverEmail) {
+        for (String email : receiverEmail) {
             User u = userRepository.findByEmail(email);
             if (u != null) receivers.add(u);
         }
@@ -74,6 +76,16 @@ public class MessageService extends AbstractService<Long, Message> {
         messageValidator.validateThrow(message);
 
         repository.add(null, message);
+
+        List<Long> receiverIds = receivers.stream()
+                .map(User::getId)
+                .toList();
+
+        observers.stream()
+                .filter(User.class::isInstance)
+                .map(User.class::cast)
+                .filter(o -> receiverIds.contains(o.getId()))
+                .forEach(User::update);
     }
 
 
@@ -83,21 +95,28 @@ public class MessageService extends AbstractService<Long, Message> {
 
         Message message = repository.find(messageId);//the message that is beign replyed to
 
-        List<User> replyRecipients = new ArrayList<>();
+        List<User> receivers = new ArrayList<>();
 
-        replyRecipients.add(message.getFrom());
+        receivers.add(message.getFrom());
 
         message.getTo().stream()
                 .filter(u -> u.getId() != from.getId())
-                .forEach(replyRecipients::add);
+                .forEach(receivers::add);
 
-        Message replyMessage = new Message(from, text, LocalDateTime.now(), message, replyRecipients);
+        Message replyMessage = new Message(from, text, LocalDateTime.now(), message, receivers);
         messageValidator.validateThrow(replyMessage);
 
         repository.add(null, replyMessage);
+
+        List<Long> receiverIds = receivers.stream().map(User::getId).toList();
+        for (Observer o : observers) {
+            if (o instanceof User u && receiverIds.contains(u.getId())) {
+                u.update();
+            }
+        }
     }
 
-    public void reply(User from, Long messageId, String text) throws SQLException{
+    public void reply(User from, Long messageId, String text) throws SQLException {
         if (from == null)
             throw new NotLoggedIn("No user logged in");
 
@@ -107,5 +126,12 @@ public class MessageService extends AbstractService<Long, Message> {
         messageValidator.validateThrow(replyMessage);
 
         repository.add(null, replyMessage);
+
+        List<Long> receiverIds = List.of(message.getFrom().getId());
+        for (Observer o : observers) {
+            if (o instanceof User u && receiverIds.contains(u.getId())) {
+                u.update();
+            }
+        }
     }
 }

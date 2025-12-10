@@ -1,6 +1,9 @@
 package com.domain;
 
-public abstract class User{
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class User implements Observable, Observer{
     private final long id;
     private final String username;
     private final String email;
@@ -46,5 +49,31 @@ public abstract class User{
 
     public String getPassword() {
         return password;
+    }
+
+    private final List<Observer> observers = new ArrayList<>();
+
+    @Override
+    public void addObserver(Observer o) {
+        if (!observers.contains(o)) observers.add(o);
+        System.out.println("Added controller as observer");
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers() { //notifies controller that it has gotten a message
+        for (Observer o : observers) {
+            o.update();
+        }
+    }
+
+    @Override
+    public void update() { //when user gets a message, it notifies controller
+        System.out.println("User observable notified");
+        notifyObservers();
     }
 }

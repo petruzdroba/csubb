@@ -1,6 +1,7 @@
 package com.ui.controllers;
 
 import com.domain.Message;
+import com.domain.Observer;
 import com.domain.User;
 import com.exceptions.NotLoggedIn;
 import com.service.MessageService;
@@ -18,7 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageViewController {
+public class MessageViewController implements Observer {
 
     private UserService userService;
     private MessageService messageService;
@@ -57,7 +58,10 @@ public class MessageViewController {
         this.loggedInUser = user;
         if (loggedInUser != null) {
             userLabel.setText(loggedInUser.getUsername() + " (" + loggedInUser.getEmail() + ")");
+            loggedInUser.addObserver(this);
+            messageService.addObserver(loggedInUser);
         }
+
         loadCurrentPage();
         updatePageButtons();
     }
@@ -122,7 +126,6 @@ public class MessageViewController {
 
     @FXML
     private void handleLogout() {
-        userService.logOut();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/auth-view.fxml"));
             Parent root = loader.load();
@@ -250,4 +253,9 @@ public class MessageViewController {
         openReplyWindow(messages.get(index), true);
     }
 
+    @Override
+    public void update() {
+        System.out.println("Controller: im notified");
+        loadCurrentPage();
+    }
 }

@@ -36,6 +36,7 @@ public class MainApplication extends Application {
 
         openAuthWindow();
         openAuthWindow();
+        openAuthWindow();
     }
 
     private void initServices() {
