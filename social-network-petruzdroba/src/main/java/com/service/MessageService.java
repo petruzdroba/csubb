@@ -60,6 +60,40 @@ public class MessageService extends AbstractService<Long, Message> {
         return ((MessageRepository) repository).pageCountReceived(user, pageSize);
     }
 
+    public Collection<Message> getSent(User user) {
+        if (user == null)
+            throw new NotLoggedIn("User must not be null.");
+
+        return ((MessageRepository) repository).getSent(user);
+    }
+
+
+    public Collection<Message> getSentPage(User user, int offset, int limit) {
+        if (user == null)
+            throw new NotLoggedIn("User must not be null.");
+
+        if (offset < 0 || limit < 1)
+            throw new ValidationException("Offset or Limit values below 0");
+
+        return ((MessageRepository) repository).getSentPage(user, offset, limit);
+    }
+
+    public Collection<Long> getSentKeys(User user) {
+        if (user == null)
+            throw new NotLoggedIn("User must not be null.");
+
+        return ((MessageRepository) repository).getSentKeys(user);
+    }
+
+    public int pageCountSent(User user, int pageSize) {
+        if (user == null)
+            throw new NotLoggedIn("User must not be null.");
+        if (pageSize < 1)
+            throw new ValidationException("Page size must be >= 1.");
+
+        return ((MessageRepository) repository).pageCountSent(user, pageSize);
+    }
+
 
     public void sendMessage(User from, List<String> receiverEmail, String text) throws SQLException {
         if (from == null)

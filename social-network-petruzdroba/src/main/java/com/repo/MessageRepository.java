@@ -154,21 +154,15 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
         return receivers;
     }
 
-    public Collection<Message> getReceived(User user) {
-        if(user == null)
-            throw new NotLoggedIn("User is not logged in");
-
-        String sql = "SELECT DISTINCT m.id, m.data FROM messages m " +
-                "JOIN message_to mt ON m.id = mt.message_id " +
-                "WHERE mt.user_id = ? " +
-                "ORDER BY m.data DESC";
-
+    private List<Message> fetchMessages(String sql, long userId, Integer limit, Integer offset) {
         List<Message> messages = new ArrayList<>();
 
         try (Connection connection = getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setLong(1, user.getId());
+            ps.setLong(1, userId);
+            if (limit != null) ps.setInt(2, limit);
+            if (offset != null) ps.setInt(3, offset);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -182,20 +176,13 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
         return messages;
     }
 
-    public Collection<Long> getReceivedKeys(User user) {
-        if(user == null)
-            throw new NotLoggedIn("User is not logged in");
-
-        String sql = "SELECT DISTINCT m.id FROM messages m " +
-                "JOIN message_to mt ON m.id = mt.message_id " +
-                "WHERE mt.user_id = ?";
-
+    private List<Long> fetchKeys(String sql, long userId) {
         List<Long> keys = new ArrayList<>();
 
         try (Connection connection = getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setLong(1, user.getId());
+            ps.setLong(1, userId);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -210,6 +197,30 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
     }
 
 
+    public Collection<Message> getReceived(User user) {
+        if(user == null)
+            throw new NotLoggedIn("User is not logged in");
+
+        String sql = "SELECT DISTINCT m.id, m.data FROM messages m " +
+                "JOIN message_to mt ON m.id = mt.message_id " +
+                "WHERE mt.user_id = ? " +
+                "ORDER BY m.data DESC";
+
+        return fetchMessages(sql, user.getId(), null, null);
+    }
+
+    public Collection<Long> getReceivedKeys(User user) {
+        if(user == null)
+            throw new NotLoggedIn("User is not logged in");
+
+        String sql = "SELECT DISTINCT m.id FROM messages m " +
+                "JOIN message_to mt ON m.id = mt.message_id " +
+                "WHERE mt.user_id = ?";
+
+        return fetchKeys(sql, user.getId());
+    }
+
+
     public Collection<Message> getReceivedPage(User user, int offset, int limit) {
         if(user == null)
             throw new NotLoggedIn("User is not logged in");
@@ -220,32 +231,50 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
                 "ORDER BY m.data DESC " +
                 "LIMIT ? OFFSET ?";
 
-        List<Message> page = new ArrayList<>();
-
-        try (Connection connection = getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-
-            ps.setLong(1, user.getId());
-            ps.setInt(2, limit);
-            ps.setInt(3, offset);
-
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    page.add(find(rs.getLong("id")));
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return page;
+        return fetchMessages(sql, user.getId(), limit, offset);
     }
 
 
     public int pageCountReceived(User user, int pageSize) {
-        Collection<Long> keys = getReceivedKeys(user);
-        return (int) Math.ceil((double) keys.size() / pageSize);
+        return (int) Math.ceil((double) getReceivedKeys(user).size() / pageSize);
     }
 
+    public Collection<Message> getSent(User user) {
+        if(user == null)
+            throw new NotLoggedIn("User is not logged in");
+
+        String sql = "SELECT m.id, m.data FROM messages m " +
+                "WHERE m.from_user_id = ? " +
+                "ORDER BY m.data DESC";
+
+        return fetchMessages(sql, user.getId(), null, null);
+    }
+
+    public Collection<Long> getSentKeys(User user) {
+        if(user == null)
+            throw new NotLoggedIn("User is not logged in");
+
+        String sql = "SELECT m.id FROM messages m " +
+                "WHERE m.from_user_id = ?";
+
+        return fetchKeys(sql, user.getId());
+    }
+
+    public Collection<Message> getSentPage(User user, int offset, int limit) {
+        if(user == null)
+            throw new NotLoggedIn("User is not logged in");
+
+        String sql = "SELECT m.id, m.data FROM messages m " +
+                "WHERE m.from_user_id = ? " +
+                "ORDER BY m.data DESC " +
+                "LIMIT ? OFFSET ?";
+
+        return fetchMessages(sql, user.getId(), limit, offset);
+    }
+
+    public int pageCountSent(User user, int pageSize) {
+        return (int) Math.ceil((double) getSentKeys(user).size() / pageSize);
+    }
 
     @Override
     public Collection<Message> getAll() {

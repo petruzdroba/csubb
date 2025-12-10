@@ -41,6 +41,12 @@ public class MessageViewController implements Observer {
     @FXML protected Button nextButton;
     @FXML protected Label pageLabel;
 
+    @FXML private TabPane tabPane;
+    @FXML private Tab receivedTab;
+    @FXML private Tab sentTab;
+
+    private boolean showingReceived = true;
+
     private final ObservableList<Message> messageItems = FXCollections.observableArrayList();
     private final List<Message> messages = new ArrayList<>();
 
@@ -72,6 +78,12 @@ public class MessageViewController implements Observer {
     public void initialize() {
         messageListView.setItems(messageItems);
 
+        tabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
+            showingReceived = newTab == receivedTab;
+            pageCount = 1;
+            loadCurrentPage();
+        });
+
         messageListView.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((obs, oldMsg, newMsg) -> {
@@ -100,8 +112,6 @@ public class MessageViewController implements Observer {
         messageItems.addAll(msgs);
     }
 
-
-
     private String formatUsers(List<User> users) {
         if (users == null || users.isEmpty()) return "-";
 
@@ -114,15 +124,24 @@ public class MessageViewController implements Observer {
     }
 
     public void loadCurrentPage() {
-        if (messageService == null) return;
+        if (messageService == null)
+            return;
 
-        if (loggedInUser == null) throw new NotLoggedIn("User not logged in");
+        if (loggedInUser == null)
+            throw new NotLoggedIn("User not logged in");
         int offset = (pageCount - 1) * pageSize;
 
-        List<Message> pageMessages = new ArrayList<>(messageService.getReceivedPage(loggedInUser, offset, pageSize));
-        loadData(pageMessages);
-        pageLabel.setText("Page: " + pageCount);
+        List<Message> pageMessages;
 
+        if (!showingReceived) {
+            pageMessages = new ArrayList<>(messageService.getSentPage(loggedInUser, offset, pageSize));
+        } else {
+            pageMessages = new ArrayList<>(messageService.getReceivedPage(loggedInUser, offset, pageSize));
+        }
+
+        pageLabel.setText((showingReceived ? "Received" : "Sent") + " Page: " + pageCount);
+        updatePageButtons();
+        loadData(pageMessages);
     }
 
     @FXML
@@ -163,7 +182,10 @@ public class MessageViewController implements Observer {
 
     protected void updatePageButtons() {
         prevButton.setDisable(pageCount <= 1);
-        nextButton.setDisable(pageCount >= messageService.pageCountReceived(loggedInUser, pageSize));
+        int pageCountTotal = !showingReceived
+                ? messageService.pageCountSent(loggedInUser, pageSize)
+                : messageService.pageCountReceived(loggedInUser, pageSize);
+        nextButton.setDisable(pageCount >= pageCountTotal);
     }
 
     public void onPrevPage() {
@@ -175,12 +197,17 @@ public class MessageViewController implements Observer {
     }
 
     public void onNextPage() {
-        if (pageCount < messageService.pageCountReceived(loggedInUser, pageSize)) {
+        int pageCountTotal = showingReceived
+                ? messageService.pageCountReceived(loggedInUser, pageSize)
+                : messageService.pageCountSent(loggedInUser, pageSize);
+
+        if (pageCount < pageCountTotal) {
             pageCount++;
             loadCurrentPage();
         }
         updatePageButtons();
     }
+
 
     @FXML
     public void handleSend() {
