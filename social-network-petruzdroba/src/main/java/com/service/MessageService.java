@@ -1,16 +1,18 @@
 package com.service;
 
-import com.domain.CurrentUser;
 import com.domain.Message;
 import com.domain.User;
 import com.exceptions.NotLoggedIn;
+import com.exceptions.ValidationException;
 import com.repo.AbstractDatabaseRepository;
+import com.repo.MessageRepository;
 import com.repo.UserRepository;
 import com.validators.MessageValidator;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class MessageService extends AbstractService<Long, Message> {
@@ -22,8 +24,42 @@ public class MessageService extends AbstractService<Long, Message> {
         this.userRepository = userRepository;
     }
 
-    public void sendMessage(List<String> receiverEmail, String text) throws SQLException {
-        User from = CurrentUser.getInstance().getUser();
+    public Collection<Message> getReceived(User user) {
+        if (user == null)
+            throw new NotLoggedIn("User must not be null.");
+
+        return ((MessageRepository) repository).getReceived(user);
+    }
+
+
+    public Collection<Message> getReceivedPage(User user, int offset, int limit){
+        if (user == null)
+            throw new NotLoggedIn("User must not be null.");
+
+        if (offset < 0 || limit < 1)
+            throw new ValidationException("Offset or Limit values below 0");
+
+        return ((MessageRepository) repository).getReceivedPage(user, offset, limit);
+    }
+
+    public Collection<Long> getReceivedKeys(User user) {
+        if (user == null)
+            throw new NotLoggedIn("User must not be null.");
+
+        return ((MessageRepository) repository).getReceivedKeys(user);
+    }
+
+    public int pageCountReceived(User user, int pageSize) {
+        if (user == null)
+            throw new NotLoggedIn("User must not be null.");
+        if (pageSize < 1)
+            throw new ValidationException("Page size must be >= 1.");
+
+        return ((MessageRepository) repository).pageCountReceived(user, pageSize);
+    }
+
+
+    public void sendMessage(User from,List<String> receiverEmail, String text) throws SQLException {
         if (from == null)
             throw new NotLoggedIn("No user logged in");
 
@@ -41,8 +77,7 @@ public class MessageService extends AbstractService<Long, Message> {
     }
 
 
-    public void replyAll(Long messageId, String text) throws SQLException {
-        User from = CurrentUser.getInstance().getUser();
+    public void replyAll(User from, Long messageId, String text) throws SQLException {
         if (from == null)
             throw new NotLoggedIn("No user logged in");
 
@@ -62,8 +97,7 @@ public class MessageService extends AbstractService<Long, Message> {
         repository.add(null, replyMessage);
     }
 
-    public void reply(Long messageId, String text) throws SQLException{
-        User from = CurrentUser.getInstance().getUser();
+    public void reply(User from, Long messageId, String text) throws SQLException{
         if (from == null)
             throw new NotLoggedIn("No user logged in");
 

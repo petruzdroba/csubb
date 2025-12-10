@@ -1,6 +1,5 @@
 package com.ui.controllers;
 
-import com.domain.CurrentUser;
 import com.domain.Message;
 import com.domain.User;
 import com.exceptions.NotLoggedIn;
@@ -23,6 +22,7 @@ public class MessageViewController {
 
     private UserService userService;
     private MessageService messageService;
+    private User loggedInUser;
 
     @FXML private Button logOutButton;
     @FXML private Label userLabel;
@@ -51,17 +51,20 @@ public class MessageViewController {
 
     public void setMessageService(MessageService service) {
         this.messageService = service;
+    }
+
+    public void setLoggedInUser(User user) {
+        this.loggedInUser = user;
+        if (loggedInUser != null) {
+            userLabel.setText(loggedInUser.getUsername() + " (" + loggedInUser.getEmail() + ")");
+        }
         loadCurrentPage();
         updatePageButtons();
     }
 
+
     @FXML
     public void initialize() {
-        User currentUser = CurrentUser.getInstance().getUser();
-        if (currentUser != null) {
-            userLabel.setText(currentUser.getUsername() + " (" + currentUser.getEmail() + ")");
-        }
-
         messageListView.setItems(messageItems);
 
         messageListView.getSelectionModel()
@@ -92,6 +95,8 @@ public class MessageViewController {
         messageItems.addAll(msgs);
     }
 
+
+
     private String formatUsers(List<User> users) {
         if (users == null || users.isEmpty()) return "-";
 
@@ -106,14 +111,13 @@ public class MessageViewController {
     public void loadCurrentPage() {
         if (messageService == null) return;
 
-        User current = CurrentUser.getInstance().getUser();
-        if (current == null) throw new NotLoggedIn("User not logged in");
-
+        if (loggedInUser == null) throw new NotLoggedIn("User not logged in");
         int offset = (pageCount - 1) * pageSize;
 
-        List<Message> pageMessages = new ArrayList<>(messageService.getPage(offset, pageSize));
+        List<Message> pageMessages = new ArrayList<>(messageService.getReceivedPage(loggedInUser, offset, pageSize));
         loadData(pageMessages);
         pageLabel.setText("Page: " + pageCount);
+
     }
 
     @FXML
@@ -155,7 +159,7 @@ public class MessageViewController {
 
     protected void updatePageButtons() {
         prevButton.setDisable(pageCount <= 1);
-        nextButton.setDisable(pageCount >= messageService.pageCount(pageSize));
+        nextButton.setDisable(pageCount >= messageService.pageCountReceived(loggedInUser, pageSize));
     }
 
     public void onPrevPage() {
@@ -167,7 +171,7 @@ public class MessageViewController {
     }
 
     public void onNextPage() {
-        if (pageCount < messageService.pageCount(pageSize)) {
+        if (pageCount < messageService.pageCountReceived(loggedInUser, pageSize)) {
             pageCount++;
             loadCurrentPage();
         }
@@ -183,6 +187,7 @@ public class MessageViewController {
             SendMessageViewController controller = loader.getController();
             controller.setUserService(userService);
             controller.setMessageService(messageService);
+            controller.setLoggedInUser(loggedInUser);
 
             Stage stage = new Stage();
             stage.setTitle("Send Message");
@@ -208,6 +213,7 @@ public class MessageViewController {
             controller.setUserService(userService);
             controller.setMessageService(messageService);
             controller.setReplyToMessage(original, replyAll);
+            controller.setLoggedInUser(loggedInUser);
 
             Stage stage = new Stage();
             stage.setTitle("Send Message");

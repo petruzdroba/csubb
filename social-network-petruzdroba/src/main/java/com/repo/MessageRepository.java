@@ -1,11 +1,9 @@
 package com.repo;
 
-import com.domain.CurrentUser;
 import com.domain.DataBaseConfig;
 import com.domain.Message;
 import com.domain.User;
 import com.exceptions.NotLoggedIn;
-import com.exceptions.RepositoryException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -156,10 +154,8 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
         return receivers;
     }
 
-    @Override
-    public Collection<Message> getAll() {
-        User current = CurrentUser.getInstance().getUser();
-        if(current == null)
+    public Collection<Message> getReceived(User user) {
+        if(user == null)
             throw new NotLoggedIn("User is not logged in");
 
         String sql = "SELECT DISTINCT m.id, m.data FROM messages m " +
@@ -172,7 +168,7 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
         try (Connection connection = getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setLong(1, current.getId());
+            ps.setLong(1, user.getId());
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -186,10 +182,8 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
         return messages;
     }
 
-    @Override
-    public Collection<Long> getKeys() {
-        User current = CurrentUser.getInstance().getUser();
-        if(current == null)
+    public Collection<Long> getReceivedKeys(User user) {
+        if(user == null)
             throw new NotLoggedIn("User is not logged in");
 
         String sql = "SELECT DISTINCT m.id FROM messages m " +
@@ -201,7 +195,7 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
         try (Connection connection = getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setLong(1, current.getId());
+            ps.setLong(1, user.getId());
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -216,10 +210,8 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
     }
 
 
-    @Override
-    public Collection<Message> getPage(int offset, int limit) {
-        User current = CurrentUser.getInstance().getUser();
-        if(current == null)
+    public Collection<Message> getReceivedPage(User user, int offset, int limit) {
+        if(user == null)
             throw new NotLoggedIn("User is not logged in");
 
         String sql = "SELECT DISTINCT m.id, m.data FROM messages m " +
@@ -233,7 +225,7 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
         try (Connection connection = getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setLong(1, current.getId());
+            ps.setLong(1, user.getId());
             ps.setInt(2, limit);
             ps.setInt(3, offset);
 
@@ -249,12 +241,31 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
     }
 
 
-    @Override
-    public int pageCount(int pageSize) {
-        Collection<Long> keys = getKeys();
+    public int pageCountReceived(User user, int pageSize) {
+        Collection<Long> keys = getReceivedKeys(user);
         return (int) Math.ceil((double) keys.size() / pageSize);
     }
 
+
+    @Override
+    public Collection<Message> getAll() {
+        throw new UnsupportedOperationException("You cannot access all messages in database.");
+    }
+
+    @Override
+    public Collection<Long> getKeys() {
+        throw new UnsupportedOperationException("You cannot access all messages in database.");
+    }
+
+    @Override
+    public Collection<Message> getPage(int offset, int limit) {
+        throw new UnsupportedOperationException("You cannot access all messages in database.");
+    }
+
+    @Override
+    public int pageCount(int pageSize) {
+        throw new UnsupportedOperationException("You cannot access all messages in database.");
+    }
 }
 
 /*

@@ -18,81 +18,108 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainApplication extends Application {
+    private DataBaseConfig config;
+    private UserRepository userRepository;
+    private MessageRepository messageRepository;
 
+    private FriendshipService friendshipService;
+    private UserService userService;
+    private MessageService messageService;
+
+    @Override
     public void start(Stage primaryStage) throws Exception {
+        initServices();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/duck-filter-view.fxml"));
-        Scene duckScene = new Scene(loader.load());
-        DuckFilterController controller = loader.getController();
+//        openDuckFilterWindow();
+//        openUserViewWindow();
+//        openFriendshipWindow();
 
-        FXMLLoader userLoader = new FXMLLoader(getClass().getResource("/user-view.fxml"));
-        Scene userScene = new Scene(userLoader.load());
-        UserPagedViewController userController = userLoader.getController();
+        openAuthWindow();
+        openAuthWindow();
+    }
 
-        FXMLLoader friendshipLoader = new FXMLLoader(getClass().getResource("/friendship-view.fxml"));
-        Scene friendshipScene = new Scene(friendshipLoader.load());
-        FriendshipPagedViewController friendshipController = friendshipLoader.getController();
-
-        FXMLLoader authLoader = new FXMLLoader(getClass().getResource("/auth-view.fxml"));
-        Scene authScene = new Scene(authLoader.load());
-        AuthViewController authController = authLoader.getController();
-
-        String darkTheme = getClass().getResource("/dark-theme.css").toExternalForm();
-        duckScene.getStylesheets().add(darkTheme);
-        userScene.getStylesheets().add(darkTheme);
-        friendshipScene.getStylesheets().add(darkTheme);
-        authScene.getStylesheets().add(darkTheme);
-
-        DataBaseConfig config = new DataBaseConfig(
+    private void initServices() {
+        config = new DataBaseConfig(
                 "jdbc:postgresql://localhost:5432/social_network",
                 "sn_user",
                 "sn_pass"
         );
-        UserRepository userRepository = new UserRepository(config);
-        MessageRepository messageRepository = new MessageRepository(config, userRepository);
 
-        FriendshipService friendshipService = new FriendshipService(
+        userRepository = new UserRepository(config);
+        messageRepository = new MessageRepository(config, userRepository);
+
+        friendshipService = new FriendshipService(
                 new FriendshipRepository(config),
                 userRepository
         );
 
-        UserService userService = new UserService(
+        userService = new UserService(
                 userRepository,
                 friendshipService,
                 new CardRepository(config)
         );
 
-        MessageService messageService = new MessageService(messageRepository, userRepository);
-
-        controller.setUserService(userService);
-        Stage duckStage = new Stage();
-        duckStage.setTitle("Duck Filter");
-        duckStage.setScene(duckScene);
-//        duckStage.show();
-
-        userController.setUserService(userService);
-        Stage userStage = new Stage();
-        userStage.setTitle("User View");
-        userStage.setScene(userScene);
-//        userStage.show();
-
-        friendshipController.setFriendshipService(friendshipService);
-        Stage friendshipStage = new Stage();
-        friendshipStage.setTitle("Friendship View");
-        friendshipStage.setScene(friendshipScene);
-//        friendshipStage.show();
-
-        authController.setUserService(userService);
-        authController.setMessageService(messageService);
-        Stage authStage = new Stage();
-        authStage.setTitle("Friendship View");
-        authStage.setScene(authScene);
-        authStage.setTitle("Login");
-        authStage.setResizable(false);
-        authStage.sizeToScene();
-        authStage.show();
+        messageService = new MessageService(messageRepository, userRepository);
     }
 
+    private void openDuckFilterWindow() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/duck-filter-view.fxml"));
+        Scene scene = new Scene(loader.load());
+        DuckFilterController controller = loader.getController();
+        controller.setUserService(userService);
+
+        scene.getStylesheets().add(getClass().getResource("/dark-theme.css").toExternalForm());
+
+        Stage stage = new Stage();
+        stage.setTitle("Duck Filter");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void openUserViewWindow() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/user-view.fxml"));
+        Scene scene = new Scene(loader.load());
+        UserPagedViewController controller = loader.getController();
+        controller.setUserService(userService);
+
+        scene.getStylesheets().add(getClass().getResource("/dark-theme.css").toExternalForm());
+
+        Stage stage = new Stage();
+        stage.setTitle("User View");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void openFriendshipWindow() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/friendship-view.fxml"));
+        Scene scene = new Scene(loader.load());
+        FriendshipPagedViewController controller = loader.getController();
+        controller.setFriendshipService(friendshipService);
+
+        scene.getStylesheets().add(getClass().getResource("/dark-theme.css").toExternalForm());
+
+        Stage stage = new Stage();
+        stage.setTitle("Friendship View");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void openAuthWindow() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/auth-view.fxml"));
+        Scene scene = new Scene(loader.load());
+        AuthViewController controller = loader.getController();
+        controller.setUserService(userService);
+        controller.setMessageService(messageService);
+
+        scene.getStylesheets().add(getClass().getResource("/dark-theme.css").toExternalForm());
+
+        Stage stage = new Stage();
+        stage.setTitle("Login");
+        stage.setResizable(false);
+        stage.sizeToScene();
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public static void main(String[] args) {
         launch(args);

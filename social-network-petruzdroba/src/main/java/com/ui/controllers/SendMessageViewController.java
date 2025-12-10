@@ -1,12 +1,9 @@
 package com.ui.controllers;
 
-import com.domain.CurrentUser;
 import com.domain.Message;
 import com.domain.User;
 import com.service.MessageService;
 import com.service.UserService;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -22,6 +19,7 @@ import java.util.List;
 public class SendMessageViewController {
     private UserService userService;
     private MessageService messageService;
+    private User loggedInUser;
 
     private Message replyToMessage;
     private boolean replyAll;
@@ -49,12 +47,16 @@ public class SendMessageViewController {
         setRecipientsForReply();
     }
 
+    public void setLoggedInUser(User user) {
+        this.loggedInUser = user;
+        if (fromLabel != null) {
+            fromLabel.setText(user.getEmail());
+        }
+    }
+
     @FXML
     private void initialize(){
-        User currentUser = CurrentUser.getInstance().getUser();
-        if(currentUser == null)
-            return;
-        fromLabel.setText(currentUser.getEmail());
+
     }
 
     private void setRecipientsForReply() {
@@ -80,12 +82,12 @@ public class SendMessageViewController {
                         .map(String::trim)
                         .filter(s -> !s.isEmpty())
                         .toList();
-                messageService.sendMessage(emails, messageBody.getText());
+                messageService.sendMessage(loggedInUser, emails,messageBody.getText());
             }
             else if(!replyAll){
-                messageService.reply(replyToMessage.getId(), messageBody.getText());
+                messageService.reply(loggedInUser, replyToMessage.getId(), messageBody.getText());
             }else{
-                messageService.replyAll(replyToMessage.getId(), messageBody.getText());
+                messageService.replyAll(loggedInUser,replyToMessage.getId(), messageBody.getText());
             }
             ((Stage) fromLabel.getScene().getWindow()).close();
         } catch (SQLException e) {

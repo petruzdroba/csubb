@@ -1,5 +1,6 @@
 package com.ui.controllers;
 
+import com.domain.User;
 import com.exceptions.RepositoryException;
 import com.service.MessageService;
 import com.service.UserService;
@@ -32,15 +33,15 @@ public class AuthViewController {
     @FXML private Button loginButton;
 
     @FXML
-    private void logIn(){
-        try{
+    private void logIn() {
+        try {
             String email = emailField.getText();
             String password = passwordField.getText();
 
-            boolean success = service.logIn(email, password);
+            User loggedInUser = service.logIn(email, password);
 
-            if(success) {
-                openMessageView();
+            if (loggedInUser != null) {
+                openMessageView(loggedInUser);
             } else {
                 showError("Invalid credentials");
                 passwordField.clear();
@@ -50,19 +51,22 @@ public class AuthViewController {
         }
     }
 
-    private void openMessageView(){
+
+    private void openMessageView(User user) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/message-view.fxml"));
             Parent root = loader.load();
             String darkTheme = getClass().getResource("/dark-theme.css").toExternalForm();
+
             MessageViewController controller = loader.getController();
-
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-
-            Scene scene = new Scene(root);
             controller.setUserService(service);
             controller.setMessageService(messageService);
+            controller.setLoggedInUser(user);
+
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            Scene scene = new Scene(root);
             scene.getStylesheets().add(darkTheme);
+
             stage.setScene(scene);
             stage.setTitle("Message Screen");
             stage.show();
