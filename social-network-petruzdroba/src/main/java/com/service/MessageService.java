@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 public class MessageService extends AbstractService<Long, Message> {
@@ -92,6 +93,12 @@ public class MessageService extends AbstractService<Long, Message> {
             throw new ValidationException("Page size must be >= 1.");
 
         return ((MessageRepository) repository).pageCountSent(user, pageSize);
+    }
+
+    public List<Message> getThread(Long messageId) throws SQLException {
+        List<Message> thread = ((MessageRepository) repository).getFullThread(messageId);
+        thread.sort(Comparator.comparing(Message::getData));
+        return thread;
     }
 
 

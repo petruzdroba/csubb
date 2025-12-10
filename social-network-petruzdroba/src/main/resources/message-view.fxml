@@ -81,6 +81,8 @@
             <HBox spacing="15">
                 <Button text="Reply" onAction="#handleReply"/>
                 <Button text="Reply All" onAction="#handleReplyAll"/>
+                <Button text="All Conversation" onAction="#showAllConveresation"/>
+
             </HBox>
 
         </VBox>

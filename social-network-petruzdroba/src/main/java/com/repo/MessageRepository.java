@@ -4,6 +4,7 @@ import com.domain.DataBaseConfig;
 import com.domain.Message;
 import com.domain.User;
 import com.exceptions.NotLoggedIn;
+import com.exceptions.RepositoryException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -275,6 +276,62 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
     public int pageCountSent(User user, int pageSize) {
         return (int) Math.ceil((double) getSentKeys(user).size() / pageSize);
     }
+
+    public List<Message> getFullThread(Long key) throws SQLException{
+        if (key == null) {
+            throw new RepositoryException("Message ID cannot be null");
+        }
+
+        List<Message> thread = new ArrayList<>(getMessageAncestors(key));
+        thread.add(find(key));
+        thread.addAll(getMessageDescendants(key));
+
+        return thread;
+    }
+
+    private List<Message> getMessageAncestors(Long key) throws SQLException {
+        List<Message> ancestors = new ArrayList<>();
+        Message current = find(key);
+
+        while (current != null && current.getReply() != null) {
+            ancestors.addFirst(current.getReply());
+            current = current.getReply();
+        }
+
+        return ancestors;
+    }
+
+    private List<Message> getMessageDescendants(Long key) throws SQLException {
+        List<Message> descendants = new ArrayList<>();
+        String sql = "SELECT id FROM messages WHERE reply_id = ? ORDER BY data ASC";
+
+        List<Long> stack = new ArrayList<>();
+        stack.add(key);
+
+        try (Connection connection = getConnection()) {
+            while (!stack.isEmpty()) {
+                Long currentId = stack.removeLast();
+
+                try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                    ps.setLong(1, currentId);
+
+                    try (ResultSet rs = ps.executeQuery()) {
+                        List<Long> children = new ArrayList<>();
+                        while (rs.next()) {
+                            Long childId = rs.getLong("id");
+                            Message child = find(childId);
+                            descendants.add(child);
+                            children.add(childId);
+                        }
+                        stack.addAll(children);
+                    }
+                }
+            }
+        }
+
+        return descendants;
+    }
+
 
     @Override
     public Collection<Message> getAll() {

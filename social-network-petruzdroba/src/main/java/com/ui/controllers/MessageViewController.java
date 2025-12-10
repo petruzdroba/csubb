@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -280,6 +281,39 @@ public class MessageViewController implements Observer {
         }
         openReplyWindow(messages.get(index), true);
     }
+
+    @FXML
+    public void showAllConveresation() throws SQLException {
+        Message selectedMessage = messageListView.getSelectionModel().getSelectedItem();
+        if (selectedMessage != null) {
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/conversation-thread-view.fxml"));
+                Parent root = loader.load();
+
+                ConversationThreadViewController controller = loader.getController();
+                controller.setLoggedInUser(loggedInUser);
+                controller.setMessages(messageService.getThread(selectedMessage.getId()));
+
+                Stage stage = new Stage();
+                stage.setTitle("Conversation Thread");
+
+                Scene scene = new Scene(root);
+                String conversationTheme = getClass().getResource("/conversation.css").toExternalForm();
+                scene.getStylesheets().add(conversationTheme);
+
+                stage.setScene(scene);
+                stage.show();
+
+            } catch (IOException e) {
+                showError("Cannot load send message screen: " + e.getMessage());
+            }
+
+        } else {
+            showError("No message selected!");
+        }
+    }
+
 
     @Override
     public void update() {
