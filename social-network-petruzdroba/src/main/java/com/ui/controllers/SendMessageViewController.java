@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -43,14 +44,13 @@ public class SendMessageViewController {
         this.replyAll=replyAll;
 
         messageBody.setText("RE: ");
-
-        setRecipientsForReply();
     }
 
     public void setLoggedInUser(User user) {
         this.loggedInUser = user;
         if (fromLabel != null) {
             fromLabel.setText(user.getEmail());
+            setRecipientsForReply();
         }
     }
 
@@ -62,9 +62,21 @@ public class SendMessageViewController {
     private void setRecipientsForReply() {
         if (replyToMessage == null) return;
 
-        List<User> recipients = replyAll
-                ? replyToMessage.getTo()
-                : Collections.singletonList(replyToMessage.getFrom());
+
+        List<User> recipients;
+
+        if (replyAll) {
+            recipients = new ArrayList<>();
+            recipients.add(replyToMessage.getFrom());
+
+            for (User u : replyToMessage.getTo()) {
+                if (u.getId() != loggedInUser.getId() && !recipients.contains(u)) {
+                    recipients.add(u);
+                }
+            }
+        } else {
+            recipients = Collections.singletonList(replyToMessage.getFrom());
+        }
 
         String emails = recipients.stream()
                 .map(User::getEmail)

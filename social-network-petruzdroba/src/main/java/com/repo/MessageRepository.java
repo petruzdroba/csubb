@@ -161,7 +161,7 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
         String sql = "SELECT DISTINCT m.id, m.data FROM messages m " +
                 "JOIN message_to mt ON m.id = mt.message_id " +
                 "WHERE mt.user_id = ? " +
-                "ORDER BY m.data ";
+                "ORDER BY m.data DESC";
 
         List<Message> messages = new ArrayList<>();
 
@@ -217,7 +217,7 @@ public class MessageRepository extends AbstractDatabaseRepository<Long, Message>
         String sql = "SELECT DISTINCT m.id, m.data FROM messages m " +
                 "JOIN message_to mt ON m.id = mt.message_id " +
                 "WHERE mt.user_id = ? " +
-                "ORDER BY m.data " +
+                "ORDER BY m.data DESC " +
                 "LIMIT ? OFFSET ?";
 
         List<Message> page = new ArrayList<>();

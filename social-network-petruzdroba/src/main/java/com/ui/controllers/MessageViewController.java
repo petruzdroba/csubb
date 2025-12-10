@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,7 +82,7 @@ public class MessageViewController implements Observer {
 
                     fromLabel.setText(newMsg.getFrom().getEmail());
                     toLabel.setText(formatUsers(newMsg.getTo()));
-                    dateLabel.setText(newMsg.getData().toString());
+                    dateLabel.setText(newMsg.getData().format(DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy")));
                     replyLabel.setText(
                             newMsg.getReply() != null
                                     ? newMsg.getReply().getMessage().substring(0,20)+"..."
