@@ -20,7 +20,7 @@
 
     <HBox spacing="15" alignment="TOP_CENTER">
         <Button fx:id="logOutButton" text="Log Out" onAction="#handleLogout"/>
-        <Label fx:id="userLabel" text="User: " styleClass="label"/>
+        <Label fx:id="userLabel" text="User: " styleClass="user-info-label"/>
 
         <Region HBox.hgrow="ALWAYS"/>
         <Button text="Send" onAction="#handleSend"/>

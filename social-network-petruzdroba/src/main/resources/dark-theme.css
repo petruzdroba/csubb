@@ -224,3 +224,10 @@
 .button:pressed:not(:disabled) {
     -fx-background-color: #5c5f61;
 }
+
+.user-info-label {
+    -fx-text-fill: #663399;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 4 0 4 0;
+}

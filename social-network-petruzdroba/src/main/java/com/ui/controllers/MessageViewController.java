@@ -52,7 +52,7 @@ public class MessageViewController implements Observer {
     private final List<Message> messages = new ArrayList<>();
 
     private int pageCount = 1;
-    private int pageSize = 20;
+    private final int pageSize = 20;
 
     public void setUserService(UserService service) {
         this.userService = service;
@@ -95,12 +95,15 @@ public class MessageViewController implements Observer {
 
                     fromLabel.setText(newMsg.getFrom().getEmail());
                     toLabel.setText(formatUsers(newMsg.getTo()));
-                    dateLabel.setText(newMsg.getData().format(DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy")));
-                    replyLabel.setText(
-                            newMsg.getReply() != null
-                                    ? newMsg.getReply().getMessage().substring(0,20)+"..."
-                                    : "-"
-                    );
+                    dateLabel.setText(newMsg.getData().format(DateTimeFormatter.ofPattern(" HH':'mm dd MMM yyyy")));
+                    if (newMsg.getReply() != null && newMsg.getReply().getMessage() != null) {
+                        String replyText = newMsg.getReply().getMessage().replaceAll("\\s+", " ");
+                        replyLabel.setText(replyText.length() > 50
+                                ? replyText.substring(0, 50) + "..."
+                                : replyText);
+                    } else {
+                        replyLabel.setText("-");
+                    }
                     messageBody.setText(newMsg.getMessage());
                 });
     }
@@ -152,6 +155,8 @@ public class MessageViewController implements Observer {
             Parent root = loader.load();
             AuthViewController controller = loader.getController();
             controller.setUserService(userService);
+            messageService.removeObserver(loggedInUser);
+            loggedInUser.removeObserver(this);
             controller.setMessageService(messageService);
 
             Stage stage = (Stage) logOutButton.getScene().getWindow();

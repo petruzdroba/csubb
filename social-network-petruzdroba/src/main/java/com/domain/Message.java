@@ -92,7 +92,12 @@ public class Message {
     @Override
     public String toString() {
         String fromUsername = (from != null) ? from.getUsername() : "unknown";
-        return fromUsername + ": " + message.substring(0, 20)+"...";
+        String preview = (message != null) ? message.replaceAll("\\s+", " ") : "";
+        if (preview.length() > 30) {
+            preview = preview.substring(0, 30) + "...";
+        }
+        return fromUsername + ": " + preview;
+
     }
 
 }
