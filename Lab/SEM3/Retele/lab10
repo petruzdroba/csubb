@@ -1,0 +1,25 @@
+NAT
+Router#conf t
+
+Router(config)#interface fastEthernet 0/0
+
+Router(config-if)#ip nat inside
+
+Router(config)#interface fastEthernet 0/1
+
+Router(config-if)#ip nat outside
+
+Router(config-if)#exit
+
+Router(config)#ip nat inside source static 192.168.1.2 188.24.55.1
+ 
+sau 
+
+access-list 1 permit 192.168.1.0 0.0.0.255
+
+ip nat inside source list 1 interface FastEthernet0/1 overload
+ 
+https://www.networkstraining.com/configuring-nat-on-cisco-routers/
+How to Configure NAT on Cisco Router Step by Step - (with Examples)
+The depletion of the public IPv4 address space has forced the internet community to think about alternative ways of addressing networked hosts. Network Address Translation (NAT) therefore was intro...
+ 
