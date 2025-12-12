@@ -1,7 +1,6 @@
 package com.service;
 
 import com.domain.*;
-import com.exceptions.AlreadyLoggedInException;
 import com.exceptions.RepositoryException;
 import com.exceptions.ValidationException;
 import com.repo.*;
@@ -242,23 +241,15 @@ public class UserService extends AbstractService<Long, User> {
         return ((UserRepository) repository).pageCountDuck(pageSize, type);
     }
 
-    public boolean logIn(String email, String password) throws SQLException {
+    public User logIn(String email, String password) throws SQLException, RepositoryException {
         User user = ((UserRepository) repository).findByEmail(email);
         if(user == null)
             throw new RepositoryException("User with email " + email + " not found");
 
         if(BCrypt.checkpw(password, user.getPassword())){
-            if(CurrentUser.getInstance().getUser() != null)
-                throw new AlreadyLoggedInException("User already logged in");
-
-            CurrentUser.getInstance().setUser(user);
-            return true;
+            return user;
         }
 
-        return false;
-    }
-
-    public void logOut(){
-        CurrentUser.getInstance().logout();
+        return null;
     }
 }

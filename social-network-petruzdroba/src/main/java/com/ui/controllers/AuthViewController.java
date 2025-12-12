@@ -1,6 +1,8 @@
 package com.ui.controllers;
 
+import com.domain.User;
 import com.exceptions.RepositoryException;
+import com.service.MessageService;
 import com.service.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,7 @@ import java.sql.SQLException;
 
 public class AuthViewController {
     private UserService service;
+    private MessageService messageService;
 
     public AuthViewController() {}
 
@@ -30,15 +33,15 @@ public class AuthViewController {
     @FXML private Button loginButton;
 
     @FXML
-    private void logIn(){
-        try{
+    private void logIn() {
+        try {
             String email = emailField.getText();
             String password = passwordField.getText();
 
-            boolean success = service.logIn(email, password);
+            User loggedInUser = service.logIn(email, password);
 
-            if(success) {
-                openMessageView();
+            if (loggedInUser != null) {
+                openMessageView(loggedInUser);
             } else {
                 showError("Invalid credentials");
                 passwordField.clear();
@@ -48,23 +51,28 @@ public class AuthViewController {
         }
     }
 
-    private void openMessageView(){
+
+    private void openMessageView(User user) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/message-view.fxml"));
             Parent root = loader.load();
             String darkTheme = getClass().getResource("/dark-theme.css").toExternalForm();
+
             MessageViewController controller = loader.getController();
+            controller.setUserService(service);
+            controller.setMessageService(messageService);
+            controller.setLoggedInUser(user);
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
-
             Scene scene = new Scene(root);
-            controller.setUserService(service);
             scene.getStylesheets().add(darkTheme);
+
             stage.setScene(scene);
             stage.setTitle("Message Screen");
             stage.show();
 
         } catch (IOException e) {
+            e.printStackTrace();
             showError("Cannot load message screen: " + e.getMessage());
         }
     }
@@ -75,5 +83,9 @@ public class AuthViewController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void setMessageService(MessageService messageService) {
+        this.messageService = messageService;
     }
 }
