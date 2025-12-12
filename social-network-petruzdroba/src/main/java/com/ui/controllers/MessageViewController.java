@@ -52,7 +52,7 @@ public class MessageViewController implements Observer {
     private final List<Message> messages = new ArrayList<>();
 
     private int pageCount = 1;
-    private final int pageSize = 20;
+    private final int pageSize = 10;
 
     public void setUserService(UserService service) {
         this.userService = service;

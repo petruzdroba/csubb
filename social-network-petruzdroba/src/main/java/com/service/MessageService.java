@@ -101,6 +101,20 @@ public class MessageService extends AbstractService<Long, Message> {
         return thread;
     }
 
+    private void pushObserver(User sender,List<User> receivers) {
+        List<Long> notifiedIds = new ArrayList<>(receivers.stream()
+                .map(User::getId)
+                .toList());
+
+        notifiedIds.add(sender.getId());
+
+        observers.stream()
+                .filter(User.class::isInstance)
+                .map(User.class::cast)
+                .filter(o -> notifiedIds.contains(o.getId()))
+                .forEach(User::update);
+    }
+
 
     public void sendMessage(User from, List<String> receiverEmail, String text) throws SQLException {
         if (from == null)
@@ -118,15 +132,7 @@ public class MessageService extends AbstractService<Long, Message> {
 
         repository.add(null, message);
 
-        List<Long> receiverIds = receivers.stream()
-                .map(User::getId)
-                .toList();
-
-        observers.stream()
-                .filter(User.class::isInstance)
-                .map(User.class::cast)
-                .filter(o -> receiverIds.contains(o.getId()))
-                .forEach(User::update);
+        pushObserver(from, receivers);
     }
 
 
@@ -149,12 +155,7 @@ public class MessageService extends AbstractService<Long, Message> {
 
         repository.add(null, replyMessage);
 
-        List<Long> receiverIds = receivers.stream().map(User::getId).toList();
-        for (Observer o : observers) {
-            if (o instanceof User u && receiverIds.contains(u.getId())) {
-                u.update();
-            }
-        }
+        pushObserver(from, receivers);
     }
 
     public void reply(User from, Long messageId, String text) throws SQLException {
@@ -168,11 +169,6 @@ public class MessageService extends AbstractService<Long, Message> {
 
         repository.add(null, replyMessage);
 
-        List<Long> receiverIds = List.of(message.getFrom().getId());
-        for (Observer o : observers) {
-            if (o instanceof User u && receiverIds.contains(u.getId())) {
-                u.update();
-            }
-        }
+        pushObserver(from, List.of(message.getFrom()));
     }
 }
