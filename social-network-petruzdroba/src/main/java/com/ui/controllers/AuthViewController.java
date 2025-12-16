@@ -41,7 +41,7 @@ public class AuthViewController {
             User loggedInUser = service.logIn(email, password);
 
             if (loggedInUser != null) {
-                openMessageView(loggedInUser);
+                openMenuView(loggedInUser);
             } else {
                 showError("Invalid credentials");
                 passwordField.clear();
@@ -51,29 +51,29 @@ public class AuthViewController {
         }
     }
 
-
-    private void openMessageView(User user) {
+    private void openMenuView(User user) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/message-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu-view.fxml"));
             Parent root = loader.load();
-            String darkTheme = getClass().getResource("/dark-theme.css").toExternalForm();
 
-            MessageViewController controller = loader.getController();
+            MenuViewController controller = loader.getController();
             controller.setUserService(service);
             controller.setMessageService(messageService);
             controller.setLoggedInUser(user);
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(darkTheme);
+            scene.getStylesheets().add(
+                    getClass().getResource("/dark-theme.css").toExternalForm()
+            );
 
             stage.setScene(scene);
-            stage.setTitle("Message Screen");
+            stage.setTitle("Main Menu");
             stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
-            showError("Cannot load message screen: " + e.getMessage());
+            showError("Cannot load menu");
         }
     }
 
