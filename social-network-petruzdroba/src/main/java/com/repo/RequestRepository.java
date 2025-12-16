@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class RequestRepository extends AbstractDatabaseRepository<Long, Request>{
+public class RequestRepository extends AbstractDatabaseRepository<Long, Request> {
     private final UserRepository userRepo;
 
     public RequestRepository(String url, String user, String password, UserRepository userRepo) {
@@ -32,8 +32,8 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
     public void add(Long key, Request entity) throws SQLException {
         String sql = "INSERT INTO friend_requests (from_user_id, to_user_id, status, request_date) VALUES (?, ?, ?, ?)";
 
-        try(Connection connection = getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setLong(1, entity.getFrom().getId());
             ps.setLong(2, entity.getTo().getId());
             ps.setString(3, entity.getStatus().toString());
@@ -47,8 +47,8 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
     public void remove(Long key) throws SQLException {
         String sql = "DELETE FROM friend_requests WHERE id=?";
 
-        try(Connection connection = getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setLong(1, key);
             ps.executeUpdate();
         }
@@ -56,7 +56,19 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
 
     @Override
     public void modify(Long key, Request entity) throws SQLException {
-        throw new UnsupportedOperationException("Friendship requests cannot be modified once sent. Only deleted.");
+        String sql = "UPDATE friend_requests SET status=? WHERE id=?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setString(1, entity.getStatus().toString());
+            ps.setLong(2, key);
+
+            int updated = ps.executeUpdate();
+            if (updated == 0) {
+                throw new SQLException("No request found with id " + key);
+            }
+        }
     }
 
     @Override
@@ -100,8 +112,8 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
         }
     }
 
-    private List<Request> fetchRequests(String sql, long userId, Integer limit, Integer offset){
-        List<Request>  requests = new ArrayList<>();
+    private List<Request> fetchRequests(String sql, long userId, Integer limit, Integer offset) {
+        List<Request> requests = new ArrayList<>();
 
         try (Connection connection = getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -122,8 +134,8 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
         return requests;
     }
 
-    public Collection<Request> getReceivedPage(User user, int offset, int limit){
-        if(user == null)
+    public Collection<Request> getReceivedPage(User user, int offset, int limit) {
+        if (user == null)
             throw new NotLoggedIn("User is not logged in");
 
         String sql = "SELECT * FROM friend_requests WHERE to_user_id=? ORDER BY data DESC LIMIT ? OFFSET ?";
@@ -131,8 +143,8 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
         return fetchRequests(sql, user.getId(), limit, offset);
     }
 
-    public Collection<Request> getSentPage(User user, int offset, int limit){
-        if(user == null)
+    public Collection<Request> getSentPage(User user, int offset, int limit) {
+        if (user == null)
             throw new NotLoggedIn("User is not logged in");
 
         String sql = "SELECT * FROM friend_requests WHERE from_user_id=? ORDER BY data DESC LIMIT ? OFFSET ?";
@@ -140,8 +152,8 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
         return fetchRequests(sql, user.getId(), limit, offset);
     }
 
-    public Collection<Request> getReceived(User user){
-        if(user == null)
+    public Collection<Request> getReceived(User user) {
+        if (user == null)
             throw new NotLoggedIn("User is not logged in");
 
         String sql = "SELECT * FROM friend_requests WHERE to_user_id=? ORDER BY data DESC";
@@ -149,8 +161,8 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
         return fetchRequests(sql, user.getId(), null, null);
     }
 
-    public Collection<Request> getSent(User user){
-        if(user == null)
+    public Collection<Request> getSent(User user) {
+        if (user == null)
             throw new NotLoggedIn("User is not logged in");
 
         String sql = "SELECT * FROM friend_requests WHERE from_user_id=? ORDER BY data DESC";
@@ -227,7 +239,6 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
         String sql = "SELECT * FROM friend_requests WHERE from_user_id=? ORDER BY data DESC";
         return fetchRequestKeys(sql, user.getId(), null, null);
     }
-
 
     public int pageCountSent(User user, int pageSize) {
         return (int) Math.ceil((double) getSentKeys(user).size() / pageSize);

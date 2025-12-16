@@ -13,6 +13,16 @@ public class Request {
     private User from;
     private User to;
 
+    public Request() {
+    }
+
+    public Request(User from, User to, status status, LocalDateTime now) {
+        this.from = from;
+        this.to = to;
+        this.status = status;
+        this.data=now;
+    }
+
     public long getId() {
         return id;
     }
