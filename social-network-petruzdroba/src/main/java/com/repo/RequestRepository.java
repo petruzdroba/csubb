@@ -138,7 +138,7 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
         if (user == null)
             throw new NotLoggedIn("User is not logged in");
 
-        String sql = "SELECT * FROM friend_requests WHERE to_user_id=? ORDER BY data DESC LIMIT ? OFFSET ?";
+        String sql = "SELECT * FROM friend_requests WHERE to_user_id=? ORDER BY request_date DESC LIMIT ? OFFSET ?";
 
         return fetchRequests(sql, user.getId(), limit, offset);
     }
@@ -147,7 +147,7 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
         if (user == null)
             throw new NotLoggedIn("User is not logged in");
 
-        String sql = "SELECT * FROM friend_requests WHERE from_user_id=? ORDER BY data DESC LIMIT ? OFFSET ?";
+        String sql = "SELECT * FROM friend_requests WHERE from_user_id=? ORDER BY request_date DESC LIMIT ? OFFSET ?";
 
         return fetchRequests(sql, user.getId(), limit, offset);
     }
@@ -156,7 +156,7 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
         if (user == null)
             throw new NotLoggedIn("User is not logged in");
 
-        String sql = "SELECT * FROM friend_requests WHERE to_user_id=? ORDER BY data DESC";
+        String sql = "SELECT * FROM friend_requests WHERE to_user_id=? ORDER BY request_date DESC";
 
         return fetchRequests(sql, user.getId(), null, null);
     }
@@ -165,7 +165,7 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
         if (user == null)
             throw new NotLoggedIn("User is not logged in");
 
-        String sql = "SELECT * FROM friend_requests WHERE from_user_id=? ORDER BY data DESC";
+        String sql = "SELECT * FROM friend_requests WHERE from_user_id=? ORDER BY request_date DESC";
 
         return fetchRequests(sql, user.getId(), null, null);
     }
@@ -215,28 +215,28 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
     public Collection<Long> getReceivedKeysPage(User user, int offset, int limit) {
         if (user == null) throw new NotLoggedIn("User is not logged in");
 
-        String sql = "SELECT * FROM friend_requests WHERE to_user_id=? ORDER BY data DESC LIMIT ? OFFSET ?";
+        String sql = "SELECT * FROM friend_requests WHERE to_user_id=? ORDER BY request_date DESC LIMIT ? OFFSET ?";
         return fetchRequestKeys(sql, user.getId(), limit, offset);
     }
 
     public Collection<Long> getSentKeysPage(User user, int offset, int limit) {
         if (user == null) throw new NotLoggedIn("User is not logged in");
 
-        String sql = "SELECT * FROM friend_requests WHERE from_user_id=? ORDER BY data DESC LIMIT ? OFFSET ?";
+        String sql = "SELECT * FROM friend_requests WHERE from_user_id=? ORDER BY request_date DESC LIMIT ? OFFSET ?";
         return fetchRequestKeys(sql, user.getId(), limit, offset);
     }
 
     public Collection<Long> getReceivedKeys(User user) {
         if (user == null) throw new NotLoggedIn("User is not logged in");
 
-        String sql = "SELECT * FROM friend_requests WHERE to_user_id=? ORDER BY data DESC";
+        String sql = "SELECT * FROM friend_requests WHERE to_user_id=? ORDER BY request_date DESC";
         return fetchRequestKeys(sql, user.getId(), null, null);
     }
 
     public Collection<Long> getSentKeys(User user) {
         if (user == null) throw new NotLoggedIn("User is not logged in");
 
-        String sql = "SELECT * FROM friend_requests WHERE from_user_id=? ORDER BY data DESC";
+        String sql = "SELECT * FROM friend_requests WHERE from_user_id=? ORDER BY request_date DESC";
         return fetchRequestKeys(sql, user.getId(), null, null);
     }
 

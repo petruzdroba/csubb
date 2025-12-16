@@ -2,7 +2,9 @@ package com.ui.controllers;
 
 import com.domain.User;
 import com.exceptions.RepositoryException;
+import com.service.FriendshipService;
 import com.service.MessageService;
+import com.service.RequestService;
 import com.service.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,11 +23,21 @@ import java.sql.SQLException;
 public class AuthViewController {
     private UserService service;
     private MessageService messageService;
+    private RequestService requestService;
+    private FriendshipService friendshipService;
 
     public AuthViewController() {}
 
     public void setUserService(UserService userService) {
         this.service = userService;
+    }
+
+    public void setRequestService(RequestService service) {
+        this.requestService = service;
+    }
+
+    public void setFriendshipService(FriendshipService friendshipService) {
+        this.friendshipService = friendshipService;
     }
 
     @FXML private TextField emailField;
@@ -59,6 +71,8 @@ public class AuthViewController {
             MenuViewController controller = loader.getController();
             controller.setUserService(service);
             controller.setMessageService(messageService);
+            controller.setFriendshipService(friendshipService);
+            controller.setRequestService(requestService);
             controller.setLoggedInUser(user);
 
             Stage stage = (Stage) loginButton.getScene().getWindow();

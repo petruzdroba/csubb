@@ -1,14 +1,12 @@
 package com;
 
-import com.repo.MessageRepository;
+import com.repo.*;
 import com.service.FriendshipService;
 import com.service.MessageService;
+import com.service.RequestService;
 import com.ui.controllers.AuthViewController;
 import com.ui.controllers.DuckFilterController;
 import com.domain.DataBaseConfig;
-import com.repo.CardRepository;
-import com.repo.UserRepository;
-import com.repo.FriendshipRepository;
 import com.service.UserService;
 import com.ui.controllers.FriendshipPagedViewController;
 import com.ui.controllers.UserPagedViewController;
@@ -21,7 +19,9 @@ public class MainApplication extends Application {
     private DataBaseConfig config;
     private UserRepository userRepository;
     private MessageRepository messageRepository;
+    private RequestRepository requestRepository;
 
+    private RequestService requestService;
     private FriendshipService friendshipService;
     private UserService userService;
     private MessageService messageService;
@@ -49,10 +49,14 @@ public class MainApplication extends Application {
         userRepository = new UserRepository(config);
         messageRepository = new MessageRepository(config, userRepository);
 
+        FriendshipRepository friendshipRepository = new FriendshipRepository(config);
+
         friendshipService = new FriendshipService(
-                new FriendshipRepository(config),
+                friendshipRepository,
                 userRepository
         );
+
+        requestRepository = new RequestRepository(config, userRepository);
 
         userService = new UserService(
                 userRepository,
@@ -61,6 +65,8 @@ public class MainApplication extends Application {
         );
 
         messageService = new MessageService(messageRepository, userRepository);
+
+        requestService = new RequestService(requestRepository, userRepository, friendshipRepository);
     }
 
     private void openDuckFilterWindow() throws Exception {
@@ -111,6 +117,8 @@ public class MainApplication extends Application {
         AuthViewController controller = loader.getController();
         controller.setUserService(userService);
         controller.setMessageService(messageService);
+        controller.setFriendshipService(friendshipService);
+        controller.setRequestService(requestService);
 
         scene.getStylesheets().add(getClass().getResource("/dark-theme.css").toExternalForm());
 

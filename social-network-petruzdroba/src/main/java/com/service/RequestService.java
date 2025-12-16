@@ -1,5 +1,6 @@
 package com.service;
 
+import com.domain.Friendship;
 import com.domain.Request;
 import com.domain.User;
 import com.exceptions.NotLoggedIn;
@@ -119,6 +120,9 @@ public class RequestService extends AbstractService<Long, Request>{
 
         request.setStatus(Request.status.ACCEPTED);
         repository.modify(request.getId(), request);
+
+        Friendship friendship = new Friendship(currentUser.getId(), request.getFrom().getId());
+        friendshipRepository.add(friendship.getFriendshipId(), friendship);
     }
 
     public void deny(User currentUser, Request request) throws SQLException {

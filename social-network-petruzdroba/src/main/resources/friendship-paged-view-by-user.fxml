@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ui.controllers.FriendshipPagedViewByUserController"
+      spacing="10">
+
+    <Label text="Friends" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="tableView" prefHeight="300">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="80"/>
+            <TableColumn fx:id="usernameColumn" text="Username" prefWidth="150"/>
+            <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
+            <TableColumn fx:id="actionColumn" text="Action" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="prevButton" text="Previous"/>
+        <Label fx:id="pageLabel" text="Page 1"/>
+        <Button fx:id="nextButton" text="Next"/>
+    </HBox>
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+</VBox>

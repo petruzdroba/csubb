@@ -2,10 +2,12 @@ package com.service;
 
 import com.domain.Friendship;
 import com.domain.User;
+import com.exceptions.NotLoggedIn;
 import com.exceptions.RepositoryException;
 import com.exceptions.ValidationException;
 import com.repo.AbstractDatabaseRepository;
 import com.repo.AbstractRepository;
+import com.repo.FriendshipRepository;
 import com.repo.UserRepository;
 import com.validators.FriendshipValidator;
 
@@ -260,6 +262,56 @@ public class FriendshipService extends AbstractService<String, Friendship> {
             } catch (SQLException e) {
                 throw new RepositoryException(e.getMessage());
             }
+        }
+
+        return prettyList;
+    }
+
+
+    public int pageCountByUser(User user, int pageSize) {
+        if (user == null) throw new NotLoggedIn("User must not be null");
+        if (pageSize < 1) throw new ValidationException("Page size must be >= 1");
+        return ((FriendshipRepository) repository).pageCountByUser(user.getId(), pageSize);
+    }
+
+    public Collection<Map.Entry<User, User>> getAllPrettyByUser(User user) {
+        if (user == null) throw new NotLoggedIn("User must not be null");
+
+        List<Map.Entry<User, User>> prettyList = new ArrayList<>();
+
+        try {
+            for (Friendship f : ((FriendshipRepository) repository).getAll()) {
+                if (f.getUserId1() == user.getId() || f.getUserId2() == user.getId()) {
+                    User u1 = userRepository.find(f.getUserId1());
+                    User u2 = userRepository.find(f.getUserId2());
+                    if (u1 != null && u2 != null) {
+                        prettyList.add(new AbstractMap.SimpleEntry<>(u1, u2));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return prettyList;
+    }
+
+    public Collection<Map.Entry<User, User>> getAllPrettyByUser(User user, int offset, int limit) {
+        if (user == null) throw new NotLoggedIn("User must not be null");
+        if (offset < 0 || limit < 1) throw new ValidationException("Offset/Limit invalid");
+
+        List<Map.Entry<User, User>> prettyList = new ArrayList<>();
+
+        try {
+            for (Friendship f : ((FriendshipRepository) repository).getFriendshipsPageByUser(user.getId(), offset, limit)) {
+                User u1 = userRepository.find(f.getUserId1());
+                User u2 = userRepository.find(f.getUserId2());
+                if (u1 != null && u2 != null) {
+                    prettyList.add(new AbstractMap.SimpleEntry<>(u1, u2));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         return prettyList;

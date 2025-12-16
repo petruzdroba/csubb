@@ -1,7 +1,9 @@
 package com.ui.controllers;
 
 import com.domain.User;
+import com.service.FriendshipService;
 import com.service.MessageService;
+import com.service.RequestService;
 import com.service.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +19,8 @@ public class MenuViewController {
 
     private UserService userService;
     private MessageService messageService;
+    private FriendshipService friendshipService;
+    private RequestService requestService;
     private User loggedInUser;
 
     private Stage messageStage;
@@ -32,6 +36,14 @@ public class MenuViewController {
 
     public void setMessageService(MessageService messageService) {
         this.messageService = messageService;
+    }
+
+    public void setFriendshipService(FriendshipService friendshipService) {
+        this.friendshipService = friendshipService;
+    }
+
+    public void setRequestService(RequestService requestService) {
+        this.requestService = requestService;
     }
 
     public void setLoggedInUser(User user) {
@@ -84,9 +96,9 @@ public class MenuViewController {
             Parent root = loader.load();
 
             RequestViewController controller = loader.getController();
-//            controller.setUserService(userService);
-//            controller.setMessageService(messageService);
-//            controller.setLoggedInUser(loggedInUser);
+            controller.setFriendshipService(friendshipService);
+            controller.setRequestService(requestService);
+            controller.setLoggedInUser(loggedInUser);
 
             friendsStage = new Stage();
             friendsStage.setTitle("Frienships");
@@ -101,6 +113,7 @@ public class MenuViewController {
             friendsStage.show();
 
         } catch (IOException e) {
+            e.printStackTrace();
             showError("Cannot open friends view: " + e.getMessage());
         }
     }
@@ -114,6 +127,8 @@ public class MenuViewController {
             AuthViewController controller = loader.getController();
             controller.setUserService(userService);
             controller.setMessageService(messageService);
+            controller.setFriendshipService(friendshipService);
+            controller.setRequestService(requestService);
 
             if (loggedInUser != null) {
                 messageService.removeObserver(loggedInUser);
