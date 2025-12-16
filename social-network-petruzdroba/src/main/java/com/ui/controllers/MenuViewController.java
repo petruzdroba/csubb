@@ -20,6 +20,8 @@ public class MenuViewController {
     private User loggedInUser;
 
     private Stage messageStage;
+    private Stage friendsStage;
+
 
     @FXML
     private Label userLabel;
@@ -67,6 +69,39 @@ public class MenuViewController {
 
         } catch (IOException e) {
             showError("Cannot open messages: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void openFriends(){
+        if (friendsStage != null) {
+            friendsStage.toFront();
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/request-view.fxml"));
+            Parent root = loader.load();
+
+            RequestViewController controller = loader.getController();
+//            controller.setUserService(userService);
+//            controller.setMessageService(messageService);
+//            controller.setLoggedInUser(loggedInUser);
+
+            friendsStage = new Stage();
+            friendsStage.setTitle("Frienships");
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(
+                    getClass().getResource("/dark-theme.css").toExternalForm()
+            );
+
+            friendsStage.setScene(scene);
+            friendsStage.setOnCloseRequest(e -> friendsStage = null);
+            friendsStage.show();
+
+        } catch (IOException e) {
+            showError("Cannot open friends view: " + e.getMessage());
         }
     }
 

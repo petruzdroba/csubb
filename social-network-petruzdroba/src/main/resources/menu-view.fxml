@@ -24,6 +24,10 @@
             maxWidth="240"
             onAction="#openMessages"/>
 
+    <Button text="Friends"
+            maxWidth="240"
+            onAction="#openFriends"/>
+
     <Button text="Logout"
             maxWidth="240"
             onAction="#handleLogout"/>
