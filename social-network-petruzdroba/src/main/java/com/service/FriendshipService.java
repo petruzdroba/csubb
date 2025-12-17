@@ -317,4 +317,11 @@ public class FriendshipService extends AbstractService<String, Friendship> {
         return prettyList;
     }
 
+    private void pushObserver(User user1, User user2){
+        observers.stream()
+                .filter(User.class::isInstance)
+                .map(User.class::cast)
+                .filter(o -> user1.getId()==o.getId() || user2.getId() == o.getId())
+                .forEach(User::update);
+    }
 }

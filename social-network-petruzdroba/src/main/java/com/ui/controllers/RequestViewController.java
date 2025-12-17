@@ -233,7 +233,7 @@ public class RequestViewController implements Observer {
             stage.setScene(scene);
 
             addFriendsOpen = true;
-            stage.setOnHidden(e -> addFriendsOpen = false);
+            stage.setOnHidden(e ->{ addFriendsOpen = false; controller.removeObservers();});
 
             stage.show();
         } catch (IOException e) {
@@ -277,6 +277,7 @@ public class RequestViewController implements Observer {
 
         try{
             requestService.accept(loggedInUser, selected);
+            hideAllActionButtons();
         } catch (SQLException | ValidationException e) {
             showError(e.getMessage());
         }
@@ -288,6 +289,7 @@ public class RequestViewController implements Observer {
 
         try{
             requestService.deny(loggedInUser, selected);
+            hideAllActionButtons();
         } catch (SQLException | ValidationException e) {
             showError(e.getMessage());
         }
@@ -299,6 +301,7 @@ public class RequestViewController implements Observer {
 
         try{
             requestService.remove(loggedInUser, selected);
+            hideAllActionButtons();
         } catch (SQLException | ValidationException e) {
             showError(e.getMessage());
         }

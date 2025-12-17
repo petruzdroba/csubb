@@ -1,5 +1,7 @@
 package com.ui.controllers;
 
+import com.domain.Observable;
+import com.domain.Observer;
 import com.domain.User;
 import com.service.FriendshipService;
 import javafx.collections.FXCollections;
@@ -12,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class FriendshipPagedViewByUserController {
+public class FriendshipPagedViewByUserController implements Observer {
 
     private FriendshipService friendshipService;
     private User loggedUser;
@@ -32,6 +34,10 @@ public class FriendshipPagedViewByUserController {
     public void setFriendshipService(FriendshipService service, User user) {
         this.friendshipService = service;
         this.loggedUser = user;
+
+        user.addObserver(this);
+        friendshipService.addObserver(loggedUser);
+
         loadCurrentPage();
     }
 
@@ -68,11 +74,10 @@ public class FriendshipPagedViewByUserController {
     public void loadData(List<Map.Entry<User, User>> friendships) {
         List<User> otherUsers = new ArrayList<>();
         for (Map.Entry<User, User> entry : friendships) {
-            if (entry.getKey().equals(loggedUser)) {
-                otherUsers.add(entry.getValue());
-            } else {
-                otherUsers.add(entry.getKey());
-            }
+            User user1 = entry.getKey();
+            User user2 = entry.getValue();
+            User other = (user1.getId() == loggedUser.getId()) ? user2 : user1;
+            otherUsers.add(other);
         }
 
         ObservableList<User> data = FXCollections.observableList(otherUsers);
@@ -115,7 +120,11 @@ public class FriendshipPagedViewByUserController {
     }
 
     private void onRemoveFriendship(User otherUser) {
-        // implement removal logic here
+        try{
+            friendshipService.remove(loggedUser.getId(), otherUser.getId());
+        } catch (Exception e) {
+            showError(e.getMessage());
+        }
     }
 
     private void showError(String message) {
@@ -124,5 +133,15 @@ public class FriendshipPagedViewByUserController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    @Override
+    public void update() {
+        loadCurrentPage();
+    }
+
+    public void removeObservers(){
+        friendshipService.removeObserver(loggedUser);
+        loggedUser.removeObserver(this);
     }
 }
