@@ -161,6 +161,63 @@ public class NotificationRepository extends AbstractDatabaseRepository<Long, Not
         return fetchNotifications(sql, user.getId(), limit, offset);
     }
 
+    private List<Long> fetchNotificationKeys(String sql, long userId, Integer limit, Integer offset) {
+        List<Long> keys = new ArrayList<>();
+
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setLong(1, userId);
+            if (limit != null) ps.setInt(2, limit);
+            if (offset != null) ps.setInt(3, offset);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    keys.add(rs.getLong("id"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return keys;
+    }
+
+    public Collection<Long> getAllNotificationKeys(User user) {
+        if (user == null) throw new NotLoggedIn("User is not logged in");
+
+        String sql = "SELECT * FROM notifications WHERE to_user_id=? ORDER BY data DESC";
+        return fetchNotificationKeys(sql, user.getId(), null, null);
+    }
+
+    public Collection<Long> getUnreadNotificationKeys(User user) {
+        if (user == null) throw new NotLoggedIn("User is not logged in");
+
+        String sql = "SELECT * FROM notifications WHERE to_user_id=? AND read=false ORDER BY data DESC";
+        return fetchNotificationKeys(sql, user.getId(), null, null);
+    }
+
+    public Collection<Long> getAllNotificationKeysPage(User user, int offset, int limit) {
+        if (user == null) throw new NotLoggedIn("User is not logged in");
+
+        String sql = "SELECT * FROM notifications WHERE to_user_id=? ORDER BY data DESC LIMIT ? OFFSET ?";
+        return fetchNotificationKeys(sql, user.getId(), limit, offset);
+    }
+
+    public Collection<Long> getUnreadNotificationKeysPage(User user, int offset, int limit) {
+        if (user == null) throw new NotLoggedIn("User is not logged in");
+
+        String sql = "SELECT * FROM notifications WHERE to_user_id=? AND read=false ORDER BY data DESC LIMIT ? OFFSET ?";
+        return fetchNotificationKeys(sql, user.getId(), limit, offset);
+    }
+
+    public int pageCountAll(User user, int pageSize) {
+        return (int) Math.ceil((double) getAllNotificationKeys(user).size() / pageSize);
+    }
+
+    public int pageCountUnread(User user, int pageSize) {
+        return (int) Math.ceil((double) getUnreadNotificationKeys(user).size() / pageSize);
+    }
 
     @Override
     public Collection<Notification> getAll() {

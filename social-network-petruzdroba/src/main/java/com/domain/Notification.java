@@ -9,6 +9,16 @@ public class Notification {
     private String text;
     private boolean read;
 
+    public Notification() {
+    }
+
+    public Notification(User to, String text, LocalDateTime now) {
+        this.to = to;
+        this.text = text;
+        this.data = now;
+        this.read = false;
+    }
+
     public long getId() {
         return id;
     }
