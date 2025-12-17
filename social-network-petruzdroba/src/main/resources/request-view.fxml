@@ -16,6 +16,7 @@
             <Label text="Logged in as:"/>
             <Label fx:id="userLabel" text="User"/>
             <Button text="View Friends" onAction="#openFriendshipsWindow"/>
+            <Button text="Add Friends" onAction="#openAddFriends"/>
         </HBox>
     </top>
 
@@ -35,14 +36,17 @@
                 <Label text="From:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
                 <Label fx:id="fromLabel" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-                <Label text="To:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <Label fx:id="toLabel" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-
                 <Label text="Date:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
                 <Label fx:id="dateLabel" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
                 <Label text="Status:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
                 <Label fx:id="statusLabel" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <HBox spacing="10" alignment="CENTER_RIGHT" GridPane.rowIndex="3" GridPane.columnIndex="1">
+                    <Button fx:id="acceptButton" text="Accept" onAction="#onAccept" visible="false"/>
+                    <Button fx:id="denyButton" text="Reject" onAction="#onReject" visible="false"/>
+                    <Button fx:id="deleteButton" text="Delete" onAction="#onDelete" visible="false"/>
+                </HBox>
             </GridPane>
         </VBox>
     </center>

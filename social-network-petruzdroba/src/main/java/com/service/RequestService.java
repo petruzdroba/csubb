@@ -95,6 +95,12 @@ public class RequestService extends AbstractService<Long, Request>{
             throw new NotLoggedIn("No user logged in");
         User to = userRepository.findByEmail(email);
 
+        if(to == null)
+            throw new ValidationException("User with email " + email +" not found");
+
+        if(friendshipRepository.find(from.getId()+ "" +to.getId()) != null  || friendshipRepository.find(to.getId()+ "" +from.getId()) != null)
+            throw new ValidationException("Friendship already exists!");
+
         Request request = new Request(from, to, Request.status.PENDING, LocalDateTime.now());
         repository.add(null, request);
 

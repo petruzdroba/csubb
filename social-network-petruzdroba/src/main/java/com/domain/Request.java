@@ -1,6 +1,7 @@
 package com.domain;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Request {
     public enum status{
@@ -61,5 +62,10 @@ public class Request {
 
     public void setTo(User to) {
         this.to = to;
+    }
+
+    @Override
+    public String toString() {
+        return from.getUsername() + "                           " + data.format(DateTimeFormatter.ofPattern(" HH':'mm dd MMM"));
     }
 }

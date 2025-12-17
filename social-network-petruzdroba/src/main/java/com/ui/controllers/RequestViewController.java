@@ -3,6 +3,7 @@ package com.ui.controllers;
 import com.domain.Request;
 import com.domain.User;
 import com.exceptions.NotLoggedIn;
+import com.exceptions.ValidationException;
 import com.service.FriendshipService;
 import com.service.RequestService;
 import javafx.collections.FXCollections;
@@ -15,6 +16,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,32 +27,24 @@ public class RequestViewController {
     private FriendshipService friendshipService;
     private User loggedInUser;
 
-    @FXML
-    private Label userLabel;
-    @FXML
-    private ListView<Request> requestListView;
-    @FXML
-    private Label fromLabel;
-    @FXML
-    private Label toLabel;
-    @FXML
-    private Label dateLabel;
-    @FXML
-    private Label statusLabel;
+    @FXML private Label userLabel;
+    @FXML private ListView<Request> requestListView;
+    @FXML private Label fromLabel;
+    @FXML private Label dateLabel;
+    @FXML private Label statusLabel;
 
-    @FXML
-    private Button prevButton;
-    @FXML
-    private Button nextButton;
-    @FXML
-    private Label pageLabel;
+    @FXML private Button prevButton;
+    @FXML private Button nextButton;
+    @FXML private Label pageLabel;
 
-    @FXML
-    private TabPane tabPane;
-    @FXML
-    private Tab receivedTab;
-    @FXML
-    private Tab sentTab;
+    @FXML private TabPane tabPane;
+    @FXML private Tab receivedTab;
+    @FXML private Tab sentTab;
+
+    @FXML private Button acceptButton;
+    @FXML private Button denyButton;
+    @FXML private Button deleteButton;
+
 
     private boolean showingReceived = true;
     private boolean showingSent = false;
@@ -81,10 +76,37 @@ public class RequestViewController {
     public void initialize() {
         requestListView.setItems(requestItems);
 
+        requestListView.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(Request req, boolean empty) {
+                super.updateItem(req, empty);
+
+                if (empty || req == null) {
+                    setText(null);
+                    return;
+                }
+
+                boolean received = req.getTo().getId() == loggedInUser.getId();
+
+                String name = received
+                        ? req.getFrom().getUsername()
+                        : req.getTo().getUsername();
+
+                String prefix = received ? "From: " : "To: ";
+
+                String date = req.getData()
+                        .format(DateTimeFormatter.ofPattern("HH:mm dd MMM"));
+
+                setText(prefix + name + "    " + date);
+            }
+        });
+
+
         tabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
             showingReceived = newTab == receivedTab;
             showingSent = newTab == sentTab;
             pageCount = 1;
+            hideAllActionButtons();
             loadCurrentPage();
         });
 
@@ -93,18 +115,37 @@ public class RequestViewController {
                 clearDetails();
                 return;
             }
-            fromLabel.setText(newReq.getFrom().getUsername());
-            toLabel.setText(newReq.getTo().getUsername());
-            dateLabel.setText(newReq.getData().toString());
+            fromLabel.setText(newReq.getFrom().getEmail());
+            dateLabel.setText(newReq.getData().format(DateTimeFormatter.ofPattern(" HH':'mm dd MMM yyyy")));
             statusLabel.setText(newReq.getStatus().toString());
+
+            updateActionButtons(newReq);
         });
     }
 
     private void clearDetails() {
         fromLabel.setText("");
-        toLabel.setText("");
         dateLabel.setText("");
         statusLabel.setText("");
+    }
+
+    private void hideAllActionButtons() {
+        acceptButton.setVisible(false);
+        denyButton.setVisible(false);
+        deleteButton.setVisible(false);
+    }
+
+    private void updateActionButtons(Request req) {
+        hideAllActionButtons();
+
+        if (showingReceived && req.getStatus() == Request.status.PENDING) {
+            acceptButton.setVisible(true);
+            denyButton.setVisible(true);
+        }
+
+        if (showingSent) {
+            deleteButton.setVisible(true);
+        }
     }
 
     public void loadData(List<Request> reqs) {
@@ -191,11 +232,65 @@ public class RequestViewController {
     }
 
     @FXML
+    private void openAddFriends(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/send-friendship-view.fxml"));
+            Parent root = loader.load();
+            SendFriendshipView controller = loader.getController();
+            controller.setRequestService(requestService);
+            controller.setLoggedInUser(loggedInUser);
+            Scene scene = new Scene(root);
+
+            scene.getStylesheets().add(getClass().getResource("/dark-theme.css").toExternalForm());
+
+            Stage stage = new Stage();
+            stage.setTitle("Add some friends!");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            showError("Cannot open friends view: " + e.getMessage());
+        }
+    }
+
+    @FXML
     protected void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    @FXML private void onAccept(){
+        Request selected = requestListView.getSelectionModel().getSelectedItem();
+        if (selected == null) return;
+
+        try{
+            requestService.accept(loggedInUser, selected);
+        } catch (SQLException | ValidationException e) {
+            showError(e.getMessage());
+        }
+    }
+
+    @FXML private void onReject(){
+        Request selected = requestListView.getSelectionModel().getSelectedItem();
+        if (selected == null) return;
+
+        try{
+            requestService.deny(loggedInUser, selected);
+        } catch (SQLException | ValidationException e) {
+            showError(e.getMessage());
+        }
+    }
+
+    @FXML private void onDelete(){
+        Request selected = requestListView.getSelectionModel().getSelectedItem();
+        if (selected == null) return;
+
+        try{
+            requestService.remove(loggedInUser, selected);
+        } catch (SQLException | ValidationException e) {
+            showError(e.getMessage());
+        }
     }
 }
