@@ -132,6 +132,7 @@ public class MenuViewController {
 
             if (loggedInUser != null) {
                 messageService.removeObserver(loggedInUser);
+                requestService.removeObserver(loggedInUser);
             }
 
             Stage stage = (Stage) userLabel.getScene().getWindow();

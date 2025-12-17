@@ -1,6 +1,5 @@
 package com.ui.controllers;
 
-import com.domain.Observer;
 import com.domain.User;
 import com.service.FriendshipService;
 import javafx.collections.FXCollections;
@@ -13,10 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class FriendshipPagedViewByUserController implements Observer {
+public class FriendshipPagedViewByUserController {
 
     private FriendshipService friendshipService;
-    private User filterUser;
+    private User loggedUser;
     private int pageCount = 1;
     private final int pageSize = 10;
 
@@ -32,8 +31,7 @@ public class FriendshipPagedViewByUserController implements Observer {
 
     public void setFriendshipService(FriendshipService service, User user) {
         this.friendshipService = service;
-        this.filterUser = user;
-        service.addObserver(this);
+        this.loggedUser = user;
         loadCurrentPage();
     }
 
@@ -70,7 +68,7 @@ public class FriendshipPagedViewByUserController implements Observer {
     public void loadData(List<Map.Entry<User, User>> friendships) {
         List<User> otherUsers = new ArrayList<>();
         for (Map.Entry<User, User> entry : friendships) {
-            if (entry.getKey().equals(filterUser)) {
+            if (entry.getKey().equals(loggedUser)) {
                 otherUsers.add(entry.getValue());
             } else {
                 otherUsers.add(entry.getKey());
@@ -84,11 +82,11 @@ public class FriendshipPagedViewByUserController implements Observer {
     }
 
     public void loadCurrentPage() {
-        if (friendshipService == null || filterUser == null) return;
+        if (friendshipService == null || loggedUser == null) return;
 
         int offset = (pageCount - 1) * pageSize;
         try {
-            List<Map.Entry<User, User>> page = new ArrayList<>(friendshipService.getAllPrettyByUser(filterUser, offset, pageSize));
+            List<Map.Entry<User, User>> page = new ArrayList<>(friendshipService.getAllPrettyByUser(loggedUser, offset, pageSize));
             loadData(page);
         } catch (RuntimeException e) {
             showError(e.getMessage());
@@ -97,7 +95,7 @@ public class FriendshipPagedViewByUserController implements Observer {
 
     private void updatePageButtons() {
         prevButton.setDisable(pageCount <= 1);
-        int totalPages = friendshipService.pageCountByUser(filterUser, pageSize);
+        int totalPages = friendshipService.pageCountByUser(loggedUser, pageSize);
         nextButton.setDisable(pageCount >= totalPages);
     }
 
@@ -109,7 +107,7 @@ public class FriendshipPagedViewByUserController implements Observer {
     }
 
     public void onNextPage() {
-        int totalPages = friendshipService.pageCountByUser(filterUser, pageSize);
+        int totalPages = friendshipService.pageCountByUser(loggedUser, pageSize);
         if (pageCount < totalPages) {
             pageCount++;
             loadCurrentPage();
@@ -126,10 +124,5 @@ public class FriendshipPagedViewByUserController implements Observer {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-    @Override
-    public void update() {
-        loadCurrentPage();
     }
 }

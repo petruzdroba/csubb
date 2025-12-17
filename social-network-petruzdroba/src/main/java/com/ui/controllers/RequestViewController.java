@@ -1,5 +1,6 @@
 package com.ui.controllers;
 
+import com.domain.Observer;
 import com.domain.Request;
 import com.domain.User;
 import com.exceptions.NotLoggedIn;
@@ -21,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RequestViewController {
+public class RequestViewController implements Observer {
 
     private RequestService requestService;
     private FriendshipService friendshipService;
@@ -48,6 +49,7 @@ public class RequestViewController {
 
     private boolean showingReceived = true;
     private boolean showingSent = false;
+    private boolean addFriendsOpen = false;
 
     private final ObservableList<Request> requestItems = FXCollections.observableArrayList();
     private final List<Request> requests = new ArrayList<>();
@@ -67,6 +69,8 @@ public class RequestViewController {
         this.loggedInUser = user;
         if (loggedInUser != null) {
             userLabel.setText(loggedInUser.getUsername() + " (" + loggedInUser.getEmail() + ")");
+            loggedInUser.addObserver(this);
+            requestService.addObserver(loggedInUser);
         }
         loadCurrentPage();
         updatePageButtons();
@@ -213,6 +217,8 @@ public class RequestViewController {
 
     @FXML
     private void openFriendshipsWindow() {
+        if (addFriendsOpen) return;
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/friendship-paged-view-by-user.fxml"));
             Parent root = loader.load();
@@ -225,6 +231,10 @@ public class RequestViewController {
             Stage stage = new Stage();
             stage.setTitle("Friends of " + loggedInUser.getUsername());
             stage.setScene(scene);
+
+            addFriendsOpen = true;
+            stage.setOnHidden(e -> addFriendsOpen = false);
+
             stage.show();
         } catch (IOException e) {
             showError("Cannot open friends view: " + e.getMessage());
@@ -292,5 +302,10 @@ public class RequestViewController {
         } catch (SQLException | ValidationException e) {
             showError(e.getMessage());
         }
+    }
+
+    @Override
+    public void update() {
+        loadCurrentPage();
     }
 }

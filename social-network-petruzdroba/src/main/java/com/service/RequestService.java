@@ -90,6 +90,14 @@ public class RequestService extends AbstractService<Long, Request>{
         return ((RequestRepository) repository).pageCountSent(user, pageSize);
     }
 
+    private void pushObserver(User sender, User receiver){
+        observers.stream()
+                .filter(User.class::isInstance)
+                .map(User.class::cast)
+                .filter(o -> sender.getId()==o.getId() || receiver.getId() == o.getId())
+                .forEach(User::update);
+    }
+
     public void send(User from, String email) throws SQLException {
         if (from == null)
             throw new NotLoggedIn("No user logged in");
@@ -98,13 +106,16 @@ public class RequestService extends AbstractService<Long, Request>{
         if(to == null)
             throw new ValidationException("User with email " + email +" not found");
 
-        if(friendshipRepository.find(from.getId()+ "" +to.getId()) != null  || friendshipRepository.find(to.getId()+ "" +from.getId()) != null)
+        long a = Math.min(from.getId(), to.getId());
+        long b = Math.max(from.getId(), to.getId());
+
+        if (friendshipRepository.find(a + "-" + b) != null)
             throw new ValidationException("Friendship already exists!");
 
         Request request = new Request(from, to, Request.status.PENDING, LocalDateTime.now());
         repository.add(null, request);
 
-        //pushObserver here
+        pushObserver(from, to);
     }
 
     public void remove(User currentUser, Request request) throws SQLException {
@@ -115,6 +126,8 @@ public class RequestService extends AbstractService<Long, Request>{
             throw new ValidationException("Just reject the request, dont delete from the other end");
 
         repository.remove(request.getId());
+
+        pushObserver(currentUser, request.getTo());
     }
 
     public void accept(User currentUser, Request request) throws SQLException {
@@ -129,6 +142,8 @@ public class RequestService extends AbstractService<Long, Request>{
 
         Friendship friendship = new Friendship(currentUser.getId(), request.getFrom().getId());
         friendshipRepository.add(friendship.getFriendshipId(), friendship);
+
+        pushObserver(currentUser, request.getFrom());
     }
 
     public void deny(User currentUser, Request request) throws SQLException {
@@ -140,5 +155,8 @@ public class RequestService extends AbstractService<Long, Request>{
 
         request.setStatus(Request.status.REJECTED);
         repository.modify(request.getId(), request);
+
+        pushObserver(currentUser, request.getFrom());
+
     }
 }
