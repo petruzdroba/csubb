@@ -2,8 +2,7 @@ package com.ui.controllers;
 
 import com.domain.User;
 import com.exceptions.RepositoryException;
-import com.service.MessageService;
-import com.service.UserService;
+import com.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,11 +20,26 @@ import java.sql.SQLException;
 public class AuthViewController {
     private UserService service;
     private MessageService messageService;
+    private RequestService requestService;
+    private FriendshipService friendshipService;
+    private NotificationService notificationService;
 
     public AuthViewController() {}
 
     public void setUserService(UserService userService) {
         this.service = userService;
+    }
+
+    public void setRequestService(RequestService service) {
+        this.requestService = service;
+    }
+
+    public void setFriendshipService(FriendshipService friendshipService) {
+        this.friendshipService = friendshipService;
+    }
+
+    public void setNotificationService(NotificationService notificationService) {
+        this.notificationService = notificationService;
     }
 
     @FXML private TextField emailField;
@@ -41,7 +55,7 @@ public class AuthViewController {
             User loggedInUser = service.logIn(email, password);
 
             if (loggedInUser != null) {
-                openMessageView(loggedInUser);
+                openMenuView(loggedInUser);
             } else {
                 showError("Invalid credentials");
                 passwordField.clear();
@@ -51,29 +65,32 @@ public class AuthViewController {
         }
     }
 
-
-    private void openMessageView(User user) {
+    private void openMenuView(User user) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/message-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu-view.fxml"));
             Parent root = loader.load();
-            String darkTheme = getClass().getResource("/dark-theme.css").toExternalForm();
 
-            MessageViewController controller = loader.getController();
+            MenuViewController controller = loader.getController();
             controller.setUserService(service);
             controller.setMessageService(messageService);
+            controller.setFriendshipService(friendshipService);
+            controller.setRequestService(requestService);
+            controller.setNotificationService(notificationService);
             controller.setLoggedInUser(user);
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(darkTheme);
+            scene.getStylesheets().add(
+                    getClass().getResource("/dark-theme.css").toExternalForm()
+            );
 
             stage.setScene(scene);
-            stage.setTitle("Message Screen");
+            stage.setTitle("Main Menu");
             stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
-            showError("Cannot load message screen: " + e.getMessage());
+            showError("Cannot load menu");
         }
     }
 

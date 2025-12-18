@@ -27,7 +27,6 @@ public class MessageViewController implements Observer {
     private MessageService messageService;
     private User loggedInUser;
 
-    @FXML private Button logOutButton;
     @FXML private Label userLabel;
 
     @FXML private ListView<Message> messageListView;
@@ -146,27 +145,6 @@ public class MessageViewController implements Observer {
         pageLabel.setText((showingReceived ? "Received" : "Sent") + " Page: " + pageCount);
         updatePageButtons();
         loadData(pageMessages);
-    }
-
-    @FXML
-    private void handleLogout() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/auth-view.fxml"));
-            Parent root = loader.load();
-            AuthViewController controller = loader.getController();
-            controller.setUserService(userService);
-            messageService.removeObserver(loggedInUser);
-            loggedInUser.removeObserver(this);
-            controller.setMessageService(messageService);
-
-            Stage stage = (Stage) logOutButton.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Login");
-            stage.sizeToScene();
-            stage.show();
-        } catch (IOException e) {
-            showError("Cannot load login screen: " + e.getMessage());
-        }
     }
 
     private void clearDetails() {

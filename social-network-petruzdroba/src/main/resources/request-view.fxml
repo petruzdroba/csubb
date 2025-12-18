@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ui.controllers.RequestViewController">
+
+    <top>
+        <HBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Logged in as:"/>
+            <Label fx:id="userLabel" text="User"/>
+            <Button text="Notifs" onAction="#openNotifications"/>
+            <Button text="View Friends" onAction="#openFriendshipsWindow"/>
+            <Button text="Add Friends" onAction="#openAddFriends"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <TabPane fx:id="tabPane">
+                <Tab fx:id="receivedTab" text="Received"/>
+                <Tab fx:id="sentTab" text="Sent"/>
+            </TabPane>
+
+            <ListView fx:id="requestListView" prefHeight="300"/>
+
+            <GridPane hgap="10" vgap="5">
+                <Label text="From:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <Label fx:id="fromLabel" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Date:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <Label fx:id="dateLabel" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Status:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <Label fx:id="statusLabel" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <HBox spacing="10" alignment="CENTER_RIGHT" GridPane.rowIndex="3" GridPane.columnIndex="1">
+                    <Button fx:id="acceptButton" text="Accept" onAction="#onAccept" visible="false"/>
+                    <Button fx:id="denyButton" text="Reject" onAction="#onReject" visible="false"/>
+                    <Button fx:id="deleteButton" text="Delete" onAction="#onDelete" visible="false"/>
+                </HBox>
+            </GridPane>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button fx:id="prevButton" text="Previous" onAction="#onPrevPage"/>
+            <Label fx:id="pageLabel" text="Page 1"/>
+            <Button fx:id="nextButton" text="Next" onAction="#onNextPage"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

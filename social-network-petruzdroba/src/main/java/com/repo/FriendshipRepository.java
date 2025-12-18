@@ -161,4 +161,86 @@ public class FriendshipRepository extends AbstractDatabaseRepository<String, Fri
 
         return 0;
     }
+
+
+
+
+    private List<String> fetchFriendshipKeys(String sql, long userId, Integer limit, Integer offset) {
+        List<String> keys = new ArrayList<>();
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setLong(1, userId);
+            ps.setLong(2, userId);
+            if (limit != null) ps.setInt(3, limit);
+            if (offset != null) ps.setInt(4, offset);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    keys.add(rs.getString("friendship_id"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return keys;
+    }
+
+    public Collection<String> getKeysByUser(long userId) {
+        String sql = "SELECT friendship_id FROM friendships WHERE user_id1=? OR user_id2=? ORDER BY friendship_id";
+        return fetchFriendshipKeys(sql, userId, null, null);
+    }
+
+    public Collection<String> getKeysPageByUser(long userId, int offset, int limit) {
+        String sql = "SELECT friendship_id FROM friendships WHERE user_id1=? OR user_id2=? ORDER BY friendship_id LIMIT ? OFFSET ?";
+        return fetchFriendshipKeys(sql, userId, limit, offset);
+    }
+
+    public Collection<Friendship> getFriendshipsPageByUser(long userId, int offset, int limit) {
+        String sql = "SELECT * FROM friendships WHERE user_id1=? OR user_id2=? ORDER BY friendship_id LIMIT ? OFFSET ?";
+        List<Friendship> friendships = new ArrayList<>();
+
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setLong(1, userId);
+            ps.setLong(2, userId);
+            ps.setInt(3, limit);
+            ps.setInt(4, offset);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    friendships.add(mapResultSetToEntity(rs));
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return friendships;
+    }
+
+    public int pageCountByUser(long userId, int pageSize) {
+        String sql = "SELECT COUNT(*) AS total FROM friendships WHERE user_id1=? OR user_id2=?";
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setLong(1, userId);
+            ps.setLong(2, userId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    int total = rs.getInt("total");
+                    return (int) Math.ceil((double) total / pageSize);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.ui.controllers.MenuViewController"
+      spacing="20"
+      alignment="CENTER"
+      stylesheets="@dark-theme.css"
+      styleClass="root">
+
+    <padding>
+        <Insets top="50" right="50" bottom="50" left="50"/>
+    </padding>
+
+    <Label text="Main Menu" styleClass="label-title"/>
+
+    <Label fx:id="userLabel" styleClass="user-info-label"/>
+
+    <Button text="Messages"
+            maxWidth="240"
+            onAction="#openMessages"/>
+
+    <Button text="Friends"
+            maxWidth="240"
+            onAction="#openFriends"/>
+
+    <Button text="Logout"
+            maxWidth="240"
+            onAction="#handleLogout"/>
+
+</VBox>
