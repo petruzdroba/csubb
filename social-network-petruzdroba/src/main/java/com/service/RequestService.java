@@ -146,7 +146,8 @@ public class RequestService extends AbstractService<Long, Request>{
         Friendship friendship = new Friendship(currentUser.getId(), request.getFrom().getId());
         friendshipRepository.add(friendship.getFriendshipId(), friendship);
 
-        notificationService.send(request.getTo(), String.format("You and %s are now friends!", currentUser.getUsername()));
+        notificationService.send(request.getFrom(), String.format("You and %s are now friends!", currentUser.getUsername()));
+        notificationService.send(currentUser, String.format("You and %s are now friends!", request.getFrom().getUsername()));
 
         pushObserver(currentUser, request.getFrom());
     }
@@ -161,7 +162,7 @@ public class RequestService extends AbstractService<Long, Request>{
         request.setStatus(Request.status.REJECTED);
         repository.modify(request.getId(), request);
 
-        notificationService.send(request.getTo(), String.format("%s rejected your friend request!", currentUser.getUsername()));
+        notificationService.send(request.getFrom(), String.format("%s rejected your friend request!", currentUser.getUsername()));
 
         pushObserver(currentUser, request.getFrom());
     }

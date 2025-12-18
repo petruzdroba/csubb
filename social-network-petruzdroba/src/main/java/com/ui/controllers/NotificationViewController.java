@@ -1,6 +1,7 @@
 package com.ui.controllers;
 
 import com.domain.Notification;
+import com.domain.Observer;
 import com.domain.User;
 import com.exceptions.ValidationException;
 import com.service.NotificationService;
@@ -15,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotificationViewController {
+public class NotificationViewController implements Observer {
 
     private NotificationService notificationService;
     private User loggedUser;
@@ -43,6 +44,10 @@ public class NotificationViewController {
 
     public void setLoggedInUser(User loggedUser) {
         this.loggedUser = loggedUser;
+
+        loggedUser.addObserver(this);
+        notificationService.addObserver(loggedUser);
+
         loadCurrentPage();
     }
 
@@ -155,5 +160,10 @@ public class NotificationViewController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    @Override
+    public void update() {
+        loadCurrentPage();
     }
 }

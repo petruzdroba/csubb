@@ -9,6 +9,7 @@ import com.repo.NotificationRepository;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -100,6 +101,17 @@ public class NotificationService extends AbstractService<Long, Notification>{
         return ((NotificationRepository)repository).pageCountUnread(user, pageSize);
     }
 
+    private void pushObserver(List<User> users){
+        List<Long> notifiedIds = new ArrayList<>(users.stream()
+                .map(User::getId)
+                .toList());
+
+        observers.stream().filter(User.class::isInstance)
+                .map(User.class::cast)
+                .filter(o -> notifiedIds.contains(o.getId()))
+                .forEach(User::update);
+    }
+
     public void send(User to, String text) throws SQLException {
         if(to == null)
             throw new ValidationException("User does not exist");
@@ -109,7 +121,8 @@ public class NotificationService extends AbstractService<Long, Notification>{
 
         Notification notification = new Notification(to, text, LocalDateTime.now());
         repository.add(null, notification);
-        //push observer
+
+        pushObserver(List.of(to));
     }
 
     public void markRead(Notification notification) throws SQLException {
@@ -118,6 +131,8 @@ public class NotificationService extends AbstractService<Long, Notification>{
 
         notification.setRead(true);
         repository.modify(notification.getId(),notification);
+
+        pushObserver(List.of(notification.getTo()));
     }
 
     public void markRead(List<Notification> notifications) throws SQLException {
@@ -128,6 +143,9 @@ public class NotificationService extends AbstractService<Long, Notification>{
             notif.setRead(true);
             repository.modify(notif.getId(),notif);
         }
+
+        List<User> notifiedIds = notifications.stream().map(Notification::getTo).toList();
+        pushObserver(notifiedIds);
     }
 
     public void markUnread(Notification notification) throws SQLException{
@@ -136,6 +154,8 @@ public class NotificationService extends AbstractService<Long, Notification>{
 
         notification.setRead(false);
         repository.modify(notification.getId(),notification);
+
+        pushObserver(List.of(notification.getTo()));
     }
 
 }
