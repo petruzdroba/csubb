@@ -129,6 +129,15 @@ public class NotificationViewController implements Observer {
         }
     }
 
+    @FXML
+    private void markAllRead(){
+        try{
+            notificationService.markRead(new ArrayList<>(notificationService.getAllNotifications(loggedUser)));
+        } catch (SQLException | ValidationException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void updatePageButtons() {
         prevButton.setDisable(pageCount <= 1);
         int totalPages = showingUnread ?

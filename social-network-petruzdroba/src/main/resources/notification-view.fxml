@@ -9,7 +9,10 @@
       fx:controller="com.ui.controllers.NotificationViewController"
       spacing="10">
 
-    <Label text="Notifications" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+    <HBox spacing="10">
+        <Label text="Notifications" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+        <Button text="Mark all read" onAction="#markAllRead"/>
+    </HBox>
 
     <TabPane fx:id="tabPane">
         <Tab text="All" fx:id="allTab" closable="false"/>
