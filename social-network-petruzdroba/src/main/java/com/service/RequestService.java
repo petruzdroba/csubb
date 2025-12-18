@@ -14,12 +14,13 @@ import java.util.Collection;
 public class RequestService extends AbstractService<Long, Request>{
     private final UserRepository userRepository;
     private final FriendshipRepository friendshipRepository;
+    private final NotificationService notificationService;
 
-
-    public RequestService(AbstractDatabaseRepository<Long, Request> repository, UserRepository userRepository, FriendshipRepository friendshipRepository) {
+    public RequestService(AbstractDatabaseRepository<Long, Request> repository, UserRepository userRepository, FriendshipRepository friendshipRepository, NotificationService notificationService) {
         super(repository);
         this.userRepository = userRepository;
         this.friendshipRepository = friendshipRepository;
+        this.notificationService = notificationService;
     }
 
     public Collection<Request> getReceived(User user) {
@@ -115,6 +116,8 @@ public class RequestService extends AbstractService<Long, Request>{
         Request request = new Request(from, to, Request.status.PENDING, LocalDateTime.now());
         repository.add(null, request);
 
+        notificationService.send(to, String.format("%s sent you a friend request!", from.getUsername()));
+
         pushObserver(from, to);
     }
 
@@ -143,6 +146,8 @@ public class RequestService extends AbstractService<Long, Request>{
         Friendship friendship = new Friendship(currentUser.getId(), request.getFrom().getId());
         friendshipRepository.add(friendship.getFriendshipId(), friendship);
 
+        notificationService.send(request.getTo(), String.format("You and %s are now friends!", currentUser.getUsername()));
+
         pushObserver(currentUser, request.getFrom());
     }
 
@@ -156,7 +161,8 @@ public class RequestService extends AbstractService<Long, Request>{
         request.setStatus(Request.status.REJECTED);
         repository.modify(request.getId(), request);
 
-        pushObserver(currentUser, request.getFrom());
+        notificationService.send(request.getTo(), String.format("%s rejected your friend request!", currentUser.getUsername()));
 
+        pushObserver(currentUser, request.getFrom());
     }
 }

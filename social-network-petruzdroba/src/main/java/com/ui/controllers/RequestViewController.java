@@ -6,6 +6,7 @@ import com.domain.User;
 import com.exceptions.NotLoggedIn;
 import com.exceptions.ValidationException;
 import com.service.FriendshipService;
+import com.service.NotificationService;
 import com.service.RequestService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +27,7 @@ public class RequestViewController implements Observer {
 
     private RequestService requestService;
     private FriendshipService friendshipService;
+    private NotificationService notificationService;
     private User loggedInUser;
 
     @FXML private Label userLabel;
@@ -63,6 +65,10 @@ public class RequestViewController implements Observer {
 
     public void setFriendshipService(FriendshipService friendshipService) {
         this.friendshipService = friendshipService;
+    }
+
+    public void setNotificationService(NotificationService notificationService) {
+        this.notificationService = notificationService;
     }
 
     public void setLoggedInUser(User user) {
@@ -259,6 +265,27 @@ public class RequestViewController implements Observer {
             stage.show();
         } catch (IOException e) {
             showError("Cannot open friends view: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void openNotifications(){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/notification-view.fxml"));
+            Parent root = loader.load();
+            NotificationViewController controller = loader.getController();
+            controller.setNotificationService(notificationService);
+            controller.setLoggedInUser(loggedInUser);
+            Scene scene = new Scene(root);
+
+            scene.getStylesheets().add(getClass().getResource("/dark-theme.css").toExternalForm());
+
+            Stage stage = new Stage();
+            stage.setTitle("Notifications");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            showError("Cannot open notifications view: " + e.getMessage());
         }
     }
 

@@ -1,13 +1,10 @@
 package com;
 
 import com.repo.*;
-import com.service.FriendshipService;
-import com.service.MessageService;
-import com.service.RequestService;
+import com.service.*;
 import com.ui.controllers.AuthViewController;
 import com.ui.controllers.DuckFilterController;
 import com.domain.DataBaseConfig;
-import com.service.UserService;
 import com.ui.controllers.FriendshipPagedViewController;
 import com.ui.controllers.UserPagedViewController;
 import javafx.application.Application;
@@ -20,11 +17,13 @@ public class MainApplication extends Application {
     private UserRepository userRepository;
     private MessageRepository messageRepository;
     private RequestRepository requestRepository;
+    private NotificationRepository notificationRepository;
 
     private RequestService requestService;
     private FriendshipService friendshipService;
     private UserService userService;
     private MessageService messageService;
+    private NotificationService notificationService;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -57,6 +56,7 @@ public class MainApplication extends Application {
         );
 
         requestRepository = new RequestRepository(config, userRepository);
+        notificationRepository = new NotificationRepository(config, userRepository);
 
         userService = new UserService(
                 userRepository,
@@ -65,8 +65,9 @@ public class MainApplication extends Application {
         );
 
         messageService = new MessageService(messageRepository, userRepository);
+        notificationService = new NotificationService(notificationRepository);
 
-        requestService = new RequestService(requestRepository, userRepository, friendshipRepository);
+        requestService = new RequestService(requestRepository, userRepository, friendshipRepository, notificationService);
     }
 
     private void openDuckFilterWindow() throws Exception {
@@ -119,6 +120,7 @@ public class MainApplication extends Application {
         controller.setMessageService(messageService);
         controller.setFriendshipService(friendshipService);
         controller.setRequestService(requestService);
+        controller.setNotificationService(notificationService);
 
         scene.getStylesheets().add(getClass().getResource("/dark-theme.css").toExternalForm());
 

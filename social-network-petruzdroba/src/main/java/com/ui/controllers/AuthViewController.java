@@ -2,10 +2,7 @@ package com.ui.controllers;
 
 import com.domain.User;
 import com.exceptions.RepositoryException;
-import com.service.FriendshipService;
-import com.service.MessageService;
-import com.service.RequestService;
-import com.service.UserService;
+import com.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +22,7 @@ public class AuthViewController {
     private MessageService messageService;
     private RequestService requestService;
     private FriendshipService friendshipService;
+    private NotificationService notificationService;
 
     public AuthViewController() {}
 
@@ -38,6 +36,10 @@ public class AuthViewController {
 
     public void setFriendshipService(FriendshipService friendshipService) {
         this.friendshipService = friendshipService;
+    }
+
+    public void setNotificationService(NotificationService notificationService) {
+        this.notificationService = notificationService;
     }
 
     @FXML private TextField emailField;
@@ -73,6 +75,7 @@ public class AuthViewController {
             controller.setMessageService(messageService);
             controller.setFriendshipService(friendshipService);
             controller.setRequestService(requestService);
+            controller.setNotificationService(notificationService);
             controller.setLoggedInUser(user);
 
             Stage stage = (Stage) loginButton.getScene().getWindow();

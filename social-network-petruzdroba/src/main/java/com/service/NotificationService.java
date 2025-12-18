@@ -113,18 +113,29 @@ public class NotificationService extends AbstractService<Long, Notification>{
     }
 
     public void markRead(Notification notification) throws SQLException {
-        if (notification == null) return;
+        if (notification == null)
+            throw new ValidationException("Notification cannot be null");
 
         notification.setRead(true);
         repository.modify(notification.getId(),notification);
     }
 
     public void markRead(List<Notification> notifications) throws SQLException {
-        if (notifications == null || notifications.isEmpty()) return;
+        if (notifications == null || notifications.isEmpty())
+            throw new ValidationException("Notification cannot be null");
 
         for (Notification notif : notifications) {
             notif.setRead(true);
             repository.modify(notif.getId(),notif);
         }
     }
+
+    public void markUnread(Notification notification) throws SQLException{
+        if(notification == null)
+            throw new ValidationException("Notification cannot be null");
+
+        notification.setRead(false);
+        repository.modify(notification.getId(),notification);
+    }
+
 }

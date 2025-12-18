@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ui.controllers.NotificationViewController"
+      spacing="10">
+
+    <Label text="Notifications" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+
+    <TabPane fx:id="tabPane">
+        <Tab text="All" fx:id="allTab" closable="false"/>
+        <Tab text="Unread" fx:id="unreadTab" closable="false"/>
+    </TabPane>
+
+    <TableView fx:id="tableView" prefHeight="300">
+        <columns>
+            <TableColumn fx:id="timestampColumn" text="Timestamp" prefWidth="150"/>
+            <TableColumn fx:id="textColumn" text="Message" prefWidth="300"/>
+            <TableColumn fx:id="actionColumn" text="Action" prefWidth="200"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="prevButton" text="Previous"/>
+        <Label fx:id="pageLabel" text="Page 1"/>
+        <Button fx:id="nextButton" text="Next"/>
+    </HBox>
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+</VBox>

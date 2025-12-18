@@ -1,6 +1,7 @@
 package com.domain;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Notification {
     private long id;
@@ -57,5 +58,10 @@ public class Notification {
 
     public void setRead(boolean read) {
         this.read = read;
+    }
+
+    @Override
+    public String toString() {
+        return data.format(DateTimeFormatter.ofPattern(" HH:mm ")) + " " + text;
     }
 }

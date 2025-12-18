@@ -1,10 +1,7 @@
 package com.ui.controllers;
 
 import com.domain.User;
-import com.service.FriendshipService;
-import com.service.MessageService;
-import com.service.RequestService;
-import com.service.UserService;
+import com.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,6 +18,7 @@ public class MenuViewController {
     private MessageService messageService;
     private FriendshipService friendshipService;
     private RequestService requestService;
+    private NotificationService notificationService;
     private User loggedInUser;
 
     private Stage messageStage;
@@ -44,6 +42,10 @@ public class MenuViewController {
 
     public void setRequestService(RequestService requestService) {
         this.requestService = requestService;
+    }
+
+    public void setNotificationService(NotificationService notificationService) {
+        this.notificationService = notificationService;
     }
 
     public void setLoggedInUser(User user) {
@@ -98,6 +100,7 @@ public class MenuViewController {
             RequestViewController controller = loader.getController();
             controller.setFriendshipService(friendshipService);
             controller.setRequestService(requestService);
+            controller.setNotificationService(notificationService);
             controller.setLoggedInUser(loggedInUser);
 
             friendsStage = new Stage();
@@ -129,6 +132,7 @@ public class MenuViewController {
             controller.setMessageService(messageService);
             controller.setFriendshipService(friendshipService);
             controller.setRequestService(requestService);
+            controller.setNotificationService(notificationService);
 
             if (loggedInUser != null) {
                 messageService.removeObserver(loggedInUser);
