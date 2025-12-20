@@ -15,7 +15,7 @@
             </padding>
             <Label text="Logged in as:"/>
             <Label fx:id="userLabel" text="User"/>
-            <Button text="Notifs" onAction="#openNotifications"/>
+            <Button fx:id="notifBtn" text="Notifs" onAction="#openNotifications"/>
             <Button text="View Friends" onAction="#openFriendshipsWindow"/>
             <Button text="Add Friends" onAction="#openAddFriends"/>
         </HBox>

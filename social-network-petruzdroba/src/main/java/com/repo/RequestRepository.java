@@ -71,6 +71,24 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
         }
     }
 
+    public boolean exists(Long userId1, Long userId2) throws SQLException{
+        String sql = "SELECT * FROM friend_requests WHERE from_user_id=? AND to_user_id=? AND status=?";
+
+        try (Connection connection = getConnection();
+        PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setLong(1, userId1);
+            ps.setLong(2, userId2);
+            ps.setString(3, "PENDING");
+
+            try(ResultSet rs = ps.executeQuery()){
+                if(!rs.next()){
+                    return false;
+                }
+                return true;
+            }
+        }
+    }
+
     @Override
     public Request find(Long key) throws SQLException {
         String sql = "SELECT * FROM friend_requests WHERE id = ?";

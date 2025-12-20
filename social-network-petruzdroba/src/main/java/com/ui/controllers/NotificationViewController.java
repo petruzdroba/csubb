@@ -68,7 +68,7 @@ public class NotificationViewController implements Observer {
         textColumn.setCellValueFactory(new PropertyValueFactory<>("text"));
         timestampColumn.setCellValueFactory(data ->
                 new javafx.beans.property.SimpleStringProperty(
-                        data.getValue().getData().format(DateTimeFormatter.ofPattern("HH:mm"))
+                        data.getValue().getData().format(DateTimeFormatter.ofPattern("EEE HH:mm"))
                 )
         );
 
@@ -174,5 +174,10 @@ public class NotificationViewController implements Observer {
     @Override
     public void update() {
         loadCurrentPage();
+    }
+
+    public void removeObservers(){
+        notificationService.removeObserver(loggedUser);
+        loggedUser.removeObserver(this);
     }
 }

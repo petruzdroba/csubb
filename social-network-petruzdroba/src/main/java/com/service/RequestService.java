@@ -104,6 +104,9 @@ public class RequestService extends AbstractService<Long, Request>{
             throw new NotLoggedIn("No user logged in");
         User to = userRepository.findByEmail(email);
 
+        if(from.getId() == to.getId())
+            throw new ValidationException("Cannot be friends with yourself");
+
         if(to == null)
             throw new ValidationException("User with email " + email +" not found");
 
@@ -112,6 +115,12 @@ public class RequestService extends AbstractService<Long, Request>{
 
         if (friendshipRepository.find(a + "-" + b) != null)
             throw new ValidationException("Friendship already exists!");
+
+        if(((RequestRepository)repository).exists(from.getId(), to.getId()))
+            throw new ValidationException("Request already exists!");
+
+        if(((RequestRepository)repository).exists(to.getId(), from.getId()))
+            throw new ValidationException("User already sent you a friend request!");
 
         Request request = new Request(from, to, Request.status.PENDING, LocalDateTime.now());
         repository.add(null, request);

@@ -30,28 +30,43 @@ public class RequestViewController implements Observer {
     private NotificationService notificationService;
     private User loggedInUser;
 
-    @FXML private Label userLabel;
-    @FXML private ListView<Request> requestListView;
-    @FXML private Label fromLabel;
-    @FXML private Label dateLabel;
-    @FXML private Label statusLabel;
+    @FXML
+    private Label userLabel;
+    @FXML
+    private ListView<Request> requestListView;
+    @FXML
+    private Label fromLabel;
+    @FXML
+    private Label dateLabel;
+    @FXML
+    private Label statusLabel;
 
-    @FXML private Button prevButton;
-    @FXML private Button nextButton;
-    @FXML private Label pageLabel;
+    @FXML
+    private Button prevButton;
+    @FXML
+    private Button nextButton;
+    @FXML
+    private Label pageLabel;
 
-    @FXML private TabPane tabPane;
-    @FXML private Tab receivedTab;
-    @FXML private Tab sentTab;
+    @FXML
+    private TabPane tabPane;
+    @FXML
+    private Tab receivedTab;
+    @FXML
+    private Tab sentTab;
 
-    @FXML private Button acceptButton;
-    @FXML private Button denyButton;
-    @FXML private Button deleteButton;
-
+    @FXML
+    private Button acceptButton;
+    @FXML
+    private Button denyButton;
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private Button notifBtn;
 
     private boolean showingReceived = true;
     private boolean showingSent = false;
-    private boolean addFriendsOpen = false;
+    private boolean friendshipWindow = false;
 
     private final ObservableList<Request> requestItems = FXCollections.observableArrayList();
     private final List<Request> requests = new ArrayList<>();
@@ -77,6 +92,7 @@ public class RequestViewController implements Observer {
             userLabel.setText(loggedInUser.getUsername() + " (" + loggedInUser.getEmail() + ")");
             loggedInUser.addObserver(this);
             requestService.addObserver(loggedInUser);
+            updateNotificationButton();
         }
         loadCurrentPage();
         updatePageButtons();
@@ -131,6 +147,7 @@ public class RequestViewController implements Observer {
 
             updateActionButtons(newReq);
         });
+
     }
 
     private void clearDetails() {
@@ -155,6 +172,15 @@ public class RequestViewController implements Observer {
 
         if (showingSent) {
             deleteButton.setVisible(true);
+        }
+    }
+
+    private void updateNotificationButton() {
+        if (!notificationService.getUnreadNotificationKeys(this.loggedInUser).isEmpty()) {
+            notifBtn.setText("Notif*");
+        }
+        else{
+            notifBtn.setText("Notif");
         }
     }
 
@@ -223,7 +249,7 @@ public class RequestViewController implements Observer {
 
     @FXML
     private void openFriendshipsWindow() {
-        if (addFriendsOpen) return;
+        if (friendshipWindow) return;
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/friendship-paged-view-by-user.fxml"));
@@ -238,8 +264,11 @@ public class RequestViewController implements Observer {
             stage.setTitle("Friends of " + loggedInUser.getUsername());
             stage.setScene(scene);
 
-            addFriendsOpen = true;
-            stage.setOnHidden(e ->{ addFriendsOpen = false; controller.removeObservers();});
+            friendshipWindow = true;
+            stage.setOnHidden(e -> {
+                friendshipWindow = false;
+                controller.removeObservers();
+            });
 
             stage.show();
         } catch (IOException e) {
@@ -248,7 +277,7 @@ public class RequestViewController implements Observer {
     }
 
     @FXML
-    private void openAddFriends(){
+    private void openAddFriends() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/send-friendship-view.fxml"));
             Parent root = loader.load();
@@ -269,8 +298,8 @@ public class RequestViewController implements Observer {
     }
 
     @FXML
-    private void openNotifications(){
-        try{
+    private void openNotifications() {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/notification-view.fxml"));
             Parent root = loader.load();
             NotificationViewController controller = loader.getController();
@@ -283,6 +312,11 @@ public class RequestViewController implements Observer {
             Stage stage = new Stage();
             stage.setTitle("Notifications");
             stage.setScene(scene);
+
+            stage.setOnHidden(e -> {
+                controller.removeObservers();
+            });
+
             stage.show();
         } catch (IOException e) {
             showError("Cannot open notifications view: " + e.getMessage());
@@ -298,11 +332,12 @@ public class RequestViewController implements Observer {
         alert.showAndWait();
     }
 
-    @FXML private void onAccept(){
+    @FXML
+    private void onAccept() {
         Request selected = requestListView.getSelectionModel().getSelectedItem();
         if (selected == null) return;
 
-        try{
+        try {
             requestService.accept(loggedInUser, selected);
             hideAllActionButtons();
         } catch (SQLException | ValidationException e) {
@@ -310,11 +345,12 @@ public class RequestViewController implements Observer {
         }
     }
 
-    @FXML private void onReject(){
+    @FXML
+    private void onReject() {
         Request selected = requestListView.getSelectionModel().getSelectedItem();
         if (selected == null) return;
 
-        try{
+        try {
             requestService.deny(loggedInUser, selected);
             hideAllActionButtons();
         } catch (SQLException | ValidationException e) {
@@ -322,11 +358,12 @@ public class RequestViewController implements Observer {
         }
     }
 
-    @FXML private void onDelete(){
+    @FXML
+    private void onDelete() {
         Request selected = requestListView.getSelectionModel().getSelectedItem();
         if (selected == null) return;
 
-        try{
+        try {
             requestService.remove(loggedInUser, selected);
             hideAllActionButtons();
         } catch (SQLException | ValidationException e) {
@@ -337,5 +374,6 @@ public class RequestViewController implements Observer {
     @Override
     public void update() {
         loadCurrentPage();
+        updateNotificationButton();
     }
 }
