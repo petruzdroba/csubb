@@ -17,7 +17,13 @@
 )
 
 #|
+    daca primul element e lista (adica are copii) se calculeaza inaltimea lor
+    "practic" la final se returneaza adancimea maxima
+
+    face recursiv maximul dintre toti subarborii din arborele principal
+
     inaltime(l1...lm) = {
+        0                                               daca m = 0
         0                                               daca atom(l1)
         1 + my-max(inaltime(l1), inaltime(l2...lm))    altfel
     }
@@ -31,18 +37,20 @@
 )
 
 #|
-    returneaza numarul de noduri de la un nivel
+    returneaza numarul de noduri de la un nivel dat
+    t- nivel target, c - nivel curent
     nr_noduri_at(l1...ln, t, c) = {
         0                                                   daca n = 0
         1                                                   daca atom(l1) si c = t
         0                                                   daca atom(l1) si c != t
         nr_noduri_at(l1, t, c+1) + nr_noduri_at(l2...ln, t, c)   altfel
     }
+    remove evenp for all 
 |#
 (defun nr_noduri_at (L target current)
     (cond
         ((null L) 0)
-        ((atom L) (if (= current target) 1 0))
+        ((atom L) (if( and (evenp L) (= current target)) 1 0)) 
         (t (+ (nr_noduri_at (car L) target (+ current 1))
               (nr_noduri_at (cdr L) target current)))
     )
@@ -50,6 +58,10 @@
 
 #|
     returneaza nivelul cu cele mai multe noduri
+    m- max curent
+    c- nivelul curent
+    n-inaltimea arborelui
+
     max_lvl_nod(l1...lk, n, c, m) = {
         m   daca c > n
         max_lvl_nod(l1...lk, n, c+1, c)    daca nr_noduri_at(l1...lk, c, -1) > nr_noduri_at(l1...lk, m, -1)
@@ -86,6 +98,9 @@
     main(l1...ln) = {
         [max_lvl_nod(l1...ln, inaltime(l1...ln), 0, 0), noduri_at(l1...ln, max_lvl_nod(l1...ln, inaltime(l1...ln), 0, 0), -1)]
     }
+
+    -returneaza o lista in care primul element este nivelul , iar al doilea element este alta lista cre reprezinta 
+    nodurile de la nivelul respectiv
 |#
 (defun main (L)
     (list
