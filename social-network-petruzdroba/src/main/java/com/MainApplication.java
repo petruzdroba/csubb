@@ -30,7 +30,7 @@ public class MainApplication extends Application {
         initServices();
 
 //        openDuckFilterWindow();
-//        openUserViewWindow();
+        openUserViewWindow();
 //        openFriendshipWindow();
 
 //        openAuthWindow();
