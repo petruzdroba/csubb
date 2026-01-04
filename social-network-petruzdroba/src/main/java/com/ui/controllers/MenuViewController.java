@@ -23,6 +23,7 @@ public class MenuViewController {
 
     private Stage messageStage;
     private Stage friendsStage;
+    private Stage profileStage;
 
 
     @FXML
@@ -120,6 +121,45 @@ public class MenuViewController {
             showError("Cannot open friends view: " + e.getMessage());
         }
     }
+
+    @FXML
+    private void openProfile() {
+        if (profileStage != null) {
+            profileStage.toFront();
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/profile-page-view.fxml"));
+            Parent root = loader.load();
+
+            ProfilePageViewController controller = loader.getController();
+            controller.setUserService(userService);
+            controller.setMessageService(messageService);
+            controller.setRequestService(requestService);
+            controller.setFriendshipService(friendshipService);
+
+
+            controller.setLoggedInUser(loggedInUser);
+            controller.setDisplayUser(loggedInUser);
+
+            profileStage = new Stage();
+            profileStage.setTitle("Profile");
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(
+                    getClass().getResource("/dark-theme.css").toExternalForm()
+            );
+
+            profileStage.setScene(scene);
+            profileStage.setOnCloseRequest(e -> profileStage = null);
+            profileStage.show();
+
+        } catch (IOException e) {
+            showError("Cannot open profile: " + e.getMessage());
+        }
+    }
+
 
     @FXML
     private void handleLogout() {

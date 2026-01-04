@@ -20,6 +20,11 @@
 
     <Label fx:id="userLabel" styleClass="user-info-label"/>
 
+    <Button text="Profile"
+            maxWidth="240"
+            onAction="#openProfile"/>
+
+
     <Button text="Messages"
             maxWidth="240"
             onAction="#openMessages"/>
