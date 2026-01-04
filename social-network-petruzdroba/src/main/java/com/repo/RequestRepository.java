@@ -130,6 +130,47 @@ public class RequestRepository extends AbstractDatabaseRepository<Long, Request>
         }
     }
 
+    public Request findPendingRequest(Long fromUserId, Long toUserId) throws SQLException {
+        String sql = "SELECT * FROM friend_requests WHERE from_user_id=? AND to_user_id=? AND status=?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setLong(1, fromUserId);
+            ps.setLong(2, toUserId);
+            ps.setString(3, "PENDING");
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) {
+                    return null; // no pending request
+                }
+
+                long id = rs.getLong("id");
+                String statusStr = rs.getString("status");
+                LocalDateTime requestDate = rs.getTimestamp("request_date").toLocalDateTime();
+
+                User fromUser = userRepo.find(fromUserId);
+                if (fromUser == null) {
+                    throw new SQLException("Sender not found for request " + id);
+                }
+
+                User toUser = userRepo.find(toUserId);
+                if (toUser == null) {
+                    throw new SQLException("Receiver not found for request " + id);
+                }
+
+                Request request = new Request();
+                request.setId(id);
+                request.setFrom(fromUser);
+                request.setTo(toUser);
+                request.setStatus(Request.status.valueOf(statusStr));
+                request.setData(requestDate);
+
+                return request;
+            }
+        }
+    }
+
     private List<Request> fetchRequests(String sql, long userId, Integer limit, Integer offset) {
         List<Request> requests = new ArrayList<>();
 

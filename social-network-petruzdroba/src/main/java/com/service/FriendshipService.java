@@ -68,6 +68,13 @@ public class FriendshipService extends AbstractService<String, Friendship> {
         notifyObservers();
     }
 
+    public boolean exists(long userId1, long userId2) throws SQLException {
+        long a = Math.min(userId1, userId2);
+        long b = Math.max(userId1, userId2);
+
+        return repository.find(a + "-" + b) != null;
+    }
+
     /**
      * Returneaza numarul de comunitati din retea.
      * <p>

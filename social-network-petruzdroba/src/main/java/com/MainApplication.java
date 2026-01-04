@@ -34,7 +34,7 @@ public class MainApplication extends Application {
 //        openFriendshipWindow();
 
 //        openAuthWindow();
-//        openAuthWindow();
+        openAuthWindow();
         openAuthWindow();
     }
 

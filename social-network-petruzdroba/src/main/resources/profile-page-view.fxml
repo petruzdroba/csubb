@@ -7,23 +7,36 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.ui.controllers.ProfilePageViewController"
-      spacing="10" alignment="CENTER"
+      spacing="20" alignment="TOP_CENTER"
       stylesheets="@dark-theme.css"
       styleClass="root">
 
-    <Label fx:id="usernameLabel"/>
-    <Label fx:id="emailLabel"/>
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40"/>
+    </padding>
+
+    <VBox spacing="5" alignment="CENTER">
+        <Label fx:id="usernameLabel" styleClass="label-title"/>
+        <Label fx:id="emailLabel" styleClass="user-info-label"/>
+    </VBox>
 
     <Button text="View Friends"
-            onAction="#openFriendshipsWindow"/>
+            fx:id="viewFriendsButton"
+            onAction="#openFriendshipsWindow"
+            maxWidth="300"
+            styleClass="primary-button"/>
 
-    <VBox fx:id="actionButtonsBox" spacing="10">
-
+    <HBox fx:id="actionButtonsBox"
+          spacing="15"
+          alignment="CENTER">
         <Button fx:id="sendMessageButton"
-                text="Send Message"/>
+                text="Send Message"
+                styleClass="secondary-button"
+                minWidth="140"/>
+        <Button fx:id="requestButton"
+                styleClass="secondary-button"
+                onAction="#handleRequest"
+                minWidth="140"/>
+    </HBox>
 
-        <Button fx:id="sendFriendRequestButton"
-                text="Send Friend Request"/>
-
-    </VBox>
 </VBox>

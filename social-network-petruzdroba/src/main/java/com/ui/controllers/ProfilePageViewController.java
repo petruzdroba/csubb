@@ -1,5 +1,6 @@
 package com.ui.controllers;
 
+import com.domain.Observer;
 import com.domain.User;
 import com.service.FriendshipService;
 import com.service.MessageService;
@@ -12,12 +13,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
-public class ProfilePageViewController {
+public class ProfilePageViewController implements Observer {
 
     private RequestService requestService;
     private UserService userService;
@@ -32,9 +34,9 @@ public class ProfilePageViewController {
     @FXML private Label usernameLabel;
     @FXML private Label emailLabel;
 
-    @FXML private VBox actionButtonsBox;
+    @FXML private HBox actionButtonsBox;
     @FXML private Button sendMessageButton;
-    @FXML private Button sendFriendRequestButton;
+    @FXML private Button requestButton;
 
     public void setRequestService(RequestService requestService) {
         this.requestService = requestService;
@@ -52,14 +54,27 @@ public class ProfilePageViewController {
         this.friendshipService = friendshipService;
     }
 
-
     public void setDisplayUser(User displayUser) {
         this.displayUser = displayUser;
+
+        if (this.displayUser != null) {
+            this.displayUser.addObserver(this);
+            friendshipService.addObserver(this.displayUser);
+            requestService.addObserver(this.displayUser);
+        }
+
         updateView();
     }
 
     public void setLoggedInUser(User loggedInUser) {
         this.loggedInUser = loggedInUser;
+
+        if (this.loggedInUser != null) {
+            this.loggedInUser.addObserver(this);
+            friendshipService.addObserver(this.loggedInUser);
+            requestService.addObserver(this.loggedInUser);
+        }
+
         updateView();
     }
 
@@ -69,12 +84,36 @@ public class ProfilePageViewController {
         usernameLabel.setText(displayUser.getUsername());
         emailLabel.setText(displayUser.getEmail());
 
-        boolean ownProfile =
-                loggedInUser != null &&
-                        displayUser.getId() == loggedInUser.getId();
+        updateRequestButton();
+    }
 
-        actionButtonsBox.setVisible(!ownProfile);
-        actionButtonsBox.setManaged(!ownProfile);
+    private void updateRequestButton() {
+        if (loggedInUser == null || displayUser == null || friendshipService == null) {
+            requestButton.setVisible(false);
+            requestButton.setManaged(false);
+            return;
+        }
+
+        boolean ownProfile = loggedInUser.getId() == displayUser.getId();
+        requestButton.setVisible(!ownProfile);
+        requestButton.setManaged(!ownProfile);
+
+        if (!ownProfile) {
+            try {
+                boolean pendingRequest = requestService.exists(loggedInUser, displayUser);
+                boolean friends = friendshipService.exists(loggedInUser.getId(), displayUser.getId());
+
+                if (pendingRequest) {
+                    requestButton.setText("Cancel Friend Request");
+                } else if (friends) {
+                    requestButton.setText("Remove Friendship");
+                } else {
+                    requestButton.setText("Send Friend Request");
+                }
+            } catch (SQLException e) {
+                showError(e.getMessage());
+            }
+        }
     }
 
     @FXML
@@ -88,7 +127,7 @@ public class ProfilePageViewController {
             Parent root = loader.load();
 
             FriendshipPagedViewByUserController controller = loader.getController();
-            controller.setFriendshipService(friendshipService, displayUser);
+            controller.setFriendshipService(friendshipService, displayUser, loggedInUser);
 
             controller.setMessageService(messageService);
             controller.setUserService(userService);
@@ -115,6 +154,23 @@ public class ProfilePageViewController {
         }
     }
 
+    @FXML
+    private void handleRequest() {
+        try {
+            if (requestService.exists(loggedInUser, displayUser)) {
+                requestService.cancel(loggedInUser, displayUser);
+            } else if (friendshipService.exists(loggedInUser.getId(), displayUser.getId())) {
+                friendshipService.remove(loggedInUser.getId(), displayUser.getId());
+            } else {
+                requestService.send(loggedInUser, displayUser.getEmail());
+            }
+
+            updateRequestButton();
+        } catch (Exception e) {
+            showError(e.getMessage());
+        }
+    }
+
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -123,4 +179,22 @@ public class ProfilePageViewController {
         alert.showAndWait();
     }
 
+    public void removeObservers() {
+        if (displayUser != null) {
+            displayUser.removeObserver(this);
+            friendshipService.removeObserver(displayUser);
+            requestService.removeObserver(displayUser);
+        }
+
+        if (loggedInUser != null) {
+            loggedInUser.removeObserver(this);
+            friendshipService.removeObserver(loggedInUser);
+            requestService.removeObserver(loggedInUser);
+        }
+    }
+
+    @Override
+    public void update() {
+        updateRequestButton();
+    }
 }

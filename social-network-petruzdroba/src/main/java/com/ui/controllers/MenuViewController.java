@@ -156,11 +156,12 @@ public class MenuViewController {
             );
 
             profileStage.setScene(scene);
-            profileStage.setOnCloseRequest(e -> profileStage = null);
+            profileStage.setOnCloseRequest(e ->{ profileStage = null; controller.removeObservers();});
             profileStage.show();
 
         } catch (IOException e) {
             showError("Cannot open profile: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

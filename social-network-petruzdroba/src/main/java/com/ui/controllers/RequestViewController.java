@@ -267,7 +267,9 @@ public class RequestViewController implements Observer {
             FriendshipPagedViewByUserController controller = loader.getController();
             controller.setFriendshipService(friendshipService, loggedInUser);
 
-
+            controller.setMessageService(messageService);
+            controller.setUserService(userService);
+            controller.setRequestService(requestService);
 
             Scene scene = new Scene(root);
 
