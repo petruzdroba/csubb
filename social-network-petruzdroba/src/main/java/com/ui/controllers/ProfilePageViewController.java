@@ -90,6 +90,10 @@ public class ProfilePageViewController {
             FriendshipPagedViewByUserController controller = loader.getController();
             controller.setFriendshipService(friendshipService, displayUser);
 
+            controller.setMessageService(messageService);
+            controller.setUserService(userService);
+            controller.setRequestService(requestService);
+
             Scene scene = new Scene(root);
             scene.getStylesheets().add(
                     getClass().getResource("/dark-theme.css").toExternalForm()

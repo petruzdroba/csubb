@@ -102,6 +102,10 @@ public class MenuViewController {
             controller.setFriendshipService(friendshipService);
             controller.setRequestService(requestService);
             controller.setNotificationService(notificationService);
+
+            controller.setUserService(userService);
+            controller.setMessageService(messageService);
+
             controller.setLoggedInUser(loggedInUser);
 
             friendsStage = new Stage();

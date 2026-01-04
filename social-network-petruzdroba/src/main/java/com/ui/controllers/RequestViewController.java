@@ -5,9 +5,7 @@ import com.domain.Request;
 import com.domain.User;
 import com.exceptions.NotLoggedIn;
 import com.exceptions.ValidationException;
-import com.service.FriendshipService;
-import com.service.NotificationService;
-import com.service.RequestService;
+import com.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -28,6 +26,10 @@ public class RequestViewController implements Observer {
     private RequestService requestService;
     private FriendshipService friendshipService;
     private NotificationService notificationService;
+
+    private UserService userService;
+    private MessageService messageService;
+
     private User loggedInUser;
 
     @FXML
@@ -84,6 +86,14 @@ public class RequestViewController implements Observer {
 
     public void setNotificationService(NotificationService notificationService) {
         this.notificationService = notificationService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    public void setMessageService(MessageService messageService) {
+        this.messageService = messageService;
     }
 
     public void setLoggedInUser(User user) {
@@ -256,6 +266,9 @@ public class RequestViewController implements Observer {
             Parent root = loader.load();
             FriendshipPagedViewByUserController controller = loader.getController();
             controller.setFriendshipService(friendshipService, loggedInUser);
+
+
+
             Scene scene = new Scene(root);
 
             scene.getStylesheets().add(getClass().getResource("/dark-theme.css").toExternalForm());

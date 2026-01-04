@@ -4,12 +4,20 @@ import com.domain.Observable;
 import com.domain.Observer;
 import com.domain.User;
 import com.service.FriendshipService;
+import com.service.MessageService;
+import com.service.RequestService;
+import com.service.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +25,11 @@ import java.util.Map;
 public class FriendshipPagedViewByUserController implements Observer {
 
     private FriendshipService friendshipService;
+
+    private RequestService requestService;
+    private UserService userService;
+    private MessageService messageService;
+
     private User loggedUser;
     private int pageCount = 1;
     private final int pageSize = 10;
@@ -26,6 +39,7 @@ public class FriendshipPagedViewByUserController implements Observer {
     @FXML private TableColumn<User, String> usernameColumn;
     @FXML private TableColumn<User, String> emailColumn;
     @FXML private TableColumn<User, Void> actionColumn;
+    @FXML private TableColumn<User, Void> viewProfileColumn;
 
     @FXML private Button prevButton;
     @FXML private Button nextButton;
@@ -39,6 +53,18 @@ public class FriendshipPagedViewByUserController implements Observer {
         friendshipService.addObserver(loggedUser);
 
         loadCurrentPage();
+    }
+
+    public void setRequestService(RequestService requestService) {
+        this.requestService = requestService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    public void setMessageService(MessageService messageService) {
+        this.messageService = messageService;
     }
 
     @FXML
@@ -69,6 +95,24 @@ public class FriendshipPagedViewByUserController implements Observer {
                 setGraphic(empty ? null : removeButton);
             }
         });
+
+        viewProfileColumn.setCellFactory(col -> new TableCell<>() {
+            private final Button profileButton = new Button("View Profile");
+
+            {
+                profileButton.setOnAction(e -> {
+                    User selectedUser = getTableView().getItems().get(getIndex());
+                    openProfile(selectedUser);
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : profileButton);
+            }
+        });
+
     }
 
     public void loadData(List<Map.Entry<User, User>> friendships) {
@@ -126,6 +170,32 @@ public class FriendshipPagedViewByUserController implements Observer {
             showError(e.getMessage());
         }
     }
+
+    private void openProfile(User userToView) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/profile-page-view.fxml"));
+            Parent root = loader.load();
+
+            ProfilePageViewController controller = loader.getController();
+            controller.setUserService(userService);
+            controller.setMessageService(messageService);
+            controller.setRequestService(requestService);
+            controller.setFriendshipService(friendshipService);
+            controller.setLoggedInUser(loggedUser);
+            controller.setDisplayUser(userToView);
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/dark-theme.css").toExternalForm());
+
+            Stage stage = new Stage();
+            stage.setTitle(userToView.getUsername() + "'s Profile");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            showError("Cannot open profile: " + e.getMessage());
+        }
+    }
+
 
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
