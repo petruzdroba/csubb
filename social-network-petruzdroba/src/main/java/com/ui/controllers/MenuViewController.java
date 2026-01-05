@@ -184,6 +184,7 @@ public class MenuViewController {
             controller.setFriendshipService(friendshipService);
             controller.setRequestService(requestService);
             controller.setNotificationService(notificationService);
+            controller.setProfilePictureService(profilePictureService);
 
             if (loggedInUser != null) {
                 messageService.removeObserver(loggedInUser);

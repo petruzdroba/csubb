@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.shape.Circle?>
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
@@ -19,11 +18,7 @@
     </padding>
 
     <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-padding: 20;">
-        <ImageView fx:id="profileImageView" fitWidth="100" fitHeight="100" preserveRatio="true">
-            <clip>
-                <Circle radius="50" centerX="50" centerY="50"/>
-            </clip>
-        </ImageView>
+        <ImageView fx:id="profileImageView" fitWidth="150" fitHeight="150" preserveRatio="true" smooth="true"/>
 
         <VBox spacing="5" alignment="CENTER_LEFT">
             <Label fx:id="usernameLabel" styleClass="label-title"/>
@@ -49,6 +44,7 @@
                 styleClass="secondary-button"
                 onAction="#handleRequest"
                 minWidth="140"/>
+        <Button fx:id="changePictureButton" text="Change Profile Picture" onAction="#handleChangeProfilePicture"/>
     </HBox>
 
 </VBox>

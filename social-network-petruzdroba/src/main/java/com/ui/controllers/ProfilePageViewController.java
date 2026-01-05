@@ -13,9 +13,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -40,6 +42,7 @@ public class ProfilePageViewController implements Observer {
     @FXML private Button requestButton;
 
     @FXML private ImageView profileImageView;
+    @FXML private Button changePictureButton;
 
     public void setRequestService(RequestService requestService) {
         this.requestService = requestService;
@@ -108,6 +111,8 @@ public class ProfilePageViewController implements Observer {
         sendMessageButton.setManaged(!ownProfile);
         requestButton.setVisible(!ownProfile);
         requestButton.setManaged(!ownProfile);
+        changePictureButton.setVisible(ownProfile);
+        changePictureButton.setManaged(ownProfile);
 
         if (!ownProfile) {
             try {
@@ -210,6 +215,34 @@ public class ProfilePageViewController implements Observer {
         }
     }
 
+    @FXML
+    private void handleChangeProfilePicture() {
+        if (loggedInUser == null || displayUser == null || profilePictureService == null) return;
+
+        if (loggedInUser.getId() != displayUser.getId()) return;
+
+        javafx.stage.FileChooser fileChooser = new javafx.stage.FileChooser();
+        fileChooser.setTitle("Select Profile Picture");
+        fileChooser.getExtensionFilters().addAll(
+                new javafx.stage.FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        java.io.File file = fileChooser.showOpenDialog(profileImageView.getScene().getWindow());
+        if (file != null && file.exists()) {
+            try {
+                byte[] imageBytes = java.nio.file.Files.readAllBytes(file.toPath());
+                String contentType = java.nio.file.Files.probeContentType(file.toPath());
+
+                profilePictureService.modify(displayUser.getId(), imageBytes, contentType);
+
+                loadProfileImage();
+
+            } catch (Exception e) {
+                showError("Failed to update profile picture: " + e.getMessage());
+            }
+        }
+    }
+
     private void loadProfileImage() {
         if (displayUser == null || profilePictureService == null) return;
 
@@ -218,23 +251,33 @@ public class ProfilePageViewController implements Observer {
             javafx.scene.image.Image fxImage;
 
             if (pic != null && pic.getImage() != null && pic.getImage().length > 0) {
-                fxImage = new javafx.scene.image.Image(
-                        new java.io.ByteArrayInputStream(pic.getImage())
-                );
+                fxImage = new javafx.scene.image.Image(new java.io.ByteArrayInputStream(pic.getImage()),
+                        100, 100, true, true);
             } else {
                 fxImage = new javafx.scene.image.Image(
-                        Objects.requireNonNull(getClass().getResourceAsStream("/no_profile_picture.png"))
+                        Objects.requireNonNull(getClass().getResourceAsStream("/no_profile_picture.png")),
+                        100, 100, true, true
                 );
             }
 
             profileImageView.setImage(fxImage);
 
+            double width = profileImageView.getBoundsInLocal().getWidth();
+            double height = profileImageView.getBoundsInLocal().getHeight();
+            double radius = Math.min(width, height) / 2;
+
+            Circle clip = new Circle(width / 2, height / 2, radius);
+            profileImageView.setClip(clip);
+
         } catch (Exception e) {
             profileImageView.setImage(new javafx.scene.image.Image(
-                    Objects.requireNonNull(getClass().getResourceAsStream("/no_profile_picture.png"))
+                    Objects.requireNonNull(getClass().getResourceAsStream("/no_profile_picture.png")),
+                    100, 100, true, true
             ));
         }
     }
+
+
 
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
