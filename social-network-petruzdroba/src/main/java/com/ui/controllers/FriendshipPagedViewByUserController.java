@@ -3,10 +3,7 @@ package com.ui.controllers;
 import com.domain.Observable;
 import com.domain.Observer;
 import com.domain.User;
-import com.service.FriendshipService;
-import com.service.MessageService;
-import com.service.RequestService;
-import com.service.UserService;
+import com.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -29,6 +26,7 @@ public class FriendshipPagedViewByUserController implements Observer {
     private RequestService requestService;
     private UserService userService;
     private MessageService messageService;
+    private ProfilePictureService profilePictureService;
 
     private User profileOwner;
     private User loggedInUser;
@@ -78,6 +76,10 @@ public class FriendshipPagedViewByUserController implements Observer {
 
     public void setMessageService(MessageService messageService) {
         this.messageService = messageService;
+    }
+
+    public void setProfilePictureService(ProfilePictureService profilePictureService) {
+        this.profilePictureService = profilePictureService;
     }
 
     @FXML
@@ -199,6 +201,7 @@ public class FriendshipPagedViewByUserController implements Observer {
             controller.setRequestService(requestService);
             controller.setFriendshipService(friendshipService);
             controller.setLoggedInUser(loggedInUser);
+            controller.setProfilePictureService(profilePictureService);
             controller.setDisplayUser(userToView);
 
             Scene scene = new Scene(root);

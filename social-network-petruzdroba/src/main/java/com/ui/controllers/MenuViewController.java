@@ -19,6 +19,7 @@ public class MenuViewController {
     private FriendshipService friendshipService;
     private RequestService requestService;
     private NotificationService notificationService;
+    private ProfilePictureService profilePictureService;
     private User loggedInUser;
 
     private Stage messageStage;
@@ -47,6 +48,10 @@ public class MenuViewController {
 
     public void setNotificationService(NotificationService notificationService) {
         this.notificationService = notificationService;
+    }
+
+    public void setProfilePictureService(ProfilePictureService profilePictureService) {
+        this.profilePictureService = profilePictureService;
     }
 
     public void setLoggedInUser(User user) {
@@ -105,6 +110,7 @@ public class MenuViewController {
 
             controller.setUserService(userService);
             controller.setMessageService(messageService);
+            controller.setProfilePictureService(profilePictureService);
 
             controller.setLoggedInUser(loggedInUser);
 
@@ -142,7 +148,7 @@ public class MenuViewController {
             controller.setMessageService(messageService);
             controller.setRequestService(requestService);
             controller.setFriendshipService(friendshipService);
-
+            controller.setProfilePictureService(profilePictureService);
 
             controller.setLoggedInUser(loggedInUser);
             controller.setDisplayUser(loggedInUser);

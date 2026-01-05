@@ -29,6 +29,7 @@ public class RequestViewController implements Observer {
 
     private UserService userService;
     private MessageService messageService;
+    private ProfilePictureService profilePictureService;
 
     private User loggedInUser;
 
@@ -94,6 +95,10 @@ public class RequestViewController implements Observer {
 
     public void setMessageService(MessageService messageService) {
         this.messageService = messageService;
+    }
+
+    public void setProfilePictureService(ProfilePictureService profilePictureService) {
+        this.profilePictureService = profilePictureService;
     }
 
     public void setLoggedInUser(User user) {
@@ -270,6 +275,7 @@ public class RequestViewController implements Observer {
             controller.setMessageService(messageService);
             controller.setUserService(userService);
             controller.setRequestService(requestService);
+            controller.setProfilePictureService(profilePictureService);
 
             Scene scene = new Scene(root);
 

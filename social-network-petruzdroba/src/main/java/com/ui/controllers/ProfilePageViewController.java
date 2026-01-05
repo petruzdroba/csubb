@@ -1,11 +1,9 @@
 package com.ui.controllers;
 
 import com.domain.Observer;
+import com.domain.ProfilePicture;
 import com.domain.User;
-import com.service.FriendshipService;
-import com.service.MessageService;
-import com.service.RequestService;
-import com.service.UserService;
+import com.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,11 +11,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class ProfilePageViewController implements Observer {
 
@@ -25,6 +25,7 @@ public class ProfilePageViewController implements Observer {
     private UserService userService;
     private MessageService messageService;
     private FriendshipService friendshipService;
+    private ProfilePictureService profilePictureService;
 
     private User displayUser;
     private User loggedInUser;
@@ -37,6 +38,8 @@ public class ProfilePageViewController implements Observer {
     @FXML private HBox actionButtonsBox;
     @FXML private Button sendMessageButton;
     @FXML private Button requestButton;
+
+    @FXML private ImageView profileImageView;
 
     public void setRequestService(RequestService requestService) {
         this.requestService = requestService;
@@ -52,6 +55,10 @@ public class ProfilePageViewController implements Observer {
 
     public void setFriendshipService(FriendshipService friendshipService) {
         this.friendshipService = friendshipService;
+    }
+
+    public void setProfilePictureService(ProfilePictureService profilePictureService) {
+        this.profilePictureService = profilePictureService;
     }
 
     public void setDisplayUser(User displayUser) {
@@ -85,6 +92,7 @@ public class ProfilePageViewController implements Observer {
         emailLabel.setText(displayUser.getEmail());
 
         updateRequestButton();
+        loadProfileImage();
     }
 
     private void updateRequestButton() {
@@ -135,6 +143,7 @@ public class ProfilePageViewController implements Observer {
             controller.setMessageService(messageService);
             controller.setUserService(userService);
             controller.setRequestService(requestService);
+            controller.setProfilePictureService(profilePictureService);
 
             Scene scene = new Scene(root);
             scene.getStylesheets().add(
@@ -198,6 +207,32 @@ public class ProfilePageViewController implements Observer {
 
         } catch (IOException e) {
             showError("Cannot load send message screen: " + e.getMessage());
+        }
+    }
+
+    private void loadProfileImage() {
+        if (displayUser == null || profilePictureService == null) return;
+
+        try {
+            ProfilePicture pic = profilePictureService.find(displayUser.getId());
+            javafx.scene.image.Image fxImage;
+
+            if (pic != null && pic.getImage() != null && pic.getImage().length > 0) {
+                fxImage = new javafx.scene.image.Image(
+                        new java.io.ByteArrayInputStream(pic.getImage())
+                );
+            } else {
+                fxImage = new javafx.scene.image.Image(
+                        Objects.requireNonNull(getClass().getResourceAsStream("/no_profile_picture.png"))
+                );
+            }
+
+            profileImageView.setImage(fxImage);
+
+        } catch (Exception e) {
+            profileImageView.setImage(new javafx.scene.image.Image(
+                    Objects.requireNonNull(getClass().getResourceAsStream("/no_profile_picture.png"))
+            ));
         }
     }
 

@@ -18,12 +18,14 @@ public class MainApplication extends Application {
     private MessageRepository messageRepository;
     private RequestRepository requestRepository;
     private NotificationRepository notificationRepository;
+    private ProfilePictureRepository profilePictureRepository;
 
     private RequestService requestService;
     private FriendshipService friendshipService;
     private UserService userService;
     private MessageService messageService;
     private NotificationService notificationService;
+    private ProfilePictureService profilePictureService;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -68,6 +70,9 @@ public class MainApplication extends Application {
         notificationService = new NotificationService(notificationRepository);
 
         requestService = new RequestService(requestRepository, userRepository, friendshipRepository, notificationService);
+
+        profilePictureRepository = new ProfilePictureRepository(config);
+        profilePictureService = new ProfilePictureService(profilePictureRepository);
     }
 
     private void openDuckFilterWindow() throws Exception {
@@ -121,6 +126,7 @@ public class MainApplication extends Application {
         controller.setFriendshipService(friendshipService);
         controller.setRequestService(requestService);
         controller.setNotificationService(notificationService);
+        controller.setProfilePictureService(profilePictureService);
 
         scene.getStylesheets().add(getClass().getResource("/dark-theme.css").toExternalForm());
 
