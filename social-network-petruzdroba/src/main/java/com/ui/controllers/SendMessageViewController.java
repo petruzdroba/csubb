@@ -59,6 +59,12 @@ public class SendMessageViewController {
 
     }
 
+    public void setRecipient(User user) {
+        if (user == null) return;
+        toField.setText(user.getEmail());
+    }
+
+
     private void setRecipientsForReply() {
         if (replyToMessage == null) return;
 

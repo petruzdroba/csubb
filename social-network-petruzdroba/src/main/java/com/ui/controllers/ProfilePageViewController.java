@@ -95,6 +95,9 @@ public class ProfilePageViewController implements Observer {
         }
 
         boolean ownProfile = loggedInUser.getId() == displayUser.getId();
+
+        sendMessageButton.setVisible(!ownProfile);
+        sendMessageButton.setManaged(!ownProfile);
         requestButton.setVisible(!ownProfile);
         requestButton.setManaged(!ownProfile);
 
@@ -168,6 +171,33 @@ public class ProfilePageViewController implements Observer {
             updateRequestButton();
         } catch (Exception e) {
             showError(e.getMessage());
+        }
+    }
+
+    @FXML
+    public void handleSend() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/send-message-view.fxml"));
+            Parent root = loader.load();
+
+            SendMessageViewController controller = loader.getController();
+            controller.setUserService(userService);
+            controller.setMessageService(messageService);
+            controller.setLoggedInUser(loggedInUser);
+            controller.setRecipient(displayUser);
+
+            Stage stage = new Stage();
+            stage.setTitle("Send Message");
+
+            Scene scene = new Scene(root);
+            String darkTheme = getClass().getResource("/dark-theme.css").toExternalForm();
+            scene.getStylesheets().add(darkTheme);
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            showError("Cannot load send message screen: " + e.getMessage());
         }
     }
 
