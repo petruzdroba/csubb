@@ -231,3 +231,47 @@
     -fx-font-size: 14px;
     -fx-padding: 4 0 4 0;
 }
+
+.primary-button {
+    -fx-background-color: #663399;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 24;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+
+.primary-button:hover {
+    -fx-background-color: #7b4db8;
+}
+
+.secondary-button {
+    -fx-background-color: #3c3f41;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #4b4e50;
+}
+
+.label-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.user-info-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #999999;
+}
+
+.actionButtonsBox {
+    -fx-padding: 10 0 0 0;
+}
+

@@ -17,6 +17,7 @@
             <TableColumn fx:id="usernameColumn" text="Username" prefWidth="150"/>
             <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
             <TableColumn fx:id="actionColumn" text="Action" prefWidth="100"/>
+            <TableColumn fx:id="viewProfileColumn" text="Profile" prefWidth="100"/>
         </columns>
     </TableView>
 

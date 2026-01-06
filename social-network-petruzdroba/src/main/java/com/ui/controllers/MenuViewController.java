@@ -19,10 +19,12 @@ public class MenuViewController {
     private FriendshipService friendshipService;
     private RequestService requestService;
     private NotificationService notificationService;
+    private ProfilePictureService profilePictureService;
     private User loggedInUser;
 
     private Stage messageStage;
     private Stage friendsStage;
+    private Stage profileStage;
 
 
     @FXML
@@ -46,6 +48,10 @@ public class MenuViewController {
 
     public void setNotificationService(NotificationService notificationService) {
         this.notificationService = notificationService;
+    }
+
+    public void setProfilePictureService(ProfilePictureService profilePictureService) {
+        this.profilePictureService = profilePictureService;
     }
 
     public void setLoggedInUser(User user) {
@@ -101,6 +107,11 @@ public class MenuViewController {
             controller.setFriendshipService(friendshipService);
             controller.setRequestService(requestService);
             controller.setNotificationService(notificationService);
+
+            controller.setUserService(userService);
+            controller.setMessageService(messageService);
+            controller.setProfilePictureService(profilePictureService);
+
             controller.setLoggedInUser(loggedInUser);
 
             friendsStage = new Stage();
@@ -122,6 +133,46 @@ public class MenuViewController {
     }
 
     @FXML
+    private void openProfile() {
+        if (profileStage != null) {
+            profileStage.toFront();
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/profile-page-view.fxml"));
+            Parent root = loader.load();
+
+            ProfilePageViewController controller = loader.getController();
+            controller.setUserService(userService);
+            controller.setMessageService(messageService);
+            controller.setRequestService(requestService);
+            controller.setFriendshipService(friendshipService);
+            controller.setProfilePictureService(profilePictureService);
+
+            controller.setLoggedInUser(loggedInUser);
+            controller.setDisplayUser(loggedInUser);
+
+            profileStage = new Stage();
+            profileStage.setTitle("Profile");
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(
+                    getClass().getResource("/dark-theme.css").toExternalForm()
+            );
+
+            profileStage.setScene(scene);
+            profileStage.setOnCloseRequest(e ->{ profileStage = null; controller.removeObservers();});
+            profileStage.show();
+
+        } catch (IOException e) {
+            showError("Cannot open profile: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
     private void handleLogout() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/auth-view.fxml"));
@@ -133,6 +184,7 @@ public class MenuViewController {
             controller.setFriendshipService(friendshipService);
             controller.setRequestService(requestService);
             controller.setNotificationService(notificationService);
+            controller.setProfilePictureService(profilePictureService);
 
             if (loggedInUser != null) {
                 messageService.removeObserver(loggedInUser);

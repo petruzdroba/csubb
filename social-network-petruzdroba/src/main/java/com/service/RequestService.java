@@ -175,4 +175,18 @@ public class RequestService extends AbstractService<Long, Request>{
 
         pushObserver(currentUser, request.getFrom());
     }
+
+    public boolean exists(User from, User to) throws SQLException{
+        return ((RequestRepository) repository).exists(from.getId(), to.getId());
+    }
+
+    public void cancel(User from, User to) throws SQLException {
+        Request pendingRequest = ((RequestRepository) repository).findPendingRequest(from.getId(), to.getId());
+        if (pendingRequest != null) {
+            remove(from, pendingRequest);
+            pushObserver(from, to);
+        } else {
+            throw new ValidationException("No pending request to cancel");
+        }
+    }
 }
