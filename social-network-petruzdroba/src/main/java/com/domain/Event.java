@@ -7,9 +7,11 @@ import java.util.List;
 
 public abstract class Event {
     protected List<User> subscribers;
+    protected final long ownerId;
     protected long id;
 
-    public Event(long id) {
+    public Event(long ownerId, long id) {
+        this.ownerId = ownerId;
         this.subscribers = new ArrayList<User>();
         this.id = id;
     }
@@ -76,5 +78,9 @@ public abstract class Event {
                 "subscribers=" + subscribers +
                 ", id=" + id +
                 '}';
+    }
+
+    public long getOwnerId() {
+        return ownerId;
     }
 }
