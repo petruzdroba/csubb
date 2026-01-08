@@ -20,11 +20,13 @@ public class MenuViewController {
     private RequestService requestService;
     private NotificationService notificationService;
     private ProfilePictureService profilePictureService;
+    private RaceEventService raceEventService;
     private User loggedInUser;
 
     private Stage messageStage;
     private Stage friendsStage;
     private Stage profileStage;
+    private Stage raceStage;
 
 
     @FXML
@@ -52,6 +54,10 @@ public class MenuViewController {
 
     public void setProfilePictureService(ProfilePictureService profilePictureService) {
         this.profilePictureService = profilePictureService;
+    }
+
+    public void setRaceEventService(RaceEventService raceEventService){
+        this.raceEventService = raceEventService;
     }
 
     public void setLoggedInUser(User user) {
@@ -167,7 +173,41 @@ public class MenuViewController {
 
         } catch (IOException e) {
             showError("Cannot open profile: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void openRace(){
+        if (raceStage != null) {
+            raceStage.toFront();
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/race-event-view.fxml"));
+            Parent root = loader.load();
+
+            RaceEventViewController controller = loader.getController();
+
+            controller.setRaceEventService(raceEventService);
+            controller.setUserService(userService);
+            controller.setLoggedInUser(loggedInUser);
+
+            raceStage = new Stage();
+            raceStage.setTitle("Race Events");
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(
+                    getClass().getResource("/dark-theme.css").toExternalForm()
+            );
+
+            raceStage.setScene(scene);
+            raceStage.setOnCloseRequest(e ->{ raceStage = null;});
+            raceStage.show();
+
+        } catch (IOException e) {
             e.printStackTrace();
+            showError("Cannot open race: " + e.getMessage());
         }
     }
 
@@ -185,6 +225,7 @@ public class MenuViewController {
             controller.setRequestService(requestService);
             controller.setNotificationService(notificationService);
             controller.setProfilePictureService(profilePictureService);
+            controller.setRaceEventService(raceEventService);
 
             if (loggedInUser != null) {
                 messageService.removeObserver(loggedInUser);

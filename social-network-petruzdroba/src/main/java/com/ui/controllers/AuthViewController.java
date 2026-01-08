@@ -24,6 +24,7 @@ public class AuthViewController {
     private FriendshipService friendshipService;
     private NotificationService notificationService;
     private ProfilePictureService profilePictureService;
+    private RaceEventService raceEventService;
 
     public AuthViewController() {}
 
@@ -45,6 +46,10 @@ public class AuthViewController {
 
     public void setProfilePictureService(ProfilePictureService profilePictureService) {
         this.profilePictureService = profilePictureService;
+    }
+
+    public void setRaceEventService(RaceEventService raceEventService) {
+        this.raceEventService = raceEventService;
     }
 
     @FXML private TextField emailField;
@@ -82,6 +87,7 @@ public class AuthViewController {
             controller.setRequestService(requestService);
             controller.setNotificationService(notificationService);
             controller.setProfilePictureService(profilePictureService);
+            controller.setRaceEventService(raceEventService);
             controller.setLoggedInUser(user);
 
             Stage stage = (Stage) loginButton.getScene().getWindow();

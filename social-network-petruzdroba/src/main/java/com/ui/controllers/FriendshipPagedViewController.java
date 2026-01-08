@@ -166,4 +166,9 @@ public class FriendshipPagedViewController extends AbstractPagedViewController<S
     public void update() {
         loadCurrentPage();
     }
+
+    @Override
+    public void update(String message) {
+        loadCurrentPage();
+    }
 }

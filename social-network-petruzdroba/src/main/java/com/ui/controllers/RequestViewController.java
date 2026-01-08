@@ -397,4 +397,10 @@ public class RequestViewController implements Observer {
         loadCurrentPage();
         updateNotificationButton();
     }
+
+    @Override
+    public void update(String message) {
+        loadCurrentPage();
+        updateNotificationButton();
+    }
 }

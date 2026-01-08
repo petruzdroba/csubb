@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ui.controllers.RaceEventViewController">
+    <left>
+        <VBox spacing="10" fx:id="laneForm">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Add Lane"/>
+            <TextField fx:id="laneDistanceField" promptText="Distance"/>
+            <HBox spacing="5">
+                <Button text="Add Lane" onAction="#addLane"/>
+                <Button fx:id="removeLastLaneButton" text="Remove Last" onAction="#removeLastLane"/>
+            </HBox>
+
+            <Separator/>
+
+            <Label fx:id="lanesDisplayLabel" text="No lanes added"
+                   style="-fx-font-style: italic;" wrapText="true"/>
+
+            <Separator/>
+            <Button text="Create Event" onAction="#createEvent"/>
+        </VBox>
+    </left>
+    <center>
+        <VBox>
+            <TableView fx:id="tableView" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="ownerEmailColumn" text="Owner Email" prefWidth="150"/>
+                    <TableColumn fx:id="laneDistancesColumn" text="Distances" prefWidth="150"/>
+                    <TableColumn fx:id="participantsColumn" text="Participants" prefWidth="200"/>
+                    <TableColumn fx:id="deleteColumn" text="Delete" prefWidth="100"/>
+                    <TableColumn fx:id="startRaceColumn" text="Start Race" prefWidth="100"/>
+                    <TableColumn fx:id="subscribeColumn" text="Subscribe" prefWidth="100"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="10" alignment="CENTER">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Button fx:id="prevButton" text="Previous"/>
+                <Label fx:id="pageLabel" text="Page 1"/>
+                <Button fx:id="nextButton" text="Next"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

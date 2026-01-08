@@ -19,6 +19,8 @@ public class MainApplication extends Application {
     private RequestRepository requestRepository;
     private NotificationRepository notificationRepository;
     private ProfilePictureRepository profilePictureRepository;
+    private RaceEventRepository raceEventRepository;
+    private CardRepository cardRepository;
 
     private RequestService requestService;
     private FriendshipService friendshipService;
@@ -26,6 +28,8 @@ public class MainApplication extends Application {
     private MessageService messageService;
     private NotificationService notificationService;
     private ProfilePictureService profilePictureService;
+    private RaceEventService raceEventService;
+    private CardService cardService;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -73,6 +77,12 @@ public class MainApplication extends Application {
 
         profilePictureRepository = new ProfilePictureRepository(config);
         profilePictureService = new ProfilePictureService(profilePictureRepository);
+
+        cardRepository=new CardRepository(config);
+        cardService = new CardService(cardRepository, userRepository);
+
+        raceEventRepository = new RaceEventRepository(config, userRepository);
+        raceEventService = new RaceEventService(raceEventRepository, cardService);
     }
 
     private void openDuckFilterWindow() throws Exception {
@@ -127,6 +137,7 @@ public class MainApplication extends Application {
         controller.setRequestService(requestService);
         controller.setNotificationService(notificationService);
         controller.setProfilePictureService(profilePictureService);
+        controller.setRaceEventService(raceEventService);
 
         scene.getStylesheets().add(getClass().getResource("/dark-theme.css").toExternalForm());
 

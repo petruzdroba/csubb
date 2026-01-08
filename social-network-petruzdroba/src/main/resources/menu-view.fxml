@@ -33,6 +33,10 @@
             maxWidth="240"
             onAction="#openFriends"/>
 
+    <Button text="Race Events"
+            maxWidth="240"
+            onAction="#openRace"/>
+
     <Button text="Logout"
             maxWidth="240"
             onAction="#handleLogout"/>

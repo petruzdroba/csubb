@@ -8,8 +8,9 @@ public class RaceEvent extends Event{
     private final DuckRaceContainer container;
     private final BacktrackOptimiser optimiser;
 
-    public RaceEvent(long id, DuckRaceContainer container) {
-        super(id);
+
+    public RaceEvent(long id, long ownerId, DuckRaceContainer container) {
+        super(id, ownerId);
         this.container = container;
         optimiser = new BacktrackOptimiser(container);
         raceResult = null;
@@ -43,5 +44,17 @@ public class RaceEvent extends Event{
 
     public DuckRaceContainer getContainer() {
         return container;
+    }
+
+    @Override
+    public String toString() {
+        return "RaceEvent{" +
+                "raceResult=" + raceResult +
+                ", container=" + container +
+                ", optimiser=" + optimiser +
+                ", subscribers=" + subscribers +
+                ", ownerId=" + ownerId +
+                ", id=" + id +
+                '}';
     }
 }

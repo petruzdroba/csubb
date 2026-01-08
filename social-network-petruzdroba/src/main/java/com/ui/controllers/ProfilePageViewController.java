@@ -305,4 +305,9 @@ public class ProfilePageViewController implements Observer {
     public void update() {
         updateRequestButton();
     }
+
+    @Override
+    public void update(String message) {
+        updateRequestButton();
+    }
 }
