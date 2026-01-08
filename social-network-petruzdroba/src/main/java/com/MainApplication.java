@@ -82,7 +82,7 @@ public class MainApplication extends Application {
         cardService = new CardService(cardRepository, userRepository);
 
         raceEventRepository = new RaceEventRepository(config, userRepository);
-        raceEventService = new RaceEventService(raceEventRepository, userRepository, cardService);
+        raceEventService = new RaceEventService(raceEventRepository, cardService);
     }
 
     private void openDuckFilterWindow() throws Exception {

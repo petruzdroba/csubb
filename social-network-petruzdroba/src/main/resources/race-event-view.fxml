@@ -12,7 +12,17 @@
             </padding>
             <Label text="Add Lane"/>
             <TextField fx:id="laneDistanceField" promptText="Distance"/>
-            <Button text="Add Lane" onAction="#addLane"/>
+            <HBox spacing="5">
+                <Button text="Add Lane" onAction="#addLane"/>
+                <Button fx:id="removeLastLaneButton" text="Remove Last" onAction="#removeLastLane"/>
+            </HBox>
+
+            <Separator/>
+
+            <Label fx:id="lanesDisplayLabel" text="No lanes added"
+                   style="-fx-font-style: italic;" wrapText="true"/>
+
+            <Separator/>
             <Button text="Create Event" onAction="#createEvent"/>
         </VBox>
     </left>

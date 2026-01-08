@@ -3,6 +3,7 @@ package com.ui.controllers;
 import com.domain.*;
 import com.service.RaceEventService;
 import com.service.UserService;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -10,6 +11,7 @@ import javafx.scene.layout.VBox;
 
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.concurrent.CompletionException;
 
 public class RaceEventViewController implements Observer {
 
@@ -20,24 +22,42 @@ public class RaceEventViewController implements Observer {
     private int pageCount = 1;
     private final int pageSize = 10;
 
-    @FXML private VBox laneForm;
+    @FXML
+    private VBox laneForm;
 
-    @FXML private TableView<RaceEvent> tableView;
-    @FXML private TableColumn<RaceEvent, String> ownerEmailColumn;
-    @FXML private TableColumn<RaceEvent, String> laneDistancesColumn;
-    @FXML private TableColumn<RaceEvent, String> participantsColumn;
-    @FXML private TableColumn<RaceEvent, Void> deleteColumn;
-    @FXML private TableColumn<RaceEvent, Void> startRaceColumn;
-    @FXML private TableColumn<RaceEvent, Void> subscribeColumn;
+    @FXML
+    private TableView<RaceEvent> tableView;
+    @FXML
+    private TableColumn<RaceEvent, String> ownerEmailColumn;
+    @FXML
+    private TableColumn<RaceEvent, String> laneDistancesColumn;
+    @FXML
+    private TableColumn<RaceEvent, String> participantsColumn;
+    @FXML
+    private TableColumn<RaceEvent, Void> deleteColumn;
+    @FXML
+    private TableColumn<RaceEvent, Void> startRaceColumn;
+    @FXML
+    private TableColumn<RaceEvent, Void> subscribeColumn;
 
 
-    @FXML private TextField laneDistanceField;
-    @FXML private Button addLaneButton;
-    @FXML private Button createEventButton;
+    @FXML
+    private TextField laneDistanceField;
+    @FXML
+    private Button addLaneButton;
+    @FXML
+    private Button createEventButton;
+    @FXML
+    private Button removeLastLaneButton;
+    @FXML
+    private Label lanesDisplayLabel;
 
-    @FXML private Button prevButton;
-    @FXML private Button nextButton;
-    @FXML private Label pageLabel;
+    @FXML
+    private Button prevButton;
+    @FXML
+    private Button nextButton;
+    @FXML
+    private Label pageLabel;
 
 
     private final Collection<Culoar> lanes = FXCollections.observableArrayList();
@@ -110,6 +130,7 @@ public class RaceEventViewController implements Observer {
             int distance = Integer.parseInt(laneDistanceField.getText().trim());
             lanes.add(new Culoar(distance, lanes.size()));
             laneDistanceField.clear();
+            updateLanesDisplay();
         } catch (NumberFormatException e) {
             showError("Distance must be a number");
         }
@@ -117,15 +138,17 @@ public class RaceEventViewController implements Observer {
 
     @FXML
     private void createEvent() {
-        try {
-            raceEventService.add(loggedInUser, lanes);
-            lanes.clear();
-            laneDistanceField.clear();
-            loadCurrentPage();
-        } catch (SQLException | RuntimeException e) {
-            e.printStackTrace();
-            showError(e.getMessage());
-        }
+        raceEventService.add(loggedInUser, lanes)
+                .thenRun(() -> Platform.runLater(() -> {
+                    lanes.clear();
+                    laneDistanceField.clear();
+                    updateLanesDisplay();
+                    loadCurrentPage();
+                }))
+                .exceptionally(ex -> {
+                    Platform.runLater(() -> showError(ex.getCause().getMessage()));
+                    return null;
+                });
     }
 
     private void setupActionColumns() {
@@ -136,12 +159,14 @@ public class RaceEventViewController implements Observer {
             {
                 deleteBtn.setOnAction(e -> {
                     RaceEvent event = getTableView().getItems().get(getIndex());
-                    try {
-                        raceEventService.remove(loggedInUser, event.getId());
-                        loadCurrentPage();
-                    } catch (Exception ex) {
-                        showError(ex.getMessage());
-                    }
+                    raceEventService.remove(loggedInUser, event.getId())
+                            .thenRun(() -> Platform.runLater(() -> {
+                                loadCurrentPage();
+                            }))
+                            .exceptionally(ex -> {
+                                Platform.runLater(() -> showError(ex.getCause().getMessage()));
+                                return null;
+                            });
                 });
             }
 
@@ -165,11 +190,11 @@ public class RaceEventViewController implements Observer {
             {
                 startBtn.setOnAction(e -> {
                     RaceEvent event = getTableView().getItems().get(getIndex());
-                    try {
-                        raceEventService.startRace(loggedInUser, event.getId());
-                    } catch (Exception ex) {
-                        showError(ex.getMessage());
-                    }
+                    raceEventService.startRace(loggedInUser, event.getId())
+                            .exceptionally(ex -> {
+                                Platform.runLater(() -> showError(ex.getCause().getMessage()));
+                                return null;
+                            });
                 });
             }
 
@@ -217,18 +242,26 @@ public class RaceEventViewController implements Observer {
     }
 
     @FXML
-    private void handleSubscribe(RaceEvent raceEvent){
+    private void handleSubscribe(RaceEvent raceEvent) {
         boolean isSubscribed = raceEvent.getSubscribers().stream()
                 .anyMatch(user -> user.getId() == loggedInUser.getId());
 
-        try{
-            if(isSubscribed){
-                raceEventService.unsubscribe(loggedInUser, raceEvent.getId());
-            } else{
-                raceEventService.subscribe(loggedInUser, raceEvent.getId());
-            }
-        } catch (SQLException e) {
-            showError(e.getMessage());
+        if (isSubscribed) {
+            raceEventService.unsubscribe(loggedInUser, raceEvent.getId())
+                    .thenRun(() -> Platform.runLater(this::loadCurrentPage))
+                    .exceptionally(ex -> {
+                        Platform.runLater(() -> showError(ex.getCause().getMessage()));
+                        return null;
+                    });
+            ;
+        } else {
+            raceEventService.subscribe(loggedInUser, raceEvent.getId())
+                    .thenRun(() -> Platform.runLater(this::loadCurrentPage))
+                    .exceptionally(ex -> {
+                        Platform.runLater(() -> showError(ex.getCause().getMessage()));
+                        return null;
+                    });
+            ;
         }
     }
 
@@ -275,6 +308,30 @@ public class RaceEventViewController implements Observer {
             updatePageButtons();
         } catch (RuntimeException e) {
             showError(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void removeLastLane() {
+        if (!lanes.isEmpty()) {
+            Culoar lastLane = null;
+            for (Culoar lane : lanes) {
+                lastLane = lane;
+            }
+            lanes.remove(lastLane);
+            updateLanesDisplay();
+        }
+    }
+
+    private void updateLanesDisplay() {
+        if (lanes.isEmpty()) {
+            lanesDisplayLabel.setText("No lanes added");
+        } else {
+            String lanesText = lanes.stream()
+                    .map(c -> String.valueOf(c.getDistanta()))
+                    .reduce((a, b) -> a + ", " + b)
+                    .orElse("");
+            lanesDisplayLabel.setText("Lanes: " + lanesText);
         }
     }
 

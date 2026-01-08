@@ -213,7 +213,6 @@ public class UserService extends AbstractService<Long, User> {
     }
 
     public User find(Long key) throws SQLException {
-        System.out.println(key);
         return repository.find(key);
     }
 
