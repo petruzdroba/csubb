@@ -28,6 +28,7 @@ public class RaceEventViewController implements Observer {
     @FXML private TableColumn<RaceEvent, String> participantsColumn;
     @FXML private TableColumn<RaceEvent, Void> deleteColumn;
     @FXML private TableColumn<RaceEvent, Void> startRaceColumn;
+    @FXML private TableColumn<RaceEvent, Void> subscribeColumn;
 
 
     @FXML private TextField laneDistanceField;
@@ -185,8 +186,51 @@ public class RaceEventViewController implements Observer {
                 setGraphic(startBtn);
             }
         });
+
+        subscribeColumn.setCellFactory(col -> new TableCell<>() {
+            private final Button subscribeBtn = new Button();
+
+            {
+                subscribeBtn.setOnAction(e -> {
+                    RaceEvent event = getTableView().getItems().get(getIndex());
+                    handleSubscribe(event);
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                    return;
+                }
+
+                RaceEvent event = getTableView().getItems().get(getIndex());
+
+                boolean isSubscribed = event.getSubscribers().stream()
+                        .anyMatch(user -> user.getId() == loggedInUser.getId());
+
+                subscribeBtn.setText(isSubscribed ? "Unsubscribe" : "Subscribe");
+                setGraphic(subscribeBtn);
+            }
+        });
     }
 
+    @FXML
+    private void handleSubscribe(RaceEvent raceEvent){
+        boolean isSubscribed = raceEvent.getSubscribers().stream()
+                .anyMatch(user -> user.getId() == loggedInUser.getId());
+
+        try{
+            if(isSubscribed){
+                raceEventService.unsubscribe(loggedInUser, raceEvent.getId());
+            } else{
+                raceEventService.subscribe(loggedInUser, raceEvent.getId());
+            }
+        } catch (SQLException e) {
+            showError(e.getMessage());
+        }
+    }
 
     private void updatePageButtons() {
         prevButton.setDisable(pageCount <= 1);
@@ -230,7 +274,6 @@ public class RaceEventViewController implements Observer {
             pageLabel.setText("Page: " + pageCount);
             updatePageButtons();
         } catch (RuntimeException e) {
-            e.printStackTrace();
             showError(e.getMessage());
         }
     }
@@ -247,14 +290,16 @@ public class RaceEventViewController implements Observer {
     @Override
     public void update() {
         loadCurrentPage();
+        setupActionColumns();
     }
 
     @Override
     public void update(String message) {
         loadCurrentPage();
+        setupActionColumns();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Race ended");
-        alert.setHeaderText(null);
+        alert.setHeaderText(loggedInUser.getEmail() + " Race Notification");
         alert.setContentText(message);
         alert.showAndWait();
     }

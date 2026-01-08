@@ -44,6 +44,7 @@ public class RaceEventService extends AbstractService<Long, RaceEvent>{
         event.subscribe(currentUser);
 
         repository.add(null, event);
+        pushObserver(this.observers.stream().filter(User.class::isInstance).map(User.class::cast).toList());
     }
 
     public void remove(User currentUser, long eventId) throws SQLException, ValidationException {
@@ -58,6 +59,7 @@ public class RaceEventService extends AbstractService<Long, RaceEvent>{
             throw new ValidationException("Only the owner can delete this event");
 
         repository.remove(eventId);
+        pushObserver(this.observers.stream().filter(User.class::isInstance).map(User.class::cast).toList());
     }
 
     public void subscribe(User currentUser, long eventId) throws SQLException, ValidationException {
@@ -69,6 +71,8 @@ public class RaceEventService extends AbstractService<Long, RaceEvent>{
             throw new ValidationException("Event not found");
 
         ((RaceEventRepository) repository).subscribe(eventId, currentUser);
+
+        pushObserver(List.of(currentUser));
     }
 
     public void unsubscribe(User currentUser, long eventId) throws SQLException, ValidationException {
@@ -80,6 +84,8 @@ public class RaceEventService extends AbstractService<Long, RaceEvent>{
             throw new ValidationException("Event not found");
 
         ((RaceEventRepository) repository).unsubscribe(eventId, currentUser);
+
+        pushObserver(List.of(currentUser));
     }
 
     public void startRace(User currentUser,long eventId) throws SQLException {
@@ -93,7 +99,6 @@ public class RaceEventService extends AbstractService<Long, RaceEvent>{
         repository.remove(eventId);
         event.start();
 
-        event.notifySubscribers();
         pushObserver(event,event.getSubscribers());
     }
 
@@ -123,6 +128,18 @@ public class RaceEventService extends AbstractService<Long, RaceEvent>{
             throw new ValidationException("Page size must be >= 1");
 
         return repository.pageCount(pageSize);
+    }
+
+    private void pushObserver(List<User> users) {
+        List<Long> notifiedIds = new ArrayList<>(users.stream()
+                .map(User::getId)
+                .toList());
+
+        observers.stream()
+                .filter(User.class::isInstance)
+                .map(User.class::cast)
+                .filter(o -> notifiedIds.contains(o.getId()))
+                .forEach(User::update);
     }
 
     private void pushObserver(RaceEvent event, List<User> users) {

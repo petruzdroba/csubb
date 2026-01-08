@@ -25,6 +25,7 @@
                     <TableColumn fx:id="participantsColumn" text="Participants" prefWidth="200"/>
                     <TableColumn fx:id="deleteColumn" text="Delete" prefWidth="100"/>
                     <TableColumn fx:id="startRaceColumn" text="Start Race" prefWidth="100"/>
+                    <TableColumn fx:id="subscribeColumn" text="Subscribe" prefWidth="100"/>
                 </columns>
             </TableView>
 
