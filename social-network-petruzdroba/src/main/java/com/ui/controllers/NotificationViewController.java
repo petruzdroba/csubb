@@ -176,6 +176,11 @@ public class NotificationViewController implements Observer {
         loadCurrentPage();
     }
 
+    @Override
+    public void update(String message) {
+        loadCurrentPage();
+    }
+
     public void removeObservers(){
         notificationService.removeObserver(loggedUser);
         loggedUser.removeObserver(this);

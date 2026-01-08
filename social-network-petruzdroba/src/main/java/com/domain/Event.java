@@ -10,7 +10,7 @@ public abstract class Event {
     protected final long ownerId;
     protected long id;
 
-    public Event(long ownerId, long id) {
+    public Event(long id, long ownerId) {
         this.ownerId = ownerId;
         this.subscribers = new ArrayList<User>();
         this.id = id;

@@ -229,6 +229,11 @@ public class FriendshipPagedViewByUserController implements Observer {
         loadCurrentPage();
     }
 
+    @Override
+    public void update(String message) {
+        loadCurrentPage();
+    }
+
     public void removeObservers(){
         friendshipService.removeObserver(profileOwner);
         profileOwner.removeObserver(this);

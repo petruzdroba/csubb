@@ -42,7 +42,7 @@ public class RaceEventRepository extends AbstractDatabaseRepository<Long, RaceEv
 
     private void insertEvent(Connection conn, RaceEvent event) throws SQLException {
         String sql = "INSERT INTO events (owner_id) VALUES (?)";
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setLong(1, event.getOwnerId());
             ps.executeUpdate();
 

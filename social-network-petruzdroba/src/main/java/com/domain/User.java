@@ -36,6 +36,15 @@ public abstract class User implements Observable, Observer{
      */
     public void notify(Event e) {
         System.out.println(this.getUsername() + e.notification());
+        for(Observer o:observers){
+            o.update(e.notification());
+        }
+    }
+
+    public void notify(String message) {
+        for(Observer o:observers){
+            o.update(message);
+        }
     }
 
     @Override
@@ -75,5 +84,10 @@ public abstract class User implements Observable, Observer{
     public void update() { //when user gets a message, it notifies controller
         System.out.println("User observable notified");
         notifyObservers();
+    }
+
+    @Override
+    public void update(String message) {
+        notify(message);
     }
 }

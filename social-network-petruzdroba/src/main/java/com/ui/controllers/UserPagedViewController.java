@@ -217,4 +217,9 @@ public class UserPagedViewController extends AbstractPagedViewController<Long, U
     public void update() {
         loadCurrentPage();
     }
+
+    @Override
+    public void update(String message) {
+        loadCurrentPage();
+    }
 }

@@ -212,6 +212,11 @@ public class UserService extends AbstractService<Long, User> {
                 orElse(null);
     }
 
+    public User find(Long key) throws SQLException {
+        System.out.println(key);
+        return repository.find(key);
+    }
+
     public Collection<Duck> getAllDucks() {
         return repository.getAll().stream().filter(Duck.class::isInstance).map(Duck.class::cast).toList();
     }

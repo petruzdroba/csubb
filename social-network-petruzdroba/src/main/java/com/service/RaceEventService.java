@@ -12,7 +12,9 @@ import com.validators.CuloarValidator;
 import com.validators.EventValidator;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class RaceEventService extends AbstractService<Long, RaceEvent>{
     private final UserRepository userRepository;
@@ -37,7 +39,9 @@ public class RaceEventService extends AbstractService<Long, RaceEvent>{
         Collection<Duck> swimmers = cardService.getDucksInCard(Duck.TipRata.SWIMMING);
         DuckRaceContainer container = new DuckRaceContainer(swimmers, lanes);
 
-        RaceEvent event = new RaceEvent(-1,currentUser.getId(), container);
+        RaceEvent event = new RaceEvent(currentUser.getId(), currentUser.getId(), container);
+
+        event.subscribe(currentUser);
 
         repository.add(null, event);
     }
@@ -88,7 +92,9 @@ public class RaceEventService extends AbstractService<Long, RaceEvent>{
 
         repository.remove(eventId);
         event.start();
+
         event.notifySubscribers();
+        pushObserver(event,event.getSubscribers());
     }
 
     public Collection<RaceEvent> getAll() throws NotLoggedIn {
@@ -100,6 +106,8 @@ public class RaceEventService extends AbstractService<Long, RaceEvent>{
 
         if (offset < 0 || limit < 1)
             throw new ValidationException("Invalid pagination parameters");
+
+        System.out.println(repository.getPage(offset, limit));
 
         return repository.getPage(offset, limit);
     }
@@ -115,5 +123,17 @@ public class RaceEventService extends AbstractService<Long, RaceEvent>{
             throw new ValidationException("Page size must be >= 1");
 
         return repository.pageCount(pageSize);
+    }
+
+    private void pushObserver(RaceEvent event, List<User> users) {
+        List<Long> notifiedIds = new ArrayList<>(users.stream()
+                .map(User::getId)
+                .toList());
+
+        observers.stream()
+                .filter(User.class::isInstance)
+                .map(User.class::cast)
+                .filter(o -> notifiedIds.contains(o.getId()))
+                .forEach(o -> o.notify(event));
     }
 }

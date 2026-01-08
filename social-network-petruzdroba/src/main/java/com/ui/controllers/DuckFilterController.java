@@ -141,4 +141,9 @@ public class DuckFilterController implements Observer {
     public void update() {
         loadCurrentPage();
     }
+
+    @Override
+    public void update(String message) {
+        loadCurrentPage();
+    }
 }

@@ -303,4 +303,9 @@ public class MessageViewController implements Observer {
         System.out.println("Controller: im notified");
         loadCurrentPage();
     }
+
+    @Override
+    public void update(String message) {
+        loadCurrentPage();
+    }
 }
