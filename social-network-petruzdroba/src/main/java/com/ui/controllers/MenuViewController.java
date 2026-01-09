@@ -202,7 +202,7 @@ public class MenuViewController {
             );
 
             raceStage.setScene(scene);
-            raceStage.setOnCloseRequest(e ->{ raceStage = null;});
+            raceStage.setOnCloseRequest(e ->{ raceStage = null; controller.removeObservers();});
             raceStage.show();
 
         } catch (IOException e) {

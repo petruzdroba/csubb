@@ -39,10 +39,14 @@ public class RaceEventService extends AbstractService<Long, RaceEvent> {
                 if (lanes == null || lanes.isEmpty())
                     throw new ValidationException("Event must have lanes");
 
+
                 lanes.forEach(culoarValidator::validateThrow);
 
                 Collection<Duck> swimmers = cardService.getDucksInCard(Duck.TipRata.SWIMMING);
                 DuckRaceContainer container = new DuckRaceContainer(swimmers, lanes);
+
+                if (lanes.size() > swimmers.size())
+                    throw new ValidationException("More lanes than ducks");
 
                 RaceEvent event = new RaceEvent(currentUser.getId(), currentUser.getId(), container);
                 event.subscribe(currentUser);
@@ -118,7 +122,7 @@ public class RaceEventService extends AbstractService<Long, RaceEvent> {
         }, executor);
     }
 
-    public CompletableFuture<Void> startRace(User currentUser, long eventId) {
+    public CompletableFuture<Void> startRace(User currentUser, long eventId) throws CompletionException {
         return CompletableFuture.runAsync(() -> {
             try {
                 RaceEvent event = repository.find(eventId);

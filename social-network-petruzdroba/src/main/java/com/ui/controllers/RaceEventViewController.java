@@ -1,6 +1,7 @@
 package com.ui.controllers;
 
 import com.domain.*;
+import com.exceptions.ValidationException;
 import com.service.RaceEventService;
 import com.service.UserService;
 import javafx.application.Platform;
@@ -128,11 +129,15 @@ public class RaceEventViewController implements Observer {
     private void addLane() {
         try {
             int distance = Integer.parseInt(laneDistanceField.getText().trim());
+            if(distance < 1){
+                laneDistanceField.clear();
+                throw new ValidationException("Lane distance must be > 1");
+            }
             lanes.add(new Culoar(distance, lanes.size()));
             laneDistanceField.clear();
             updateLanesDisplay();
-        } catch (NumberFormatException e) {
-            showError("Distance must be a number");
+        } catch (NumberFormatException | ValidationException e) {
+            showError(e.getMessage());
         }
     }
 
@@ -342,6 +347,11 @@ public class RaceEventViewController implements Observer {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void removeObservers(){
+        loggedInUser.removeObserver(this);
+        raceEventService.removeObserver(loggedInUser);
     }
 
     @Override

@@ -23,6 +23,8 @@
         <VBox spacing="5" alignment="CENTER_LEFT">
             <Label fx:id="usernameLabel" styleClass="label-title"/>
             <Label fx:id="emailLabel" styleClass="user-info-label"/>
+            <Label fx:id="extraInfoLabel" styleClass="user-info-label"/>
+
         </VBox>
     </HBox>
 

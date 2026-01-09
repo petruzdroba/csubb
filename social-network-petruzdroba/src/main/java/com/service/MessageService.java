@@ -10,6 +10,7 @@ import com.repo.AbstractDatabaseRepository;
 import com.repo.MessageRepository;
 import com.repo.UserRepository;
 import com.validators.MessageValidator;
+import javafx.application.Platform;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -17,14 +18,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MessageService extends AbstractService<Long, Message> {
     private final UserRepository userRepository;
     private final MessageValidator messageValidator = new MessageValidator();
+    private final ExecutorService executor;
 
     public MessageService(AbstractDatabaseRepository<Long, Message> repository, UserRepository userRepository) {
         super(repository);
         this.userRepository = userRepository;
+        executor = Executors.newFixedThreadPool(4);
     }
 
     public Collection<Message> getReceived(User user) {
@@ -33,7 +40,6 @@ public class MessageService extends AbstractService<Long, Message> {
 
         return ((MessageRepository) repository).getReceived(user);
     }
-
 
     public Collection<Message> getReceivedPage(User user, int offset, int limit) {
         if (user == null)
@@ -102,73 +108,95 @@ public class MessageService extends AbstractService<Long, Message> {
     }
 
     private void pushObserver(User sender,List<User> receivers) {
-        List<Long> notifiedIds = new ArrayList<>(receivers.stream()
-                .map(User::getId)
-                .toList());
+        CompletableFuture.runAsync(()->{
+            List<Long> notifiedIds = new ArrayList<>(receivers.stream()
+                    .map(User::getId)
+                    .toList());
 
-        notifiedIds.add(sender.getId());
+            notifiedIds.add(sender.getId());
 
-        observers.stream()
-                .filter(User.class::isInstance)
-                .map(User.class::cast)
-                .filter(o -> notifiedIds.contains(o.getId()))
-                .forEach(User::update);
+            observers.stream()
+                    .filter(User.class::isInstance)
+                    .map(User.class::cast)
+                    .filter(o -> notifiedIds.contains(o.getId()))
+                    .forEach(o -> Platform.runLater(o::update));
+        },executor);
     }
 
+    public CompletableFuture<Void> sendMessage(User from, List<String> receiverEmail, String text) throws CompletionException {
+        return CompletableFuture.runAsync(()->{
+            try{
+                if (from == null)
+                    throw new NotLoggedIn("No user logged in");
 
-    public void sendMessage(User from, List<String> receiverEmail, String text) throws SQLException {
-        if (from == null)
-            throw new NotLoggedIn("No user logged in");
 
+                List<User> receivers = new ArrayList<>();
+                for (String email : receiverEmail) {
+                    User u = userRepository.findByEmail(email);
+                    if (u != null) receivers.add(u);
+                }
 
-        List<User> receivers = new ArrayList<>();
-        for (String email : receiverEmail) {
-            User u = userRepository.findByEmail(email);
-            if (u != null) receivers.add(u);
-        }
+                Message message = new Message(from, text, LocalDateTime.now(), receivers);
+                messageValidator.validateThrow(message);
 
-        Message message = new Message(from, text, LocalDateTime.now(), receivers);
-        messageValidator.validateThrow(message);
+                repository.add(null, message);
 
-        repository.add(null, message);
-
-        pushObserver(from, receivers);
+                pushObserver(from, receivers);
+            }catch(SQLException e){
+                throw new CompletionException(e);
+            }
+        },executor);
     }
 
+    public CompletableFuture<Void> replyAll(User from, Long messageId, String text) throws CompletionException {
+        return CompletableFuture.runAsync(()->{
+            try{
+                if (from == null)
+                    throw new NotLoggedIn("No user logged in");
 
-    public void replyAll(User from, Long messageId, String text) throws SQLException {
-        if (from == null)
-            throw new NotLoggedIn("No user logged in");
+                Message message = repository.find(messageId);//the message that is beign replyed to
 
-        Message message = repository.find(messageId);//the message that is beign replyed to
+                List<User> receivers = new ArrayList<>();
 
-        List<User> receivers = new ArrayList<>();
+                receivers.add(message.getFrom());
 
-        receivers.add(message.getFrom());
+                message.getTo().stream()
+                        .filter(u -> u.getId() != from.getId())
+                        .forEach(receivers::add);
 
-        message.getTo().stream()
-                .filter(u -> u.getId() != from.getId())
-                .forEach(receivers::add);
+                Message replyMessage = new Message(from, text, LocalDateTime.now(), message, receivers);
+                messageValidator.validateThrow(replyMessage);
 
-        Message replyMessage = new Message(from, text, LocalDateTime.now(), message, receivers);
-        messageValidator.validateThrow(replyMessage);
+                repository.add(null, replyMessage);
 
-        repository.add(null, replyMessage);
-
-        pushObserver(from, receivers);
+                pushObserver(from, receivers);
+            }catch(SQLException e){
+                throw  new CompletionException(e);
+            }
+        },executor);
     }
 
-    public void reply(User from, Long messageId, String text) throws SQLException {
-        if (from == null)
-            throw new NotLoggedIn("No user logged in");
+    public CompletableFuture<Void> reply(User from, Long messageId, String text) throws CompletionException {
+        return CompletableFuture.runAsync(()->{
+            try{
+                if (from == null)
+                    throw new NotLoggedIn("No user logged in");
 
-        Message message = repository.find(messageId);
+//                for(int i=0; i<=Long.MAX_VALUE; i++){
+//
+//                }
 
-        Message replyMessage = new Message(from, text, LocalDateTime.now(), message, List.of(message.getFrom()));
-        messageValidator.validateThrow(replyMessage);
+                Message message = repository.find(messageId);
 
-        repository.add(null, replyMessage);
+                Message replyMessage = new Message(from, text, LocalDateTime.now(), message, List.of(message.getFrom()));
+                messageValidator.validateThrow(replyMessage);
 
-        pushObserver(from, List.of(message.getFrom()));
+                repository.add(null, replyMessage);
+
+                pushObserver(from, List.of(message.getFrom()));
+            }catch (SQLException e){
+                throw new CompletionException(e);
+            }
+        },executor);
     }
 }

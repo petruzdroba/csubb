@@ -1,8 +1,6 @@
 package com.ui.controllers;
 
-import com.domain.Observer;
-import com.domain.ProfilePicture;
-import com.domain.User;
+import com.domain.*;
 import com.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +15,6 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -43,6 +40,8 @@ public class ProfilePageViewController implements Observer {
 
     @FXML private ImageView profileImageView;
     @FXML private Button changePictureButton;
+
+    @FXML private Label extraInfoLabel;
 
     public void setRequestService(RequestService requestService) {
         this.requestService = requestService;
@@ -90,6 +89,16 @@ public class ProfilePageViewController implements Observer {
 
     private void updateView() {
         if (displayUser == null) return;
+
+        if (displayUser instanceof Persoana persoana) {
+            extraInfoLabel.setText(String.format("Nume: %s %s\nOcupatie: %s",
+                    persoana.getPrenume(), persoana.getNume(), persoana.getOcupatie()));
+        } else if (displayUser instanceof Duck duck) {
+            extraInfoLabel.setText(String.format("Viteza: %.2f\nRezistenta: %.2f\nTip: %s",
+                    duck.getViteza(), duck.getRezistenta(), duck.getTip().toString()));
+        } else {
+            extraInfoLabel.setText("");
+        }
 
         usernameLabel.setText(displayUser.getUsername());
         emailLabel.setText(displayUser.getEmail());
@@ -178,7 +187,7 @@ public class ProfilePageViewController implements Observer {
                 requestService.cancel(loggedInUser, displayUser);
             } else if (friendshipService.exists(loggedInUser.getId(), displayUser.getId())) {
                 friendshipService.remove(loggedInUser.getId(), displayUser.getId());
-            } else {
+            }else {
                 requestService.send(loggedInUser, displayUser.getEmail());
             }
 
@@ -276,7 +285,6 @@ public class ProfilePageViewController implements Observer {
             ));
         }
     }
-
 
 
     private void showError(String message) {

@@ -4,6 +4,7 @@ import com.domain.Message;
 import com.domain.User;
 import com.service.MessageService;
 import com.service.UserService;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -25,11 +26,16 @@ public class SendMessageViewController {
     private Message replyToMessage;
     private boolean replyAll;
 
-    @FXML private Label fromLabel;
-    @FXML private TextField toField;
-    @FXML private Label dateLabel;
-    @FXML private Label replyLabel;
-    @FXML private TextArea messageBody;
+    @FXML
+    private Label fromLabel;
+    @FXML
+    private TextField toField;
+    @FXML
+    private Label dateLabel;
+    @FXML
+    private Label replyLabel;
+    @FXML
+    private TextArea messageBody;
 
     public void setUserService(UserService service) {
         this.userService = service;
@@ -41,7 +47,7 @@ public class SendMessageViewController {
 
     public void setReplyToMessage(Message message, boolean replyAll) {
         this.replyToMessage = message;
-        this.replyAll=replyAll;
+        this.replyAll = replyAll;
 
         messageBody.setText("RE: ");
     }
@@ -55,7 +61,7 @@ public class SendMessageViewController {
     }
 
     @FXML
-    private void initialize(){
+    private void initialize() {
 
     }
 
@@ -92,24 +98,40 @@ public class SendMessageViewController {
     }
 
 
-    public void handleSend()  {
-        try{
-            if (replyToMessage == null) {
-                String[] emailsArray = toField.getText().split(",");
-                List<String> emails = Arrays.stream(emailsArray)
-                        .map(String::trim)
-                        .filter(s -> !s.isEmpty())
-                        .toList();
-                messageService.sendMessage(loggedInUser, emails,messageBody.getText());
-            }
-            else if(!replyAll){
-                messageService.reply(loggedInUser, replyToMessage.getId(), messageBody.getText());
-            }else{
-                messageService.replyAll(loggedInUser,replyToMessage.getId(), messageBody.getText());
-            }
-            ((Stage) fromLabel.getScene().getWindow()).close();
-        } catch (SQLException e) {
-            showError(e.getMessage());
+    public void handleSend() {
+        if (replyToMessage == null) {
+            String[] emailsArray = toField.getText().split(",");
+            List<String> emails = Arrays.stream(emailsArray)
+                    .map(String::trim)
+                    .filter(s -> !s.isEmpty())
+                    .toList();
+            messageService.sendMessage(loggedInUser, emails, messageBody.getText())
+                    .thenRun(() -> Platform.runLater(() -> {
+                        ((Stage) fromLabel.getScene().getWindow()).close();
+                    }))
+                    .exceptionally(ex -> {
+                        Platform.runLater(() -> showError(ex.getCause().getMessage()));
+                        return null;
+                    });
+
+        } else if (!replyAll) {
+            messageService.reply(loggedInUser, replyToMessage.getId(), messageBody.getText())
+                    .thenRun(() -> Platform.runLater(() -> {
+                        ((Stage) fromLabel.getScene().getWindow()).close();
+                    }))
+                    .exceptionally(ex -> {
+                        Platform.runLater(() -> showError(ex.getCause().getMessage()));
+                        return null;
+                    });
+        } else {
+            messageService.replyAll(loggedInUser, replyToMessage.getId(), messageBody.getText())
+                    .thenRun(() -> Platform.runLater(() -> {
+                        ((Stage) fromLabel.getScene().getWindow()).close();
+                    }))
+                    .exceptionally(ex -> {
+                        Platform.runLater(() -> showError(ex.getCause().getMessage()));
+                        return null;
+                    });
         }
     }
 
