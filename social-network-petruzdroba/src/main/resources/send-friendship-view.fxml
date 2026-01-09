@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.ui.controllers.SendFriendshipView"
+      spacing="10" alignment="CENTER"
+      stylesheets="@dark-theme.css"
+      styleClass="root">
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+
+    <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label text="Ask to be friends:"/>
+        <TextField fx:id="toField" promptText="friend@email.com" HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <Button text="Send" onAction="#handleSend"/>
+
+</VBox>

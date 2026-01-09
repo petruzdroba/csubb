@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.ui.controllers.ProfilePageViewController"
+      spacing="20" alignment="TOP_CENTER"
+      stylesheets="@dark-theme.css"
+      styleClass="root">
+
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40"/>
+    </padding>
+
+    <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-padding: 20;">
+        <ImageView fx:id="profileImageView" fitWidth="150" fitHeight="150" preserveRatio="true" smooth="true"/>
+
+        <VBox spacing="5" alignment="CENTER_LEFT">
+            <Label fx:id="usernameLabel" styleClass="label-title"/>
+            <Label fx:id="emailLabel" styleClass="user-info-label"/>
+            <Label fx:id="extraInfoLabel" styleClass="user-info-label"/>
+
+        </VBox>
+    </HBox>
+
+    <Button text="View Friends"
+            fx:id="viewFriendsButton"
+            onAction="#openFriendshipsWindow"
+            maxWidth="300"
+            styleClass="primary-button"/>
+
+    <HBox fx:id="actionButtonsBox"
+          spacing="15"
+          alignment="CENTER">
+        <Button fx:id="sendMessageButton"
+                text="Send Message"
+                styleClass="secondary-button"
+                onAction="#handleSend"
+                minWidth="140"/>
+        <Button fx:id="requestButton"
+                styleClass="secondary-button"
+                onAction="#handleRequest"
+                minWidth="140"/>
+        <Button fx:id="changePictureButton" text="Change Profile Picture" onAction="#handleChangeProfilePicture"/>
+    </HBox>
+
+</VBox>
