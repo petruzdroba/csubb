@@ -1,3 +1,5 @@
+SET enable_seqscan = off;
+
 -- view faciliteis trail
 CREATE INDEX idx_facilities_id ON facilities(id);
 CREATE INDEX idx_facilities_name ON facilities(name);
@@ -11,7 +13,6 @@ CREATE INDEX idx_trail_name ON trail(name);
 EXPLAIN SELECT facility_id, facility_name
 FROM view_facilities_trails
 WHERE trail_id = 1;
-
 
 -- view trail tags
 CREATE INDEX idx_trailtags_trail_id ON trailtags(trail_id);

@@ -1,0 +1,20 @@
+
+public abstract class Task{
+
+	public string TaskId {get; set;}
+
+	public string Descirption {get; private set;}
+
+	protected Task(string taskId, string description){
+		TaskId= taskId;
+		Description=description;
+	}
+
+	public override string ToString(){
+		return $"{TaskId}+{Description}";
+	}
+}
+
+public class MessageTask:Task{
+	
+}
