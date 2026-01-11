@@ -31,3 +31,8 @@
 		(T (my-max (mapcar #' adancime L) 0))
 	)
 )
+
+(defun adancime (L)
+  (cond
+    ((atom L) 0)
+    (t (+ 1 (my-max (mapcar #'adancime L) 0)))))
