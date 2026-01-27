@@ -1,5 +1,3 @@
---intelliJ search ctrl+shift+f
-
 CREATE TABLE friend_requests
 (
     id           BIGSERIAL PRIMARY KEY,
@@ -42,16 +40,3 @@ CREATE TABLE message_to
     FOREIGN KEY (message_id) REFERENCES messages (id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
-
--- CREATE TABLE orders (
---     id BIGSERIAL PRIMARY KEY,
---     driver_id BIGINT,
---     status VARCHAR(15) NOT NULL DEFAULT 'PENDING',
---     start_date TIMESTAMP NOT NULL,
---     end_date TIMESTAMP NOT NULL,
---     pickup_address VARCHAR(50),
---     destination_address VARCHAR(50),
---     client_name VARCHAR(50),
-
---     FOREIGN KEY (driver_id) REFERENCES drivers (id) ON DELETE CASCADE
--- );

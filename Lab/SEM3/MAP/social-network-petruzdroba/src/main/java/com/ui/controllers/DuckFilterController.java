@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,10 +51,29 @@ public class DuckFilterController implements Observer {
         updatePageButtons();
     }
 
+//    @FXML private VBox tableContainer;
+
+    public void loadData() {
+        TableView<Duck> tableView = new TableView<>();
+
+        TableColumn<Duck, Integer> idColumn = new TableColumn<>();
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+        tableView.getColumns().addAll(idColumn);
+
+        ObservableList<Duck> data = FXCollections.observableList(userService.getDucksByType(Duck.TipRata.valueOf(comboBox.getValue())));
+        tableView.setItems(data);
+
+        Label label = new Label(comboBox.getValue());
+
+        //tableContainer.getChildren().addAll(label, tableView);
+    }
+
     public void loadData(List<Duck> ducks) {
         double rowHeight = 26;
         tableView.setFixedCellSize(rowHeight);
         int rows = ducks.size();
+
         tableView.setPrefHeight(rows * rowHeight + 28);
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -61,6 +81,7 @@ public class DuckFilterController implements Observer {
         rezistentaColumn.setCellValueFactory(new PropertyValueFactory<>("rezistenta"));
         vitezaColumn.setCellValueFactory(new PropertyValueFactory<>("viteza"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("tip"));
+
         ObservableList<Duck> data = FXCollections.observableList(ducks);
         tableView.setItems(data);
     }
@@ -112,12 +133,12 @@ public class DuckFilterController implements Observer {
         String selected = comboBox.getValue();
         List<Duck> nextPage;
         if (selected.equals("ALL")) {
-            if(pageCount < userService.pageCount(pageSize)){
+            if (pageCount < userService.pageCount(pageSize)) {
                 pageCount++;
                 loadCurrentPage();
             }
         } else {
-            if(pageCount < userService.getPageDuck(pageSize, Duck.TipRata.valueOf(selected))){
+            if (pageCount < userService.getPageDuck(pageSize, Duck.TipRata.valueOf(selected))) {
                 pageCount++;
                 loadCurrentPage();
             }

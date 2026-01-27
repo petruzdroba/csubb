@@ -103,6 +103,15 @@ public class NotificationViewController implements Observer {
                 }
             }
         });
+
+//        tableView.getColumns().addAll(idColumn, titleColumn, authorColumn, actionColumn);
+//
+//        ObservableList<Book> data = FXCollections.observableList(bookService.getFiltered(genre));
+//        tableView.setItems(data);
+//
+//        Label label = new Label(genre);
+//
+//        table.getChildren().addAll(label, tableView);
     }
 
     private void loadData(List<Notification> notifications) {

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controllers.CustomerViewController">
+
+    <HBox>
+        <VBox fx:id="tableContainer"/>
+        <VBox>
+            <Label text="Ordered Items"/>
+            <TableView fx:id="orderTable" prefHeight="300" prefWidth="500">
+                <columns>
+                    <TableColumn fx:id="itemColumnOrder" prefWidth="100"/>
+                    <TableColumn fx:id="priceColumnOrder" prefWidth="100"/>
+                    <TableColumn fx:id="currencyColumnOrder" prefWidth="100"/>
+                </columns>
+            </TableView>
+            <Button text="Order" onAction="#handleOrder"/>
+        </VBox>
+    </HBox>
+</VBox>

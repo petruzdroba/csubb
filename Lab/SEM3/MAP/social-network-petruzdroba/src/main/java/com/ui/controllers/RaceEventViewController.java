@@ -4,11 +4,13 @@ import com.domain.*;
 import com.exceptions.ValidationException;
 import com.service.RaceEventService;
 import com.service.UserService;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 import java.sql.SQLException;
 import java.util.Collection;
@@ -129,7 +131,7 @@ public class RaceEventViewController implements Observer {
     private void addLane() {
         try {
             int distance = Integer.parseInt(laneDistanceField.getText().trim());
-            if(distance < 1){
+            if (distance < 1) {
                 laneDistanceField.clear();
                 throw new ValidationException("Lane distance must be > 1");
             }
@@ -349,7 +351,7 @@ public class RaceEventViewController implements Observer {
         alert.showAndWait();
     }
 
-    public void removeObservers(){
+    public void removeObservers() {
         loggedInUser.removeObserver(this);
         raceEventService.removeObserver(loggedInUser);
     }
@@ -360,14 +362,34 @@ public class RaceEventViewController implements Observer {
         setupActionColumns();
     }
 
-    @Override
-    public void update(String message) {
-        loadCurrentPage();
-        setupActionColumns();
+    private void showResult(String message) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Race ended");
         alert.setHeaderText(loggedInUser.getEmail() + " Race Notification");
         alert.setContentText(message);
+
+//        ButtonType yesButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+//        ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+//
+//        alert.getButtonTypes().setAll(yesButton, noButton);
+
+        PauseTransition timeout = new PauseTransition(Duration.seconds(5));
+        timeout.setOnFinished(e -> {
+            if (alert.isShowing()) {
+                alert.close();
+            }
+        });
+        timeout.play();
+
         alert.showAndWait();
+        timeout.stop();
+    }
+
+    @Override
+    public void update(String message) {
+        loadCurrentPage();
+        setupActionColumns();
+
+        showResult(message);
     }
 }
