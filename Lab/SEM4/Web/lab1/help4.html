@@ -15,16 +15,16 @@
       <div class="hazard-form">
         <h4>Is there an issue with one of our trails? Help us fix it!</h4>
         <h5>Note: It usually takes rangers 2-4 days to fix the issue</h5>
-        <br/><br/>
-        <form action="server.php" method="POST">
+        <br><br>
+        <form action="">
           <fieldset class="personal-info">
             <legend>Personal information</legend>
             <label for="first-name">First Name:</label>
-            <input type="text" id="first-name" maxlength="20"/>
+            <input type="text" id="first-name" maxlength="20">
             <label for="last-name">Last Name:</label>
-            <input type="text" id="last-name" maxlength="20"/>
+            <input type="text" id="last-name" maxlength="20">
 
-            <br/>
+            <br>
             <label for="phone">Phone Number: </label>
             <select name="phone_prefix" id="phone_prefix">
               <option value="+40">Romania</option>
@@ -115,10 +115,10 @@
           <fieldset>
             <legend>Team needed</legend>
             <label for="vehicles" title="Vehicles needed to solve/extract issue">Vehicles needed:</label>
-            <ol type="A">
+            <ol type="A" id="vehicles">
               <li>Ground Units
                 <ul>
-                  <li><input type="checkbox"> Park Ranger Team</li>
+                  <li><input type="checkbox" checked disabled> Park Ranger Team</li>
                   <li><input type="checkbox"> ATV Intervention Team</li>
                 </ul>
               </li>
@@ -142,7 +142,7 @@
           <fieldset>
             <legend>Required Equipment</legend>
 
-            <ol type="1">
+		<ol type="1">
               <li>
                 <input type="checkbox" name="equipment_category" value="ground">
                 Ground Intervention
@@ -190,13 +190,11 @@
             </ol>
 
           </fieldset>
-
-          <input type="submit" value="Submit Report">
         </form>
 
         <br><br>
         <h2>Trail marking meaning</h2>
-        <table border="1" width="650" height="450" id="table-trail">
+        <table border="1" width="650" id="table-trail">
             <tr bgcolor="#f0f0f0">
               <th valign="top">Sign Type / Symbol</th>
               <th valign="top">Meaning</th>
