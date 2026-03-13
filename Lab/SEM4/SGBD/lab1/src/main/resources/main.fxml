@@ -23,6 +23,7 @@
                 <columns>
                     <TableColumn fx:id="parkIdCol" text="ID" prefWidth="50"/>
                     <TableColumn fx:id="parkNameCol" text="Name" prefWidth="200"/>
+                    <TableColumn fx:id="parkCountryCol" text="Country" prefWidth="200"/>
                 </columns>
             </TableView>
             <HBox spacing="5">
