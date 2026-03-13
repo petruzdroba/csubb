@@ -11,6 +11,10 @@ import org.zdroba.entity.Tag;
 import org.zdroba.entity.Trail;
 import org.zdroba.repository.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class MainControllerView {
 
     private final IParkRepository parkRepository = ParkRepository.getInstance();
@@ -31,15 +35,11 @@ public class MainControllerView {
     @FXML private TableView<Tag> tagsTable;
     @FXML private TableColumn<Tag, Long> tagIdCol;
     @FXML private TableColumn<Tag, String> tagNameCol;
+    @FXML private TableColumn<Trail, String> trailTagsCol;
 
     private final ObservableList<Park> parkList = FXCollections.observableArrayList();
     private final ObservableList<Trail> trailList = FXCollections.observableArrayList();
     private final ObservableList<Tag> tagList = FXCollections.observableArrayList();
-
-    @FXML private TextField trailNameField;
-    @FXML private TextField trailLengthField;
-
-    @FXML private TextField tagNameField;
 
     @FXML
     public void initialize() {
@@ -53,6 +53,13 @@ public class MainControllerView {
 
         tagIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         tagNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        trailTagsCol.setCellValueFactory(cellData -> {
+            List<Tag> tags = cellData.getValue().getTags();
+            String tagNames = tags.stream()
+                    .map(Tag::getName)
+                    .collect(Collectors.joining(", "));
+            return new javafx.beans.property.SimpleStringProperty(tagNames);
+        });
 
         parksTable.setItems(parkList);
         trailsTable.setItems(trailList);
@@ -148,7 +155,9 @@ public class MainControllerView {
                     showError("Park attributes cannot be empty");
                     return null;
                 }
-                return new Park(name, country);
+                Park park = new Park(name, country);
+                park.setId(selected.getId());
+                return park;
             }
             return null;
         });
@@ -178,13 +187,230 @@ public class MainControllerView {
         });
     }
 
-    @FXML private void onAddTrail() {}
-    @FXML private void onEditTrail() {}
-    @FXML private void onDeleteTrail() {}
+    @FXML private void onAddTrail() {
+        Park selectedPark = parksTable.getSelectionModel().getSelectedItem();
+        if (selectedPark == null) {
+            showError("No park selected!");
+            return;
+        }
 
-    @FXML private void onAddTag() {}
-    @FXML private void onEditTag() {}
-    @FXML private void onDeleteTag() {}
+        Dialog<Trail> dialog = new Dialog<>();
+        dialog.setTitle("Add Trail to " + selectedPark.getName());
+
+        GridPane grid = new GridPane();
+
+        TextField nameField = new TextField();
+        TextField lengthField = new TextField();
+        ListView<Tag> tagListView = new ListView<>(tagList);
+        tagListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        tagListView.setPrefHeight(100);
+
+        grid.add(new Label("Name:"), 0, 0);
+        grid.add(nameField, 1, 0);
+        grid.add(new Label("Length:"), 0, 1);
+        grid.add(lengthField, 1, 1);
+        grid.add(new Label("Tags:"), 0, 2);
+        grid.add(tagListView, 1, 2);
+
+        dialog.getDialogPane().setContent(grid);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        dialog.setResultConverter(btn -> {
+            if (btn == ButtonType.OK) {
+                String name = nameField.getText().trim();
+                String lengthText = lengthField.getText().trim();
+                if (name.isEmpty() || lengthText.isEmpty()) {
+                    showError("Trail attributes cannot be empty!");
+                    return null;
+                }
+                try {
+                    double length = Double.parseDouble(lengthText);
+                    List<Tag> selectedTags = new ArrayList<>(tagListView.getSelectionModel().getSelectedItems());
+                    return new Trail(name, length, selectedPark, selectedTags);
+                } catch (NumberFormatException e) {
+                    showError("Length must be a number!");
+                    return null;
+                }
+            }
+            return null;
+        });
+
+        dialog.showAndWait().ifPresent(trail -> {
+            trailRepository.add(trail);
+            onParkSelected(selectedPark);
+        });
+    }
+
+    @FXML private void onEditTrail() {
+        Trail selected = trailsTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showError("No trail selected!");
+            return;
+        }
+
+        Dialog<Trail> dialog = new Dialog<>();
+        dialog.setTitle("Edit Trail");
+
+        GridPane grid = new GridPane();
+
+        TextField nameField = new TextField(selected.getName());
+        TextField lengthField = new TextField(String.valueOf(selected.getLength()));
+        ListView<Tag> tagListView = new ListView<>(tagList);
+        tagListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        tagListView.setPrefHeight(100);
+
+        // preslect existing tags
+        for (Tag tag : selected.getTags()) {
+            tagListView.getSelectionModel().select(tag);
+        }
+
+        grid.add(new Label("Name:"), 0, 0);
+        grid.add(nameField, 1, 0);
+        grid.add(new Label("Length:"), 0, 1);
+        grid.add(lengthField, 1, 1);
+        grid.add(new Label("Tags:"), 0, 2);
+        grid.add(tagListView, 1, 2);
+
+        dialog.getDialogPane().setContent(grid);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        dialog.setResultConverter(btn -> {
+            if (btn == ButtonType.OK) {
+                String name = nameField.getText().trim();
+                String lengthText = lengthField.getText().trim();
+                if (name.isEmpty() || lengthText.isEmpty()) {
+                    showError("Trail attributes cannot be empty!");
+                    return null;
+                }
+                try {
+                    double length = Double.parseDouble(lengthText);
+                    List<Tag> selectedTags = new ArrayList<>(tagListView.getSelectionModel().getSelectedItems());
+                    Trail trail = new Trail(name, length, selected.getPark(), selectedTags);
+                    trail.setId(selected.getId());
+                    return trail;
+                } catch (NumberFormatException e) {
+                    showError("Length must be a number!");
+                    return null;
+                }
+            }
+            return null;
+        });
+
+        dialog.showAndWait().ifPresent(trail -> {
+            trailRepository.update(selected.getId(), trail);
+            onParkSelected(selected.getPark());
+        });
+    }
+
+    @FXML private void onDeleteTrail() {
+        Trail selected = trailsTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showError("No trail selected!");
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete " + selected.getName());
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to delete " + selected.getName() + "?");
+
+        alert.showAndWait().ifPresent(btn -> {
+            if (btn == ButtonType.OK) {
+                trailRepository.delete(selected.getId());
+                onParkSelected(selected.getPark());
+            }
+        });
+    }
+
+    @FXML private void onAddTag() {
+        Dialog<Tag> dialog = new Dialog<>();
+        dialog.setTitle("Add Tag");
+
+        GridPane grid = new GridPane();
+
+        TextField nameField = new TextField();
+        grid.add(new Label("Name:"), 0, 0);
+        grid.add(nameField, 1, 0);
+
+        dialog.getDialogPane().setContent(grid);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        dialog.setResultConverter(btn -> {
+            if (btn == ButtonType.OK) {
+                String name = nameField.getText().trim();
+                if (name.isEmpty()) {
+                    showError("Tag name cannot be empty!");
+                    return null;
+                }
+                return new Tag(name);
+            }
+            return null;
+        });
+
+        dialog.showAndWait().ifPresent(tag -> {
+            tagRepository.add(tag);
+            loadTags();
+        });
+    }
+
+    @FXML private void onEditTag() {
+        Tag selected = tagsTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showError("No tag selected!");
+            return;
+        }
+
+        Dialog<Tag> dialog = new Dialog<>();
+        dialog.setTitle("Edit Tag");
+
+        GridPane grid = new GridPane();
+
+        TextField nameField = new TextField(selected.getName());
+        grid.add(new Label("Name:"), 0, 0);
+        grid.add(nameField, 1, 0);
+
+        dialog.getDialogPane().setContent(grid);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        dialog.setResultConverter(btn -> {
+            if (btn == ButtonType.OK) {
+                String name = nameField.getText().trim();
+                if (name.isEmpty()) {
+                    showError("Tag name cannot be empty!");
+                    return null;
+                }
+                Tag tag = new Tag(name);
+                tag.setId(selected.getId());
+                return tag;
+            }
+            return null;
+        });
+
+        dialog.showAndWait().ifPresent(tag -> {
+            tagRepository.update(selected.getId(), tag);
+            loadTags();
+        });
+    }
+
+    @FXML private void onDeleteTag() {
+        Tag selected = tagsTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showError("No tag selected!");
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete " + selected.getName());
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to delete " + selected.getName() + "?");
+
+        alert.showAndWait().ifPresent(btn -> {
+            if (btn == ButtonType.OK) {
+                tagRepository.delete(selected.getId());
+                loadTags();
+            }
+        });
+    }
 
     private void showError(String message){
         Alert alert = new Alert(Alert.AlertType.ERROR);
