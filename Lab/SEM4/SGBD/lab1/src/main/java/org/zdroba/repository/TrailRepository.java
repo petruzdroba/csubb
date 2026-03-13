@@ -10,6 +10,16 @@ import java.util.List;
 
 public class TrailRepository implements ITrailRepository {
 
+    private static TrailRepository instance;
+
+    private TrailRepository() {}
+
+    public static TrailRepository getInstance() {
+        if (instance == null)
+            instance = new TrailRepository();
+        return instance;
+    }
+
     private final Connection connection = DatabaseConnection.getInstance().getConnection();
     private final ITagRepository tagRepository = TagRepository.getInstance();
     private final IParkRepository parkRepository = ParkRepository.getInstance();

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.zdroba.controllers.MainControllerView"
+      spacing="10">
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <SplitPane VBox.vgrow="ALWAYS" dividerPositions="0.4">
+
+        <VBox spacing="8">
+            <Label text="Parks"/>
+            <TableView fx:id="parksTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="parkIdCol" text="ID" prefWidth="50"/>
+                    <TableColumn fx:id="parkNameCol" text="Name" prefWidth="200"/>
+                </columns>
+            </TableView>
+            <HBox spacing="5">
+                <Button text="Add" onAction="#onAddPark"/>
+                <Button text="Edit" onAction="#onEditPark"/>
+                <Button text="Delete" onAction="#onDeletePark"/>
+            </HBox>
+        </VBox>
+
+        <VBox spacing="8">
+            <Label text="Trails"/>
+            <TableView fx:id="trailsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="trailIdCol" text="ID" prefWidth="50"/>
+                    <TableColumn fx:id="trailNameCol" text="Name" prefWidth="150"/>
+                    <TableColumn fx:id="trailLengthCol" text="Length" prefWidth="100"/>
+                </columns>
+            </TableView>
+            <HBox spacing="5">
+                <Button text="Add" onAction="#onAddTrail"/>
+                <Button text="Edit" onAction="#onEditTrail"/>
+                <Button text="Delete" onAction="#onDeleteTrail"/>
+            </HBox>
+        </VBox>
+
+    </SplitPane>
+
+    <VBox spacing="8">
+        <Label text="Tags"/>
+        <TableView fx:id="tagsTable" prefHeight="200">
+            <columns>
+                <TableColumn fx:id="tagIdCol" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="tagNameCol" text="Name" prefWidth="200"/>
+            </columns>
+        </TableView>
+        <HBox spacing="5">
+            <Button text="Add" onAction="#onAddTag"/>
+            <Button text="Edit" onAction="#onEditTag"/>
+            <Button text="Delete" onAction="#onDeleteTag"/>
+        </HBox>
+    </VBox>
+
+</VBox>
+
