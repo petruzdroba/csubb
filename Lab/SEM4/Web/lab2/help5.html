@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sprite/sprites.css">
+    <link rel="stylesheet" href="style1.css">
+    <title>National Park Service</title>
+  </head>
+
+  <body>
+      <header>
+      <h1>NATIONAL PARK SERVICE</h1>
+      <img height="70" src="img/logo.png" alt="National Park Service logo">
+            <h2>Safer trails and hikes</h2>
+    </header>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="welcome5.html">
+            <span class="sprite-icon icon-home"></span>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="help5.html">
+            <span class="sprite-icon icon-help"></span>
+            Help
+          </a>
+        </li>
+        <li>
+          <a href="hire5.html">
+            <span class="sprite-icon icon-hire"></span>
+            Hire
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+      <div class="hazard-form">
+        <h3>Is there an issue with one of our trails? Help us fix it!</h3>
+        <h4>Note: It usually takes rangers 2-4 days to fix the issue</h4>
+        <h5>Thank you for submitting a form</h5>
+	<h6>Data retention policy</h6>
+	<br><br>
+        <form>
+          <fieldset class="personal-info">
+            <legend>Personal information</legend>
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="first-name" maxlength="20" placeholder="John">
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="last-name" maxlength="20" placeholder="Doe">
+
+            <br>
+            <label for="phone">Phone Number: </label>
+            <select name="phone-prefix" id="phone-prefix">
+              <option value="+40">România</option>
+              <option value="+33">France</option>
+              <option value="+1">USA/Canada</option>
+              <option value="+44">UK</option>
+              <option value="+86">China</option>
+              <option value="">Other</option>
+            </select>
+            <input type="tel" id="phone" name="phone" size="15" placeholder="0744 444 444">
+          </fieldset>
+
+          <fieldset class="park-info">
+            <legend>Park information</legend>
+
+            <label for="country">Country:</label>
+            <input type="text" id="country" value="Romania" name="country" readonly size="5"><br>
+
+            <label for="park">Park/Trail Name:</label>
+            <select name="park" id="park">
+              <option value="Buila-Vanturarita">Buila-Vânturarița National Park</option>
+              <option value="Calimani">Călimani National Park</option>
+              <option value="Cheile-Bicazului-Hasmas">Cheile Bicazului-Hășmaș National Park</option>
+              <option value="Nera-Gorge-Beusnita">Nera Gorge-Beușnița National Park</option>
+              <option value="Cozia">Cozia National Park</option>
+              <option value="Defileul-Jiului">Defileul Jiului National Park</option>
+              <option value="Domogled-Valea-Cernei">Domogled-Valea Cernei National Park</option>
+              <option value="Letea-Forest">Letea Forest</option>
+              <option value="Piatra-Craiului-Mountains">Piatra Craiului Mountains</option>
+              <option value="Piatra-Craiului">Piatra Craiului National Park</option>
+              <option value="Retezat">Retezat National Park</option>
+              <option value="Rodna-Mountains">Rodna Mountains National Park</option>
+              <option value="Semenic-Caras-Gorge">Semenic-Caraș Gorge National Park</option>
+            </select>
+            <br><br>
+            <label for="trail_type">Trail Type:</label>
+            <select name="trail_type" id="trail_type" multiple size="4">
+              <option value="circle">Circle</option>
+              <option value="triangle">Triangle</option>
+              <option value="square">Square</option>
+              <option value="cross">Cross</option>
+            </select>
+
+            <label for="trail_color">Trail Color:</label>
+            <select name="trail_color" id="trail_color">
+              <option value="red">Red</option>
+              <option value="yellow">Yellow</option>
+              <option value="blue">Blue</option>
+            </select>
+            <p>*See the trail marking <a href="#table-trail"> <b>table</b></a></p>
+            <br>
+            
+            <label for="marker">Kilometer marker: <span title="Distance in km from the official trail start point">(?)</span></label>
+            <input type="number" id="marker" name="marker" placeholder="0.0" min="0" step="0.1">
+          </fieldset>
+
+          <fieldset>
+            <legend>Issue information</legend>
+            <label>Danger category:</label>
+            <input type="radio" name="hazard_urgency" value="Critical"> Critical
+            <input type="radio" name="hazard_urgency" value="Serious"> Serious
+            <input type="radio" name="hazard_urgency" value="Moderate" checked> Moderate
+            <input type="radio" name="hazard_urgency" value="Minor"> Minor
+            <input type="radio" name="hazard_urgency" value="Tolerable"> Tolerable
+
+            <br>
+            <p>Cause:</p>
+            <table>
+              <tr>
+                <td><input type="checkbox" name="cause_rockfall"> Rock fall</td>
+                <td><input type="checkbox" name="cause_flood"> Flooding</td>
+                <td><input type="checkbox" name="cause_fallen_tree"> Fallen tree</td>
+                <td><input type="checkbox" name="cause_erosion"> Soil erosion</td>
+                <td><input type="checkbox" name="cause_human"> Human damage</td>
+              </tr>
+            </table>
+
+            <label for="issue-date">Date issue was noticed:</label>
+            <input type="date" id="issue-date" name="issue-date" min="2026-02-27" step="1">
+            <br>
+
+            <label for="issue-description">Describe the issue/hazard</label>
+            <br>
+            <textarea rows="6" cols="50" id="issue-description" name="issue-description" placeholder="Detailed description + landmarks"></textarea>
+            <br>
+          </fieldset>
+          
+          <fieldset>
+            <legend>Team needed</legend>
+            <p title="Vehicles needed to solve/extract issue">Vehicles needed:</p>
+            <ol type="A" id="vehicles">
+              <li>Ground Units
+                <ul>
+                    <li><input type="checkbox" name="team_ground" value="ranger" checked disabled> Park Ranger Team</li>
+                    <li><input type="checkbox" name="team_ground" value="atv"> ATV Intervention Team</li>
+                </ul>
+              </li>
+              <li>Air Support
+                <ul>
+                  <li><input type="checkbox" name="team_air" value="helicopter"> Helicopter</li>
+                </ul>
+              </li>
+            </ol>
+  
+            <p title="Specialists needed">Specialists needed:</p>
+            <ol id="specialists" type="I">
+              <li><input type="checkbox" name="ranger_type" value="team_trails"> Trails & Infrastructure</li>
+              <li><input type="checkbox" name="ranger_type" value="team_fire"> Fire/Fire Prevention</li>
+              <li><input type="checkbox" name="ranger_type" value="team_wildlife"> Wildlife & Habitat</li>
+              <li><input type="checkbox" name="ranger_type" value="team_backcountry"> Backcountry / Remote Areas</li>
+            </ol>
+            <p>*See the team info <a href="#table-team"> <b>table</b></a></p>
+          </fieldset>
+
+          <fieldset>
+            <legend>Required Equipment</legend>
+
+            <ol type="1">
+              <li>
+                <input type="checkbox" name="equipment_category" value="ground">
+                Ground Intervention
+                <ul>
+                  <li>
+                    <input type="checkbox" name="equipment" value="chainsaw">
+                    Chainsaw
+                  </li>
+                  <li>
+                    <input type="checkbox" name="equipment" value="shovels">
+                    Shovels
+                  </li>
+                  <li>
+                    <input type="checkbox" name="equipment" value="protective_gear">
+                    Protective gear
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <input type="checkbox" name="equipment_category" value="heavy">
+                Heavy Removal
+                <ul>
+                  <li>
+                    <input type="checkbox" name="equipment" value="winch">
+                    Winch system
+                  </li>
+                  <li>
+                    <input type="checkbox" name="equipment" value="rock_tools">
+                    Rock breaking tools
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <input type="checkbox" name="equipment_category" value="emergency">
+                Emergency Support
+                <ul>
+                  <li>
+                    <input type="checkbox" name="equipment" value="first_aid">
+                    First aid kit
+                  </li>
+                </ul>
+              </li>
+            </ol>
+
+          </fieldset>
+
+          <input type="submit" value="Submit Report">
+        </form>
+
+        <br><br>
+        <h2>Trail marking meaning</h2>
+        <table id="table-trail">
+            <tr>
+              <th>Sign Type / Symbol</th>
+              <th>Meaning</th>
+            </tr>
+            <tr>
+              <td>Vertical stripe (red)</td>
+              <td>Main ridge route</td>
+            </tr>
+            <tr>
+              <td>Cross</td>
+              <td>Intersecting trails</td>
+            </tr>
+            <tr>
+              <td>Triangle</td>
+              <td>Secondary route</td>
+            </tr>
+            <tr>
+              <td>Red circle</td>
+              <td>Circuit route</td>
+            </tr>
+            <tr>
+              <td>Double circle (white + color)</td>
+              <td>Round-trip route</td>
+            </tr>
+            <tr>
+              <td>Red or blue square (white border)</td>
+              <td>Near a nature reserve</td>
+            </tr>
+            <tr>
+              <td>Colored “C” (white border)</td>
+              <td>Cycling route</td>
+            </tr>
+            <tr>
+              <td>Black & yellow square pattern</td>
+              <td>Avalanche‑exposed area</td>
+            </tr>
+        </table>
+
+        <table id="table-team">
+          <tr>
+            <th>Team</th>
+            <th>Responsible For / Tasks</th>
+          </tr>
+
+          <tr>
+            <td rowspan="3">Park Ranger</td>
+            <td>
+              <table >
+                <tr><td>Trails & Infrastructure</td><td>Rock fall</td></tr>
+                <tr><td>Fire / Prevention</td><td>Soil erosion</td></tr>
+                <tr><td>Wildlife & Habitat</td><td>Fallen tree</td></tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table >
+                <tr><td>Backcountry / Remote Areas</td><td>Flooding</td></tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table >
+                <tr><td>Visitor Guidance</td><td>Human damage</td></tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td rowspan="2">ATV Intervention Team</td>
+            <td>
+              <table >
+                <tr><td>Trail Clearing</td><td>Stumps, fallen trees</td></tr>
+                <tr><td>Debris Removal</td><td>Rocks, mud</td></tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table >
+                <tr><td>Material Transport</td><td>Supplies and equipment</td></tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td rowspan="2">Helicopter</td>
+            <td>
+              <table >
+                <tr><td>Emergency Evacuation</td><td>Injured hikers</td></tr>
+                <tr><td>Heavy Transport</td><td>Large rocks, fallen trees</td></tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table >
+                <tr><td>Survey / Recon</td><td>Remote trail conditions</td></tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+
+    <footer>
+  <p>National Park Service - Safer trails and hikes</p>
+  <p>
+    For emergencies call 
+    <a href="https://www.salvamontromania.ro/" target="_blank" rel="noopener noreferrer">Salvamont România</a>
+  </p>
+</footer>
+  </body>
+</html>

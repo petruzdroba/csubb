@@ -1,0 +1,20 @@
+.sprite-icon {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url('sprite.png');
+    background-repeat: no-repeat;
+    background-size: 66.5px 66.5px;
+}
+
+.icon-help {
+    background-position: -0.625px -0.625px;
+}
+
+.icon-hire {
+    background-position: -33.875px -0.625px;
+}
+
+.icon-home {
+    background-position: -0.625px -33.875px;
+}
