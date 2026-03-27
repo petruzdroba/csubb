@@ -1,0 +1,5 @@
+DELETE FROM employees;
+ALTER TABLE employees AUTO_INCREMENT = 1;
+
+DELETE FROM departments;
+ALTER TABLE departments AUTO_INCREMENT = 1;
