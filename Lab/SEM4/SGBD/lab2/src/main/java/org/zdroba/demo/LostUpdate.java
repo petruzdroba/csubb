@@ -21,7 +21,7 @@ public class LostUpdate {
 
             connA.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
 
-            System.out.println("Transaction A isolation set to SERIALIZABLE");
+//            System.out.println("Transaction A isolation set to SERIALIZABLE");
 
             Thread tA = new Thread(()->{
                 try{
