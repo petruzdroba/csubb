@@ -18,7 +18,6 @@ public class DBInitializer {
             System.out.println("Connected to database");
 
             executeSQLFile(conn, "src/main/resources/cleanup.sql");
-            executeSQLFile(conn, "src/main/resources/schema.sql");
             executeSQLFile(conn, "src/main/resources/start.sql");
 
             System.out.println("Database initialized successfully");

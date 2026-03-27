@@ -1,10 +1,10 @@
 package org.zdroba;
 
+import org.zdroba.batch.AutoCommit;
+import org.zdroba.batch.BatchCommit;
+import org.zdroba.batch.LotCommit;
 import org.zdroba.db.DBInitializer;
-import org.zdroba.demo.DirtyRead;
-import org.zdroba.demo.LostUpdate;
-import org.zdroba.demo.NonRepeatableRead;
-import org.zdroba.demo.PhantomRead;
+import org.zdroba.demo.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,6 +13,10 @@ public class Main {
 //        DirtyRead.runDemo();
 //        NonRepeatableRead.runDemo();
 //        PhantomRead.runDemo();
-        LostUpdate.runDemo();
+//        LostUpdate.runDemo();
+//        DeadLock.runDemo();
+//        DeadLockOrder.runDemo();
+
+        System.out.println( BatchCommit.average() + "ms");
     }
 }
