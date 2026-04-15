@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="sprite/sprites.css" />
-    <link rel="stylesheet" href="style3.css" />
+    <link rel="stylesheet" href="style1.css" />
     <title>National Park Service</title>
   </head>
 
@@ -37,6 +37,7 @@
             ><span class="sprite-icon icon-people"></span> Hire</a
           >
         </li>
+        <li><a href="feedback.html"><span class="sprite-icon icon-star"></span> Feedback</a></li>
       </ul>
     </nav>
 
@@ -191,17 +192,17 @@
             <table>
               <tr>
                 <td>
-                  <input type="checkbox" name="cause_rockfall" /> Rock fall
+                  <input type="checkbox" name="cause" value="rockfall"/> Rock fall
                 </td>
-                <td><input type="checkbox" name="cause_flood" /> Flooding</td>
+                <td><input type="checkbox" name="cause" value="flooding"/> Flooding</td>
                 <td>
-                  <input type="checkbox" name="cause_fallen_tree" /> Fallen tree
-                </td>
-                <td>
-                  <input type="checkbox" name="cause_erosion" /> Soil erosion
+                  <input type="checkbox" name="cause" value="fallen_tree"/> Fallen tree
                 </td>
                 <td>
-                  <input type="checkbox" name="cause_human" /> Human damage
+                  <input type="checkbox" name="cause" value="erosion"/> Soil erosion
+                </td>
+                <td>
+                  <input type="checkbox" name="cause" value="human"/> Human damage
                 </td>
               </tr>
             </table>
@@ -524,5 +525,6 @@
         </p>
       </footer>
     </main>
+    <script src="form_validation.js"></script>
   </body>
 </html>

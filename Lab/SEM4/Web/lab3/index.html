@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="sprite/sprites.css" />
     <link rel="stylesheet" href="style1.css" />
+    <link rel="stylesheet" href="carousel.css" />
     <title>National Park Service</title>
   </head>
 
@@ -16,13 +17,29 @@
     </header>
 
     <nav>
-  <ul>
-    <li><a href="index.html"><span class="sprite-icon icon-home"></span> Welcome</a></li>
-    <li><a href="welcome5.html"><span class="sprite-icon icon-tree"></span> Parks</a></li>
-    <li><a href="help5.html"><span class="sprite-icon icon-warning"></span> Help</a></li>
-    <li><a href="hire5.html"><span class="sprite-icon icon-people"></span> Hire</a></li>
-  </ul>
-</nav>
+      <ul>
+        <li>
+          <a href="index.html"
+            ><span class="sprite-icon icon-home"></span> Welcome</a
+          >
+        </li>
+        <li>
+          <a href="welcome5.html"
+            ><span class="sprite-icon icon-tree"></span> Parks</a
+          >
+        </li>
+        <li>
+          <a href="help5.html"
+            ><span class="sprite-icon icon-warning"></span> Help</a
+          >
+        </li>
+        <li>
+          <a href="hire5.html"
+            ><span class="sprite-icon icon-people"></span> Hire</a
+          >
+        </li>
+      </ul>
+    </nav>
 
     <main>
       <h2>Welcome to the National Park Service</h2>
@@ -33,72 +50,17 @@
       <br /><br />
 
       <h2 class="title">Our most beautiful parks!</h2>
-      <div class="container">
-        <div class="card">
-          <h4>Retezat National Park</h4>
-          <p>
-            Romania's oldest national park, founded in 1935. Home to over 80
-            glacial lakes, virgin forests, and the highest peak Peleaga at
-            2,505m. A true mountaineer's paradise in the Southern Carpathians.
-          </p>
-          <img
-            src="https://picsum.photos/seed/picsum/350/280"
-            alt="Retezat National Park"
-          />
+      <div class="carousel">
+        <button class="prev">&lt;</button>
+
+        <div class="carousel-slide">
+          <a id="carousel-link" href="#">
+            <img id="carousel-img" src="" alt="" />
+            <div id="carousel-text"></div>
+          </a>
         </div>
 
-        <div class="card">
-          <h4>Călimani National Park</h4>
-          <p>
-            Built on volcanic origins, Călimani features the largest inactive
-            caldera in Europe — 10km wide and 800m deep. Famous for the eerie
-            "12 Apostles" rock formations and the peak Pietrosul at 2,103m.
-          </p>
-          <img
-            src="https://picsum.photos/seed/picsum/350/280"
-            alt="Călimani National Park"
-          />
-        </div>
-
-        <div class="card">
-          <h4>Cheile Bicazului-Hășmaș</h4>
-          <p>
-            A dramatic canyon carved by the Bicaz River with rock walls rising
-            up to 400m. Home to the haunting Red Lake, formed by a natural
-            landslide in 1837, with submerged tree trunks still visible above
-            water.
-          </p>
-          <img
-            src="https://picsum.photos/seed/picsum/350/280"
-            alt="Cheile Bicazului"
-          />
-        </div>
-
-        <div class="card">
-          <h4>Nera-Beușnița National Park</h4>
-          <p>
-            A remote canyon park in the Anina Mountains near the Serbian border.
-            Famous for turquoise pools, the Beușnița Waterfall, and Ochiul
-            Beiului Lake. Expect wild gorges, lynxes, and very few tourists.
-          </p>
-          <img
-            src="https://picsum.photos/seed/picsum/350/280"
-            alt="Nera-Beușnița"
-          />
-        </div>
-
-        <div class="card">
-          <h4>Buila-Vânturarița National Park</h4>
-          <p>
-            A compact limestone massif in the Southern Carpathians, known for
-            its vertical cliffs, ancient monasteries, and rich biodiversity. One
-            of Romania's smallest national parks but among the most scenic.
-          </p>
-          <img
-            src="https://picsum.photos/seed/picsum/350/280"
-            alt="Buila-Vânturarița"
-          />
-        </div>
+        <button class="next">&gt;</button>
       </div>
     </main>
 
@@ -106,4 +68,5 @@
       <p>National Park Service - HTML5</p>
     </footer>
   </body>
+  <script src="carousel.js"></script>
 </html>

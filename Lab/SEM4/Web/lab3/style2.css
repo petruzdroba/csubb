@@ -221,3 +221,11 @@ footer {
 header {
     margin-bottom: auto;
 }
+
+.invalid {
+  border: 2px solid red !important;
+}
+
+fieldset.invalid {
+  border: 2px solid red !important;
+}

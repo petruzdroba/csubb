@@ -1,0 +1,27 @@
+[
+  {
+    "link": "retezat.html",
+    "text": "Retezat National Park - glacial lakes and peaks",
+    "image": "https://picsum.photos/seed/retezat/800/400"
+  },
+  {
+    "link": "calimani.html",
+    "text": "Călimani volcanic landscapes and 12 Apostles rocks",
+    "image": "https://picsum.photos/seed/calimani/800/400"
+  },
+  {
+    "link": "bicaz.html",
+    "text": "Cheile Bicazului canyon and Red Lake",
+    "image": "https://picsum.photos/seed/bicaz/800/400"
+  },
+  {
+    "link": "nera.html",
+    "text": "Nera-Beușnița wild gorges and turquoise lakes",
+    "image": "https://picsum.photos/seed/nera/800/400"
+  },
+  {
+    "link": "buila.html",
+    "text": "Buila-Vânturarița limestone cliffs and monasteries",
+    "image": "https://picsum.photos/seed/buila/800/400"
+  }
+]
