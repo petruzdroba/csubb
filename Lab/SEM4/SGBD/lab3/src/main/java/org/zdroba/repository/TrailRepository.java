@@ -2,10 +2,7 @@ package org.zdroba.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.zdroba.JPAUtil;
-import org.zdroba.entity.Park;
 import org.zdroba.entity.Trail;
 
 import java.util.List;
@@ -44,7 +41,7 @@ public class TrailRepository implements ITrailRepository{
 
             transaction.begin();
 
-            Park entity = em.find(Park.class, key);
+            Trail entity = em.find(Trail.class, key);
             if (entity != null) em.remove(entity);
         }
 
