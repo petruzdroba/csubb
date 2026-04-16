@@ -1,30 +1,36 @@
 package org.zdroba.repository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.zdroba.JPAUtil;
 import org.zdroba.entity.Park;
+import org.zdroba.entity.Trail;
 
 import java.util.List;
 
-public class ParkRepository implements IParkRepository{
+public class ParkRepository implements IParkRepository {
 
     private static ParkRepository instance;
-    private ParkRepository() {}
 
-    public static ParkRepository getInstance(){
-        if(instance == null)
+    private ParkRepository() {
+    }
+
+    public static ParkRepository getInstance() {
+        if (instance == null)
             instance = new ParkRepository();
         return instance;
     }
 
     @Override
     public void add(Park entity) {
-        Transaction transaction;
+        try (EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager()) {
+            EntityTransaction transaction = em.getTransaction();
 
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            transaction = session.beginTransaction();
+            transaction.begin();
 
-            session.persist(entity);
+            em.persist(entity);
 
             transaction.commit();
         }
@@ -32,26 +38,27 @@ public class ParkRepository implements IParkRepository{
 
     @Override
     public void delete(Long key) {
-        Transaction transaction;
+        EntityTransaction transaction;
+        try (EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager()) {
+            transaction = em.getTransaction();
 
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            transaction = session.beginTransaction();
+            transaction.begin();
 
-            Park entity = session.get(Park.class, key);
-            if(entity != null) session.remove(entity);
-
-            transaction.commit();
+            Park entity = em.find(Park.class, key);
+            if (entity != null) em.remove(entity);
         }
+
+        transaction.commit();
     }
 
     @Override
     public void update(Long key, Park entity) {
-        Transaction transaction;
+        try (EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager()) {
+            EntityTransaction transaction = em.getTransaction();
 
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            transaction = session.beginTransaction();
+            transaction.begin();
 
-            session.merge(entity);
+            em.merge(entity);
 
             transaction.commit();
         }
@@ -59,9 +66,8 @@ public class ParkRepository implements IParkRepository{
 
     @Override
     public Park find(Long key) {
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            return session.createQuery("FROM Park p WHERE p.id = :key", Park.class)
-                    .setParameter("key", key).getSingleResult();
+        try(EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager()){
+            return em.find(Park.class, key);
         }
     }
 
@@ -69,8 +75,8 @@ public class ParkRepository implements IParkRepository{
     public List<Park> getAll() {
         List<Park> parks;
 
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            parks = session.createQuery("FROM Park", Park.class).list();
+        try (EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager()) {
+            parks = em.createQuery("FROM Park", Park.class).getResultList();
         }
 
         return parks;
@@ -78,9 +84,9 @@ public class ParkRepository implements IParkRepository{
 
     @Override
     public List<Long> getKeys() {
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            return session.createQuery("SELECT p.id FROM Park p", Long.class)
-                    .list();
+        try (EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager()) {
+            return em.createQuery("SELECT p.id FROM Park p", Long.class)
+                    .getResultList();
         }
     }
 }

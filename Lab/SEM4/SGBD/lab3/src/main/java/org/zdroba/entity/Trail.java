@@ -12,10 +12,10 @@ public class Trail {
     private Long id;
     private String name;
     private double length;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="park_id")
     private Park park;
-    @ManyToMany
+    @ManyToMany(fetch =  FetchType.EAGER)
     @JoinTable(
             name="trail_tags",
             joinColumns = @JoinColumn(name="trail_id"),

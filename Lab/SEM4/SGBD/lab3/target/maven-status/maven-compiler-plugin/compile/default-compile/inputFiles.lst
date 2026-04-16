@@ -1,9 +1,9 @@
+/home/petru/Desktop/Uni/csubb/Lab/SEM4/SGBD/lab3/src/main/java/org/zdroba/JPAUtil.java
 /home/petru/Desktop/Uni/csubb/Lab/SEM4/SGBD/lab3/src/main/java/org/zdroba/Main.java
 /home/petru/Desktop/Uni/csubb/Lab/SEM4/SGBD/lab3/src/main/java/org/zdroba/controllers/MainControllerView.java
 /home/petru/Desktop/Uni/csubb/Lab/SEM4/SGBD/lab3/src/main/java/org/zdroba/entity/Park.java
 /home/petru/Desktop/Uni/csubb/Lab/SEM4/SGBD/lab3/src/main/java/org/zdroba/entity/Tag.java
 /home/petru/Desktop/Uni/csubb/Lab/SEM4/SGBD/lab3/src/main/java/org/zdroba/entity/Trail.java
-/home/petru/Desktop/Uni/csubb/Lab/SEM4/SGBD/lab3/src/main/java/org/zdroba/repository/HibernateUtil.java
 /home/petru/Desktop/Uni/csubb/Lab/SEM4/SGBD/lab3/src/main/java/org/zdroba/repository/IParkRepository.java
 /home/petru/Desktop/Uni/csubb/Lab/SEM4/SGBD/lab3/src/main/java/org/zdroba/repository/IRepository.java
 /home/petru/Desktop/Uni/csubb/Lab/SEM4/SGBD/lab3/src/main/java/org/zdroba/repository/ITagRepository.java
