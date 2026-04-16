@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/sgbd</property>
+        <property name="hibernate.connection.username">sn_user</property>
+        <property name="hibernate.connection.password">sn_pass</property>
+
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+<!--        logging-->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <mapping class="org.zdroba.entity.Trail"/>
+        <mapping class="org.zdroba.entity.Park"/>
+        <mapping class="org.zdroba.entity.Tag"/>
+
+    </session-factory>
+
+</hibernate-configuration>
