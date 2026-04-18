@@ -122,31 +122,41 @@
             <legend>Positions</legend>
             <p>Select the available positions you want to apply for.</p>
 
-            <p><strong>A. Normal Schedule</strong></p>
-            <ul>
-              <li><label><input type="checkbox" name="position" value="ranger"> Ranger</label></li>
-              <li><label><input type="checkbox" name="position" value="guide"> Guide</label></li>
-              <li><label><input type="checkbox" name="position" value="backcountry"> Backcountry Ranger</label></li>
-              <li><label><input type="checkbox" name="position" value="wildlife"> Wildlife Ranger</label></li>
-            </ul>
+              <ol type="A" id="positions">
+              <li>
+                <strong>Normal Schedule</strong>
+                <ul>
+                  <li><label><input type="checkbox" name="position" value="ranger"> Ranger</label></li>
+                  <li><label><input type="checkbox" name="position" value="guide"> Guide</label></li>
+                  <li><label><input type="checkbox" name="position" value="backcountry"> Backcountry Ranger</label></li>
+                  <li><label><input type="checkbox" name="position" value="wildlife"> Wildlife Ranger</label></li>
+                </ul>
+              </li>
 
-            <p><strong>B. 2 ON / 1 OFF Schedule (for 21 or older)</strong></p>
-            <ul>
-              <li><label><input type="checkbox" name="position" value="rescue"> Rescue Ranger</label></li>
-              <li><label><input type="checkbox" name="position" value="fire_ranger"> Fire Watch Ranger</label></li>
-            </ul>
+              <li>
+                <strong>2 ON / 1 OFF Schedule (for 21 or older)</strong>
+                <ul>
+                  <li><label><input type="checkbox" name="position" value="rescue"> Rescue Ranger</label></li>
+                  <li><label><input type="checkbox" name="position" value="fire_ranger"> Fire Watch Ranger</label></li>
+                </ul>
+              </li>
 
-            <p><strong>C. On Call Schedule</strong></p>
-            <ul>
-              <li><label><input type="checkbox" name="position" value="helicopter_pilot_pos" disabled> Helicopter Pilot (not currently available)</label></li>
-              <li><label><input type="checkbox" name="position" value="manager" disabled> Manager (not currently available)</label></li>
-              <li><label><input type="checkbox" name="position" value="brigade"> Fire Brigade</label></li>
-            </ul>
+              <li>
+                <strong>On Call Schedule</strong>
+                <ul>
+                  <li><label><input type="checkbox" name="position" value="helicopter_pilot_pos" disabled> Helicopter Pilot (not currently available)</label></li>
+                  <li><label><input type="checkbox" name="position" value="manager" disabled> Manager (not currently available)</label></li>
+                  <li><label><input type="checkbox" name="position" value="brigade"> Fire Brigade</label></li>
+                </ul>
+              </li>
 
-            <p><strong>D. Half a Year</strong></p>
-            <ul>
-              <li><label><input type="checkbox" name="position" value="fire_watcher"> Fire Watcher</label></li>
-            </ul>
+              <li>
+                <strong>Half a Year</strong>
+                <ul>
+                  <li><label><input type="checkbox" name="position" value="fire_watcher"> Fire Watcher</label></li>
+                </ul>
+              </li>
+            </ol>
           </fieldset>
 
           <input type="submit" value="Submit Application">
@@ -163,5 +173,6 @@
 </footer>
 	<script src="form_validation.js"></script>
 	<script src="hire5.js"></script>
+	<script src="collapsible-list.js"></script>
   </body>
 </html>

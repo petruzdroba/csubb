@@ -230,3 +230,31 @@ header {
 fieldset.invalid {
   border: 2px solid red !important;
 }
+
+li.has-sublist > ul,
+li.has-sublist > ol {
+  display: none;
+}
+
+li.has-sublist.open > ul,
+li.has-sublist.open > ol {
+  display: block;
+}
+
+li.has-sublist {
+  position: relative;
+  padding-left: 20px;
+}
+
+li.has-sublist::after {
+  content: ">";
+  position: absolute;
+  left:0;
+  top: 0.2em;   
+    margin-right: 6px;
+  transition: transform 0.2s;
+}
+
+li.has-sublist.open::after {
+  transform: rotate(90deg);
+}
