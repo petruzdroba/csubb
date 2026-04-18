@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="sprite/sprites.css" />
     <link rel="stylesheet" href="style1.css" />
     <link rel="stylesheet" href="trail-table.css" />
+    <link rel="stylesheet" href="risk-meter.css">
     <title>National Park Service</title>
   </head>
 
@@ -370,6 +371,14 @@
           </fieldset>
 
           <input type="submit" value="Submit Report" />
+
+          <div id="risk-meter">
+            <h4>Problem Risk Level</h4>
+            <div id="risk-label">-</div>
+            <div id="risk-bar">
+              <div id="risk-fill"></div>
+            </div>
+          </div>
         </form>
 
         <br /><br />
@@ -492,5 +501,6 @@
     <script src="form_validation.js"></script>
     <script src="trail-table-vertical.js"></script>
     <script src="collapsible-list.js"></script>
+    <script src="risk-meter.js"></script>
   </body>
 </html>
