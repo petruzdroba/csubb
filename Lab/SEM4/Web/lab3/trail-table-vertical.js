@@ -8,12 +8,12 @@ function renderVerticalTable(data) {
 
   const headerRow = `
     <tr>
-      <th></th>
+      <th></th> 
       ${data.map((_, i) => `<th>Item ${i + 1}</th>`).join("")}
     </tr>
-  `;
+  `;// adaugam un cell gol din care facem Item1 item 2 etc
 
-  const bodyRows = keys
+  const bodyRows = keys // incarcam datele ca si column-uri
     .map((key) => {
       return `
         <tr>

@@ -19,6 +19,7 @@ function isValidPhone(value) {
 }
 
 const validators = {
+
   text(input) {
     if (isEmpty(input.value)) {
       setInvalid(input);
@@ -76,7 +77,7 @@ const validators = {
       setInvalid(input);
       return false;
     }
-    const today = new Date().toISOString().split("T")[0];
+    const today = new Date().toISOString().split("T")[0]; // exp 2026-04-17
     if (input.value > today) {
       setInvalid(input);
       return false;
@@ -115,12 +116,12 @@ const validators = {
 
 function validateCheckboxGroup(name, form) {
   const checkboxes = form.querySelectorAll(
-    `input[type="checkbox"][name="${name}"]`,
+    `input[type="checkbox"][name="${name}"]`, // toate checkboxurile au acelasi nume, selectam grupat
   );
   if (!checkboxes.length) return true;
 
-  const fieldset = checkboxes[0].closest("fieldset");
-  const checked = Array.from(checkboxes).some((cb) => cb.checked);
+  const fieldset = checkboxes[0].closest("fieldset"); 
+  const checked = Array.from(checkboxes).some((cb) => cb.checked); // cel putin una selectata
 
   if (fieldset) {
     fieldset.classList.remove("invalid");
@@ -147,7 +148,7 @@ function validateRadioGroup(name, form) {
 
 // skip select validated by cascade
 
-function isCascadeEmpty(select) {
+function isCascadeEmpty(select) { // pt field-urile care depind de altele
   return select.options.length <= 1;
 }
 
@@ -206,12 +207,11 @@ function validateForm(form) {
   return valid;
 }
 
-// ─── Live clear-on-fix ────────────────────────────────────────────────────────
 
-function attachLiveClearing(form) {
+function attachLiveClearing(form) { // se ataseaza de from si onSubmit e face validarea
   form.addEventListener("input", (event) => {
     const input = event.target;
-    if (!input.classList.contains("invalid")) return;
+    if (!input.classList.contains("invalid")) return; // daca exista cel putin una invalida returnam
 
     const type =
       input.tagName === "SELECT"
@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         const firstInvalid = form.querySelector(".invalid");
         if (firstInvalid)
-          firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
+          firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" }); // daca exista una invalida onSubmit, scroll there
       }
     });
 

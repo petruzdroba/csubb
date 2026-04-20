@@ -1,5 +1,5 @@
 let trailData = [];
-let sortState = { key: null, asc: true };
+let sortState = { key: null, asc: true }; // state of the table
 
 function renderTable(data) {
   const table = document.getElementById("table-trail");
@@ -22,7 +22,7 @@ function renderTable(data) {
     )
     .join("");
 
-  table.innerHTML = header + rows;
+  table.innerHTML = header + rows; // adaugam headr-ul si datele incarcate
 }
 
 function sortBy(key) {
@@ -33,11 +33,11 @@ function sortBy(key) {
     sortState.asc = true;
   }
 
-  trailData.sort((a, b) => {
+  trailData.sort((a, b) => { // luam datele si comparam cheile 
     const x = a[key].toLowerCase();
     const y = b[key].toLowerCase();
 
-    if (x < y) return sortState.asc ? -1 : 1;
+    if (x < y) return sortState.asc ? -1 : 1; // schimbar sortarea
     if (x > y) return sortState.asc ? 1 : -1;
     return 0;
   });
@@ -46,7 +46,7 @@ function sortBy(key) {
   updateHeaderState();
 }
 
-function updateHeaderState() {
+function updateHeaderState() { // pe baza sort table adaugam o clasa (care ara)
   const ths = document.querySelectorAll("#table-trail th");
 
   ths.forEach((th) => {

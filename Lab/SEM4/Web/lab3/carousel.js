@@ -1,7 +1,8 @@
 let slides = [];
-let index = 0;
+let index = 0; // indexul din lista al imaginii
 let timer;
 
+//ce imagine este diplayed in momentul curent
 const linkEl = document.getElementById("carousel-link");
 const imgEl = document.getElementById("carousel-img");
 const textEl = document.getElementById("carousel-text");
@@ -16,7 +17,7 @@ function render() {
   textEl.textContent = slide.text;
 }
 
-function next() {
+function next() { // exp n=5, index = 5, 6 % 5 =1 => incarcam slide-ul 1
   index = (index + 1) % slides.length;
   render();
 }
@@ -52,9 +53,9 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Carousel load error:", err);
     });
 
-  document.querySelector(".next").addEventListener("click", () => {
+  document.querySelector(".next").addEventListener("click", () => { // selectam clasele next si prev si ascultam pt un click
     next();
-    resetAuto();
+    resetAuto(); // reset the timer, de ex timer 2 sec + next => render() + timer la 0 din nou
   });
 
   document.querySelector(".prev").addEventListener("click", () => {

@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const items = document.querySelectorAll("li");
 
-  items.forEach((li) => {
-    const hasSublist = li.querySelector(":scope > ul, :scope > ol");
+  items.forEach((li) => { // selectam toate listele 
+    const hasSublist = li.querySelector(":scope > ul, :scope > ol"); // verificam daca au o sublitsa prezenta
 
     if (!hasSublist) return;
 
