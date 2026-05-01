@@ -20,4 +20,11 @@ public class Department {
     public String getName() { return name; }
     public List<Employee> getEmployees() { return employees; }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

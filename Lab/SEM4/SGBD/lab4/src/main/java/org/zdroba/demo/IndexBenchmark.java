@@ -16,7 +16,7 @@ public class IndexBenchmark {
 
     public static void main(String[] args) {
         try {
-            out = new PrintStream(new FileOutputStream("index-results.txt"));
+            out = new PrintStream(new FileOutputStream("index-results.log"));
 
             out.println("Before Indexes");
             benchmarkEmail();
