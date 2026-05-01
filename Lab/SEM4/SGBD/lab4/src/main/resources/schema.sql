@@ -13,6 +13,5 @@ CREATE TABLE employees
     name          VARCHAR(100) NOT NULL,
     email         VARCHAR(100) UNIQUE,
     salary        DECIMAL(10, 2) DEFAULT 0,
-    department_id INT,
-    FOREIGN KEY (department_id) REFERENCES departments (id)
+    department_id INT
 );

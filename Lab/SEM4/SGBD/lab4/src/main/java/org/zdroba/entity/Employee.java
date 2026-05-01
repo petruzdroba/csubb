@@ -25,4 +25,8 @@ public class Employee {
     public BigDecimal getSalary() { return salary; }
     public void setSalary(BigDecimal salary) { this.salary = salary; }
     public Department getDepartment() { return department; }
+
+    public Integer getDepartmentId() {
+        return department.getId();
+    }
 }
