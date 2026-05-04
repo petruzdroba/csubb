@@ -1,9 +1,9 @@
 function setInvalid(input) {
-  input.classList.add("invalid");
+  $(input).addClass("invalid");
 }
 
 function clearInvalid(input) {
-  input.classList.remove("invalid");
+  $(input).removeClass("invalid");
 }
 
 function isEmpty(value) {
@@ -115,32 +115,32 @@ const validators = {
 };
 
 function validateCheckboxGroup(name, form) {
-  const checkboxes = form.querySelectorAll(
-    `input[type="checkbox"][name="${name}"]`, // toate checkboxurile au acelasi nume, selectam grupat
+  const checkboxes = $(form).find(
+    `input[type="checkbox"][name="${name}"]` // toate checkboxurile au acelasi nume, selectam grupat
   );
   if (!checkboxes.length) return true;
 
-  const fieldset = checkboxes[0].closest("fieldset"); 
-  const checked = Array.from(checkboxes).some((cb) => cb.checked); // cel putin una selectata
+  const fieldset = checkboxes.first().closest("fieldset"); 
+  const checked = checkboxes.toArray().some((cb) => cb.checked); // cel putin una selectata
 
-  if (fieldset) {
-    fieldset.classList.remove("invalid");
-    if (!checked) fieldset.classList.add("invalid");
+  if (fieldset.length) {
+    fieldset.removeClass("invalid");
+    if (!checked) fieldset.addClass("invalid");
   }
 
   return checked;
 }
 
 function validateRadioGroup(name, form) {
-  const radios = form.querySelectorAll(`input[type="radio"][name="${name}"]`);
+  const radios = $(form).find(`input[type="radio"][name="${name}"]`);
   if (!radios.length) return true;
 
-  const fieldset = radios[0].closest("fieldset");
-  const checked = Array.from(radios).some((r) => r.checked);
+  const fieldset = radios.first().closest("fieldset");
+  const checked = radios.toArray().some((r) => r.checked);
 
-  if (fieldset) {
-    fieldset.classList.remove("invalid");
-    if (!checked) fieldset.classList.add("invalid");
+  if (fieldset.length) {
+    fieldset.removeClass("invalid");
+    if (!checked) fieldset.addClass("invalid");
   }
 
   return checked;
@@ -155,7 +155,8 @@ function isCascadeEmpty(select) { // pt field-urile care depind de altele
 function validateForm(form) {
   let valid = true;
 
-  form.querySelectorAll("input").forEach((input) => {
+  $(form).find("input").each(function() {
+    const input = this;
     if (input.disabled) return;
     const type = input.type.toLowerCase();
     if (type === "submit" || type === "file" || type === "hidden") return;
@@ -166,11 +167,12 @@ function validateForm(form) {
     if (validator && !validator(input)) valid = false;
   });
 
-  form.querySelectorAll("textarea").forEach((textarea) => {
-    if (!validators.textarea(textarea)) valid = false;
+  $(form).find("textarea").each(function() {
+    if (!validators.textarea(this)) valid = false;
   });
 
-  form.querySelectorAll("select").forEach((select) => {
+  $(form).find("select").each(function() {
+    const select = this;
     if (select.disabled) return;
     if (isCascadeEmpty(select)) return;
     if (!validators.select(select)) valid = false;
@@ -199,7 +201,7 @@ function validateForm(form) {
     "hazard_urgency",
   ];
   radioGroups.forEach((name) => {
-    if (form.querySelector(`input[type="radio"][name="${name}"]`)) {
+    if ($(form).find(`input[type="radio"][name="${name}"]`).length) {
       if (!validateRadioGroup(name, form)) valid = false;
     }
   });
@@ -209,9 +211,9 @@ function validateForm(form) {
 
 
 function attachLiveClearing(form) { // se ataseaza de from si onSubmit e face validarea
-  form.addEventListener("input", (event) => {
+  $(form).on("input", function(event) {
     const input = event.target;
-    if (!input.classList.contains("invalid")) return; // daca exista cel putin una invalida returnam
+    if (!$(input).hasClass("invalid")) return; // daca exista cel putin una invalida returnam
 
     const type =
       input.tagName === "SELECT"
@@ -224,37 +226,38 @@ function attachLiveClearing(form) { // se ataseaza de from si onSubmit e face va
     if (validator) validator(input);
   });
 
-  form.addEventListener("change", (event) => {
+  $(form).on("change", function(event) {
     const input = event.target;
     if (input.type === "checkbox" || input.type === "radio") {
       clearInvalid(input);
-      const label = input.closest("label") || input.parentElement;
-      if (label) clearInvalid(label);
+      const label = $(input).closest("label").length ? $(input).closest("label") : $(input).parent();
+      if (label.length) clearInvalid(label[0]);
     }
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll("form").forEach((form) => {
+$(document).ready(function() {
+  $("form").each(function() {
+    const form = this;
     attachLiveClearing(form);
 
-    form.addEventListener("submit", function (event) {
+    $(form).on("submit", function(event) {
       if (!validateForm(form)) {
         event.preventDefault();
-        const firstInvalid = form.querySelector(".invalid");
-        if (firstInvalid)
-          firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" }); // daca exista una invalida onSubmit, scroll there
+        const firstInvalid = $(form).find(".invalid").first();
+        if (firstInvalid.length)
+          firstInvalid[0].scrollIntoView({ behavior: "smooth", block: "center" }); // daca exista una invalida onSubmit, scroll there
       }
     });
 
-    form.addEventListener("change", (event) => {
+    $(form).on("change", function(event) {
       const input = event.target;
 
       if (input.type === "checkbox" || input.type === "radio") {
-        const fieldset = input.closest("fieldset");
+        const fieldset = $(input).closest("fieldset");
 
-        if (fieldset) {
-          fieldset.classList.remove("invalid");
+        if (fieldset.length) {
+          fieldset.removeClass("invalid");
         }
       }
     });
