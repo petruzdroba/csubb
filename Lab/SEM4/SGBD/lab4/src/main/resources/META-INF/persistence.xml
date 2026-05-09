@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
+    <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
+        <class>org.zdroba.entity.Department</class>
+        <class>org.zdroba.entity.Employee</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:SGBD_lab4}"/>
+            <property name="jakarta.persistence.jdbc.user" value="${DB_USER:student}"/>
+            <property name="jakarta.persistence.jdbc.password" value="${DB_PASSWORD:student}"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.type.descriptor.sql" value="trace"/>
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+
+<!--            (6*2) + 1 = 13-->
+            <property name="hibernate.hikari.maximumPoolSize" value="10"/>
+            <property name="hibernate.hikari.minimumIdle" value="5"/>
+            <property name="hibernate.hikari.connectionTimeout" value="30000"/>
+            <property name="hibernate.hikari.idleTimeout" value="600000"/>
+            <property name="hibernate.hikari.maxLifetime" value="1800000"/>
+            <property name="hibernate.hikari.connectionTestQuery" value="SELECT 1"/>
+        </properties>
+    </persistence-unit>
+</persistence>
