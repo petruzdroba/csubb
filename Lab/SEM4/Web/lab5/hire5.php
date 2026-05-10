@@ -1,10 +1,20 @@
+<?php
+require_once 'includes/db.php';
+require_once 'includes/session.php';
+
+try_remember_me($mysqli);
+
+require_staff(); // auto redirects if not staff
+audit_log($sqlite, $_SESSION['username'], 'view_hire_page');
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="sprite/sprites.css">
-    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="style1.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <title>Get Hired! - National Park Service</title>
   </head>
   <body>
@@ -12,24 +22,35 @@
       <h1>NATIONAL PARK SERVICE</h1>
       <img height="70" src="img/logo.png" alt="National Park Service logo">
             <h2>Safer trails and hikes</h2>
-
     </header>
 
     <nav>
   <ul>
     <li><a href="index.html"><span class="sprite-icon icon-home"></span> Welcome</a></li>
-    <li><a href="welcome5.html"><span class="sprite-icon icon-tree"></span> Parks</a></li>
-    <li><a href="help5.html"><span class="sprite-icon icon-warning"></span> Help</a></li>
-    <li><a href="hire5.php"><span class="sprite-icon icon-people"></span> Hire</a></li>
+        <li><a href="welcome5.html"><span class="sprite-icon icon-tree"></span> Parks</a></li>
+        <li><a href="help5.html"><span class="sprite-icon icon-warning"></span> Help</a></li>
+        <li><a href="hire5.php"><span class="sprite-icon icon-people"></span> Hire</a></li>
+        <li><a href="feedback.html"><span class="sprite-icon icon-star"></span> Feedback</a></li>
+        <li><a href="dashboard.php"><span class="sprite-icon icon-user"></span> Profile</a></li>
+        <li><a href="logout.php"><span class="sprite-icon icon-logout"></span> Logout</a></li>
+    <li>
+      <?php if (is_logged_in()): ?>
+        <a href="dashboard.php"> <?= htmlspecialchars($_SESSION['full_name']) ?></a>
+        &nbsp;|&nbsp;
+        <a href="logout.php">Log Out</a>
+      <?php else: ?>
+        <a href="login.php">Log In</a>
+      <?php endif; ?>
+    </li>
   </ul>
 </nav>
 
     <main>
-      <div class="hire-form">
+      <div>
         <h3>We need all the help we can get!</h3>
         <p>Take a quick employer survey and we will reach out to you in 3-5 days.</p>
 
-        <form method="post" >
+        <form method="post">
 
           <fieldset>
             <legend>Personal information</legend>
@@ -64,6 +85,19 @@
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" size="25" placeholder="john.doe@example.com">
+          </fieldset>
+
+          <fieldset>
+            <legend>Available Locations</legend>
+            <label for="zone">Mountain Zone</label>
+            <select id="zone">
+              <option value="">Select zone</option>
+            </select>
+
+            <label for="park">Park</label>
+            <select id="park">
+              <option value="">Select park</option>
+            </select>
           </fieldset>
 
           <fieldset>
@@ -108,44 +142,58 @@
             <legend>Positions</legend>
             <p>Select the available positions you want to apply for.</p>
 
-            <p><strong>A. Normal Schedule</strong></p>
-            <ul>
-              <li><label><input type="checkbox" name="position" value="ranger"> Ranger</label></li>
-              <li><label><input type="checkbox" name="position" value="guide"> Guide</label></li>
-              <li><label><input type="checkbox" name="position" value="backcountry"> Backcountry Ranger</label></li>
-              <li><label><input type="checkbox" name="position" value="wildlife"> Wildlife Ranger</label></li>
-            </ul>
+            <ol type="A" id="positions">
+              <li>
+                <strong>Normal Schedule</strong>
+                <ul>
+                  <li><label><input type="checkbox" name="position" value="ranger"> Ranger</label></li>
+                  <li><label><input type="checkbox" name="position" value="guide"> Guide</label></li>
+                  <li><label><input type="checkbox" name="position" value="backcountry"> Backcountry Ranger</label></li>
+                  <li><label><input type="checkbox" name="position" value="wildlife"> Wildlife Ranger</label></li>
+                </ul>
+              </li>
 
-            <p><strong>B. 2 ON / 1 OFF Schedule</strong></p>
-            <ul>
-              <li><label><input type="checkbox" name="position" value="rescue"> Rescue Ranger</label></li>
-              <li><label><input type="checkbox" name="position" value="fire_ranger"> Fire Watch Ranger</label></li>
-            </ul>
+              <li>
+                <strong>2 ON / 1 OFF Schedule (for 21 or older)</strong>
+                <ul>
+                  <li><label><input type="checkbox" name="position" value="rescue"> Rescue Ranger</label></li>
+                  <li><label><input type="checkbox" name="position" value="fire_ranger"> Fire Watch Ranger</label></li>
+                </ul>
+              </li>
 
-            <p><strong>C. On Call Schedule</strong></p>
-            <ul>
-              <li><label><input type="checkbox" name="position" value="helicopter_pilot_pos" disabled> Helicopter Pilot (not currently available)</label></li>
-              <li><label><input type="checkbox" name="position" value="manager" disabled> Manager (not currently available)</label></li>
-              <li><label><input type="checkbox" name="position" value="brigade"> Fire Brigade</label></li>
-            </ul>
+              <li>
+                <strong>On Call Schedule</strong>
+                <ul>
+                  <li><label><input type="checkbox" name="position" value="helicopter_pilot_pos" disabled> Helicopter Pilot (not currently available)</label></li>
+                  <li><label><input type="checkbox" name="position" value="manager" disabled> Manager (not currently available)</label></li>
+                  <li><label><input type="checkbox" name="position" value="brigade"> Fire Brigade</label></li>
+                </ul>
+              </li>
 
-            <p><strong>D. Half a Year</strong></p>
-            <ul>
-              <li><label><input type="checkbox" name="position" value="fire_watcher"> Fire Watcher</label></li>
-            </ul>
+              <li>
+                <strong>Half a Year</strong>
+                <ul>
+                  <li><label><input type="checkbox" name="position" value="fire_watcher"> Fire Watcher</label></li>
+                </ul>
+              </li>
+            </ol>
           </fieldset>
 
           <input type="submit" value="Submit Application">
 
         </form>
+    </main>
 
     <footer>
-    </main>
-  <p>National Park Service - Safer trails and hikes</p>
-  <p>
-    For emergencies call 
-    <a href="https://www.salvamontromania.ro/" target="_blank" rel="noopener noreferrer">Salvamont România</a>
-  </p>
-</footer>
+      <p>National Park Service - Safer trails and hikes</p>
+      <p>
+        For emergencies call 
+        <a href="https://www.salvamontromania.ro/" target="_blank" rel="noopener noreferrer">Salvamont România</a>
+      </p>
+    </footer>
+
+    <script src="form_validation.js"></script>
+    <script src="hire5.js"></script>
+    <script src="collapsible-list.js"></script>
   </body>
 </html>
