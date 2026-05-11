@@ -106,6 +106,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" id="confirm" name="confirm" required>
             </div>
             <button type="submit" class="btn">Create Account</button>
+            <br>
+            <br>
         </form>
         <?php endif; ?>
 
