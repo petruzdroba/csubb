@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet id="009-seed-projects" author="lab5">
+
+        <insert tableName="projects">
+            <column name="name" value="ERP System"/>
+            <column name="description" value="Internal enterprise resource planning system"/>
+            <column name="start_date" valueDate="2026-01-10"/>
+            <column name="department_id" valueNumeric="2"/>
+        </insert>
+
+        <insert tableName="projects">
+            <column name="name" value="Website Revamp"/>
+            <column name="description" value="Redesign company website"/>
+            <column name="start_date" valueDate="2026-02-01"/>
+            <column name="department_id" valueNumeric="9"/>
+        </insert>
+
+        <insert tableName="projects">
+            <column name="name" value="Security Audit Tool"/>
+            <column name="description" value="Automated vulnerability scanning tool"/>
+            <column name="start_date" valueDate="2026-03-15"/>
+            <column name="department_id" valueNumeric="10"/>
+        </insert>
+
+        <rollback>
+            <delete tableName="projects">
+                <where>name IN ('ERP System','Website Revamp','Security Audit Tool')</where>
+            </delete>
+        </rollback>
+
+    </changeSet>
+
+</databaseChangeLog>

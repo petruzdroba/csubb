@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet id="004-seed-departments" author="lab5">
+
+        <insert tableName="departments">
+            <column name="name" value="HR"/>
+        </insert>
+
+        <insert tableName="departments">
+            <column name="name" value="IT"/>
+        </insert>
+
+        <insert tableName="departments">
+            <column name="name" value="Sales"/>
+        </insert>
+
+        <insert tableName="departments">
+            <column name="name" value="Marketing"/>
+        </insert>
+
+        <insert tableName="departments">
+            <column name="name" value="Accounting"/>
+        </insert>
+
+        <insert tableName="departments">
+            <column name="name" value="Legal"/>
+        </insert>
+
+        <insert tableName="departments">
+            <column name="name" value="Operations"/>
+        </insert>
+
+        <insert tableName="departments">
+            <column name="name" value="Design"/>
+        </insert>
+
+        <insert tableName="departments">
+            <column name="name" value="Product"/>
+        </insert>
+
+        <insert tableName="departments">
+            <column name="name" value="Security"/>
+        </insert>
+
+        <rollback>
+            <sql><![CDATA[
+        DELETE FROM departments
+        WHERE name IN (
+            'HR','IT','Sales','Marketing','Accounting',
+            'Legal','Operations','Design','Product','Security'
+        );
+    ]]></sql>
+        </rollback>
+
+    </changeSet>
+
+    <changeSet id="005-seed-employees" author="lab5">
+
+        <sql><![CDATA[
+            SET SESSION cte_max_recursion_depth = 10001;
+
+            INSERT INTO employees (name, email, salary, department_id)
+            WITH RECURSIVE seq AS (SELECT 1 AS n
+                                   UNION ALL
+                                   SELECT n + 1
+                                   FROM seq
+                                   WHERE n < 5000)
+            SELECT CONCAT('Employee_', n),
+                   CONCAT('employee', n, '@company.com'),
+                   ROUND(30000 + (RAND() * 70000), 2),
+                   (MOD(n, 10) + 1)
+            FROM seq;
+            ]]></sql>
+
+        <rollback>
+            <sql><![CDATA[
+        DELETE FROM employees
+        WHERE email LIKE 'employee%@company.com';
+    ]]></sql>
+        </rollback>
+
+    </changeSet>
+
+</databaseChangeLog>

@@ -8,6 +8,9 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
 
     <include file="db/changelog/001-baseline.xml"/>
-    <include file="db/changelog/002-add-phone-column.xml"/>
+    <include file="db/changelog/002-seed-departments-and-employees.xml"/>
+    <include file="/db/changelog/003-add-phone-column.xml"/>
+    <include file="/db/changelog/004-add-projects-table.xml"/>
+    <include file="/db/changelog/005-seed-projects.xml"/>
 
 </databaseChangeLog>

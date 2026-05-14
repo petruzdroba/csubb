@@ -16,6 +16,9 @@ public class Department {
     @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
     private List<Employee> employees;
 
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    private List<Project> projects;
+
     public int getId() { return id; }
     public String getName() { return name; }
     public List<Employee> getEmployees() { return employees; }
