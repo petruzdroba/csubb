@@ -19,6 +19,10 @@ public class Employee {
     @JoinColumn(name = "department_id")
     private Department department;
 
+    @Column(name = "phone")
+    private String phone;
+
+
     public int getId() { return id; }
     public String getName() { return name; }
     public String getEmail() { return email; }

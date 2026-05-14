@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet id="001-create-departments" author="lab5">
+
+        <createTable tableName="departments">
+            <column name="id" type="INT AUTO_INCREMENT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="002-create-employees" author="lab5">
+
+        <createTable tableName="employees">
+            <column name="id" type="INT AUTO_INCREMENT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="email" type="VARCHAR(100)">
+                <constraints unique="true"/>
+            </column>
+
+            <column name="salary" type="DECIMAL(10,2)" defaultValueNumeric="0"/>
+
+            <column name="department_id" type="INT"/>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="003-fk-employees-dept" author="lab5">
+
+        <addForeignKeyConstraint
+                baseTableName="employees"
+                baseColumnNames="department_id"
+                referencedTableName="departments"
+                referencedColumnNames="id"
+                constraintName="fk_employees_departments"/>
+
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,18 +1,18 @@
 package org.zdroba;
 
-import jakarta.persistence.EntityManager;
-
 import liquibase.Liquibase;
 import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
+import liquibase.exception.LiquibaseException;
 import liquibase.resource.ClassLoaderResourceAccessor;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
-public class Main {
-    public static void main(String[] args) throws Exception {
+public class Rollback {
+    public static void main(String[] args) throws SQLException, LiquibaseException {
 
         Connection connection = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/SGBD_lab4",
@@ -29,14 +29,8 @@ public class Main {
                 database
         );
 
-        liquibase.update("");
+        liquibase.rollback(1, "");
 
-        System.out.println("Liquibase executed successfully");
-
-        EntityManager em = JPAUtil.getEntityManager();
-        System.out.println("Connection works: " + em.isOpen());
-
-        em.close();
-        JPAUtil.close();
+        System.out.println("Rolled back last changeSet");
     }
 }
