@@ -12,5 +12,7 @@
     <include file="/db/changelog/003-add-phone-column.xml"/>
     <include file="/db/changelog/004-add-projects-table.xml"/>
     <include file="/db/changelog/005-seed-projects.xml"/>
+    <include file="/db/changelog/006-alter-salary-type.xml"/>
+    <include file="/db/changelog/007-add-indexes.xml"/>
 
 </databaseChangeLog>
