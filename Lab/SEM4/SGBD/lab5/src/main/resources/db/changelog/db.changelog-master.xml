@@ -14,5 +14,7 @@
     <include file="/db/changelog/005-seed-projects.xml"/>
     <include file="/db/changelog/006-alter-salary-type.xml"/>
     <include file="/db/changelog/007-add-indexes.xml"/>
+    <include file="/db/changelog/008-add-version-column.xml"/>
+    <include file="/db/changelog/009-soft-delete-employees.xml"/>
 
 </databaseChangeLog>
