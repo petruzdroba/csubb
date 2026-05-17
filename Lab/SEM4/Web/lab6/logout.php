@@ -6,7 +6,7 @@ $username = $_SESSION['username'] ?? 'unknown';
 
 audit_log($sqlite, $username, 'logout');
 
-clear_remember_me($mysqli);
+clear_remember_me($pdo);
 
 // Destroy session
 $_SESSION = [];

@@ -2,7 +2,7 @@
 require_once 'includes/db.php';
 require_once 'includes/session.php';
 
-try_remember_me($mysqli);
+try_remember_me($pdo);
 require_login();
 
 $userId   = (int)$_SESSION['user_id'];

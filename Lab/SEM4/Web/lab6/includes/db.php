@@ -1,61 +1,21 @@
 <?php
-//   $mysqli  - MYSQL auth only
-//   $pdo     – PDO/MySQL connection for uploads
-//   $sqlite  – PDO/SQLite connection for logs
-
-define('DB_HOST', 'mysql');
-define('DB_USER', 'student');
-define('DB_PASS', 'student'); 
-define('DB_NAME', 'park_portal');
-
-$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-if ($mysqli->connect_error) {
-    die('MySQLi connection failed: ' . $mysqli->connect_error);
-}
-$mysqli->set_charset('utf8mb4');
+define('DB_PATH', __DIR__ . '/../data/park_portal.sqlite');
 
 try {
-    $pdo = new PDO(
-        'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4',
-        DB_USER,
-        DB_PASS,
-        [
-            PDO::ATTR_ERRMODE  => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]
-    );
+    $pdo = new PDO('sqlite:' . DB_PATH);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE,            PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $pdo->exec('PRAGMA foreign_keys = ON;');
 } catch (PDOException $e) {
-    die('PDO/MySQL connection failed: ' . $e->getMessage());
+    die('Database connection failed: ' . $e->getMessage());
 }
 
-// locally stored log -> server 
-$sqliteFile = __DIR__ . '/../data/park_audit.sqlite';
-if (!is_dir(dirname($sqliteFile))) {
-    mkdir(dirname($sqliteFile), 0755, true);
-}
-try {
-    $sqlite = new PDO('sqlite:' . $sqliteFile, null, null, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    ]);
-    $sqlite->exec("
-        CREATE TABLE IF NOT EXISTS audit_log (
-            id         INTEGER PRIMARY KEY AUTOINCREMENT,
-            username   TEXT NOT NULL,
-            action     TEXT NOT NULL,
-            ip_address TEXT,
-            logged_at  DATETIME DEFAULT (datetime('now'))
-        )
-    ");
-} catch (PDOException $e) {
-    die('PDO/SQLite connection failed: ' . $e->getMessage());
-}
+$sqlite = $pdo;
 
-// logging the actions
-function audit_log(PDO $sqlite, string $username, string $action): void {
-    $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-    $stmt = $sqlite->prepare(
-        'INSERT INTO audit_log (username, action, ip_address) VALUES (?, ?, ?)'
+function audit_log(PDO $db, string $username, string $action): void {
+    $ip   = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+    $stmt = $db->prepare(
+        'INSERT INTO audit_log (username, action, ip) VALUES (:u, :a, :ip)'
     );
-    $stmt->execute([$username, $action, $ip]);
+    $stmt->execute([':u' => $username, ':a' => $action, ':ip' => $ip]);
 }

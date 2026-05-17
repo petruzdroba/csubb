@@ -29,33 +29,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Passwords do not match.';
     } else {
         // check if username or email exists
-        $check = $mysqli->prepare(
+        $check = $pdo->prepare(
             'SELECT id FROM users WHERE username = ? OR email = ?'
         );
-        $check->bind_param('ss', $fields['username'], $fields['email']);
-        $check->execute();
-        $check->store_result();
+        $check->execute([$fields['username'], $fields['email']]);
+        $existingUser = $check->fetch();
 
-        if ($check->num_rows > 0) { // if value is ret, exists
+        if ($existingUser) { // if value is ret, exists
             $error = 'Username or email is already taken.';
         } else {
-            $ins = $mysqli->prepare(
+            $ins = $pdo->prepare(
                 'INSERT INTO users (username, password, full_name, email, role)
                  VALUES (?, ?, ?, ?, "guest")'
             );
-            $ins->bind_param('ssss',
+            if ($ins->execute([
                 $fields['username'], $password, $fields['full_name'], $fields['email']
-            );
-            if ($ins->execute()) {
+            ])) {
                 audit_log($sqlite, $fields['username'], 'register');
                 $success = 'Account created! You can now <a href="login.php">log in</a>.';
                 $fields  = ['username' => '', 'full_name' => '', 'email' => ''];
             } else {
                 $error = 'Registration failed. Please try again.';
             }
-            $ins->close();
         }
-        $check->close();
     }
 }
 ?>

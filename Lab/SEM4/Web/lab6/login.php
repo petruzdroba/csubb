@@ -3,7 +3,7 @@ require_once 'includes/db.php';
 require_once 'includes/session.php';
 require_once 'includes/captcha.php';
 
-try_remember_me($mysqli);
+try_remember_me($pdo);
 
 if (is_logged_in()) {
     header('Location: dashboard.php');
@@ -28,16 +28,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Please enter both username and password.';
 
     } else {
-        $stmt = $mysqli->prepare(
+        $stmt = $pdo->prepare(
             'SELECT id, password, full_name, role FROM users WHERE username = ?'
         );
-        $stmt->bind_param('s', $username);// bind to string
-        $stmt->execute();
-        $stmt->bind_result($id, $hash, $full_name, $role); //store result in vars
-        $found = $stmt->fetch();
-        $stmt->close();
+        $stmt->execute([$username]);
+        $row = $stmt->fetch();
 
-        if ($found && $password === $hash) {
+        if ($row && $password === $row['password']) {
+            $id = $row['id'];
+            $hash = $row['password'];
+            $full_name = $row['full_name'];
+            $role = $row['role'];
             session_regenerate_id(true);
             $_SESSION['user_id']   = $id;
             $_SESSION['username']  = $username;
@@ -47,12 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // save a remember cookie if user checks
             if ($remember) {
                 $token = bin2hex(random_bytes(32));
-                $upd   = $mysqli->prepare(
+                $upd   = $pdo->prepare(
                     'UPDATE users SET remember_token = ? WHERE id = ?'
                 );
-                $upd->bind_param('si', $token, $id);
-                $upd->execute();
-                $upd->close();
+                $upd->execute([$token, $id]);
                 set_remember_cookie($token);
             }
 

@@ -11,3 +11,5 @@ docker restart park-php
 cd ~/Desktop/Uni/csubb/Lab/SEM4/Web/lab6
 mkdir -p data uploads
 chmod 777 data uploads
+
+docker exec park-php bash -c "chmod 777 /var/www/html/data/park_portal.sqlite"

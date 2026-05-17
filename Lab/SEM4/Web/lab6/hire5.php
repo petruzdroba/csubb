@@ -2,7 +2,7 @@
 require_once 'includes/db.php';
 require_once 'includes/session.php';
 
-try_remember_me($mysqli);
+try_remember_me($pdo);
 
 require_staff(); // auto redirects if not staff
 audit_log($sqlite, $_SESSION['username'], 'view_hire_page');
