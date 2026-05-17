@@ -100,3 +100,55 @@ DELETE FROM employees WHERE id = ?
 **Soft** allows use to achieve better data safety, we have more control over the data, audit and history preservation, referential integrity safety (*other table entities might still refer to the soft deleted entity*)
 
 **Hard** required when data actually has to disappear (*cleanup, test data removal*), better performance and storage eff. (*smaller tables*) and it has simpler query logic
+
+# Migrations Flow
+
+## ChangeSet 001->005 (*Creating tables and seeding data*)
+| Field | Type | Null | Key | Default | Extra |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| id | int | NO | PRI | null | auto\_increment |
+| name | varchar\(100\) | NO |  | null |  |
+| email | varchar\(100\) | YES | UNI | null |  |
+| salary | decimal\(10,2\) | YES |  | null |  |
+| department\_id | int | YES | MUL | null |  |
+
+## ChangeSet 006 (*Adding phone column*)
+
+| Field | Type            | Null | Key | Default | Extra |
+| :--- |:----------------| :--- | :--- | :--- | :--- |
+| id | int             | NO | PRI | null | auto\_increment |
+| name | varchar\(100\)  | NO |  | null |  |
+| email | varchar\(100\)  | YES | UNI | null |  |
+| salary | decimal\(10,2\) | YES | MUL | null |  |
+| department\_id | int             | YES | MUL | null |  |
+| phone | varchar\(20\)   | YES |  | null |  |
+
+
+## ChangeSet 007 (*Adding indexes*)
+
+## ChangeSet 008 (*Adding version columns*)
+
+| Field | Type | Null | Key | Default | Extra |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| id | int | NO | PRI | null | auto\_increment |
+| name | varchar\(100\) | NO |  | null |  |
+| email | varchar\(100\) | YES | UNI | null |  |
+| salary | decimal\(15,2\) | YES | MUL | null |  |
+| department\_id | int | YES | MUL | null |  |
+| phone | varchar\(20\) | YES |  | null |  |
+| version | int | NO |  | 0 |  |
+
+
+## ChangeSet 009 (*Adding soft deletion*)
+| Field | Type | Null | Key | Default | Extra |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| id | int | NO | PRI | null | auto\_increment |
+| name | varchar\(100\) | NO |  | null |  |
+| email | varchar\(100\) | YES | UNI | null |  |
+| salary | decimal\(15,2\) | YES | MUL | null |  |
+| department\_id | int | YES | MUL | null |  |
+| phone | varchar\(20\) | YES |  | null |  |
+| version | int | NO |  | 0 |  |
+| is\_deleted | tinyint | YES |  | 0 |  |
+| deleted\_at | timestamp | YES |  | null |  |
+| deleted\_by | varchar\(100\) | YES |  | null |  |

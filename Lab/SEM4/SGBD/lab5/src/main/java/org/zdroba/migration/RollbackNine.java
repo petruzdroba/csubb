@@ -1,4 +1,4 @@
-package org.zdroba;
+package org.zdroba.migration;
 
 import liquibase.Liquibase;
 import liquibase.database.Database;
@@ -11,7 +11,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Rollback {
+public class RollbackNine {
+
     public static void main(String[] args) throws SQLException, LiquibaseException {
 
         Connection connection = DriverManager.getConnection(
@@ -29,7 +30,8 @@ public class Rollback {
                 database
         );
 
-        liquibase.rollback(1, "");
+        for(int idx=0; idx<9;idx++)
+            liquibase.rollback(1, "");
 
         System.out.println("Rolled back last changeSet");
     }

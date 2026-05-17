@@ -10,12 +10,12 @@ $role     = $_SESSION['role'];
 $fullName = $_SESSION['full_name'];
 $username = $_SESSION['username'];
 
-// get pre filled data 
+// Pre-filled profile data
 $stmt = $pdo->prepare('SELECT full_name, email FROM users WHERE id = :id');
 $stmt->execute([':id' => $userId]);
-$user = $stmt->fetch(); // pre fills the edit form below
+$user = $stmt->fetch();
 
-// update
+// Profile update
 $updateMsg = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_profile') {
     $newName  = trim($_POST['full_name'] ?? '');
@@ -24,38 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     if (empty($newName) || !filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
         $updateMsg = '<span>Invalid name or email.</span>';
     } else {
-        $upd = $pdo->prepare(
-            'UPDATE users SET full_name = :name, email = :email WHERE id = :id'
-        );
+        $upd = $pdo->prepare('UPDATE users SET full_name = :name, email = :email WHERE id = :id');
         $upd->execute([':name' => $newName, ':email' => $newEmail, ':id' => $userId]);
         $_SESSION['full_name'] = $newName;
-        $fullName  = $newName;
-        $user['full_name'] = $newName;
-        $user['email']     = $newEmail;
+        $fullName              = $newName;
+        $user['full_name']     = $newName;
+        $user['email']         = $newEmail;
         $updateMsg = '<span>Profile updated successfully.</span>';
         audit_log($sqlite, $username, 'profile_update');
     }
-}
-
-// phoyos by user
-$photoStmt = $pdo->prepare(
-    'SELECT id, filename, original_name, trail_name, description, uploaded_at
-     FROM trail_photos WHERE uploader_id = :uid ORDER BY uploaded_at DESC'
-);
-$photoStmt->execute([':uid' => $userId]);
-$photos = $photoStmt->fetchAll();
-
-// id staff: all photos
-$allPhotos = [];
-if ($role === 'staff') {
-    $allStmt = $pdo->query(
-        'SELECT tp.id, tp.filename, tp.original_name, tp.trail_name,
-                tp.description, tp.uploaded_at, u.full_name, u.username
-         FROM trail_photos tp
-         JOIN users u ON u.id = tp.uploader_id
-         ORDER BY tp.uploaded_at DESC'
-    );
-    $allPhotos = $allStmt->fetchAll();
 }
 ?>
 <!DOCTYPE html>
@@ -72,7 +49,7 @@ if ($role === 'staff') {
     <div>
         <div>
             <h1>Welcome, <?= htmlspecialchars($fullName) ?>
-                <span><?= $role ?></span>
+                <span><?= htmlspecialchars($role) ?></span>
             </h1>
         </div>
         <div>
@@ -95,14 +72,11 @@ if ($role === 'staff') {
             <div>
                 <div>
                     <label for="full_name">Full Name</label>
-
-                    <!-- take prefilled data -->
                     <input type="text" id="full_name" name="full_name"
                            value="<?= htmlspecialchars($user['full_name']) ?>" required>
                 </div>
                 <div>
                     <label for="email">Email</label>
-
                     <input type="email" id="email" name="email"
                            value="<?= htmlspecialchars($user['email']) ?>" required>
                 </div>
@@ -111,63 +85,41 @@ if ($role === 'staff') {
         </form>
     </div>
 
-    <div class="card">
-        <h2>My Trail Photos</h2>
-        <?php if (empty($photos)): ?>
-            <p>You haven't uploaded any photos yet. <a href="upload.php">Upload one now →</a></p>
-        <?php else: ?>
-            <div>
-                <?php foreach ($photos as $p): ?>
-                    <div>
-                        <img src="uploads/<?= htmlspecialchars($p['filename']) ?>"
-                             alt="<?= htmlspecialchars($p['original_name']) ?>">
-                        <div>
-                            <div><?= htmlspecialchars($p['trail_name']) ?></div>
-                            <div><?= htmlspecialchars($p['description'] ?? '') ?></div>
-                            <div><?= htmlspecialchars($p['uploaded_at']) ?></div>
-                        </div>
-                        <form method="POST" action="upload.php">
-                            <input type="hidden" name="action"   value="delete">
-                            <input type="hidden" name="photo_id" value="<?= (int)$p['id'] ?>">
-                            <button type="submit" class="btn"
-                                    onclick="return confirm('Delete this photo?')">
-                                Delete
-                            </button>
-                        </form>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
-    </div>
+    
+        <h2><?= $role === 'staff' ? 'All Trail Photos' : 'My Trail Photos' ?></h2>
 
-    <?php if ($role === 'staff' && !empty($allPhotos)): ?>
-    <div class="card">
-        <h2>Staff View – All Uploads</h2>
-        <div>
-            <?php foreach ($allPhotos as $p): ?>
-                <div>
-                    <img src="uploads/<?= htmlspecialchars($p['filename']) ?>"
-                         alt="<?= htmlspecialchars($p['original_name']) ?>">
-                    <div>
-                        <div><?= htmlspecialchars($p['trail_name']) ?></div>
-                        <div>by <?= htmlspecialchars($p['full_name']) ?></div>
-                        <div><?= htmlspecialchars($p['description'] ?? '') ?></div>
-                        <div><?= htmlspecialchars($p['uploaded_at']) ?></div>
-                    </div>
-                    <form method="POST" action="upload.php">
-                        <input type="hidden" name="action"   value="delete">
-                        <input type="hidden" name="photo_id" value="<?= (int)$p['id'] ?>">
-                        <button type="submit" class="btn"
-                                onclick="return confirm('Delete this photo?')">
-                            Delete
-                        </button>
-                    </form>
-                </div>
-            <?php endforeach; ?>
+        <table id="photos-table" border="1" cellpadding="8" cellspacing="0">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Trail</th>
+                <th>Description</th>
+                <?php if ($role === 'staff'): ?>
+                    <th>Uploader</th>
+                <?php endif; ?>
+                <th>Preview</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="photos-tbody">
+                <tr><td colspan="<?= $role === 'staff' ? 6 : 5 ?>">Loading...</td></tr> 
+                <!-- update colspan based on role, user dosent see uploader name -->
+            </tbody>
+        </table>
+
+        <div id="photos-nav" style="margin-top:10px;">
+            <button id="btn-prev" disabled>Previous 3</button>
+            <span id="photos-info" style="margin:0 12px;"></span>
+            <button id="btn-next" disabled>Next 3</button>
         </div>
-    </div>
-    <?php endif; ?>
 
 </div>
+
+<script>
+    const currentUserId = <?= $userId ?>;
+    const currentRole   = <?= json_encode($role) ?>;
+</script>
+<script src="photo-pagination.js"></script>
+<!-- <script src="photo-pagination-xml.js"></script> -->
 </body>
 </html>

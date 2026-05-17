@@ -8,18 +8,35 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
 
     <changeSet id="011-add-index-employee-departament" author="lab5">
+
         <createIndex indexName="idx_employees_department"
                      tableName="employees">
             <column name="department_id"/>
         </createIndex>
 
         <rollback>
+
+            <dropForeignKeyConstraint
+                    baseTableName="employees"
+                    constraintName="fk_employees_departments"/>
+
             <dropIndex indexName="idx_employees_department"
                        tableName="employees"/>
+
+            <addForeignKeyConstraint
+                    baseTableName="employees"
+                    baseColumnNames="department_id"
+                    referencedTableName="departments"
+                    referencedColumnNames="id"
+                    constraintName="fk_employees_departments"/>
+
         </rollback>
+
     </changeSet>
 
+
     <changeSet id="012-add-index-employees-salary" author="lab5">
+
         <createIndex indexName="idx_employees_salary"
                      tableName="employees">
             <column name="salary"/>
@@ -29,7 +46,7 @@
             <dropIndex indexName="idx_employees_salary"
                        tableName="employees"/>
         </rollback>
-    </changeSet>
 
+    </changeSet>
 
 </databaseChangeLog>
