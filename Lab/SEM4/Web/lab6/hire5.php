@@ -32,8 +32,6 @@ audit_log($sqlite, $_SESSION['username'], 'view_hire_page');
         <li><a href="hire5.php"><span class="sprite-icon icon-people"></span> Hire</a></li>
         <li><a href="feedback.html"><span class="sprite-icon icon-star"></span> Feedback</a></li>
         <li><a href="dashboard.php"><span class="sprite-icon icon-user"></span> Profile</a></li>
-                <li><a href="dashboard.php"><span class="sprite-icon icon-logout"></span> Profile</a></li>
-
     <li>
       <?php if (is_logged_in()): ?>
         <a href="dashboard.php"> <?= htmlspecialchars($_SESSION['full_name']) ?></a>

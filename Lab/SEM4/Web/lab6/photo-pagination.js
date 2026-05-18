@@ -49,17 +49,23 @@
             const canDelete = isStaff || (r.uploader_id === currentUserId);
             const deleteBtn = canDelete
                 ? '<form method="POST" action="upload.php"'
-                  + ' onsubmit="return confirm(\'Delete this photo?\')">'
-                  + '<input type="hidden" name="action" value="delete">'
-                  + '<input type="hidden" name="photo_id" value="' + r.id + '">'
-                  + '<button type="submit" class="btn">Delete</button>'
-                  + '</form>'
+                + ' onsubmit="return confirm(\'Delete this photo?\')">'
+                + '<input type="hidden" name="action" value="delete">'
+                + '<input type="hidden" name="photo_id" value="' + r.id + '">'
+                + '<input type="hidden" name="csrf_token" value="' + csrfToken + '">'
+                + '<button type="submit" class="btn">Delete</button>'
+                + '</form>'
                 : '—';
-
+                
             return '<tr>'
                 + '<td>' + (offset + i + 1) + '</td>'
                 + '<td>' + escHtml(r.trail_name) + '</td>'
-                + '<td>' + escHtml(r.description) + '</td>'
+                // + '<td>' + escHtml(r.description) + '</td>'
+
+                // Cross Site Scripting
+                //<img src=x onerror="alert('XSS - cookie: ' + document.cookie)">
+                // + '<td>' + r.description + '</td>'
+
                 + uploaderCell
                 + '<td><img src="uploads/' + escHtml(r.filename) + '"'
                 +      ' style="height:60px;object-fit:cover;" alt="photo"></td>'

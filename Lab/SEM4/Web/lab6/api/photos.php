@@ -12,7 +12,8 @@ $role   = $_SESSION['role'];
 
 if ($role === 'staff') {
     // staff = everything
-    $countStmt = $pdo->query('SELECT COUNT(*) FROM trail_photos');
+    $countStmt = $pdo->prepare('SELECT COUNT(*) FROM trail_photos');
+    $countStmt->execute();
     $total     = (int)$countStmt->fetchColumn();
 
     $stmt = $pdo->prepare('

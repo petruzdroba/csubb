@@ -13,11 +13,45 @@ define('UPLOAD_DIR',     __DIR__ . '/uploads/');
 define('MAX_FILE_SIZE',  5 * 1024 * 1024); // 5 mb
 define('ALLOWED_TYPES',  ['image/jpeg', 'image/png', 'image/webp', 'image/gif']);
 
+//path traversal
+//http://localhost/upload.php?file=../includes/db.php
+//get phtos by name
+
+// if (isset($_GET['file'])) {
+//     $filepath = UPLOAD_DIR . $_GET['file'];
+//     if (file_exists($filepath)) {
+//         echo '<pre>' . htmlspecialchars(file_get_contents($filepath)) . '</pre>';
+//     } else {
+//         echo 'File not found.';
+//     }
+//     exit;
+// }
+
+if (isset($_GET['id'])) {
+    $stmt = $pdo->prepare('SELECT filename FROM trail_photos WHERE id = ? AND uploader_id = ?');
+    $stmt->execute([$_GET['id'], $userId]);
+    $row = $stmt->fetch();
+    if ($row) {
+    $filepath = realpath(UPLOAD_DIR . $row['filename']);
+    if ($filepath && str_starts_with($filepath, realpath(UPLOAD_DIR))) {
+        $mime = mime_content_type($filepath);
+        header('Content-Type: ' . $mime);
+        readfile($filepath);
+    }
+} else {
+        http_response_code(404);
+        echo 'Not found.';
+    }
+    exit;
+}
+
 $error   = '';
 $success = '';
 
 // remove photo pdo 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete') {
+    csrf_check();
+
     $photoId = (int)($_POST['photo_id'] ?? 0);
 
     $sel = $pdo->prepare('SELECT uploader_id, filename FROM trail_photos WHERE id = :id');
@@ -64,6 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'uploa
         $finfo    = new finfo(FILEINFO_MIME_TYPE);
         $mimeType = $finfo->file($_FILES['photo']['tmp_name']);
 
+        // safe
         if (!in_array($mimeType, ALLOWED_TYPES, true)) {
             $error = 'Only JPEG, PNG, WebP and GIF images are allowed.';
         } else {
@@ -100,7 +135,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'uploa
             } else {
                 $error = 'Could not save the file. Check server permissions.';
             }
-        }
+        }// end if mime
+
+        //Unrestricted upload
+        // $ext      = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+        // $filename = uniqid('trail_', true) . '.' . $ext;
+        // $dest     = UPLOAD_DIR . $filename;
+
+        // if (!is_dir(UPLOAD_DIR)) mkdir(UPLOAD_DIR, 0755, true);
+
+        // if (move_uploaded_file($_FILES['photo']['tmp_name'], $dest)) {
+        //     $ins = $pdo->prepare(
+        //         'INSERT INTO trail_photos
+        //             (uploader_id, filename, original_name, trail_name, description)
+        //         VALUES (:uid, :filename, :orig, :trail, :desc)'
+        //     );
+        //     $ins->execute([
+        //         ':uid'      => $userId,
+        //         ':filename' => $filename,
+        //         ':orig'     => $_FILES['photo']['name'],
+        //         ':trail'    => $trailName,
+        //         ':desc'     => $description,
+        //     ]);
+        //     audit_log($sqlite, $username, 'upload_photo:' . $filename);
+        //     header('Location: dashboard.php?uploaded=1');
+        //     exit;
+        // } else {
+        //     $error = 'Could not save the file. Check server permissions.';
+        // }
+        // end demo
+
     }
 }
 

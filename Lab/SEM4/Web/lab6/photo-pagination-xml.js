@@ -72,11 +72,12 @@
             const canDelete = isStaff || (uploaderId === currentUserId);
             const deleteBtn = canDelete
                 ? '<form method="POST" action="upload.php"'
-                  + ' onsubmit="return confirm(\'Delete this photo?\')">'
-                  + '<input type="hidden" name="action" value="delete">'
-                  + '<input type="hidden" name="photo_id" value="' + escHtml(id) + '">'
-                  + '<button type="submit" class="btn">Delete</button>'
-                  + '</form>'
+                + ' onsubmit="return confirm(\'Delete this photo?\')">'
+                + '<input type="hidden" name="action" value="delete">'
+                + '<input type="hidden" name="photo_id" value="' + r.id + '">'
+                + '<input type="hidden" name="csrf_token" value="' + csrfToken + '">'
+                + '<button type="submit" class="btn">Delete</button>'
+                + '</form>'
                 : '—';
 
             rows += '<tr>'

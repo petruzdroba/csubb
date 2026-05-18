@@ -18,6 +18,8 @@ $user = $stmt->fetch();
 // Profile update
 $updateMsg = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_profile') {
+    csrf_check();
+
     $newName  = trim($_POST['full_name'] ?? '');
     $newEmail = trim($_POST['email']     ?? '');
 
@@ -58,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 <a href="hire5.php">Hiring</a>
             <?php endif; ?>
             <a href="upload.php">Upload Photo</a>
+            <a href="search.php">Search Photos</a>
             <a href="logout.php">Log Out</a>
         </div>
     </div>
@@ -69,6 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         <?php endif; ?>
         <form method="POST" action="dashboard.php">
             <input type="hidden" name="action" value="update_profile">
+            <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
+            
             <div>
                 <div>
                     <label for="full_name">Full Name</label>
@@ -118,6 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 <script>
     const currentUserId = <?= $userId ?>;
     const currentRole   = <?= json_encode($role) ?>;
+    const csrfToken     = <?= json_encode(csrf_token()) ?>;
 </script>
 <script src="photo-pagination.js"></script>
 <!-- <script src="photo-pagination-xml.js"></script> -->
