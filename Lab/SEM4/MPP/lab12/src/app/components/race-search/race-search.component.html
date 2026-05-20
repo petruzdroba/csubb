@@ -1,0 +1,35 @@
+<h2>Search</h2>
+
+<div>
+  <input type="number" [(ngModel)]="id">
+  <button (click)="getById()">Search by ID</button>
+</div>
+
+<div>
+  <input type="number" [(ngModel)]="engine">
+  <button (click)="filterByEngine()">Filter</button>
+</div>
+
+<button (click)="clear()">Clear</button>
+
+<hr>
+
+@if (loading) {
+  <p>Loading...</p>
+}
+
+@if (isObjectResult()) {
+  <div>
+    <p>ID: {{ result.id }}</p>
+    <p>Engine: {{ result.engine }}</p>
+  </div>
+}
+
+@if (isArrayResult()) {
+  @for (race of result; track race.id) {
+    <div>
+      <p>ID: {{ race.id }}</p>
+      <p>Engine: {{ race.engine }}</p>
+    </div>
+  }
+}

@@ -1,0 +1,18 @@
+<h2>
+  {{ selectedRace ? 'Edit Race' : 'Add Race' }}
+</h2>
+
+<input
+  type="number"
+  [(ngModel)]="engine"
+>
+
+<button (click)="submit()">
+  Save
+</button>
+
+@if (selectedRace) {
+  <button (click)="cancel.emit(); onCancel()">
+    Cancel
+  </button>
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.zdroba.controllers.AuthViewController"
+      spacing="40" alignment="CENTER"
+      styleClass="root">
+    <padding>
+        <Insets top="50" right="50" bottom="50" left="50"/>
+    </padding>
+
+    <VBox spacing="10" alignment="CENTER">
+        <Label text="Log In" styleClass="label-title"/>
+        <TextField fx:id="loginEmailField" promptText="Email" styleClass="text-field" maxWidth="420"/>
+        <PasswordField fx:id="loginPasswordField" promptText="Password" styleClass="password-field" maxWidth="420"/>
+        <Button fx:id="loginButton" text="Login" styleClass="button" maxWidth="200" onAction="#logIn"/>
+    </VBox>
+
+    <Separator orientation="VERTICAL"/>
+
+    <VBox spacing="10" alignment="CENTER">
+        <Label text="Register" styleClass="label-title"/>
+        <TextField fx:id="registerEmailField" promptText="Email" styleClass="text-field" maxWidth="420"/>
+        <PasswordField fx:id="registerPasswordField" promptText="Password" styleClass="password-field" maxWidth="420"/>
+        <Button fx:id="registerButton" text="Register" styleClass="button" maxWidth="200" onAction="#register"/>
+    </VBox>
+
+</HBox>

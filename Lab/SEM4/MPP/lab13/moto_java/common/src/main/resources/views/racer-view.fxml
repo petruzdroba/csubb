@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.zdroba.controllers.RacerViewController"
+      prefHeight="400.0" prefWidth="900.0"
+      spacing="20">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <VBox spacing="10" prefWidth="250" alignment="TOP_CENTER">
+        <Label text="Add Racer"/>
+        <TextField fx:id="nameField" promptText="Name"/>
+        <TextField fx:id="cnpField" promptText="CNP"/>
+        <TextField fx:id="engineField" promptText="Engine"/>
+        <ComboBox fx:id="teamFormComboBox" promptText="Select Team" maxWidth="Infinity"/>
+        <Button text="Save" onAction="#saveRacer" maxWidth="Infinity"/>
+
+        <Separator/>
+
+        <Label text="Modify Team"/>
+        <TextField fx:id="modifyNameField" promptText="Name" disable="true"/>
+        <TextField fx:id="modifyCnpField" promptText="CNP" disable="true"/>
+        <TextField fx:id="modifyEngineField" promptText="Engine" disable="true"/>
+        <ComboBox fx:id="modifyTeamComboBox" promptText="Select Team" maxWidth="Infinity"/>
+        <Button text="Modify" onAction="#modifyRacer" maxWidth="Infinity"/>
+
+    </VBox>
+
+    <Separator orientation="VERTICAL"/>
+
+    <VBox spacing="10" HBox.hgrow="ALWAYS">
+        <TableView fx:id="racerTable" prefHeight="300" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="nameColumn" text="Name" prefWidth="150"/>
+                <TableColumn fx:id="cnpColumn" text="CNP" prefWidth="150"/>
+                <TableColumn fx:id="engineColumn" text="Engine" prefWidth="100"/>
+                <TableColumn fx:id="teamColumn" text="Team" prefWidth="150"/>
+            </columns>
+        </TableView>
+
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <padding>
+                <Insets left="10"/>
+            </padding>
+            <Label text="Filter by Team:"/>
+            <ComboBox fx:id="teamComboBox" promptText="Select Team"/>
+            <Button text="Search" onAction="#searchByTeam"/>
+        </HBox>
+    </VBox>
+
+</HBox>

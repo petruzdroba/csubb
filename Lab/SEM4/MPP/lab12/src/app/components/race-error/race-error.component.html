@@ -1,0 +1,6 @@
+@if (error()) {
+  <div class="error-box">
+    <span>{{ error() }}</span>
+    <button (click)="clear()">X</button>
+  </div>
+}

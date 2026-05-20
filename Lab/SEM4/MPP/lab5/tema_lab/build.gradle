@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+group 'SpringTemaLab'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
+
+    implementation 'org.springframework:spring-context:5.3.33'
+    implementation 'org.springframework:spring-core:5.3.33'
+    implementation 'org.springframework:spring-beans:5.3.33'
+    implementation 'org.springframework:spring-expression:5.3.33'
+    implementation 'org.springframework:spring-aop:5.3.33'
+
+
+    implementation 'jakarta.annotation:jakarta.annotation-api:2.1.1'
+
+    runtimeOnly group: 'org.xerial', name: 'sqlite-jdbc', version: '3.34.0'
+}
+
+javafx {
+    version = "17"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+application {
+    mainClass = 'MainFXSpring'
+}

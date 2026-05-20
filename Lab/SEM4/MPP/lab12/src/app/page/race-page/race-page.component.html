@@ -1,0 +1,14 @@
+<button (click)="logout()">Logout</button>
+<app-race-error></app-race-error>
+<app-race-search></app-race-search>
+<app-race-form
+  [selectedRace]="selectedRace"
+  (saveEvent)="save($event)"
+  (cancel)="cancelEdit()">
+</app-race-form>
+<hr>
+<app-race-list
+  [races]="races"
+  (editEvent)="edit($event)"
+  (deleteEvent)="delete($event)">
+</app-race-list>

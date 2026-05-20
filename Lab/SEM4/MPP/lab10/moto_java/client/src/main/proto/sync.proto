@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option csharp_namespace = "moto_c.Server.sync";
+option java_package = "org.zdroba.sync";
+option java_outer_classname = "SyncProto";
+
+service SyncService {
+  rpc Subscribe(SubscribeRequest) returns (stream SyncMessage);
+  rpc Notify(SyncMessage) returns (NotifyAck);
+}
+
+message SubscribeRequest {
+  string client_id = 1;
+}
+
+message SyncMessage {
+  string payload = 1;
+}
+
+message NotifyAck {
+  bool ok = 1;
+}
