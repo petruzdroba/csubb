@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 <div>
-    <div class="card">
+    <div class="card card-centered">
         <h1>Park Portal</h1>
         <p>Create a guest account</p>
 

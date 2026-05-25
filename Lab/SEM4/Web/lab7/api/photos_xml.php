@@ -44,13 +44,14 @@ $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 $photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Build XML manually
 $xml = '<?xml version="1.0" encoding="UTF-8"?>';
+// append from here on out
 $xml .= '<response>';
 $xml .= '<total>'  . $total  . '</total>';
 $xml .= '<offset>' . $offset . '</offset>';
 $xml .= '<k>'      . $k      . '</k>';
 $xml .= '<role>'   . htmlspecialchars($role) . '</role>';
+// make a container for photos
 $xml .= '<records>';
 
 foreach ($photos as $p) {

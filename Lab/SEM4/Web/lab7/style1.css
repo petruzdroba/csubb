@@ -258,3 +258,26 @@ li.has-sublist::after {
 li.has-sublist.open::after {
   transform: rotate(90deg);
 }
+
+.btn:disabled {
+    background-color: #ccc;
+    color: #888;
+    cursor: not-allowed;
+    padding: 10px;
+    font-size: inherit;
+}
+
+.btn:disabled:hover {
+    background-color: #ccc;
+    color: #888;
+    padding: 10px;
+    font-size: inherit;
+}
+
+.card-centered {
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
