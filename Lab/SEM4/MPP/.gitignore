@@ -74,3 +74,30 @@ desktop.ini
 
 coverage/
 TestResults/
+
+# Spring Boot
+**/target/
+**/.mvn/
+**/mvnw
+**/mvnw.cmd
+**/*.class
+**/*.jar
+**/*.war
+**/*.ear
+**/application-local.properties
+**/application-local.yml
+
+# Angular
+**/node_modules/
+**/.angular/
+**/dist/
+**/*.js.map
+package-lock.json
+
+
+# IDE
+**/.idea/
+**/*.iml
+**/.vscode/
+**/.DS_Store
+

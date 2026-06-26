@@ -1,0 +1,41 @@
+[
+    {
+        "question" : "Ce face urmatoarea secventa de cod?\n\n$('ul:has(li)').addClass('patrat').addClass('deplasat').addClass('colorat');",
+        "options" : [
+            "selecteaza toate elementele din liste si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza listele neordonate care au cel putin un element si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza toate listele care au cel putin un element si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza listele ordonate care au cel putin un element si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza toate listele si le adauga clasele patrat, deplasat si colorat"
+        ],
+        "answer": [
+            "selecteaza listele neordonate care au cel putin un element si le adauga clasele patrat, deplasat si colorat"
+        ]
+    },
+    {
+        "question" : "Ce face urmatoarea secventa de cod?\n\n$('ul:has(li)').addClass('patrat').addClass('deplasat').addClass('colorat');",
+        "options" : [
+            "selecteaza toate elementele din liste si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza listele neordonate care au cel putin un element si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza toate listele care au cel putin un element si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza listele ordonate care au cel putin un element si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza toate listele si le adauga clasele patrat, deplasat si colorat"
+        ],
+        "answer": [
+            "selecteaza listele neordonate care au cel putin un element si le adauga clasele patrat, deplasat si colorat"
+        ]
+    },
+    {
+        "question" : "Ce face urmatoarea secventa de cod?\n\n$('ul:has(li)').addClass('patrat').addClass('deplasat').addClass('colorat');",
+        "options" : [
+            "selecteaza toate elementele din liste si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza listele neordonate care au cel putin un element si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza toate listele care au cel putin un element si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza listele ordonate care au cel putin un element si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza toate listele si le adauga clasele patrat, deplasat si colorat"
+        ],
+        "answer": [
+            "selecteaza listele neordonate care au cel putin un element si le adauga clasele patrat, deplasat si colorat"
+        ]
+    }
+]
