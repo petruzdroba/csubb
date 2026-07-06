@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sprite/sprites.css">
+    <link rel="stylesheet" href="style1.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>Trail Feedback - National Park Service</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>NATIONAL PARK SERVICE</h1>
+      <img height="70" src="img/logo.png" alt="National Park Service logo">
+      <h2>Safer trails and hikes</h2>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="index.html"><span class="sprite-icon icon-home"></span> Welcome</a></li>
+        <li><a href="welcome5.html"><span class="sprite-icon icon-tree"></span> Parks</a></li>
+        <li><a href="help5.html"><span class="sprite-icon icon-warning"></span> Help</a></li>
+        <li><a href="hire5.php"><span class="sprite-icon icon-people"></span> Hire</a></li>
+        <li><a href="feedback.html"><span class="sprite-icon icon-star"></span> Feedback</a></li>
+        <li><a href="dashboard.php"><span class="sprite-icon icon-user"></span> Profile</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <div class="feedback-form">
+        <h3>Trail Feedback</h3>
+        <p>Help us improve trail safety and quality by sharing your experience.</p>
+
+        <form method="post">
+
+          <fieldset>
+            <legend>Basic Information</legend>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" maxlength="30" placeholder="John Doe">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com">
+
+            <br>
+
+            <label for="visit-date">Visit Date:</label>
+            <input type="date" id="visit-date" name="visit-date">
+          </fieldset>
+
+          <fieldset>
+            <legend>Trail Location</legend>
+
+            <label for="zone">Mountain Zone:</label>
+            <select id="zone" name="zone">
+              <option value="">Select zone</option>
+            </select>
+
+            <label for="park">Park:</label>
+            <select id="park" name="park">
+              <option value="">Select park</option>
+            </select>
+
+            <label for="trail">Trail:</label>
+            <select id="trail" name="trail">
+              <option value="">Select trail</option>
+            </select>
+          </fieldset>
+
+          <fieldset>
+            <legend>Trail Evaluation</legend>
+
+            <p><strong>Difficulty Experienced</strong></p>
+            <label><input type="radio" name="difficulty" value="easy"> Easy</label>
+            <label><input type="radio" name="difficulty" value="medium"> Medium</label>
+            <label><input type="radio" name="difficulty" value="hard"> Hard</label>
+            <label><input type="radio" name="difficulty" value="extreme"> Extreme</label>
+
+            <p><strong>Trail Condition</strong></p>
+            <select name="condition">
+              <option value="">Select condition</option>
+              <option value="excellent">Excellent</option>
+              <option value="good">Good</option>
+              <option value="acceptable">Acceptable</option>
+              <option value="damaged">Damaged</option>
+              <option value="closed">Closed / Dangerous</option>
+            </select>
+
+            <p><strong>Safety Rating (1-5)</strong></p>
+            <input type="number" name="safety" min="1" max="5">
+
+            <p><strong>Signage Clarity</strong></p>
+            <label><input type="radio" name="signage" value="clear"> Clear</label>
+            <label><input type="radio" name="signage" value="average"> Somewhat clear</label>
+            <label><input type="radio" name="signage" value="poor"> Poor</label>
+
+            <p><strong>Duration vs Expectation</strong></p>
+            <label><input type="radio" name="duration" value="shorter"> Shorter</label>
+            <label><input type="radio" name="duration" value="accurate"> Accurate</label>
+            <label><input type="radio" name="duration" value="longer"> Longer</label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Observations</legend>
+
+            <p><strong>Issues Encountered</strong></p>
+            <ul>
+              <li><label><input type="checkbox" name="issues" value="trees"> Fallen trees</label></li>
+              <li><label><input type="checkbox" name="issues" value="landslide"> Landslides</label></li>
+              <li><label><input type="checkbox" name="issues" value="signs"> Missing signs</label></li>
+              <li><label><input type="checkbox" name="issues" value="wildlife"> Wildlife danger</label></li>
+              <li><label><input type="checkbox" name="issues" value="trash"> Trash</label></li>
+              <li><label><input type="checkbox" name="issues" value="none"> None</label></li>
+            </ul>
+
+            <p><strong>Would you recommend this trail?</strong></p>
+            <label><input type="radio" name="recommend" value="yes"> Yes</label>
+            <label><input type="radio" name="recommend" value="no"> No</label>
+
+            <p><strong>Additional Comments</strong></p>
+            <textarea name="comments" rows="4" cols="40" placeholder="Describe your experience..."></textarea>
+          </fieldset>
+
+          <fieldset>
+            <legend>Upload</legend>
+
+            <label for="photo">Upload Photo:</label>
+            <input type="file" id="photo" name="photo">
+          </fieldset>
+
+          <fieldset>
+            <legend>Confirmation</legend>
+
+            <label>
+              <input type="checkbox" name="agree" required>
+              I confirm the information provided is accurate
+            </label>
+          </fieldset>
+
+          <input type="submit" value="Submit Feedback">
+
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      <p>National Park Service - Safer trails and hikes</p>
+      <p>
+        For emergencies call 
+        <a href="https://www.salvamontromania.ro/" target="_blank" rel="noopener noreferrer">
+          Salvamont România
+        </a>
+      </p>
+    </footer>
+
+    <script src="form_validation.js"></script>
+  </body>
+</html>

@@ -1,0 +1,600 @@
+[
+    {
+        "question": "Which HTML tag is used to define a table row?",
+        "options": [
+            "<td>",
+            "<tr>",
+            "<th>",
+            "<row>"
+        ],
+        "answer": [
+            "<tr>"
+        ]
+    },
+    {
+        "question": "Which CSS property controls the space between the content and the border of an element?",
+        "options": [
+            "margin",
+            "spacing",
+            "padding",
+            "border-gap"
+        ],
+        "answer": [
+            "padding"
+        ]
+    },
+    {
+        "question": "What does the CSS property 'position: fixed' do?",
+        "options": [
+            "Positions the element relative to its nearest positioned ancestor",
+            "Positions the element relative to the browser window and it stays there even when scrolling",
+            "Positions the element relative to its normal position in the document flow",
+            "Removes the element from the document flow entirely without fixing it anywhere"
+        ],
+        "answer": [
+            "Positions the element relative to the browser window and it stays there even when scrolling"
+        ]
+    },
+    {
+        "question": "What is the output of typeof null in JavaScript?",
+        "options": [
+            "\"null\"",
+            "\"undefined\"",
+            "\"object\"",
+            "\"boolean\""
+        ],
+        "answer": [
+            "\"object\""
+        ]
+    },
+    {
+        "question": "Which HTTP method is typically used to update an existing resource on the server?",
+        "options": [
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE"
+        ],
+        "answer": [
+            "PUT"
+        ]
+    },
+    {
+        "question": "What is the correct PHP syntax to output text to the browser?",
+        "options": [
+            "print(\"Hello\");",
+            "echo \"Hello\";",
+            "console.log(\"Hello\");",
+            "document.write(\"Hello\");"
+        ],
+        "answer": [
+            "print(\"Hello\");",
+            "echo \"Hello\";"
+        ]
+    },
+    {
+        "question": "Which jQuery (introduced in v1.7) method is used to attach an event handler to an element?",
+        "options": [
+            ".attach()",
+            ".bind()",
+            ".on()",
+            ".event()"
+        ],
+        "answer": [
+            ".on()"
+        ]
+    },
+    {
+        "question": "Which jQuery method is used to attach an event handler to an element?",
+        "options": [
+            ".attach()",
+            ".bind()",
+            ".on()",
+            ".event()"
+        ],
+        "answer": [
+            ".on()",
+            ".bind()"
+        ]
+    },
+    {
+        "question": "Which HTML5 input type would you use to allow the user to pick a date?",
+        "options": [
+            "<input type=\"calendar\">",
+            "<input type=\"datetime\">",
+            "<input type=\"date\">",
+            "<input type=\"time\">"
+        ],
+        "answer": [
+            "<input type=\"date\">"
+        ]
+    },
+    {
+        "question": "In CSS, which selector has the highest specificity?",
+        "options": [
+            "A class selector (.myClass)",
+            "An inline style (style=\"...\")",
+            "An ID selector (#myId)",
+            "An element selector (div)"
+        ],
+        "answer": [
+            "An inline style (style=\"...\")"
+        ]
+    },
+    {
+        "question": "What does AJAX stand for?",
+        "options": [
+            "Asynchronous JavaScript and XML",
+            "Advanced JavaScript and XHTML",
+            "Automated Java and XML",
+            "Asynchronous Java Application eXchange"
+        ],
+        "answer": [
+            "Asynchronous JavaScript and XML"
+        ]
+    },
+    {
+        "question": "Which PHP superglobal contains data submitted via an HTML form using the POST method?",
+        "options": [
+            "$_REQUEST",
+            "$_GET",
+            "$_POST",
+            "$_FORM"
+        ],
+        "answer": [
+            "$_POST"
+        ]
+    },
+    {
+        "question": "What will the following JavaScript code output?\n\nconsole.log(0 == false);",
+        "options": [
+            "false, because 0 is not the same type as false",
+            "true, because == performs type coercion",
+            "undefined",
+            "TypeError"
+        ],
+        "answer": [
+            "true, because == performs type coercion"
+        ]
+    },
+    {
+        "question": "Which CSS property is used to make text italic?",
+        "options": [
+            "font-style: italic;",
+            "text-style: italic;",
+            "font-weight: italic;",
+            "text-decoration: italic;"
+        ],
+        "answer": [
+            "font-style: italic;"
+        ]
+    },
+    {
+        "question": "How do you correctly check if a variable $x equals 5 in both value and type in PHP?",
+        "options": [
+            "$x == 5",
+            "$x = 5",
+            "$x === 5",
+            "$x.equals(5)"
+        ],
+        "answer": [
+            "$x === 5"
+        ]
+    },
+    {
+        "question": "Which HTML attribute specifies an alternate text for an image if the image cannot be displayed?",
+        "options": [
+            "title",
+            "alt",
+            "src",
+            "description"
+        ],
+        "answer": [
+            "alt"
+        ]
+    },
+    {
+        "question": "What is the default value of the CSS 'position' property?",
+        "options": [
+            "relative",
+            "absolute",
+            "static",
+            "fixed"
+        ],
+        "answer": [
+            "static"
+        ]
+    },
+    {
+        "question": "In jQuery, which method removes an element from the DOM?",
+        "options": [
+            ".delete()",
+            ".remove()",
+            ".destroy()",
+            ".erase()"
+        ],
+        "answer": [
+            ".remove()"
+        ]
+    },
+    {
+        "question": "What does the HTTP status code 401 indicate?",
+        "options": [
+            "Not Found",
+            "Internal Server Error",
+            "Unauthorized",
+            "Forbidden"
+        ],
+        "answer": [
+            "Unauthorized"
+        ]
+    },
+    {
+        "question": "Which of the following correctly declares a constant in PHP?",
+        "options": [
+            "$PI = 3.14;",
+            "const PI = 3.14;",
+            "define('PI', 3.14);",
+            "constant PI = 3.14;"
+        ],
+        "answer": [
+            "const PI = 3.14;",
+            "define('PI', 3.14);"
+        ]
+    },
+    {
+        "question": "What does the CSS 'float' property do?",
+        "options": [
+            "Moves an element to an absolute position on the page",
+            "Removes an element from normal flow and positions it to the left or right",
+            "Makes an element semi-transparent",
+            "Centers an element horizontally"
+        ],
+        "answer": [
+            "Removes an element from normal flow and positions it to the left or right"
+        ]
+    },
+    {
+        "question": "Which JavaScript method converts a JSON string into a JavaScript object?",
+        "options": [
+            "JSON.stringify()",
+            "JSON.parse()",
+            "JSON.decode()",
+            "JSON.convert()"
+        ],
+        "answer": [
+            "JSON.parse()"
+        ]
+    },
+    {
+        "question": "In PHP, which function is used to get the length of a string?",
+        "options": [
+            "len()",
+            "count()",
+            "strlen()",
+            "length()"
+        ],
+        "answer": [
+            "strlen()"
+        ]
+    },
+    {
+        "question": "Which HTML element is used to define navigation links?",
+        "options": [
+            "<navigation>",
+            "<nav>",
+            "<menu>",
+            "<links>"
+        ],
+        "answer": [
+            "<nav>"
+        ]
+    },
+    {
+        "question": "What is Cross-Site Request Forgery (CSRF)?",
+        "options": [
+            "An attack where malicious scripts are injected into web pages viewed by other users",
+            "An attack that tricks a user's browser into making unwanted requests to a site where the user is authenticated",
+            "An attack that intercepts communication between client and server",
+            "An attack that floods the server with requests to make it unavailable"
+        ],
+        "answer": [
+            "An attack that tricks a user's browser into making unwanted requests to a site where the user is authenticated"
+        ]
+    },
+    {
+        "question": "Which CSS unit is relative to the font-size of the root element?",
+        "options": [
+            "em",
+            "rem",
+            "px",
+            "vh"
+        ],
+        "answer": [
+            "rem"
+        ]
+    },
+    {
+        "question": "Which jQuery selector selects all elements that are currently animated?",
+        "options": [
+            ":animated",
+            ":moving",
+            ":running",
+            ":transition"
+        ],
+        "answer": [
+            ":animated"
+        ]
+    },
+    {
+        "question": "What will the following JavaScript code output?\n\nvar x = '5';\nvar y = 3;\nconsole.log(x + y);",
+        "options": [
+            "8",
+            "\"53\"",
+            "NaN",
+            "TypeError"
+        ],
+        "answer": [
+            "\"53\""
+        ]
+    },
+    {
+        "question": "Which PHP function is used to redirect the user to another page?",
+        "options": [
+            "redirect(\"url\")",
+            "header(\"Location: url\")",
+            "go(\"url\")",
+            "location(\"url\")"
+        ],
+        "answer": [
+            "header(\"Location: url\")"
+        ]
+    },
+    {
+        "question": "Which of the following are valid ways to select an element with id 'box' in jQuery?",
+        "options": [
+            "$(\"#box\")",
+            "$(\".box\")",
+            "$(\"[id=box]\")",
+            "$(\"box\")"
+        ],
+        "answer": [
+            "$(\"#box\")",
+            "$(\"[id=box]\")"
+        ]
+    },
+    {
+        "question": "What is the correct HTML to create a checkbox?",
+        "options": [
+            "<input type=\"check\">",
+            "<input type=\"checkbox\">",
+            "<checkbox>",
+            "<input type=\"toggle\">"
+        ],
+        "answer": [
+            "<input type=\"checkbox\">"
+        ]
+    },
+    {
+        "question": "Which CSS property specifies the stacking order of an element?",
+        "options": [
+            "order",
+            "stack-order",
+            "z-index",
+            "layer"
+        ],
+        "answer": [
+            "z-index"
+        ]
+    },
+    {
+        "question": "In PHP, what is the difference between include and require?",
+        "options": [
+            "They are completely interchangeable with no difference",
+            "require produces a fatal error and stops execution if the file is not found, while include only produces a warning",
+            "include produces a fatal error and stops execution if the file is not found, while require only produces a warning",
+            "require can only include PHP files, while include can include any file type"
+        ],
+        "answer": [
+            "require produces a fatal error and stops execution if the file is not found, while include only produces a warning"
+        ]
+    },
+    {
+        "question": "What does the following jQuery code do?\n\n$(\"p\").each(function() {\n    $(this).toggleClass(\"highlight\");\n});",
+        "options": [
+            "Adds the class 'highlight' to all paragraphs",
+            "Removes the class 'highlight' from all paragraphs",
+            "Toggles the class 'highlight' on each paragraph — adds it if absent, removes it if present",
+            "Selects only paragraphs that already have the class 'highlight'"
+        ],
+        "answer": [
+            "Toggles the class 'highlight' on each paragraph — adds it if absent, removes it if present"
+        ]
+    },
+    {
+        "question": "Which of the following HTTP headers is used by the browser to indicate the origin of the request?",
+        "options": [
+            "Referer",
+            "Origin",
+            "Host",
+            "From"
+        ],
+        "answer": [
+            "Origin",
+            "Referer"
+        ]
+    },
+    {
+        "question": "What is the correct way to add a comment in CSS?",
+        "options": [
+            "// This is a comment",
+            "# This is a comment",
+            "/* This is a comment */",
+            "<!-- This is a comment -->"
+        ],
+        "answer": [
+            "/* This is a comment */"
+        ]
+    },
+    {
+        "question": "What does the CSS property 'box-sizing: border-box' do?",
+        "options": [
+            "Adds a border around the element automatically",
+            "Makes padding and border included in the element's total width and height",
+            "Removes all padding from the element",
+            "Applies a box shadow to the element"
+        ],
+        "answer": [
+            "Makes padding and border included in the element's total width and height"
+        ]
+    },
+    {
+        "question": "In JavaScript, what is a closure?",
+        "options": [
+            "A way to close or terminate a function early",
+            "A function that has access to variables from its outer (enclosing) scope even after that scope has returned",
+            "A method to close a browser window",
+            "A block of code that runs automatically when the page loads"
+        ],
+        "answer": [
+            "A function that has access to variables from its outer (enclosing) scope even after that scope has returned"
+        ]
+    },
+    {
+        "question": "Which of the following PHP functions can be used to count the number of elements in an array?",
+        "options": [
+            "length($arr)",
+            "size($arr)",
+            "count($arr)",
+            "sizeof($arr)"
+        ],
+        "answer": [
+            "count($arr)",
+            "sizeof($arr)"
+        ]
+    },
+    {
+        "question": "What HTML attribute would you add to a form input to make it required before submission?",
+        "options": [
+            "mandatory",
+            "required",
+            "validate",
+            "notnull"
+        ],
+        "answer": [
+            "required"
+        ]
+    },
+    {
+        "question": "Which of the following correctly describes the CSS 'display: flex' property?",
+        "options": [
+            "It makes an element float to the left",
+            "It enables a flex container, allowing child elements to be aligned and distributed flexibly",
+            "It hides an element while keeping its space",
+            "It makes an element display as a table cell"
+        ],
+        "answer": [
+            "It enables a flex container, allowing child elements to be aligned and distributed flexibly"
+        ]
+    },
+    {
+        "question": "What is the purpose of the PHP function htmlspecialchars()?",
+        "options": [
+            "It encodes a string for use in a URL",
+            "It converts special HTML characters to their entity equivalents to prevent XSS attacks",
+            "It decodes HTML entities back to characters",
+            "It removes all HTML tags from a string"
+        ],
+        "answer": [
+            "It converts special HTML characters to their entity equivalents to prevent XSS attacks"
+        ]
+    },
+    {
+        "question": "Ce se va intampla daca un formular HTML nu are specificat atributul action?",
+        "options": [
+            "Formularul nu va putea fi submitit",
+            "Datele formularului vor fi trimise catre pagina curenta",
+            "Va aparea o eroare JavaScript",
+            "Datele vor fi trimise catre serverul implicit"
+        ],
+        "answer": [
+            "Datele formularului vor fi trimise catre pagina curenta"
+        ]
+    },
+    {
+        "question": "Care este diferenta dintre metodele GET si POST in contextul securitatii?",
+        "options": [
+            "GET este mai sigur deoarece datele sunt criptate in URL",
+            "POST este mai sigur deoarece datele nu apar in URL si nu sunt salvate in istoricul browserului",
+            "Nu exista diferente de securitate intre GET si POST",
+            "GET este mai sigur deoarece serverul nu salveaza datele"
+        ],
+        "answer": [
+            "POST este mai sigur deoarece datele nu apar in URL si nu sunt salvate in istoricul browserului"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele sunt caracteristici ale cookie-urilor de sesiune?",
+        "options": [
+            "Sunt sterse la inchiderea browserului",
+            "Au o data de expirare setata in viitor",
+            "Sunt stocate pe server",
+            "Sunt stocate in memoria temporara a browserului si nu pe disc"
+        ],
+        "answer": [
+            "Sunt sterse la inchiderea browserului",
+            "Sunt stocate in memoria temporara a browserului si nu pe disc"
+        ]
+    },
+    {
+        "question": "Ce inseamna acronimul DOM in contextul dezvoltarii web?",
+        "options": [
+            "Document Object Model",
+            "Data Object Management",
+            "Dynamic Object Manipulation",
+            "Document Oriented Markup"
+        ],
+        "answer": [
+            "Document Object Model"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele metode jQuery sunt folosite pentru a traversa arborele DOM?",
+        "options": [
+            ".parent()",
+            ".children()",
+            ".find()",
+            ".navigate()"
+        ],
+        "answer": [
+            ".parent()",
+            ".children()",
+            ".find()"
+        ]
+    },
+    {
+        "question": "In JavaScript, care este diferenta dintre var, let si const?",
+        "options": [
+            "var are scop de bloc, let are scop de functie, const nu poate fi reasignat",
+            "var are scop de functie, let are scop de bloc, const nu poate fi reasignat",
+            "Toate trei au acelasi scop si comportament",
+            "var si let sunt interschimbabile, const este o constanta globala"
+        ],
+        "answer": [
+            "var are scop de functie, let are scop de bloc, const nu poate fi reasignat"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele afirmatii despre protocolul HTTPS sunt adevarate?",
+        "options": [
+            "HTTPS foloseste portul 443 implicit",
+            "HTTPS cripteaza datele transmise intre client si server",
+            "HTTPS este acelasi cu HTTP dar mai rapid",
+            "HTTPS previne atacurile de tip SQL Injection"
+        ],
+        "answer": [
+            "HTTPS foloseste portul 443 implicit",
+            "HTTPS cripteaza datele transmise intre client si server"
+        ]
+    }
+]

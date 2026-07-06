@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.0.0"/>
+        <PackageReference Include="Avalonia.Desktop" Version="11.0.0"/>
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0"/>
+        <PackageReference Include="MySqlConnector" Version="2.5.0"/>
+        <PackageReference Include="NLog" Version="6.1.1"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.3"/>
+        <PackageReference Include="BCrypt.Net-Next" Version="4.0.3"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AvaloniaXaml Include="App.xaml"/>
+        <AvaloniaXaml Include="MainWindow.xaml"/>
+        <AvaloniaXaml Include="controllers/AuthViewController.xaml" />
+        <AvaloniaXaml Include="controllers/RaceEventViewController.xaml"/>
+        <AvaloniaXaml Include="controllers/RacerViewController.xaml"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="NLog.config">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    
+</Project>

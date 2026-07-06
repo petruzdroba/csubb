@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #fffaf5 0%, #ffe8d6 100%);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+#app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    width: 400px;
+    height: 500px;
+    perspective: 1000px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.999s, background-color 0.3s ease;
+    border: 2px solid #FFD4B8;
+    background-color: #FFFBF7;
+    border-radius: 22px;
+}
+
+.card-inner.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    padding: 24px 20px;
+    color: #6B4423;
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(255, 160, 100, 0.1);
+    z-index: 1;
+    scrollbar-width: thin;
+    scrollbar-color: #FFDAB9 transparent;
+}
+
+.card-front {
+    transform: rotateY(0deg);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+.question-wrapper {
+    background: linear-gradient(135deg, #FFE8D6 0%, #FFDAB9 100%);
+    padding: 18px 20px;
+    border-radius: 16px;
+    border: 2px solid #FFD4B8;
+    box-shadow: 0 2px 6px rgba(255, 160, 100, 0.12);
+    margin-bottom: 16px;
+    color: #5C3D2E;
+    text-align: center;
+    word-wrap: break-word;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+button, .next-button, .switch-course, .number-button, .score-button {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    padding: 0.65em 2em;
+    border-radius: 22px;
+    border: 2px solid #FFD4B8;
+    color: #6B4423;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease all;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(255, 160, 100, 0.1);
+    z-index: 1;
+    background-color: #FFFBF7;
+    background-image: linear-gradient(135deg, transparent 0%, rgba(255, 216, 185, 0) 50%, transparent 100%);
+    background-size: 200% 100%;
+    background-position: 200% 0;
+}
+
+.next-button, .number-button, .score-button {
+    width: 300px;
+    height: 50px;
+    margin-top: 20px;
+}
+
+.switch-course {
+    margin-bottom: 20px;
+}
+
+button:hover, .next-button:hover, .switch-course:hover, .card:hover {
+    color: white;
+    background-position: 0 0;
+    border-radius: 25px;
+    background-image: linear-gradient(135deg, rgba(255, 216, 185, 0.3) 0%, rgba(255, 200, 159, 0.5) 50%, rgba(255, 216, 185, 0.3) 100%);
+}
+
+button:active, .next-button:active, .switch-course:active {
+    transform: scale(0.95);
+}
+
+.card-front,
+.card-back,
+button,
+.next-button,
+.switch-course,
+.number-button {
+    user-select: none;
+}
+
+.cheeky-checkbox-label {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color: #6B4423;
+    margin-bottom: 8px;
+    cursor: pointer;
+    gap: 8px;
+}
+
+.cheeky-checkbox {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    appearance: none;
+    border: 2px solid #FFD4B8;
+    border-radius: 4px;
+    background: #FFFBF7;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+
+.cheeky-checkbox:hover {
+    border-color: #FFC89F;
+}
+
+.cheeky-checkbox:checked {
+    background-color: #FFC89F;
+    border-color: #FFC89F;
+}
+
+.cheeky-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.emoji {
+    position: fixed;  
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    user-select: none;
+    font-size: 40px;
+    z-index: 9999; 
+}

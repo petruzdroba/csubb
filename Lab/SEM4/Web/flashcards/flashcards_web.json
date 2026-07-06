@@ -1,0 +1,1290 @@
+[
+    {
+        "question": "What is the correct HTML element for inserting a line break?",
+        "options": [
+            "break",
+            "br",
+            "lb",
+            "newline"
+        ],
+        "answer": [
+            "br"
+        ]
+    },
+    {
+        "question": "How can you make a numbered list?",
+        "options": [
+            "ol",
+            "ul",
+            "dl",
+            "list"
+        ],
+        "answer": [
+            "ol"
+        ]
+    },
+    {
+        "question": "Which jQuery method is used to hide selected elements?",
+        "options": [
+            "display(none)",
+            "hide()",
+            "hidden()",
+            "visible(false)"
+        ],
+        "answer": [
+            "hide()"
+        ]
+    },
+    {
+        "question": "Which sign does jQuery use as a shortcut for jQuery?",
+        "options": [
+            "the ? sign",
+            "the $ sign",
+            "there is no shortcut for the jQuery (function)",
+            "the % sign"
+        ],
+        "answer": [
+            "the $ sign"
+        ]
+    },
+    {
+        "question": "PHP server scripts are surrounded by delimiters, which?",
+        "options": [
+            "<script>...</script>",
+            "<&>...</&>",
+            "<?php...?>",
+            "<?php>...</?>"
+        ],
+        "answer": [
+            "<?php...?>"
+        ]
+    },
+    {
+        "question": "How do you display a border like this:\nThe top border = 10 pixels\nThe bottom border = 5 pixels\nThe left border = 20 pixels\nThe right border = 1pixel?",
+        "options": [
+            "border-width:10px 5px 20px 1px;",
+            "border-width:10px 1px 5px 20px;",
+            "border-width:5px 20px 10px 1px;",
+            "border-width:10px 20px 5px 1px;"
+        ],
+        "answer": [
+            "border-width:10px 1px 5px 20px;"
+        ]
+    },
+    {
+        "question": "What is the correct HTML for referring to an external style sheet?",
+        "options": [
+            "<link rel=\"stylesheet\" type=\"text/css\" href=\"mystyle.css\">",
+            "<style src=\"mystyle.css\">",
+            "< script src=\"mystyle.css\" > </script>",
+            "<stylesheet>mystyle.css</stylesheet>"
+        ],
+        "answer": [
+            "<link rel=\"stylesheet\" type=\"text/css\" href=\"mystyle.css\">"
+        ]
+    },
+    {
+        "question": "What is the correct jQuery code to set the background color of all p elements to red?",
+        "options": [
+            "$(\"p\").layout(\"background-color\",\"red\");",
+            "$(\"p\").css(\"background-color\",\"red\");",
+            "$(\"p\").manipulate(\"background-color\",\"red\");",
+            "$(\"p\").style(\"background-color\",\"red\");"
+        ],
+        "answer": [
+            "$(\"p\").css(\"background-color\",\"red\");"
+        ]
+    },
+    {
+        "question": "What is the correct HTML for creating a hyperlink?",
+        "options": [
+            "<a>http://www.cs.ubbcluj.ro</a>",
+            "<a name=\"http://www.cs.ubbcluj.ro\">www.cs.ubbcluj.ro</a>",
+            "<a href=\"http://www.cs.ubbcluj.ro\">csubbcluj</a>",
+            "<a url=\"http://www.cs.ubbcluj.ro\">www.cs.ubbcluj.ro</a>"
+        ],
+        "answer": [
+            "<a href=\"http://www.cs.ubbcluj.ro\">csubbcluj</a>"
+        ]
+    },
+    {
+        "question": "Which superglobal variable holds information about headers, paths, and script locations?",
+        "options": [
+            "$_GLOBALS",
+            "$_GET",
+            "$_SERVER",
+            "$_SESSION"
+        ],
+        "answer": [
+            "$_SERVER"
+        ]
+    },
+    {
+        "question": "What is the correct way to create a function in PHP?",
+        "options": [
+            "create myFunction()",
+            "myFunction = new Function()",
+            "new_function myFunction()",
+            "function myFunction()"
+        ],
+        "answer": [
+            "function myFunction()"
+        ]
+    },
+    {
+        "question": "What is the correct CSS syntax for making all the <p> elements bold?",
+        "options": [
+            "<p style=\"text-size:bold;\">",
+            "p {font-weight:bold;}",
+            "<p style=\"font-size:bold;\">",
+            "p {text-size:bold;}"
+        ],
+        "answer": [
+            "p {font-weight:bold;}"
+        ]
+    },
+    {
+        "question": "How do you create an array in PHP?",
+        "options": [
+            "$cars = \"Volvo\", \"BMW\", \"Toyota\";",
+            "$cars = array(\"Volvo\", \"BMW\", \"Toyota\");",
+            "$cars = array[\"Volvo\", \"BMW\", \"Toyota\"];",
+            "$cars = {\"Volvo\", \"BMW\", \"Toyota\"};"
+        ],
+        "answer": [
+            "$cars = array(\"Volvo\", \"BMW\", \"Toyota\");"
+        ]
+    },
+    {
+        "question": "Inside which HTML element do we put the JavaScript?",
+        "options": [
+            "<javascript>",
+            "<js>",
+            "<script>",
+            "<scripting>"
+        ],
+        "answer": [
+            "<script>"
+        ]
+    },
+    {
+        "question": "Choose the correct HTML element for the largest heading:",
+        "options": [
+            "<heading>",
+            "<head>",
+            "<h6>",
+            "<h1>"
+        ],
+        "answer": [
+            "<h1>"
+        ]
+    },
+    {
+        "question": "What is the correct way to write a JavaScript array?",
+        "options": [
+            "var colors = (1:\"red\", 2:\"green\", 3:\"blue\")",
+            "var colors = 1 = (\"red\"), 2 = (\"green\"), 3 = (\"blue\")",
+            "var colors = [\"red\", \"green\", \"blue\"]",
+            "var colors = \"red\", \"green\", \"blue\""
+        ],
+        "answer": [
+            "var colors = [\"red\", \"green\", \"blue\"]"
+        ]
+    },
+    {
+        "question": "Which HTML attribute is used to define inline styles?",
+        "options": [
+            "styles",
+            "style",
+            "class",
+            "font"
+        ],
+        "answer": [
+            "style"
+        ]
+    },
+    {
+        "question": "What is the correct JavaScript syntax to change the content of the HTML element below?\n<p id=\"demo\">This is a demonstration.</p>",
+        "options": [
+            "document.getElementById(\"demo\").innerHTML = \"Hello World!\";",
+            "document.getElementByName(\"p\").innerHTML = \"Hello World!\";",
+            "document.getElement(\"p\").innerHTML = \"Hello World!\";",
+            "#demo.innerHTML = \"Hello World!\";"
+        ],
+        "answer": [
+            "document.getElementById(\"demo\").innerHTML = \"Hello World!\";"
+        ]
+    },
+    {
+        "question": "What element does the following CSS selector selects:\np#abc     .doit { .... }",
+        "options": [
+            "the element with the class \"doit\" that has a direct parent of type \"p\" having the ID \"abc\"",
+            "the element with the class \"doit\" that has an ancestor of type \"p\" having the ID \"abc\"",
+            "the elements with ID \"abc\" and type \"p\" and the elements with class \"doit\"",
+            "the elements with the class \"abc\" and type \"p\" and the elements with ID \"doit\""
+        ],
+        "answer": [
+            "the element with the class \"doit\" that has an ancestor of type \"p\" having the ID \"abc\""
+        ]
+    },
+    {
+        "question": "Look at the following selector: $(\"div\"). What does it select?",
+        "options": [
+            "the last div element",
+            "all div elements",
+            "the first div element",
+            "the children of every div element"
+        ],
+        "answer": [
+            "all div elements"
+        ]
+    },
+    {
+        "question": "#RRAABB este un cod de culoare valid?",
+        "options": [
+            "nu, deoarece codul de culoare hexazecimal trebuie sa contina inca doua cifre pentru opacitate",
+            "da, deoarece valorile sunt specificate in baza 16",
+            "da deoarece RR specifica cantitatea de rosu, AA cantitatea de verde si BB cantitatea de albastru",
+            "nu, deoarece valorile nu sunt specificate in baza 16"
+        ],
+        "answer": [
+            "nu, deoarece valorile nu sunt specificate in baza 16"
+        ]
+    },
+    {
+        "question": "In JavaScript type of 1/0 este Nan pentru ca:",
+        "options": [
+            "type of 1/0 nu are rezultatul NaN, ci Infinity",
+            "type of 1 este Number si Number nu se poate imparti la 0, rezultatul fiind NaN",
+            "1/0 este egal cu Infinity si type of Infinity este NaN",
+            "1/0 este NaN si type of NaN este NaN"
+        ],
+        "answer": [
+            "type of 1 este Number si Number nu se poate imparti la 0, rezultatul fiind NaN"
+        ]
+    },
+    {
+        "question": "Aranjati in ordine, de la cea mai simpla si putin customizabila, la cea mai configurabila si parametrizabila urmatoarele functii care permit realizarea unui apel AJAX din jQuery:",
+        "options": [
+            "$.get, .load, $.post",
+            ".load, $.get, $.ajax",
+            "$.post, .load, $.ajax",
+            "$.ajax, .load, $.get"
+        ],
+        "answer": [
+            ".load, $.get, $.ajax"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele reprezinta masuri pentru evitarea injectiilor SQL?",
+        "options": [
+            "verificari riguroase la nivelul backend-ului legate de validitatea datelor introduse precum si folosirea de biblioteci specializate pentru persistarea datelor (ORM-uri)",
+            "dezactivare in cadrul aplicatiei Web a posibilitatii rularii de cod SQL de catre browser",
+            "verificari riguroase la nivelul browserului legate de validitatea datelor introduse",
+            "folosidera la nivelul backend-ului de mecanisme de tipul \"prepared statement\""
+        ],
+        "answer": [
+            "verificari riguroase la nivelul backend-ului legate de validitatea datelor introduse precum si folosirea de biblioteci specializate pentru persistarea datelor (ORM-uri)",
+            "folosidera la nivelul backend-ului de mecanisme de tipul \"prepared statement\""
+        ]
+    },
+    {
+        "question": "Ce face urmatoarea secventa de cod?\n\nvar content = $('li').html();\n$('li').append('<em>' + content + '</em>');",
+        "options": [
+            "introduce continutului primului list item inaintea fiecarui list item",
+            "continutul dint toate li-urile vor fi scrise cu italic",
+            "introduce content dupa primul list item",
+            "introduce continutului primului list item dupa fiecare list item",
+            "continutul din primul li va fi scris cu italic"
+        ],
+        "answer": [
+            "introduce continutului primului list item dupa fiecare list item"
+        ]
+    },
+    {
+        "question": "Un formular care contine un input de tip file trebuie:",
+        "options": [
+            "sa aiba specificat atributul enctype setat la multipart/form-data",
+            "subsmis prin metoda POST",
+            "sa aiba specificat atributul acceptat care specifica tipul fisierelor ce se pot trimite la server",
+            "sa aiba specificat atributul content care sa indice spre continutul fisierului",
+            "submist prin metoda GET"
+        ],
+        "answer": [
+            "sa aiba specificat atributul enctype setat la multipart/form-data",
+            "subsmis prin metoda POST"
+        ]
+    },
+    {
+        "question": "Fie doua variabile $a si $b in PHP ce contin siruri de caractere. Aceste doua siruri in PHP se pot concatena folosind:",
+        "options": [
+            "$s = $a + $b;",
+            "$s = $a . $b;",
+            "$s = \"$a$b\";",
+            "$s = '$a$b';"
+        ],
+        "answer": [
+            "$s = $a . $b;",
+            "$s = \"$a$b\";"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele metode HTTP nu presupun trimiterea de continut dupa antete in cadrul unei cereri HTTP?",
+        "options": [
+            "GET",
+            "POST",
+            "PUT",
+            "HEAD"
+        ],
+        "answer": [
+            "GET",
+            "HEAD"
+        ]
+    },
+    {
+        "question": "Ce indica un cod de raspuns de forma 3xx trimis prin intermediul protocolului HTTP de un server web?",
+        "options": [
+            "o eroare efectuata de client",
+            "o eroare aparuta pe partea de server",
+            "mutarea documentului cerut la o alta adresa",
+            "redirecteaza clientul sprea alt URL"
+        ],
+        "answer": [
+            "mutarea documentului cerut la o alta adresa",
+            "redirecteaza clientul sprea alt URL"
+        ]
+    },
+    {
+        "question": "Considerand urmatoarele elemente html:\n\n<div class=\"info\">John Doe</div>\n<div class=\"info number\" id=\"age\">25</div>\n\n Ce selector CSS ar selecta doar cel de-al doilea div (cel cu continutul \"25\")?",
+        "options": [
+            ".info.number",
+            ".info .number",
+            ".info #age",
+            ".info[id]"
+        ],
+        "answer": [
+            ".info.number",
+            ".info[id]"
+        ]
+    },
+    {
+        "question": "Cum se ascund toate div-urile din pagina folosind jQuery? *",
+        "options": [
+            "$(\"div\").hidden();",
+            "$(\"div\").visible(false);",
+            "$(\"div\").css(\"visibility\",\"hidden\");",
+            "$(\"div\").css(\"visibility\", \"hide\");"
+        ],
+        "answer": [
+            "$(\"div\").css(\"visibility\",\"hidden\");"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele afirmatii referitoare la filtrele de vizibilitate sunt adevarate?",
+        "options": [
+            "Selectorul :hidden se foloseste pentru a selecta toate elementele ascunse in pagina",
+            "Selectorul :visible se foloseste pentru a selecta toate elementele care au display:none sau width/height:0",
+            "Selectorul :hidden se foloseste pentru a selecta toate elementele care ocupa spatiu in pagina",
+            "Selectorul :visible se foloseste pentru a selecta toate elementele care ocupa spatiu in pagina",
+            "Selectorul :visible se foloseste pentru a selecta toate elementele care au visibility:hidden si opacity:0"
+        ],
+        "answer": [
+            "Selectorul :hidden se foloseste pentru a selecta toate elementele ascunse in pagina",
+            "Selectorul :visible se foloseste pentru a selecta toate elementele care ocupa spatiu in pagina"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele afirmatii sunt adevarate?",
+        "options": [
+            "MySQL OldExtension (mysql_*) nu suporta \"prepared statement\"-uri, dar permite evitarea injectiilor SQL",
+            "MySQL Improved Extension (mysqli_*) asigura in plus fata de PDO indepententa fata de sistemul de gestiune al bazelor de date folosit",
+            "MySQL Improved Extension (mysqli_*) asigura in plus fata de PDO posibilitatea folosirii de \"prepared statement\"-uri"
+        ],
+        "answer": [
+            "MySQL OldExtension (mysql_*) nu suporta \"prepared statement\"-uri, dar permite evitarea injectiilor SQL"
+        ]
+    },
+    {
+        "question": "Pe ce nivel al stivei TCP/IP se afla protocolul HTTP?",
+        "options": [
+            "Aplicatie",
+            "Internet",
+            "Legatura de date",
+            "Transport"
+        ],
+        "answer": [
+            "Aplicatie"
+        ]
+    },
+    {
+        "question": "Pentru inserarea de diacritice intr-un documetn HTML se poate folosi:",
+        "options": [
+            "Editoare capabile sa salveze fisierul UTF-8 si specificarea acestui set de caractere in sectiunea head a documentului HTML",
+            "Tastatura setata pe limba romana si specificarea atributului lang=\"ro-RO\" la tagul HTML",
+            "Entitati HTML"
+        ],
+        "answer": [
+            "Editoare capabile sa salveze fisierul UTF-8 si specificarea acestui set de caractere in sectiunea head a documentului HTML",
+            "Entitati HTML"
+        ]
+    },
+    {
+        "question": "Un apel AJAX este in starea 2 daca:",
+        "options": [
+            "s-a facut send dar inca nu a sosit raspunsul de la server",
+            "s-a facut receive, dar nu s-a facut send",
+            "s-a facut si send si receive, chiar inainte de close",
+            "s-a facut open dar inca nu s-a facut send"
+        ],
+        "answer": [
+            "s-a facut send dar inca nu a sosit raspunsul de la server"
+        ]
+    },
+    {
+        "question": "Cum se declara corect un array in JavaScript?",
+        "options": [
+            "var sutdenti = (\"Ion\", \"Maria\", \"Vasile\");",
+            "var studenti = {\"Ion\", \"Maria\", \"Vasile\"};",
+            "var studenti = \"Ion\", \"Maria\", \"Vasile\";\"",
+            "var studenti = [\"Ion\", \"Maria\", \"Vasile\"];"
+        ],
+        "answer": [
+            "var studenti = [\"Ion\", \"Maria\", \"Vasile\"];"
+        ]
+    },
+    {
+        "question": "Un fisier PHP poate fi executat: *",
+        "options": [
+            "De catre browser",
+            "In linia de comanda folosind interpretorul php.exe pe Windows sau php pe Linux",
+            "De catre un modul din cadrul serverului web",
+            "De catre interpretorul de comenzi al sistemului de operare pe care este instalata stiva AMP"
+        ],
+        "answer": [
+            "De catre un modul din cadrul serverului web",
+            "In linia de comanda folosind interpretorul php.exe pe Windows sau php pe Linux"
+        ]
+    },
+    {
+        "question": "Pentru evitarea injectiilor SQL in PHP 7 se recomanda: *",
+        "options": [
+            "Folosirea de \"prepared statement\"-uri",
+            "Evitarea acestora folosind functia mysql_real_escape_string",
+            "Eliminarea ghilimelelor si apostrofelor din datele primite de la client"
+        ],
+        "answer": [
+            "Folosirea de \"prepared statement\"-uri"
+        ]
+    },
+    {
+        "question": "Un apel AJAX se poate face catre o resursa statica oferita de end-point-ul de pe server? *",
+        "options": [
+            "Doar daca in QUERY_STRING / body-ul POST-ului se trimit spre server si parametri",
+            "Nu, niciodata",
+            "Da, intotdeauna"
+        ],
+        "answer": [
+            "Da, intotdeauna"
+        ]
+    },
+    {
+        "question": "Unde se poate defini un stil CSS pentru o anumita clasa?",
+        "options": [
+            "in interiorul tag-ului <style>, localizat in antetul paginii html",
+            "inline, cu ajutorul atributului style aplicat pe un tag html",
+            "intr-un fisier extern specificat cu ajutorul tag-ului <link>"
+        ],
+        "answer": [
+            "in interiorul tag-ului <style>, localizat in antetul paginii html",
+            "intr-un fisier extern specificat cu ajutorul tag-ului <link>"
+        ]
+    },
+    {
+        "question": "Injectiile JavaScript se datoreaza:",
+        "options": [
+            "Unor buguri prezente la nivelul browserului web",
+            "Validarii insuficiente server-side la nivelul scriptului ce prelucreaza datele din formular",
+            "Folosirii protocolului http in locul protocolului https",
+            "Validarii insuficiente chiar la nivelul codului JavaScript"
+        ],
+        "answer": [
+            "Validarii insuficiente server-side la nivelul scriptului ce prelucreaza datele din formular"
+        ]
+    },
+    {
+        "question": "De pe client se doreste salvarea unor date despre o persoana (numele si varsta acesteia) folosind un apel AJAX realizat print metoda HTTP GET. Care dintre urmatoarele apeluri realizeaza acest lucru:",
+        "options": [
+            "$.get(\"save.php\", {nume: 'Ion', varsta: 10})",
+            "$.get(\"save.php?nume=Ion&varsta=10\")",
+            "$.get(\"save.php\", 'nume=Ion&varsta=10')"
+        ],
+        "answer": [
+            "$.get(\"save.php\", {nume: 'Ion', varsta: 10})",
+            "$.get(\"save.php?nume=Ion&varsta=10\")",
+            "$.get(\"save.php\", 'nume=Ion&varsta=10')"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele afirmatii despre metoda HTTP POST sunt adevarate?",
+        "options": [
+            "este recomandat a fi folosita pentru a submite un formular care contine un input de tip password",
+            "trebuie neaparat folosita pentru a submite un formular care contine un input de tip video",
+            "trebuie neaparat folosita pentru a submite un formular care contine un input de tip file"
+        ],
+        "answer": [
+            "este recomandat a fi folosita pentru a submite un formular care contine un input de tip password",
+            "trebuie neaparat folosita pentru a submite un formular care contine un input de tip video",
+            "trebuie neaparat folosita pentru a submite un formular care contine un input de tip file"
+        ]
+    },
+    {
+        "question": "Pentru a verifica succesul unui apel AJAX trebuie ca:",
+        "options": [
+            "readyState sa fie 4 si request.status sa fie 200",
+            "readyState sa fie 4 si request.status sa fie 100",
+            "readyState sa fie 1 si request.status sa fie 200",
+            "readyState sa fie 0 si request.status sa fie 100"
+        ],
+        "answer": [
+            "readyState sa fie 4 si request.status sa fie 200"
+        ]
+    },
+    {
+        "question": "In functie de context, in jQuery $(this) poate fi folosit pentru: *",
+        "options": [
+            "pentru a construi un wrapper jQuery in jurul obiectului window",
+            "pentru a construi un wrapper jQuery in jurul documentului",
+            "a returna obiectul JavaScript de baza in jurul caruia este construit obiectul jQuery curent",
+            "a construi un wrapper jQuery in jurul obiectului pe care se apeleaza un eveniment in interiorul functiei de tratare a evenimentului"
+        ],
+        "answer": [
+            "pentru a construi un wrapper jQuery in jurul obiectului window",
+            "a construi un wrapper jQuery in jurul obiectului pe care se apeleaza un eveniment in interiorul functiei de tratare a evenimentului"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele elemente au toate display-urile implicit block?",
+        "options": [
+            "ul, ol, p, img, div",
+            "ul, ol, p, table, input",
+            "input, div, p, form",
+            "div, p, ul, ol, h1"
+        ],
+        "answer": [
+            "div, p, ul, ol, h1"
+        ]
+    },
+    {
+        "question": "Unde se poate insera cod JavaScript intr-un document HTML?",
+        "options": [
+            "doar in sectiunea <body>",
+            "doar in sectiunea <head>",
+            "atat in sectiunea <head> cat si in sectiunea <body>"
+        ],
+        "answer": [
+            "atat in sectiunea <head> cat si in sectiunea <body>"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele functii PHP este folosita pentru a preveni vulnerabilitatile de tip Cross-Site Scripting (XSS)?",
+        "options": [
+            "mysqli_real_escape_string",
+            "htmlentities",
+            "filter_xss"
+        ],
+        "answer": [
+            "htmlentities"
+        ]
+    },
+    {
+        "question": "Cum se poate \"fura\" un cookie de sesiune al unui alt utilizator?",
+        "options": [
+            "Prin intermediul unui cod JavaScript injectat de catre atacator",
+            "Prin lipsa invalidarii sesiunii (logout) si navigarea in continuare pe un site malitios",
+            "Prin interceptarea datelor la nivelul retelei de transport in lispa folosirii unei conexiuni sigure"
+        ],
+        "answer": [
+            "Prin intermediul unui cod JavaScript injectat de catre atacator",
+            "Prin lipsa invalidarii sesiunii (logout) si navigarea in continuare pe un site malitios",
+            "Prin interceptarea datelor la nivelul retelei de transport in lispa folosirii unei conexiuni sigure"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele vulnerabilitati ar putea fi exploatata pentru a fura sesiunea unui utilizator autentificat? *",
+        "options": [
+            "Cross-Site Scripting (XSS)",
+            "Cross-Site Request Forgery (CSRF)",
+            "SQL Injection"
+        ],
+        "answer": [
+            "Cross-Site Scripting (XSS)"
+        ]
+    },
+    {
+        "question": "Ce se va afisa in consola browserului dupa executarea urmatorului cod JavaScript?\n\nif (1==='1') {\n    console.log(\"1 === '1'\");\n} else if (1 == true) {\n    console.log(\"1 == true\");\n} else if (1 === 1.0) {\n    console.log(\"1 === 1.0\");\n}\n",
+        "options": [
+            "nimic",
+            "1 === 1.0",
+            "1 == true",
+            "1 === '1'"
+        ],
+        "answer": [
+            "1 == true"
+        ]
+    },
+    {
+        "question": "Un URL de pe back-end poate fi invocat (cerut) atat prin GET cat si prin POST?",
+        "options": [
+            "Nu",
+            "Da",
+            "Doar daca datele primite fir prin GET fie prin POST sunt aceleasi (parametrii trimisi sunt aceeasi)"
+        ],
+        "answer": [
+            "Da"
+        ]
+    },
+    {
+        "question": "Ce face urmatoarea secventa de cod\n\n$(':not(p)').addClass('patrat').addClass('colorat');",
+        "options": [
+            "selecteaza toate paragrafele care au clasa patrat si clasa colorat",
+            "selecteaza toate elementele care au clasa patrat si clasa colorat cu exceptia paragrafelor",
+            "selecteaza toate elementele cu exceptia paragrafelor care au clasa patrat si clasa colorat",
+            "selecteaza toate elementele cu exceptia paragrafelor si le adauga clasele patrat si colorat"
+        ],
+        "answer": [
+            "selecteaza toate elementele cu exceptia paragrafelor si le adauga clasele patrat si colorat"
+        ]
+    },
+    {
+        "question": "Cum se declara un array vid in PHP?",
+        "options": [
+            "$emptyArray = []",
+            "$emptyArray = array()",
+            "$emptyArray = null",
+            "$emptyArray = {}"
+        ],
+        "answer": [
+            "$emptyArray = []",
+            "$emptyArray = array()"
+        ]
+    },
+    {
+        "question": "Pentru a defini o lista ordonata a caror itemi sunt precedati de litere din alfabetul grec in CSS se foloseste:",
+        "options": [
+            "list-type:lower-greek;",
+            "list-style-type:lower-greek;",
+            "list:lower-greek;"
+        ],
+        "answer": [
+            "list-style-type:lower-greek;"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele tag-uri HTML sunt deprecated in HTML5?",
+        "options": [
+            "center",
+            "font",
+            "b",
+            "body"
+        ],
+        "answer": [
+            "center",
+            "font"
+        ]
+    },
+    {
+        "question": "Cum se insereaza corect un fisier extern JavaScript denumit test.js intr-un document HTML?",
+        "options": [
+            "<script name=\"test.js\"></script>",
+            "<script src=\"test.js\">",
+            "<script href=\"test.js\">",
+            "<script src=\"test.js\"></script>"
+        ],
+        "answer": [
+            "<script src=\"test.js\"></script>"
+        ]
+    },
+    {
+        "question": "Care sunt asemanarile si diferentele dintre atributele id si name?",
+        "options": [
+            "atributul name se foloseste pentru referirea unui element din CSS/JavaScript",
+            "doua elemente HTML pot avea acelasi nume, dar nu pot avea acelasi id",
+            "orice tag accepta atributul id, nu toate tagurile accepta atributul name",
+            "orice tag accepta atributul name, nu toate tagurile accepta atributul id",
+            "doua elemente HTML pot avea acelasi id, dar nu pot avea acelasi name",
+            "atributul id se foloseste pentru referirea unui element din CSS/JavaScript"
+        ],
+        "answer": [
+            "atributul name se foloseste pentru referirea unui element din CSS/JavaScript",
+            "doua elemente HTML pot avea acelasi nume, dar nu pot avea acelasi id",
+            "orice tag accepta atributul id, nu toate tagurile accepta atributul name",
+            "atributul id se foloseste pentru referirea unui element din CSS/JavaScript"
+        ]
+    },
+    {
+        "question": "Pentru a redirectiona automat browser-ul spre un nou URL server-ul poate:",
+        "options": [
+            "raspunde clientului cu un cod de raspuns de forma 3xx impreuna cu un header location",
+            "trimite ca si continut HTML clientului un link de forma <a href=\"http://url-nou\"> si simuleaza din Javacript un click de mouse pe acest link",
+            "include noul URL direct pe back-end folosind o directiva include",
+            "redirectioneaza clientul folosind o secventa de cod in JavaScript de forma windows.location = \"http://url-nou\";"
+        ],
+        "answer": [
+            "raspunde clientului cu un cod de raspuns de forma 3xx impreuna cu un header location",
+            "trimite ca si continut HTML clientului un link de forma <a href=\"http://url-nou\"> si simuleaza din Javacript un click de mouse pe acest link",
+            "redirectioneaza clientul folosind o secventa de cod in JavaScript de forma windows.location = \"http://url-nou\";"
+        ]
+    },
+    {
+        "question": "Ce se intelege prin scop global in JavaScript",
+        "options": [
+            "obiectul window",
+            "obiectul document",
+            "variabila this",
+            "scopul imediat exterior celui in care este declarata o functie"
+        ],
+        "answer": [
+            "obiectul window"
+        ]
+    },
+    {
+    "question": "Care este forma corecta de folosire a tag-ului img in cadrul unui document HTML?",
+    "options": [
+        "<img>poza.jpg</img>",
+        "<img src=\"poza.jpg\"></img>",
+        "&lt;img src=&quot;poza.jpg&quot;/&gt;",
+        "&lt;img src=&quot;poza.jpg&quot;&gt;"
+    ],
+    "answer": [
+        "&lt;img src=&quot;poza.jpg&quot;/&gt;",
+        "&lt;img src=&quot;poza.jpg&quot;&gt;"
+    ]
+    },
+    {
+        "question": "Pozitionarea relative este folosita pentru:",
+        "options": [
+            "a pozitiona/muta un element in diferite directii relativ la pozitia sa normala",
+            "a pozitiona un element relativ la obiectul document",
+            "a pozitiona un element relativ la fereastra browserului (obiectul window)",
+            "un container parinte care are elemente fiu pozitionate absolut"
+        ],
+        "answer": [
+            "a pozitiona/muta un element in diferite directii relativ la pozitia sa normala",
+            "un container parinte care are elemente fiu pozitionate absolut"
+        ]
+    },
+    {
+        "question": "In ce conditii metoda send pe un obiect AJAX se apeleaza intotdeauna cu parametrul sirul vid?",
+        "options": [
+            "Daca requestul AJAX se face print GET",
+            "Daca requestul AJAX se face print POST",
+            "Metoda send nu se poate apela cu parametrul sirul vid"
+        ],
+        "answer": [
+            "Daca requestul AJAX se face print GET"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele metode jQuery folosesc AJAX",
+        "options": [
+            "$.ajax, $.get, .load",
+            "$.post, $.request, .load",
+            "$.ajax, $.get, $.post, $.request",
+            "$.get, .load, .unload"
+        ],
+        "answer": [
+            "$.ajax, $.get, .load"
+        ]
+    },
+    {
+        "question": "In PHP return este folosit pentru:",
+        "options": [
+            "a termina scriptul curent care se executa si a reda controlul executiei unui eventual script care l-a inclus pe scriptul curent cu include sau require",
+            "a termina executia logicii ce se executa pe server si a trimite raspunsul complet clientului",
+            "a trimite clientului un anumit raspuns in urma cererii facute de acesta",
+            "a termina executia unei functii"
+        ],
+        "answer": [
+            "a termina scriptul curent care se executa si a reda controlul executiei unui eventual script care l-a inclus pe scriptul curent cu include sau require",
+            "a termina executia unei functii"
+        ]
+    },
+    {
+        "question": "Elementul <th> trebuie folosit in cadrul unui tabel pentru:",
+        "options": [
+            "centrarea textului si bold-area continutului unei celule",
+            "definirea unei celule avand semnificatia de celula ce face parte din header-ul tabelului",
+            "definirea unui nou rand in tabel"
+        ],
+        "answer": [
+            "definirea unei celule avand semnificatia de celula ce face parte din header-ul tabelului"
+        ]
+    },
+    {
+        "question": "Raspunsul sosit printr-un apel AJAX poate fi: *",
+        "options": [
+            "un fisier text",
+            "un fisier JSON",
+            "un fisier XML",
+            "un fisier JavaScript"
+        ],
+        "answer": [
+            "un fisier text",
+            "un fisier JSON",
+            "un fisier XML"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele categorii de aplicatii se pot folosi de DOCTYPE pentru a \"intelege\" mai bine documentul HTML?",
+        "options": [
+            "Servere web",
+            "Editoare si medii IDE (Integrated Development Environment)",
+            "Motoare de cautare",
+            "Browsere"
+        ],
+        "answer": [
+            "Editoare si medii IDE (Integrated Development Environment)",
+            "Browsere"
+        ]
+    },
+    {
+        "question": "Care dintre informatiile de mai jos despre atributele readonly si disabled sunt adevarate?",
+        "options": [
+            "valoarea unui input readonly se trimite serverului la submit, pe cand cea a unui input disabled nu se trimite serverului",
+            "valoarea unui input readonly poate fi modificata din JavaScript pe cand cea a unui input disabled nu poate fi editata nici din JavaScript",
+            "atributele specifica acelasi lucru, faptul ca un input readonly sau disabled nu poate fi editat"
+        ],
+        "answer": [
+            "valoarea unui input readonly se trimite serverului la submit, pe cand cea a unui input disabled nu se trimite serverului"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele au toate display-ul implicit inline?",
+        "options": [
+            "a, span, b, i, li",
+            "img, span, b, i, a",
+            "p, a, b, i, span",
+            "b, i, li, span, img"
+        ],
+        "answer": [
+            "img, span, b, i, a"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele informatii despre tagul <title> sunt adevarate?",
+        "options": [
+            "este folosit in mare masura de catre motoarele de cautare",
+            "este optional",
+            "este afisat in bara de titlu sau de bookmarks (favorite)",
+            "nu exista tag-ul title ci doar atributul title"
+        ],
+        "answer": [
+            "este folosit in mare masura de catre motoarele de cautare",
+            "este afisat in bara de titlu sau de bookmarks (favorite)"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele antete sunt obligatorii pentru o cerere HTTP in cazul folosirii protocolului HTTP/1.1?",
+        "options": [
+            "Content-Type",
+            "Host",
+            "User-Agent",
+            "Cookie"
+        ],
+        "answer": [
+            "Host"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele afirmatii sunt adevarate?",
+        "options": [
+            "definitiile de stil interne au prioritate inaintea celor externe",
+            "o definitie de stil aplicata clasei \"bate\" ca prioritate definitia de stil aplicata pe \"tag\"",
+            "o proprietate din cadrul unui stil inline suprascrie o proprietate dintr-o definitie de stil aplicata elementului folosind un selector bazat pe id"        ],
+        "answer": [
+            "o definitie de stil aplicata clasei \"bate\" ca prioritate definitia de stil aplicata pe \"tag\"",
+            "o proprietate din cadrul unui stil inline suprascrie o proprietate dintr-o definitie de stil aplicata elementului folosind un selector bazat pe id"
+        ]
+    },
+    {
+        "question": "Ce face functia session_start() in PHP?",
+        "options": [
+            "Daca este vorba de o sesiune noua, genereaza un cookie aleator de desiune pe care il trimite folosind antetul HTTP al clientului",
+            "Initializeaza intotdeauna o noua sesiune",
+            "Porneste sesiunea existenta deja si trimite clientului cookie-ul de sesiune prin intermediul antetului HTTP Cookie",
+            "Daca este vorba de o sesiune veche, determina despre ce sesiune este vorba pe baza valorii cookie-ului de sesiune trimis de client prin intermediul antetului HTTP Cookie si populeaza tabloul $_SESSION in mod corespunzator"
+        ],
+        "answer": [
+            "Daca este vorba de o sesiune noua, genereaza un cookie aleator de desiune pe care il trimite folosind antetul HTTP al clientului",
+            "Daca este vorba de o sesiune veche, determina despre ce sesiune este vorba pe baza valorii cookie-ului de sesiune trimis de client prin intermediul antetului HTTP Cookie si populeaza tabloul $_SESSION in mod corespunzator"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele declaratii este corecta pentru definirea tabloului $fructe in PHP?",
+        "options": [
+            "$fructe=array(\"struguri\", \"mere\", \"pere\");",
+            "$fructe=(\"struguri\", \"mere\", \"pere\");",
+            "$fructe=\"struguri\", \"mere\", \"pere\";\"",
+            "$fructe={\"struguri\", \"mere\", \"pere\"};",
+            "$fructe=array[\"struguri\", \"mere\", \"pere\"];"
+        ],
+        "answer": [
+            "$fructe=array(\"struguri\", \"mere\", \"pere\");"
+        ]
+    },
+    {
+        "question": "Unde se poate folosi functia header in PHP? *",
+        "options": [
+            "in primul scriptlet din fisierul PHP si doar cu conditia ca scriptul PHP sa nu fi trimis anterior spre browser orice forma de continut (cu exceptia unor eventuale antete)",
+            "in cadrul unui scriptlet PHP plasat in sectiunea a documentului HTMl generat de fisierul PHP",
+            "in orice scrptlet din cadrul fisierului PHP"
+        ],
+        "answer": [
+            "in primul scriptlet din fisierul PHP si doar cu conditia ca scriptul PHP sa nu fi trimis anterior spre browser orice forma de continut (cu exceptia unor eventuale antete)"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele informatii despre un URL accesat prin POST sunt adevarate?",
+        "options": [
+            "Reaccesarea URL-ului respectiv prin reload (refresh) la pagina presupune o confirmare din partea utilizatorului",
+            "URL-ului respectiv i se poate face bookmark (poate fi adaugat la favorite)",
+            "URL respectiv poate fi partajat (share) pe Facebook, Whatsapp, Skype, etc."
+        ],
+        "answer": [
+            "Reaccesarea URL-ului respectiv prin reload (refresh) la pagina presupune o confirmare din partea utilizatorului"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele sunt adevarate despre un server web:",
+        "options": [
+            "un server web poate fi configurat sa accepte cereri prin protocolul HTTP pe portul 443",
+            "un server web poate fi configurat sa accepte cereri printr-un URL de forma file://...",
+            "implicit un server web asteapta cereri prin protocolul HTTP pe portul 80 si cereri prin protocolul HTTPS pe portul 443"
+        ],
+        "answer": [
+            "un server web poate fi configurat sa accepte cereri prin protocolul HTTP pe portul 443",
+            "implicit un server web asteapta cereri prin protocolul HTTP pe portul 80 si cereri prin protocolul HTTPS pe portul 443"
+        ]
+    },
+    {
+        "question": "Dandu-se doua containere, unul parinte si unul fiu, care dintre urmatoarele pozitionari are/au sens?",
+        "options": [
+            "pozitionarea unui fiu \"absolute\" in cadrul unui parinte cu pozitionare \"relative\"",
+            "pozitionare unui fiu \"relative\" in cadrul unui parinte cu pozitionare \"virtual\"",
+            "pozitionare unui fiu \"flex\" intr-un parinte \"relative\"",
+            "pozitionare unui fiu \"fixed\" intr-un parinte cu pozitionare \"relative\""
+        ],
+        "answer": [
+            "pozitionarea unui fiu \"absolute\" in cadrul unui parinte cu pozitionare \"relative\""
+        ]
+    },
+    {
+        "question": "Cum se introduc comentarii intr-un scriptlet PHP? *",
+        "options": [
+            "//",
+            "<!-- -->",
+            "/* ... */",
+            "#"
+        ],
+        "answer": [
+            "//",
+            "/* ... */",
+            "#"
+        ]
+    },
+    {
+        "question": "Functia specificata ca si valoare pentru proprietatea onreadystatechange se apeleaza:",
+        "options": [
+            "Este posibil sa se apeleze si atunci cand obiectul nu isi schimba starea dar continua sa vina raspuns de la server",
+            "Atunci cand serverul schimba codul de raspuns (response code-ul) care e trimis clientului",
+            "Atunci cand obiectul AJAX isi schimba starea"
+        ],
+        "answer": [
+            "Este posibil sa se apeleze si atunci cand obiectul nu isi schimba starea dar continua sa vina raspuns de la server",
+            "Atunci cand obiectul AJAX isi schimba starea"
+        ]
+    },
+    {
+        "question": "Conectarea la o baza de date intr-o aplicatie web Java se recomanda a fi facuta:",
+        "options": [
+            "La initializarea aplicatiei web/ a contextului",
+            "La fiecare request in cadrul metodei doGet sau doPut",
+            "La pornirea containerului, o singura conexiune pentru toate aplicatiile web (din motive de performanta)"
+        ],
+        "answer": [
+            "La initializarea aplicatiei web/ a contextului"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele expresii jQuery se pot folosi interschimbabil?",
+        "options": [
+            "$(ready(function() {})) cu $(document).ready(function() {})",
+            "$(function() {}) cu $(document).ready(function() {})",
+            "$(selector).each(function() {}) cu $(selector.each).function() {}"
+        ],
+        "answer": [
+            "$(function() {}) cu $(document).ready(function() {})"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele reprezinta masuri pentru evitarea vulnerabilitatilor de tip XSS:",
+        "options": [
+            "verificari riguroase la nivelul browserului legate de validitatea datelor introduse",
+            "folosirea la nivelul browserului a unor biblioteci de functii JavaScript consacrate si testate anterior",
+            "inlocuirea anumitor caractere din datele primite de la client cu entitatile HTML corespunzatoare",
+            "dezactivarea din cadrul aplicatiei web a posibilitatii rularii de cod JavaScript de catre browser"
+        ],
+        "answer": [
+            "inlocuirea anumitor caractere din datele primite de la client cu entitatile HTML corespunzatoare"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele tag-uri este folosit pentru definirea de stiluri CSS interne?",
+        "options": [
+            "script",
+            "css",
+            "style",
+            "class"
+        ],
+        "answer": [
+            "style"
+        ]
+    },
+    {
+        "question": "Care dintre sintaxele CSS de mai jos este corecta/sunt corecte?",
+        "options": [
+            "body:color=red",
+            "{body:color=red}",
+            "body{color:#abc}",
+            "{body; color:blue}",
+            "body{color:yellow}"
+        ],
+        "answer": [
+            "body{color:#abc}",
+            "body{color:yellow}"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele reprezinta specificatii ale unor metode din API-ul jQuery",
+        "options": [
+            "ca pot fi apelate atat in mod sincron cat si in mod asincron",
+            "ca intorc referinta la obiectul pe care au fost apelate",
+            "ca pot fi apelate atat pe obiectul din DOM cat si pe wrapperul jQuery construit in jurul lui",
+            "ca pot fi folosite atat ca functii Setter cat si functii Getter"
+        ],
+        "answer": [
+            "ca pot fi apelate atat in mod sincron cat si in mod asincron",
+            "ca intorc referinta la obiectul pe care au fost apelate",
+            "ca pot fi folosite atat ca functii Setter cat si functii Getter"
+        ]
+    },
+    {
+        "question": "O baza de date embedded in cadrul unei aplicatii web Java se recomanda a fi memorata:",
+        "options": [
+            "In cadrul folderului app/databases/, unde app reprezinta directorul (numele) aplicatiei web",
+            "In folderul WEB-INF al aplicatiei web intrucat acesta nu este accesibil de catre un client web",
+            "Oriunde altundeva in cadrul sistemului de fisiere dar nu in cadrul directorului aplicatiei web intrucat de acolo baza de date ar putea fi accesata de catre clientii web"
+        ],
+        "answer": [
+            "In folderul WEB-INF al aplicatiei web intrucat acesta nu este accesibil de catre un client web",
+            "Oriunde altundeva in cadrul sistemului de fisiere dar nu in cadrul directorului aplicatiei web intrucat de acolo baza de date ar putea fi accesata de catre clientii web"
+        ]
+    },
+    {
+        "question" : "In cate instante se instantiaza un servlet",
+        "options" : [
+            "In niciuna, un servlet este executat direct de catre container/application server",
+            "Intr-o singura instanta",
+            "Se creeaza o instanta separata la fiecare cerere facuta de catre un client"
+        ],
+        "answer": [
+            "Intr-o singura instanta"
+        ]
+    },
+    {
+        "question" : "Parametrii de configurare ai unei aplicatii web Java sunt preluati din fisierul de configurare al aplicatiei web in cadrul metodei:",
+        "options" : [
+            "init()",
+            "applicationCreated()",
+            "contextInitialized()"
+        ],
+        "answer": [
+            "init()"
+        ]
+    },
+    {
+        "question" : "O sesiune intr-o aplicatie web Java se termina cu:",
+        "options" : [
+            "session.destroy()",
+            "session.close()",
+            "session.invalidate()"
+        ],
+        "answer": [
+            "session.invalidate()"
+        ]
+    },
+    {
+        "question" : "Ce eveniment se genereaza la un click de mouse pe un element din cadrul documentului?",
+        "options" : [
+            "onclick",
+            "ondoubleclick",
+            "onmouseover",
+            "onmouseclick"
+        ],
+        "answer": [
+            "onclick"
+        ]
+    },
+    {
+        "question" : "Care dintre urmatoarele expresii jQuery se pot folosi interschimbabil?",
+        "options" : [
+            "$(\"#myelem\")[0] si document.getElementById(\"myelem\")",
+            "$(\"#myelem\") si $(document.getElementById(\"myelem\"))",
+            "$(document.myelem) si $(document.getElementById(\"myelem\"))",
+            "$ si jQuery",
+            "$(document).myelem si $(\"myelem\")[0]"
+        ],
+        "answer": [
+            "$(\"#myelem\")[0] si document.getElementById(\"myelem\")",
+            "$(\"#myelem\") si $(document.getElementById(\"myelem\"))",
+            "$ si jQuery"
+        ]
+    },
+    {
+        "question" : "Cum se afiseaza un mesaj prin intermediul unei ferestre de dialog modale in JavaScript?",
+        "options" : [
+            "modalMessage(\"Mesaj\")",
+            "alertBox(\"Mesaj\")",
+            "alert(\"Mesaj\")",
+            "modalBox(\"Mesaj\")"
+        ],
+        "answer": [
+            "alert(\"Mesaj\")"
+        ]
+    },
+    {
+        "question" : "Ce face urmatoarea secventa de cod?\n\n$('ul:has(li)').addClass('patrat').addClass('deplasat').addClass('colorat');",
+        "options" : [
+            "selecteaza toate elementele din liste si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza listele neordonate care au cel putin un element si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza toate listele care au cel putin un element si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza listele ordonate care au cel putin un element si le adauga clasele patrat, deplasat si colorat",
+            "selecteaza toate listele si le adauga clasele patrat, deplasat si colorat"
+        ],
+        "answer": [
+            "selecteaza listele neordonate care au cel putin un element si le adauga clasele patrat, deplasat si colorat"
+        ]
+    },
+    {
+        "question" : "Un client face o cerere iar serverul ii raspunde cu \"404 Not found\". Care dintre urmatoarele afirmatii sunt adevarate:",
+        "options" : [
+            "Chiar daca nu a gasit fisierul cerut de client, serverul ii poate da totusi acestuia un anumit continut HTML",
+            "Daca nu a gasit fisierul cerut, serverul nu ii mai poate returna clientului nimic dupa codul de raspuns 404",
+            "Chiar daca serverul a raspuns cu \"404 Not found\", browserele raspund cu \"200 Ok\" pentru a-i spune serverului ca au primit mesajul de eroare"
+        ],
+        "answer": [
+            "Chiar daca nu a gasit fisierul cerut de client, serverul ii poate da totusi acestuia un anumit continut HTML"
+        ]
+    },
+    {
+        "question" : "Care dintre urmatoarele sunt prefixe acceptate pe unele browsere pentru proprietatile CSS experimentale?",
+        "options" : [
+            "webkit",
+            "o",
+            "moz",
+            "safari",
+            "chrome"
+        ],
+        "answer": [
+            "webkit",
+            "o",
+            "moz"
+        ]
+    },
+    {
+        "question" : "Care dintre urmatoarele sunt scriptlet-uri valide in PHP?",
+        "options" : [
+            "<% %>",
+            "<?php></?>",
+            "<?= ?>",
+            "<? ?>, cu conditia setarii unei optiuni de configurare in php.ini",
+            "<?php ?>",
+            "<php></php>"
+        ],
+        "answer": [
+            "<? ?>, cu conditia setarii unei optiuni de configurare in php.ini",
+            "<?php ?>"
+        ]
+    },
+    {
+        "question" : "Care dintre urmatoarele cuvinte/caractere nu sunt rezervate in JavaScript si se pot folosi ca si nume de variabile?",
+        "options" : [
+            "this, a, b",
+            "with, a, b",
+            "$, a, b",
+            "let, a, b"
+        ],
+        "answer": [
+            "$, a, b"
+        ]
+    },
+    {
+        "question" : "Pentru a centra un element cu display-ul block in cadrul unui alt container se foloseste:",
+        "options" : [
+            "align:center",
+            "margin: 0 auto",
+            "align:middle",
+            "text-align:center"
+        ],
+        "answer": [
+            "margin: 0 auto"
+        ]
+    },
+    {
+        "question" : "O variabila x ce contine valoarea numerica 7 poate fi declarata in JavaScript astfel:",
+        "options" : [
+            "var x = 7",
+            "var x := 7",
+            "x = new Number(7)",
+            "let x = 7",
+            "x = 7"
+        ],
+        "answer": [
+            "var x = 7",
+            "let x = 7",
+            "x = new Number(7)",
+            "x = 7"
+        ]
+    },
+    {
+        "question" : "Care dintre urmatoarele informatii despre plugin-urile jQuery sunt adevarate: *",
+        "options" : [
+            "Unele plugin-uri permit portarea codului jQuery pe diferite browsere",
+            "Permit extinderea functionalitatii API-ului standard jQuery cu noi metode si functionalitati",
+            "Unele plugin-uri jQuery permit incadrarea librariei de pe diversele CDN-uri (Content Delivery Network)",
+            "Unele plugin-uri permit rulearea codului jQuery independent"
+        ],
+        "answer": [
+            "Permit extinderea functionalitatii API-ului standard jQuery cu noi metode si functionalitati",
+            "Unele plugin-uri jQuery permit incadrarea librariei de pe diversele CDN-uri (Content Delivery Network)"
+        ]
+    },
+    {
+        "question": "Dandu-se doua variabile $a si $b, cum se poate interschimba valoarea acestora in PHP?",
+        "options": [
+            "list($a, $b) = ($b, $a); ",
+            "array($a, $b) = ($b, $a);",
+            "$a = $b; $b = $a;",
+            "array($a, $b) = [$b, $a];",
+            "list($a, $b) = [$b, $a];",
+            "array($a, $b) = array($b, $a);",
+            "array($a, $b) = list($b, $a);",
+            "list($a, $b) = array($b, $a);",
+            "list($a, $b) = list($b, $a);"
+        ],
+        "answer": [
+            "list($a, $b) = [$b, $a];",
+            "list($a, $b) = array($b, $a);"
+        ]
+    }
+]

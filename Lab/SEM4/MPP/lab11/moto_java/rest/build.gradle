@@ -1,0 +1,15 @@
+plugins {
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'org.zdroba.RestApp'
+}
+
+dependencies {
+    implementation project(':common')
+}

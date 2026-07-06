@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet author="lab5" id="010-alter-salary-type">
+
+        <modifyDataType tableName="employees"
+                        columnName="salary"
+                        newDataType="DECIMAL(15,2)"/>
+
+        <rollback>
+            <modifyDataType tableName="employees"
+                            columnName="salary"
+                            newDataType="DECIMAL(10,2)"/>
+        </rollback>
+
+    </changeSet>
+
+<!--    SHOW COLUMNS FROM employees LIKE 'salary';-->
+
+</databaseChangeLog>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
+    <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
+        <class>org.zdroba.entity.Department</class>
+        <class>org.zdroba.entity.Employee</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:SGBD_lab5}"/>
+
+            <property name="jakarta.persistence.jdbc.user" value="${DB_USER:student}"/>
+            <property name="jakarta.persistence.jdbc.password" value="${DB_PASSWORD:student}"/>
+
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="false"/>
+
+            <!-- schema no longer hibernate handled -->
+            <property name="hibernate.hbm2ddl.auto" value="none"/>
+        </properties>
+    </persistence-unit>
+</persistence>

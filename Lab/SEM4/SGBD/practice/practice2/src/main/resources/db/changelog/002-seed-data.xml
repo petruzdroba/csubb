@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet id="002-seed-parks-data" author="petru">
+        <insert tableName="parks">
+            <column name="country" value="United States"/>
+            <column name="name" value="Yellowstone"/>
+            <column name="size" value="8983000"/>
+        </insert>
+
+        <insert tableName="parks">
+            <column name="country" value="United States"/>
+            <column name="name" value="Grand Canyon"/>
+            <column name="size" value="4931000"/>
+        </insert>
+
+        <insert tableName="parks">
+            <column name="country" value="Canada"/>
+            <column name="name" value="Banff"/>
+            <column name="size" value="6641000"/>
+        </insert>
+
+        <insert tableName="parks">
+            <column name="country" value="Australia"/>
+            <column name="name" value="Uluru-Kata"/>
+            <column name="size" value="1325800"/>
+        </insert>
+
+        <insert tableName="parks">
+            <column name="country" value="Kenya"/>
+            <column name="name" value="Serengeti"/>
+            <column name="size" value="14750000"/>
+        </insert>
+
+        <insert tableName="parks">
+            <column name="country" value="New Zealand"/>
+            <column name="name" value="Fiordland"/>
+            <column name="size" value="1265000"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

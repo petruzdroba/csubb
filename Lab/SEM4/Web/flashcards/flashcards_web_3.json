@@ -1,0 +1,739 @@
+[
+    {
+        "question": "Care dintre urmatoarele afirmatii despre jQuery sunt adevarate?",
+        "options": [
+            "jQuery este un limbaj de programare separat de JavaScript",
+            "jQuery este o librarie JavaScript care extinde API-ul standard al limbajului JavaScript",
+            "O exprimare corecta este 'am rezolvat problema in JavaScript folosind jQuery'",
+            "jQuery inlocuieste complet JavaScript-ul in browserele moderne"
+        ],
+        "answer": [
+            "jQuery este o librarie JavaScript care extinde API-ul standard al limbajului JavaScript",
+            "O exprimare corecta este 'am rezolvat problema in JavaScript folosind jQuery'"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele sunt motive pentru care jQuery a fost creat?",
+        "options": [
+            "Uniformizarea modului de lucru cu DOM-ul intre diferite browsere",
+            "Cresterea productivitatii si minimizarea cantitatii de cod necesare",
+            "Inlocuirea completa a limbajului JavaScript",
+            "Oferirea unui limbaj de programare server-side"
+        ],
+        "answer": [
+            "Uniformizarea modului de lucru cu DOM-ul intre diferite browsere",
+            "Cresterea productivitatii si minimizarea cantitatii de cod necesare"
+        ]
+    },
+    {
+        "question": "Care este diferenta dintre fisierele jquery.js si jquery.min.js?",
+        "options": [
+            "jquery.min.js ofera mai putine functionalitati decat jquery.js",
+            "jquery.min.js este varianta minificata a fisierului, din care sunt inlaturate spatiile si newline-urile inutile, avand o dimensiune mai mica",
+            "jquery.js suporta versiuni mai vechi de browser, jquery.min.js suporta doar browsere noi",
+            "Nu exista nicio diferenta intre cele doua fisiere"
+        ],
+        "answer": [
+            "jquery.min.js este varianta minificata a fisierului, din care sunt inlaturate spatiile si newline-urile inutile, avand o dimensiune mai mica"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele expresii sunt echivalente in jQuery?",
+        "options": [
+            "jQuery() si $()",
+            "jQuery() si window.jQuery()",
+            "$(\"#id\") si $(\".id\")",
+            "window.$ si window.jQuery"
+        ],
+        "answer": [
+            "jQuery() si $()",
+            "jQuery() si window.jQuery()",
+            "window.$ si window.jQuery"
+        ]
+    },
+    {
+        "question": "Ce returneaza functia selector jQuery $('selector')?",
+        "options": [
+            "Elementul brut din DOM (obiectul JavaScript de baza)",
+            "Un obiect wrapper JavaScript construit peste elementul/elementele din DOM care se potrivesc cu selectorul",
+            "Un sir de caractere cu codul HTML al elementului selectat",
+            "O colectie de atribute ale elementului selectat"
+        ],
+        "answer": [
+            "Un obiect wrapper JavaScript construit peste elementul/elementele din DOM care se potrivesc cu selectorul"
+        ]
+    },
+    {
+        "question": "Daca var wrapper = $(\"#someid\"), care dintre urmatoarele sunt adevarate?",
+        "options": [
+            "wrapper[0] este obiectul JavaScript de baza din DOM in jurul caruia s-a construit wrapper-ul",
+            "wrapper[0] este egal cu document.getElementById(\"someid\")",
+            "wrapper si document.getElementById(\"someid\") sunt identice ca tip",
+            "wrapper.length returneaza intotdeauna 1 pentru un selector de tip id"
+        ],
+        "answer": [
+            "wrapper[0] este obiectul JavaScript de baza din DOM in jurul caruia s-a construit wrapper-ul",
+            "wrapper[0] este egal cu document.getElementById(\"someid\")"
+        ]
+    },
+    {
+        "question": "Ce proprietate a wrapper-ului jQuery returneaza numarul de elemente selectate in jurul carora s-a construit wrapper-ul?",
+        "options": [
+            ".size()",
+            ".count()",
+            ".length",
+            ".total()"
+        ],
+        "answer": [
+            ".length"
+        ]
+    },
+    {
+        "question": "De ce este recomandat sa se pastreze wrapper-ul jQuery intr-o variabila in loc sa se apeleze functia selector de mai multe ori cu acelasi selector?",
+        "options": [
+            "Pentru ca al doilea apel cu acelasi selector intoarce un wrapper diferit",
+            "Pentru a evita apelarea inutila de mai multe ori a functiei jQuery cu acelasi selector, ceea ce consuma resurse",
+            "Deoarece jQuery nu permite apelarea aceluiasi selector de doua ori consecutiv",
+            "Nu exista nicio diferenta de performanta"
+        ],
+        "answer": [
+            "Pentru a evita apelarea inutila de mai multe ori a functiei jQuery cu acelasi selector, ceea ce consuma resurse"
+        ]
+    },
+    {
+        "question": "Ce permite inlantuirea (chaining) apelurilor in jQuery, de exemplu $(\"#div\").css(\"width\",\"200px\").css(\"height\",\"200px\")?",
+        "options": [
+            "Faptul ca functia css returneaza un nou wrapper construit in jurul elementului",
+            "Faptul ca multe functii din API-ul jQuery returneaza fix obiectul pe care au fost apelate (fac return this)",
+            "Este o sintaxa speciala proprie jQuery fara legatura cu valoarea returnata",
+            "Inlantuirea este posibila doar pentru metoda css, nu si pentru alte metode"
+        ],
+        "answer": [
+            "Faptul ca multe functii din API-ul jQuery returneaza fix obiectul pe care au fost apelate (fac return this)"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele metode jQuery pot fi folosite atat ca getter cat si ca setter?",
+        "options": [
+            ".html()",
+            ".css()",
+            ".attr()",
+            ".addClass()"
+        ],
+        "answer": [
+            ".html()",
+            ".attr()"
+        ]
+    },
+    {
+        "question": "Ce face metoda .find() pe un wrapper jQuery, comparativ cu .children()?",
+        "options": [
+            "find() si children() sunt identice",
+            "find() cauta in toate nivelele DOM descendent, children() coboara doar un singur nivel",
+            "children() cauta in toate nivelele DOM descendent, find() coboara doar un singur nivel",
+            "find() returneaza parintele elementului, children() returneaza descendentii directi"
+        ],
+        "answer": [
+            "find() cauta in toate nivelele DOM descendent, children() coboara doar un singur nivel"
+        ]
+    },
+    {
+        "question": "Ce face metoda .toggle() in jQuery?",
+        "options": [
+            "Adauga sau elimina o clasa CSS de pe element",
+            "Ascunde sau afiseaza elementele selectate in functie de starea lor precedenta",
+            "Comuta intre doua functii de tratare ale unui eveniment",
+            "Schimba vizibilitatea elementului intre visible si hidden"
+        ],
+        "answer": [
+            "Ascunde sau afiseaza elementele selectate in functie de starea lor precedenta"
+        ]
+    },
+    {
+        "question": "In cadrul unei functii de tratare a unui eveniment jQuery, la ce se refera cuvantul rezervat 'this'?",
+        "options": [
+            "La obiectul window",
+            "La obiectul document",
+            "La elementul din DOM pe care a aparut evenimentul",
+            "La wrapper-ul jQuery construit in jurul tuturor elementelor selectate"
+        ],
+        "answer": [
+            "La elementul din DOM pe care a aparut evenimentul"
+        ]
+    },
+    {
+        "question": "Care este echivalentul metodei .on() din jQuery in limbajul JavaScript standard?",
+        "options": [
+            "document.attachEvent()",
+            "element.addEventListener()",
+            "element.addEvent()",
+            "document.registerEvent()"
+        ],
+        "answer": [
+            "element.addEventListener()"
+        ]
+    },
+    {
+        "question": "Care este echivalentul metodei .off() din jQuery in limbajul JavaScript standard?",
+        "options": [
+            "element.removeEventListener()",
+            "element.detachEvent()",
+            "document.removeEvent()",
+            "element.deleteEvent()"
+        ],
+        "answer": [
+            "element.removeEventListener()"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele sunt variante echivalente pentru a executa cod jQuery dupa incarcarea completa a documentului in DOM?",
+        "options": [
+            "$(document).ready(function() { ... })",
+            "$(function() { ... })",
+            "$(window).load(function() { ... })",
+            "document.onload = function() { ... }"
+        ],
+        "answer": [
+            "$(document).ready(function() { ... })",
+            "$(function() { ... })"
+        ]
+    },
+    {
+        "question": "Ce face metoda .index() pe un element jQuery?",
+        "options": [
+            "Returneaza valoarea atributului id al elementului",
+            "Returneaza al catelea element este elementul selectat intr-o lista (indexare de la 0)",
+            "Returneaza numarul total de elemente din wrapper",
+            "Returneaza pozitia elementului in raport cu fereastra browserului"
+        ],
+        "answer": [
+            "Returneaza al catelea element este elementul selectat intr-o lista (indexare de la 0)"
+        ]
+    },
+    {
+        "question": "Ce diferenta majora aduce jQuery 2 fata de jQuery 1?",
+        "options": [
+            "jQuery 2 adauga suport pentru apeluri AJAX",
+            "jQuery 2 inlatura suportul pentru versiunile mai vechi de Internet Explorer (IE 6-8)",
+            "jQuery 2 adauga suport pentru selectori CSS",
+            "jQuery 2 inlocuieste complet API-ul jQuery 1"
+        ],
+        "answer": [
+            "jQuery 2 inlatura suportul pentru versiunile mai vechi de Internet Explorer (IE 6-8)"
+        ]
+    },
+    {
+        "question": "Care este avantajul incarcarii librariei jQuery de pe un CDN (Content Delivery Network)?",
+        "options": [
+            "Libraria jQuery de pe CDN ofera mai multe functionalitati decat cea locala",
+            "Browserul poate detine deja in cache libraria descarcata de la acel URL de pe alte pagini vizitate, eliminand descarcarea",
+            "CDN-urile ofera o versiune mai noua de jQuery decat cea disponibila local",
+            "Folosirea unui CDN este obligatorie pentru ca jQuery sa functioneze corect"
+        ],
+        "answer": [
+            "Browserul poate detine deja in cache libraria descarcata de la acel URL de pe alte pagini vizitate, eliminand descarcarea"
+        ]
+    },
+    {
+        "question": "Ce este un plugin jQuery?",
+        "options": [
+            "O versiune alternativa a librariei jQuery",
+            "Un fisier JavaScript extern care adauga noi metode/functionalitati invocabile pe un wrapper jQuery",
+            "Un modul de browser necesar pentru rularea jQuery",
+            "O extensie de browser care permite depanarea codului jQuery"
+        ],
+        "answer": [
+            "Un fisier JavaScript extern care adauga noi metode/functionalitati invocabile pe un wrapper jQuery"
+        ]
+    },
+    {
+        "question": "Ce se intampla cu URL-ul paginii curente dupa un apel AJAX?",
+        "options": [
+            "URL-ul se schimba la URL-ul endpoint-ului apelat",
+            "URL-ul documentului curent nu se schimba",
+            "URL-ul se schimba doar daca apelul AJAX este facut prin POST",
+            "URL-ul se schimba in functie de codul de raspuns HTTP primit"
+        ],
+        "answer": [
+            "URL-ul documentului curent nu se schimba"
+        ]
+    },
+    {
+        "question": "Ce obiect JavaScript sta la baza unui apel AJAX?",
+        "options": [
+            "AJAXRequest",
+            "XMLHttpRequest",
+            "HttpRequest",
+            "AsyncRequest"
+        ],
+        "answer": [
+            "XMLHttpRequest"
+        ]
+    },
+    {
+        "question": "Ce face metoda open() pe un obiect XMLHttpRequest?",
+        "options": [
+            "Trimite efectiv cererea AJAX la server",
+            "Specifica URL-ul si metoda HTTP spre care se va face apelul AJAX, fara a initia efectiv apelul",
+            "Deschide o conexiune TCP persistenta cu serverul",
+            "Initializeaza si trimite simultan cererea AJAX"
+        ],
+        "answer": [
+            "Specifica URL-ul si metoda HTTP spre care se va face apelul AJAX, fara a initia efectiv apelul"
+        ]
+    },
+    {
+        "question": "In ce situatie metoda send() pe un obiect XMLHttpRequest se apeleaza cu sirul vid ca parametru?",
+        "options": [
+            "Cand apelul AJAX se face prin POST",
+            "Cand apelul AJAX se face prin GET",
+            "Intotdeauna, indiferent de metoda HTTP folosita",
+            "Niciodata, send() nu primeste parametri"
+        ],
+        "answer": [
+            "Cand apelul AJAX se face prin GET"
+        ]
+    },
+    {
+        "question": "Ce valori poate lua proprietatea readyState a unui obiect XMLHttpRequest si ce semnifica starea 3?",
+        "options": [
+            "Starea 3 semnifica ca s-a facut open dar nu s-a facut inca send",
+            "Starea 3 semnifica ca apelul AJAX este in starea receiving: datele continua sa soseasca, raspunsul nu este complet",
+            "Starea 3 semnifica ca apelul AJAX s-a terminat cu succes",
+            "Starea 3 semnifica ca a aparut o eroare in comunicarea cu serverul"
+        ],
+        "answer": [
+            "Starea 3 semnifica ca apelul AJAX este in starea receiving: datele continua sa soseasca, raspunsul nu este complet"
+        ]
+    },
+    {
+        "question": "In ce conditii un apel AJAX este considerat terminat cu succes?",
+        "options": [
+            "Cand readyState este 4 si status este 200",
+            "Cand readyState este 4 si status este 100",
+            "Cand readyState este 1 si status este 200",
+            "Cand readyState este 3 si status este 200"
+        ],
+        "answer": [
+            "Cand readyState este 4 si status este 200"
+        ]
+    },
+    {
+        "question": "Ce contine proprietatea responseText a obiectului XMLHttpRequest dupa terminarea cu succes a unui apel AJAX?",
+        "options": [
+            "Codul de status HTTP al raspunsului",
+            "Tot raspunsul oferit de serverul web (poate fi text, JSON, XML etc.)",
+            "Doar headerele HTTP ale raspunsului",
+            "URL-ul endpoint-ului apelat"
+        ],
+        "answer": [
+            "Tot raspunsul oferit de serverul web (poate fi text, JSON, XML etc.)"
+        ]
+    },
+    {
+        "question": "Cand se apeleaza functia specificata ca valoare pentru proprietatea onreadystatechange?",
+        "options": [
+            "O singura data, cand apelul AJAX se termina",
+            "De fiecare data cand obiectul AJAX isi schimba starea (readyState-ul), dar si posibil cand este in starea 3 si continua sa soseasca date",
+            "Doar cand readyState devine 4",
+            "La fiecare secunda pe durata apelului AJAX"
+        ],
+        "answer": [
+            "De fiecare data cand obiectul AJAX isi schimba starea (readyState-ul), dar si posibil cand este in starea 3 si continua sa soseasca date"
+        ]
+    },
+    {
+        "question": "Care dintre functiile jQuery de mai jos permit efectuarea de apeluri AJAX, de la cea mai putin la cea mai configurabila?",
+        "options": [
+            "$.ajax, $.get, .load",
+            ".load, $.get / $.post, $.ajax",
+            "$.get, $.post, $.ajax, .load",
+            "$.ajax, .load, $.get"
+        ],
+        "answer": [
+            ".load, $.get / $.post, $.ajax"
+        ]
+    },
+    {
+        "question": "Ce face metoda jQuery .load() in contextul AJAX?",
+        "options": [
+            "Incarca libraria jQuery dinamic",
+            "Populeaza un container cu output-ul obtinut in urma unui apel AJAX prin GET catre un endpoint",
+            "Incarca un fisier JavaScript extern in pagina",
+            "Asteapta terminarea tuturor apelurilor AJAX in curs"
+        ],
+        "answer": [
+            "Populeaza un container cu output-ul obtinut in urma unui apel AJAX prin GET catre un endpoint"
+        ]
+    },
+    {
+        "question": "Care este un avantaj al efectuarii unui apel AJAX prin GET fata de POST din perspectiva depanarii?",
+        "options": [
+            "Apelurile GET sunt mai rapide decat cele POST",
+            "URL-ul unui apel GET poate fi incarcat manual in browser pentru a verifica raspunsul endpoint-ului, ceea ce nu e posibil cu POST",
+            "Apelurile GET nu necesita un server web pentru depanare",
+            "GET permite trimiterea de date mai mari decat POST"
+        ],
+        "answer": [
+            "URL-ul unui apel GET poate fi incarcat manual in browser pentru a verifica raspunsul endpoint-ului, ceea ce nu e posibil cu POST"
+        ]
+    },
+    {
+        "question": "Pe versiunile vechi de Internet Explorer, cum se construia obiectul request AJAX in loc de new XMLHttpRequest()?",
+        "options": [
+            "new IERequest()",
+            "new ActiveXObject('MSXML2.XMLHTTP') sau new ActiveXObject('Microsoft.XMLHTTP')",
+            "new XMLRequest()",
+            "new MSAjax()"
+        ],
+        "answer": [
+            "new ActiveXObject('MSXML2.XMLHTTP') sau new ActiveXObject('Microsoft.XMLHTTP')"
+        ]
+    },
+    {
+        "question": "Ce este PHP?",
+        "options": [
+            "Un limbaj de programare client-side care ruleaza in browser",
+            "Un limbaj de scripting server-side interpretat, open-source, care se executa la nivelul serverului web",
+            "Un framework JavaScript pentru dezvoltarea de aplicatii web",
+            "Un protocol de comunicatie intre client si server"
+        ],
+        "answer": [
+            "Un limbaj de scripting server-side interpretat, open-source, care se executa la nivelul serverului web"
+        ]
+    },
+    {
+        "question": "Ce reprezinta stiva AMP?",
+        "options": [
+            "Apache, MongoDB, PHP",
+            "Apache, MySQL, PHP",
+            "Apache, MariaDB, Python",
+            "Nginx, MySQL, PHP"
+        ],
+        "answer": [
+            "Apache, MySQL, PHP"
+        ]
+    },
+    {
+        "question": "Ce se intampla daca un fisier PHP este deschis direct in browser folosind un URL de tip file://?",
+        "options": [
+            "Fisierul PHP se executa normal, browserul avand suport nativ pentru PHP",
+            "Fisierul PHP nu se executa deoarece nu exista server web care sa il execute; browserul va afisa codul sursa brut",
+            "Fisierul PHP se executa partial, doar scriptlet-urile simple",
+            "Browserul descarca automat fisierul PHP in loc sa il afiseze"
+        ],
+        "answer": [
+            "Fisierul PHP nu se executa deoarece nu exista server web care sa il execute; browserul va afisa codul sursa brut"
+        ]
+    },
+    {
+        "question": "Ce delimitatori se folosesc pentru un scriptlet PHP?",
+        "options": [
+            "<script type=\"php\">...</script>",
+            "<?php ... ?>",
+            "<% ... %>",
+            "{{ ... }}"
+        ],
+        "answer": [
+            "<?php ... ?>"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele afirmatii despre variabilele PHP sunt adevarate?",
+        "options": [
+            "Variabilele PHP incep obligatoriu cu simbolul $",
+            "Variabilele trebuie declarate explicit inainte de folosire",
+            "PHP este un limbaj weakly typed, tipul variabilei se deduce din valoarea asociata",
+            "Numele variabilelor sunt case-insensitive in PHP"
+        ],
+        "answer": [
+            "Variabilele PHP incep obligatoriu cu simbolul $",
+            "PHP este un limbaj weakly typed, tipul variabilei se deduce din valoarea asociata"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele sunt operatori/metode de concatenare a sirurilor in PHP?",
+        "options": [
+            "Operatorul + intre doua siruri",
+            "Operatorul . (punct) intre doua siruri",
+            "Interpolarea variabilelor in interiorul ghilimelelor duble",
+            "Functia concat($a, $b)"
+        ],
+        "answer": [
+            "Operatorul . (punct) intre doua siruri",
+            "Interpolarea variabilelor in interiorul ghilimelelor duble"
+        ]
+    },
+    {
+        "question": "De ce nu este corecta urmatoarea comparatie in PHP: if (strpos($sir, $subsir) == FALSE)?",
+        "options": [
+            "Functia strpos nu exista in PHP",
+            "Deoarece == nu compara si tipul valorii; daca $subsir se regaseste la pozitia 0, valoarea 0 este evaluata ca FALSE, producand un rezultat incorect",
+            "Deoarece FALSE nu poate fi comparat cu o valoare numerica in PHP",
+            "Comparatia este corecta, nu exista nicio problema"
+        ],
+        "answer": [
+            "Deoarece == nu compara si tipul valorii; daca $subsir se regaseste la pozitia 0, valoarea 0 este evaluata ca FALSE, producand un rezultat incorect"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele sunt moduri de declarare a unui array in PHP?",
+        "options": [
+            "$arr = array(\"a\", \"b\", \"c\");",
+            "$arr = [\"a\", \"b\", \"c\"];",
+            "$arr = {\"a\", \"b\", \"c\"};",
+            "$arr = (\"a\", \"b\", \"c\");"
+        ],
+        "answer": [
+            "$arr = array(\"a\", \"b\", \"c\");",
+            "$arr = [\"a\", \"b\", \"c\"];"
+        ]
+    },
+    {
+        "question": "Ce tip special de array suporta PHP pe langa tablourile clasice cu indici numerici?",
+        "options": [
+            "Tablouri circulare",
+            "Tablouri asociative, cu indici de tip string (similar cu map-urile)",
+            "Tablouri bidirectionale",
+            "Tablouri de tip set (fara duplicate)"
+        ],
+        "answer": [
+            "Tablouri asociative, cu indici de tip string (similar cu map-urile)"
+        ]
+    },
+    {
+        "question": "Cum se acceseaza o variabila globala din interiorul unei functii PHP?",
+        "options": [
+            "Variabilele globale sunt automat accesibile in toate functiile",
+            "Folosind cuvantul rezervat 'global' inainte de variabila sau prin tabloul $GLOBALS",
+            "Folosind prefixul 'global::' inaintea numelui variabilei",
+            "Nu este posibil sa accesezi variabile globale din interiorul functiilor in PHP"
+        ],
+        "answer": [
+            "Folosind cuvantul rezervat 'global' inainte de variabila sau prin tabloul $GLOBALS"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele sunt superglobale PHP?",
+        "options": [
+            "$_GET",
+            "$_POST",
+            "$_SESSION",
+            "$_FORM"
+        ],
+        "answer": [
+            "$_GET",
+            "$_POST",
+            "$_SESSION"
+        ]
+    },
+    {
+        "question": "Ce contine $_SERVER[\"REQUEST_METHOD\"] in PHP?",
+        "options": [
+            "Adresa IP a serverului web",
+            "Metoda HTTP prin care s-a realizat cererea curenta (GET, POST, etc.)",
+            "Versiunea PHP folosita pe server",
+            "Numele serverului web (Apache, IIS, etc.)"
+        ],
+        "answer": [
+            "Metoda HTTP prin care s-a realizat cererea curenta (GET, POST, etc.)"
+        ]
+    },
+    {
+        "question": "Care sunt cele trei metode de accesare a bazelor de date MySQL din PHP mentionate in curs?",
+        "options": [
+            "Familia mysql_* (deprecated in PHP 7)",
+            "Familia mysqli_* (MySQL Improved Extension)",
+            "PDO (PHP Data Objects)",
+            "MySQLite"
+        ],
+        "answer": [
+            "Familia mysql_* (deprecated in PHP 7)",
+            "Familia mysqli_* (MySQL Improved Extension)",
+            "PDO (PHP Data Objects)"
+        ]
+    },
+    {
+        "question": "Care este avantajul principal al folosirii PDO fata de mysqli_* pentru accesarea bazelor de date?",
+        "options": [
+            "PDO este mai rapid decat mysqli_*",
+            "PDO asigura independenta fata de serverul de baze de date folosit; schimbarea SGBD-ului necesita doar modificari minimale la stringul de conectare",
+            "PDO suporta prepared statements, mysqli_* nu",
+            "PDO permite conectarea la mai multe baze de date simultan"
+        ],
+        "answer": [
+            "PDO asigura independenta fata de serverul de baze de date folosit; schimbarea SGBD-ului necesita doar modificari minimale la stringul de conectare"
+        ]
+    },
+    {
+        "question": "Care este diferenta dintre require si include in PHP?",
+        "options": [
+            "require genereaza o eroare fatala daca fisierul nu poate fi inclus; include genereaza doar un warning",
+            "include genereaza o eroare fatala daca fisierul nu poate fi inclus; require genereaza doar un warning",
+            "require include fisierul o singura data; include il poate include de mai multe ori",
+            "Nu exista nicio diferenta intre require si include"
+        ],
+        "answer": [
+            "require genereaza o eroare fatala daca fisierul nu poate fi inclus; include genereaza doar un warning"
+        ]
+    },
+    {
+        "question": "De ce este recomandata utilizarea require_once in locul require simplu?",
+        "options": [
+            "require_once este mai rapida decat require",
+            "require_once verifica daca fisierul a mai fost inclus si il include doar daca nu a mai fost, evitand erorile de redefinire a functiilor sau claselor",
+            "require_once permite includerea de fisiere de pe URL-uri remote",
+            "require_once ofera securitate suplimentara la includerea fisierelor"
+        ],
+        "answer": [
+            "require_once verifica daca fisierul a mai fost inclus si il include doar daca nu a mai fost, evitand erorile de redefinire a functiilor sau claselor"
+        ]
+    },
+    {
+        "question": "Cand trebuie apelata functia header() in PHP pentru a putea seta antete HTTP?",
+        "options": [
+            "Poate fi apelata oriunde in fisierul PHP",
+            "Trebuie apelata inainte ca scriptul sa trimita spre client orice alt continut HTML (inainte de a se face commit la headere)",
+            "Trebuie apelata intotdeauna la sfarsitul scriptului PHP",
+            "Poate fi apelata doar in interiorul unui bloc if-else"
+        ],
+        "answer": [
+            "Trebuie apelata inainte ca scriptul sa trimita spre client orice alt continut HTML (inainte de a se face commit la headere)"
+        ]
+    },
+    {
+        "question": "Ce este o sesiune web (HTTP session)?",
+        "options": [
+            "O singura cerere HTTP facuta de un client catre server",
+            "Multitudinea cererilor HTTP realizate de catre un client in scopul rezolvarii unei probleme sau realizarii unei activitati",
+            "Conexiunea TCP stabila mentinuta intre browser si server",
+            "Un fisier cookie stocat in browserul utilizatorului"
+        ],
+        "answer": [
+            "Multitudinea cererilor HTTP realizate de catre un client in scopul rezolvarii unei probleme sau realizarii unei activitati"
+        ]
+    },
+    {
+        "question": "De ce nu se poate folosi adresa IP a clientului pentru a asocia cererile HTTP unei aceleasi sesiuni web?",
+        "options": [
+            "Adresa IP a clientului se schimba la fiecare cerere HTTP",
+            "De la aceeasi adresa IP pot veni cereri de la utilizatori diferiti (ex: NAT in camin), iar acelasi client poate schimba adresa IP in cadrul sesiunii (ex: switch de la date mobile la Wi-Fi)",
+            "Protocolul HTTP nu transmite adresa IP a clientului catre server",
+            "Adresele IP sunt criptate in protocolul HTTPS si nu pot fi citite de server"
+        ],
+        "answer": [
+            "De la aceeasi adresa IP pot veni cereri de la utilizatori diferiti (ex: NAT in camin), iar acelasi client poate schimba adresa IP in cadrul sesiunii (ex: switch de la date mobile la Wi-Fi)"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele pot reprezenta 'ACEL CEVA' comun care permite asocierea cererilor HTTP aceleasi sesiuni web?",
+        "options": [
+            "Un cookie de sesiune setat de back-end si retrimis de client la fiecare cerere",
+            "Un atribut comun in QUERY_STRING-ul sau body-ul tuturor request-urilor",
+            "Adresa IP a clientului",
+            "Un JSON Web Token (JWT)"
+        ],
+        "answer": [
+            "Un cookie de sesiune setat de back-end si retrimis de client la fiecare cerere",
+            "Un atribut comun in QUERY_STRING-ul sau body-ul tuturor request-urilor",
+            "Un JSON Web Token (JWT)"
+        ]
+    },
+    {
+        "question": "Ce face functia session_start() in PHP cand exista deja o sesiune activa (cerere ulterioara in cadrul sesiunii)?",
+        "options": [
+            "Creeaza intotdeauna o sesiune noua, stergand datele sesiunii anterioare",
+            "Se uita la cookie-ul de sesiune primit pe request si populeaza tabloul $_SESSION cu valorile salvate anterior in acea sesiune",
+            "Trimite un nou cookie de sesiune catre client",
+            "Nu face nimic daca sesiunea exista deja"
+        ],
+        "answer": [
+            "Se uita la cookie-ul de sesiune primit pe request si populeaza tabloul $_SESSION cu valorile salvate anterior in acea sesiune"
+        ]
+    },
+    {
+        "question": "Cum se invalideaza/distruge o sesiune in PHP?",
+        "options": [
+            "session_stop()",
+            "session_close()",
+            "session_destroy() (apelata dupa session_start())",
+            "unset($_SESSION)"
+        ],
+        "answer": [
+            "session_destroy() (apelata dupa session_start())"
+        ]
+    },
+    {
+        "question": "De ce sunt valorile stocate pe sesiunea PHP considerate sigure din perspectiva clientului?",
+        "options": [
+            "Sunt criptate si trimise clientului intr-un format ilizibil",
+            "Valorile stocate pe sesiune nu sunt niciodata disponibile clientului, sesiunea persistandu-se exclusiv pe back-end",
+            "Sunt stocate in cookie-uri cu atributul HttpOnly setat",
+            "Sunt stocate in sessionStorage al browserului, accesibil doar paginii curente"
+        ],
+        "answer": [
+            "Valorile stocate pe sesiune nu sunt niciodata disponibile clientului, sesiunea persistandu-se exclusiv pe back-end"
+        ]
+    },
+    {
+        "question": "Care este numele implicit al cookie-ului de sesiune in PHP?",
+        "options": [
+            "SESSID",
+            "PHPSESSID",
+            "PHP_SESSION",
+            "SESSION_ID"
+        ],
+        "answer": [
+            "PHPSESSID"
+        ]
+    },
+    {
+        "question": "De ce este periculos ca valoarea cookie-ului de sesiune sa fie cunoscuta de un tert (atacator)?",
+        "options": [
+            "Nu este periculos, cookie-ul de sesiune nu contine informatii sensibile",
+            "Atacatorul poate folosi cookie-ul furat pentru a face cereri in numele utilizatorului logat, fara a cunoaste user-ul si parola acestuia",
+            "Atacatorul poate descifra parola utilizatorului din valoarea cookie-ului",
+            "Cookie-ul de sesiune contine datele bancare ale utilizatorului"
+        ],
+        "answer": [
+            "Atacatorul poate folosi cookie-ul furat pentru a face cereri in numele utilizatorului logat, fara a cunoaste user-ul si parola acestuia"
+        ]
+    },
+    {
+        "question": "Care este DocumentRoot-ul implicit pentru XAMPP pe Windows si ce URL corespunde acestuia?",
+        "options": [
+            "c:\\xampp\\www\\ corespunde cu http://localhost",
+            "c:\\xampp\\htdocs\\ corespunde cu http://localhost",
+            "c:\\xampp\\public\\ corespunde cu http://localhost",
+            "c:\\xampp\\html\\ corespunde cu http://localhost"
+        ],
+        "answer": [
+            "c:\\xampp\\htdocs\\ corespunde cu http://localhost"
+        ]
+    },
+    {
+        "question": "Care este tagul special PHP pentru afisarea de valori inline in codul HTML, alternativa la echo?",
+        "options": [
+            "<?out ... ?>",
+            "<?= ... ?>",
+            "<?print ... ?>",
+            "<? echo ... ?>"
+        ],
+        "answer": [
+            "<?= ... ?>"
+        ]
+    },
+    {
+        "question": "Care dintre urmatoarele afirmatii despre transmiterea parametrilor in functiile PHP sunt adevarate?",
+        "options": [
+            "Implicit, parametrii se transmit prin valoare",
+            "Pentru transmiterea prin referinta, parametrii formali se prefixeaza cu operatorul &",
+            "PHP nu suporta transmiterea prin referinta a parametrilor",
+            "Implicit, parametrii se transmit prin referinta"
+        ],
+        "answer": [
+            "Implicit, parametrii se transmit prin valoare",
+            "Pentru transmiterea prin referinta, parametrii formali se prefixeaza cu operatorul &"
+        ]
+    }
+]

@@ -1,0 +1,42 @@
+.carousel {
+  position: relative;
+  width: 800px;
+  margin: auto;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-slide {
+  position: relative;
+  text-align: center;
+}
+
+#carousel-text {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  color: white;
+  background: rgba(0,0,0,0.5);
+  padding: 10px;
+}
+
+.carousel button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: black;
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.prev { left: 0; }
+.next { right: 0; }

@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:moto_c.controllers"
+             x:Class="moto_c.controllers.RaceEventViewController">
+    <Grid RowDefinitions="Auto,*,Auto" Margin="10">
+        <Grid Grid.Row="0" ColumnDefinitions="*,*" Margin="0,0,0,5">
+            <TextBlock Grid.Column="0" Text="Engine" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="1" Text="Participants" FontWeight="Bold" HorizontalAlignment="Center"/>
+        </Grid>
+
+        <ListBox Grid.Row="1" Name="eventList">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="local:RaceEventRow">
+                    <Grid ColumnDefinitions="*,*">
+                        <TextBlock Grid.Column="0" Text="{Binding EngineDisplay}" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="{Binding ParticipantCount}" HorizontalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="10" Margin="0,10,0,0">
+            <TextBox Name="engineField" Watermark="Engine" Width="200"/>
+            <Button Content="Add Event" Click="addEvent"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet id="007-create-projects" author="lab5">
+
+        <createTable tableName="projects">
+            <column name="id" type="INT AUTO_INCREMENT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="description" type="TEXT"/>
+
+            <column name="start_date" type="DATE"/>
+
+            <column name="department_id" type="INT"/>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="projects"/>
+        </rollback>
+
+    </changeSet>
+
+    <changeSet id="008-fk-projects-dept" author="lab5">
+
+        <addForeignKeyConstraint
+                baseTableName="projects"
+                baseColumnNames="department_id"
+                referencedTableName="departments"
+                referencedColumnNames="id"
+                constraintName="fk_projects_departments"/>
+
+        <rollback>
+            <dropForeignKeyConstraint
+                    baseTableName="projects"
+                    constraintName="fk_projects_departments"/>
+        </rollback>
+
+    </changeSet>
+
+</databaseChangeLog>

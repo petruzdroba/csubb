@@ -1,0 +1,21 @@
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Engine</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (race of races; track race.id) {
+      <tr>
+        <td>{{ race.id }}</td>
+        <td>{{ race.engine }}</td>
+        <td>
+          <button (click)="edit(race)">Edit</button>
+          <button (click)="delete(race.id)">Delete</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

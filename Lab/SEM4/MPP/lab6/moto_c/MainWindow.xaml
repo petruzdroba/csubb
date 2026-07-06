@@ -1,0 +1,9 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controllers="clr-namespace:moto_c.controllers"
+        Width="800" Height="400"
+        Title="Moto C"
+        x:Class="moto_c.MainWindow"
+        Background="White">
+    <controllers:AuthViewController x:Name="authView"/>
+</Window>

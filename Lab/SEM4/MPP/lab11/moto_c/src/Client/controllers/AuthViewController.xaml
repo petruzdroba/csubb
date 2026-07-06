@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="moto_c.controllers.AuthViewController"
+             Width="800"
+             Height="400"
+             Background="LightGray">
+    <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="*" Margin="50">
+        <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+            <TextBlock Text="Log In" FontSize="24" HorizontalAlignment="Center"/>
+            <TextBox Name="loginEmailField" Watermark="Email" Width="300"/>
+            <TextBox Name="loginPasswordField" Watermark="Password" Width="300" PasswordChar="●"/>
+            <Button Content="Login" Width="150" Click="logIn"/>
+        </StackPanel>
+        <Separator Grid.Column="1" Width="2" HorizontalAlignment="Center" Margin="20,0"/>
+        <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+            <TextBlock Text="Register" FontSize="24" HorizontalAlignment="Center"/>
+            <TextBox Name="registerEmailField" Watermark="Email" Width="300"/>
+            <TextBox Name="registerPasswordField" Watermark="Password" Width="300" PasswordChar="●"/>
+            <Button Content="Register" Width="150" Click="register"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

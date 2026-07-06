@@ -1,0 +1,103 @@
+# =========================
+# IDEs
+# =========================
+
+# IntelliJ / Rider / JetBrains
+.idea/
+*.iml
+
+# Rider
+*.sln.iml
+
+# VS Code
+.vscode/
+
+# =========================
+# Java
+# =========================
+
+# Maven
+target/
+
+# Gradle
+.gradle/
+build/
+out/
+
+# Logs
+*.log
+
+# =========================
+# C# / .NET
+# =========================
+
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userprefs
+
+# Rider / ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# NuGet
+packages/
+*.nupkg
+
+# =========================
+# OS Files
+# =========================
+
+# Linux
+*~
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# =========================
+# Environment / Secrets
+# =========================
+
+.env
+.env.*
+
+# =========================
+# Misc
+# =========================
+
+coverage/
+TestResults/
+
+# Spring Boot
+**/target/
+**/.mvn/
+**/mvnw
+**/mvnw.cmd
+**/*.class
+**/*.jar
+**/*.war
+**/*.ear
+**/application-local.properties
+**/application-local.yml
+
+# Angular
+**/node_modules/
+**/.angular/
+**/dist/
+**/*.js.map
+package-lock.json
+
+
+# IDE
+**/.idea/
+**/*.iml
+**/.vscode/
+**/.DS_Store
+

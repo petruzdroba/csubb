@@ -1,0 +1,63 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.zdroba'
+version = '1.0-SNAPSHOT'
+
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation platform('org.junit:junit-bom:5.10.0')
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+}
+
+tasks.register('runServer', JavaExec) {
+    group = 'application'
+    mainClass.set('org.zdroba.ServerApp')
+    classpath = project(':server').sourceSets.main.runtimeClasspath
+}
+
+tasks.register('runClient5000', JavaExec) {
+    group = 'application'
+    mainClass.set('org.zdroba.Main')
+    classpath = project(':client').sourceSets.main.runtimeClasspath
+    args = ["5000"]
+}
+
+tasks.register('runClient5001', JavaExec) {
+    group = 'application'
+    mainClass.set('org.zdroba.Main')
+    classpath = project(':client').sourceSets.main.runtimeClasspath
+    args = ["5001"]
+}
+
+tasks.register('runAll', Exec) {
+    group = 'application'
+    commandLine 'sh', '-c', '''
+        trap "kill 0" EXIT
+
+        ./gradlew :server:run &
+        sleep 2
+        ./gradlew :client:run --args="5000" &
+        ./gradlew :client:run --args="5001" &
+
+        wait
+    '''
+}
