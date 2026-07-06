@@ -96,8 +96,8 @@ public class PaginationApp extends Application {
                 keysetPageIndex = 1;
             }
 
-            table.getItems().setAll(content);
-            pageInfo.setText("Page: 1");
+            table.getItems().setAll(keysetBuffer);
+            pageInfo.setText("Showing 1–" + keysetBuffer.size());
         };
 
         Runnable loadKeysetNext = () -> {
@@ -110,8 +110,9 @@ public class PaginationApp extends Application {
                 keysetCursor = content.get(content.size() - 1).getId();
                 keysetBuffer.addAll(content);
                 keysetPageIndex++;
-                table.getItems().setAll(content);
-                pageInfo.setText("Page: " + keysetPageIndex);
+
+                table.getItems().setAll(keysetBuffer);
+                pageInfo.setText("Showing 1–" + keysetBuffer.size());
             }
         };
 
