@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet id="001-create-daleBeton" author="petru">
+
+        <createTable tableName="daleBeton">
+            <column name="id" type="INT AUTO_INCREMENT">
+                <constraints primaryKey="true" nullable="false"></constraints>
+            </column>
+
+            <column name="firma" type="VARCHAR(255)">
+            </column>
+            <column name="tip" type="VARCHAR(255)">
+            </column>
+            <column name="grosime" type="INT">
+            </column>
+            <column name="pret" type="int">
+
+            </column>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>
