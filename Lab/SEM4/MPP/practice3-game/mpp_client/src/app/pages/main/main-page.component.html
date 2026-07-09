@@ -1,0 +1,47 @@
+<div>
+  @if (user) {
+    <p><b>{{ user.name }}</b> ({{ user.email }})</p>
+  }
+  <button (click)="logout()">Logout</button>
+  <hr />
+
+  <input type="text" #wordInput placeholder="3 letters e.g. CAT" maxlength="3" />
+  <button (click)="addPlayer(wordInput.value)">Join</button>
+
+  @if (!started) {
+    @if (canStart) {
+      <p>Ready to start.</p>
+      <button (click)="startGame()">Start Game</button>
+    } @else {
+      <p>Waiting for more players...</p>
+    }
+  }
+
+  @if (game && started) {
+    @if (yourTurn) {
+      <p>Your turn</p>
+    } @else {
+      <p>Waiting for other players...</p>
+    }
+
+    @for (userWords of words; track userWords.userId) {
+      @if (userWords.userId !== user!.id) {
+        <div>
+          <h4>Player {{ userWords.userId }}'s word</h4>
+          @for (word of userWords.word; track word.id) {
+            <div>
+              <span>{{ word.first === word.first.toUpperCase() ? word.first : isVowel(word.first) ? 'V' : 'C' }}</span>
+              <span>{{ word.second === word.second.toUpperCase() ? word.second : isVowel(word.second) ? 'V' : 'C' }}</span>
+              <span>{{ word.third === word.third.toUpperCase() ? word.third : isVowel(word.third) ? 'V' : 'C' }}</span>
+              @if (yourTurn) {
+                <input type="text" maxlength="1" placeholder="letter" #letterInput
+                  (keyup.enter)="guess(userWords.userId, word.id, letterInput.value)" />
+                <button (click)="guess(userWords.userId, word.id, letterInput.value)">Guess</button>
+              }
+            </div>
+          }
+        </div>
+      }
+    }
+  }
+</div>

@@ -1,0 +1,63 @@
+<div>
+  @if (user) {
+    <div>
+      <p><b>Email:</b> {{ user.email }}; <b>Name:</b> {{ user.name }}</p>
+    </div>
+  }
+  <button (click)="logout()">Logout</button>
+  <hr />
+
+  @if (waiting) {
+    <p>Waiting for other players to join...</p>
+  }
+
+  @if (!standby && !started) {
+    <button (click)="join()">Join Game</button>
+  }
+
+  @if (standby && !started) {
+    <p>All players ready.</p>
+    <button (click)="start()">Start Game</button>
+  }
+
+  @if (started) {
+    <p>Game in progress</p>
+
+    @if (yourTurn) {
+      <p><b>It's your turn!</b></p>
+      <button (click)="action()">Play</button>
+    } @else {
+      <p>Waiting for other player's turn...</p>
+    }
+
+    @if (game) {
+      <h3>Players</h3>
+
+      @for (id of game.players; track id; let i = $index) {
+        <p>
+          Player {{ id }}: {{ game.points[i] }} pts, position
+          {{ game.positions[i] }}
+        </p>
+      }
+    }
+
+    @if (game) {
+      <div>
+        <p>Scores</p>
+        @for (id of game.players; track id; let i = $index) {
+          <p>Player {{ id }}: {{ game.points[i] }} pts</p>
+        }
+      </div>
+    }
+  }
+
+  @if (showConfigurationPicker) {
+    <h3>Choose a configuration</h3>
+
+    @for (config of configurations; track config.id) {
+      <button (click)="selectConfiguration(config.id)">
+        Configuration {{ config.id }}
+      </button>
+    }
+  }
+</div>

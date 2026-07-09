@@ -1,0 +1,35 @@
+<div>
+  @if (user) {
+    <div>
+      <p><b>Email:</b> {{ user.email }} <b>Name:</b> {{ user.name }}</p>
+    </div>
+  }
+
+  <button (click)="logout()">Logout</button>
+  <hr />
+  <button (click)="add()">Join Game.</button>
+
+  @if (!started) {
+    @if (standBy) {
+      <button (click)="start()">Start Game.</button>
+    } @else {
+      <p>Not enough players.</p>
+    }
+  }
+
+  @if(game && started){
+    <p>Points; {{points}}</p>
+    <p>Turn: {{game.turn}}</p>
+    <p>Letter: </p>
+    <h3>{{ game.currentLetter }}</h3>
+
+    <input type="text" #tara placeholder="TARA"/>
+    <input type="text" #oras placeholder="ORAS"/>
+    <input type="text" #mare placeholder="MARE"/>
+    <button (click)="submit(tara.value, oras.value, mare.value)">Submit</button>
+  }
+
+  <hr>
+  <p>Points</p>
+  <app-list [points]="result"></app-list>
+</div>

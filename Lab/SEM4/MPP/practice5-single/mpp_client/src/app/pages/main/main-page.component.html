@@ -1,0 +1,46 @@
+<div>
+  @if (user) {
+    <div>
+      <p> <b>Email:</b> {{ user.email }} <b>Name:</b> {{ user.name }}</p>
+    </div>
+  }
+
+  <button (click)="logout()">Logout</button>
+  <hr>
+
+  @if(started){
+    <p>Turn: {{game?.turn}}</p>
+    <p>Points: {{points}}</p>
+
+    <input type="number" min="0" max="5" #X>
+    <input type="number" min="0" max="5" #Y>
+    <button (click)="guess(X.value, Y.value)">Guess</button>
+
+    <table border="1" cellpadding="20" cellspacing="5">
+        @for(x of [0,1,2,3,4]; track x){
+          <tr>
+            @for(y of [0 ,1,2,3,4]; track y){
+              <td>
+                  @if(isHit(x,y)){
+                    B
+                  }
+
+                  @if(isNear(x,y)){
+                    N
+                  }
+
+                  @if(isMiss(x,y)){
+                    M
+                  }
+
+              </td>
+            }
+          </tr>
+        }
+    </table>
+
+
+  }@else{
+    <button (click)="start()">Start</button>
+  }
+</div>

@@ -1,0 +1,67 @@
+<div>
+  @if (user) {
+    <div>
+      <p><b>Email:</b> {{ user.email }} <b>Name:</b> {{ user.name }}</p>
+    </div>
+  }
+
+  <button (click)="logout()">Logout</button>
+  <hr />
+
+  @if (!waiting && !ready && !started) {
+    <div class="boss">
+      <input type="number" #X1 placeholder="X1" min="0" max="4" />
+      <input type="number" #Y1 placeholder="Y1" min="0" max="4" />
+      <input type="number" #X2 placeholder="X2" min="0" max="4" />
+      <input type="number" #Y2 placeholder="Y2" min="0" max="4" />
+      <button (click)="join(X1.value, Y1.value, X2.value, Y2.value)">
+        Join Game
+      </button>
+    </div>
+  }
+
+  @if (waiting) {
+    <p>Joined game, waiting for other player</p>
+  }
+
+  @if (ready) {
+    <button (click)="start()">Start game</button>
+  }
+
+  @if (started) {
+    Game started
+    <div class="game">
+      @if (auth.getUser()!.id != game?.player1) {
+        <p>Other player: {{ game?.player1 }}</p>
+      }
+      @if (auth.getUser()!.id != game?.player2) {
+        <p>Other player: {{ game?.player2 }}</p>
+      }
+
+      @if (turn) {
+        <input type="number" #X placeholder="X" min="0" max="4" />
+        <input type="number" #Y placeholder="Y" min="0" max="4" />
+        <button (click)="guess(X.value, Y.value)">Guess boat</button>
+      }
+
+      <table border="1" cellpadding="20" cellspacing="5">
+        @for (y of [0, 1, 2, 3, 4]; track y) {
+          <tr>
+            @for (x of [0, 1, 2, 3, 4]; track x) {
+              <td>
+                @if (isHit(x, y)) {
+                  HIT
+                }
+                @if (isMiss(x, y)) {
+                  MISS
+                }
+              </td>
+            }
+          </tr>
+        }
+      </table>
+
+
+    </div>
+  }
+</div>

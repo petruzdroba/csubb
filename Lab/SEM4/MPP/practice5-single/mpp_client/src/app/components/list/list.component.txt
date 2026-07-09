@@ -1,0 +1,72 @@
+import { CommonModule } from "@angular/common";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Participant } from "../../models/particiapant";
+
+@Component({
+  selector: "app-list",
+  templateUrl: "./list.component.html",
+  imports: [CommonModule],
+  standalone: true,
+})
+export class ListComponent {
+  @Input() participants: Participant[] = [];
+  @Input() status: string = "";
+
+  @Output() readyEvent = new EventEmitter<Participant>();
+
+  @Output() editEvent = new EventEmitter<{
+    participant: Participant;
+    score: number;
+  }>();
+
+
+  onEdit(participant: Participant, score: string) {
+    const numScore = parseInt(score, 10);
+    this.editEvent.emit({ participant, score: numScore });
+  }
+
+  onReady(participant: Participant) {
+    this.readyEvent.emit(participant);
+  }
+}
+
+
+<table>
+  <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Score (Execution)</th>
+    <th>Score (Technical)</th>
+    <th>Score (Artistic)</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+    @for (p of participants; track p.id) {
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.name }}</td>
+        <td>{{ p.scoreExec }}</td>
+        <td>{{ p.scoreTeh }}</td>
+        <td>{{ p.scoreArt }}</td>
+        <td>
+          @if (this.status == "WAITING") {
+            <button (click)="onReady(p)">Ready!</button>
+          }
+          @if (this.status === "ONGOING") {
+            <input
+              type="number"
+              #scoreInput
+              placeholder="Score"
+              min="1"
+              max="10"
+            />
+            <button (click)="onEdit(p, scoreInput.value)">Edit</button>
+          }
+          @if(status == 'FINISHED'){
+            <p> {{ p.scoreExec +p.scoreTeh  + p.scoreArt }} </p>
+          }
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

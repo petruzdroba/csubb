@@ -1,0 +1,21 @@
+<div>
+  <h2>{{ isRegister ? 'Register' : 'Login' }}</h2>
+  @if (isRegister) {
+    <div>
+      <input type="text" [(ngModel)]="name" placeholder="Name" />
+    </div>
+  }
+  <div>
+    <input type="email" [(ngModel)]="email" placeholder="Email" />
+  </div>
+  <div>
+    <input type="password" [(ngModel)]="password" placeholder="Password" />
+  </div>
+  @if (error) {
+    <div>{{ error }}</div>
+  }
+  <button (click)="submit()">{{ isRegister ? 'Register' : 'Login' }}</button>
+  <button (click)="isRegister = !isRegister">
+    {{ isRegister ? 'Back to login' : 'Create account' }}
+  </button>
+</div>

@@ -1,0 +1,64 @@
+<div>
+  @if (user) {
+    <div>
+      <p><b>Email:</b> {{ user.email }}; <b>Name:</b> {{ user.name }}</p>
+    </div>
+  }
+  <button (click)="logout()">Logout</button>
+  <hr />
+
+  @if (waiting) {
+    <p>Waiting for other players to join...</p>
+  }
+
+  @if (!standby && !started) {
+    <button (click)="join()">Join Game</button>
+  }
+
+  @if (standby && !started) {
+    <p>All players ready.</p>
+    <button (click)="start()">Start Game</button>
+  }
+
+  @if (started) {
+    <p>Game in progress</p>
+
+    @if (yourTurn) {
+      <p><b>It's your turn!</b></p>
+
+      <input type="text" #guess placeholder="guess">
+      <button (click)="submitGuess(guess.value)">Submit Guess</button>
+    } @else {
+      <p>Waiting for other player's turn...</p>
+    }
+
+    @if (game) {
+      <div>
+        @if(game.configuration!.letters != null){
+          <p>Configuration letters: {{ game.configuration!.letters.join(', ') }}</p>
+        }
+
+        <p>Scores</p>
+        @for (id of game.players; track id; let i = $index) {
+          <p>Player {{ id }}: {{ game.points[i] }} pts</p>
+        }
+      </div>
+    }
+  }
+
+  @if(showConf){
+    <p>Pick a configuration</p>
+    @for(c of confs; track c.id){
+        <button (click)="setConf(c.id)">{{ c.id}}</button>
+    }
+  }
+
+
+
+  <div class="configuration">
+    <p>Add a configuration</p>
+    <input type="text" #letters placeholder="letters">
+    <input type="text" #word placeholder="word">
+    <button (click)="addConf(letters.value, word.value)">Add Configuration</button>
+  </div>
+</div>

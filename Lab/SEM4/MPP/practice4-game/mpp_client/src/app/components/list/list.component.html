@@ -1,0 +1,32 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>GAME ID</th>
+      <th>Score</th>
+      <th>User Id</th>
+    </tr>
+  </thead>
+  <tbody>
+    @if (points) {
+      @for (p of points; track p.id) {
+        <tr>
+          <td>{{ p.id }}</td>
+          <td>{{ p.gameId }}</td>
+          <td>{{ p.points }}</td>
+          <td>{{ p.userId }}</td>
+        </tr>
+      }
+    }
+  </tbody>
+</table>
+
+@if (topUsers.length > 0) {
+  <ol>
+    @for (user of topUsers; track user.userId) {
+      <li>
+        User {{ user.userId }} - {{ user.totalPoints }} points
+      </li>
+    }
+  </ol>
+}

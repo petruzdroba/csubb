@@ -1,0 +1,24 @@
+<div>
+  @if (user) {
+    <div>
+      <p> <b>Email:</b> {{ user.email }} <b>Name:</b> {{ user.name }} </p>
+      @if(user.jury == 1){
+        <b>Jury:</b> Execution
+      }
+      @if(user.jury == 2){
+        <b>Jury:</b> Technical
+      }
+      @if(user.jury >2){
+        <b>Jury:</b> Artistic
+      }
+    </div>
+  }
+
+  <button (click)="logout()">Logout</button>
+  <hr>
+
+  @for(status of things; track status.status){
+    <h2>Status: {{status.status}}</h2>
+    <app-list [participants]="status.participants" [status]="status.status" (editEvent)="edit($event)" (readyEvent)="onReady($event)"></app-list>
+  }
+</div>
