@@ -1,0 +1,15 @@
+Posibilitati de imbunatatire a recunoasterii textului
+
+1. Text
+- scris totul cu majuscule
+- scris tot textul same case sau macar doar primul cuvant sa aiba prima litera majuscula
+- fara diacritice
+- scriem uniform (incepem din stanga din acelasi loc)
+
+2. Imagine 
+- transformam imaginea in negru pe alb
+- crestem contrastul ( scoatem mici detalii cum ar fi o foaie indoita sau liniile de caiet)
+
+3. AI
+- adaugam diacritice in datele de antrenare
+- adaugam mai multe limbi in datele de antrenare ( training data bias )
