@@ -1,7 +1,6 @@
-import { Navigate, Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -32,6 +31,10 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import { ItemList } from './todo';
+import { ItemProvider } from './todo/ItemProvider';
+import ItemEdit from './todo/ItemEdit';
+import { AuthProvider, Login, PrivateRoute } from './auth';
 
 setupIonicReact();
 
@@ -39,8 +42,15 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route path="/home" element={<Home />} />
-        <Route path="/" element={<Navigate to="/home" replace />} />
+        <AuthProvider>
+          <Route path="/login" component={Login} exact={true}/>
+          <ItemProvider>
+            <PrivateRoute path="/items" component={ItemList} exact={true}/>
+            <PrivateRoute path="/item" component={ItemEdit} exact={true}/>
+            <PrivateRoute path="/item/:id" component={ItemEdit} exact={true}/>
+          </ItemProvider>
+          <Route exact path="/" render={() => <Redirect to="/items"/>}/>
+        </AuthProvider>
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

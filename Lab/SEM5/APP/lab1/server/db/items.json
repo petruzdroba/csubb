@@ -1,0 +1,12 @@
+{"name":"Business Account","currency":"USD","date_opened":"2023-01-01T00:00:00","ammount":5002,"_id":"0HzUsB3WPO0zvI97","userId":"vI1GMkzBza5i82zj"}
+{"name":"test2","currency":"TST","ammount":90,"date_opened":"2026-10-15T16:52:00","userId":"vI1GMkzBza5i82zj","_id":"4CCm1tAxwPFfDryl"}
+{"name":"Investment Portfolio","currency":"EUR","date_opened":"2023-06-20T00:00:00.000Z","ammount":12500,"_id":"5jiukIovSHq5rHhA","userId":"vI1GMkzBza5i82zj"}
+{"name":"Checking Account","currency":"USD","date_opened":"2022-03-10T00:00:00.000Z","ammount":3250,"_id":"Q632hxHK4aleF4R4","userId":"vI1GMkzBza5i82zj"}
+{"name":"Money Market","currency":"GBP","date_opened":"2024-02-01T00:00:00.000Z","ammount":8750,"_id":"RCdHQoGzBtGUgkjg","userId":"vI1GMkzBza5i82zj"}
+{"name":"Emergency Fund","currency":"USD","date_opened":"2023-11-05T00:00:00.000Z","ammount":15000,"_id":"VaQ7VtSfwtJm3pFn","userId":"vI1GMkzBza5i82zj"}
+{"name":"Vacation Savings","currency":"CAD","date_opened":"2024-01-12T00:00:00.000Z","ammount":4200,"_id":"hPOTpXaZ1iCoth7j","userId":"vI1GMkzBza5i82zj"}
+{"name":"Business Account","currency":"USD","date_opened":"2023-04-06T21:00:00.000Z","ammount":22000,"_id":"tCc1ltDb8XRPJ2y1","userId":"vI1GMkzBza5i82zz"}
+{"name":"Operating Fund","currency":"EUR","date_opened":"2024-10-13T21:00:00.000Z","ammount":18500,"_id":"tCc1ltDb8XRPJ2y2","userId":"vI1GMkzBza5i82zz"}
+{"name":"Education Fund","currency":"AUD","date_opened":"2023-07-22T00:00:00.000Z","ammount":7600,"_id":"tCc1ltDb8XRPJ2yn","userId":"vI1GMkzBza5i82zj"}
+{"name":"Retirement Account","currency":"USD","date_opened":"2020-09-18T00:00:00.000Z","ammount":45000,"_id":"xaDRAPTAzvcyV0Tr","userId":"vI1GMkzBza5i82zj"}
+{"name":"Checking Account","currency":"USD","date_opened":"2022-03-10T00:00:00.000Z","ammount":3250,"_id":"Q632hxHK4aleF4R4","userId":"vI1GMkzBza5i82zj"}
