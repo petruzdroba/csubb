@@ -1,6 +1,8 @@
+Cerinta + Exemplu: [[LFTC_Lab1_Cerinta]]
+
 ## Specificarea limbajului de programare
 
-Limbaj 'mama' folosit: C/C++
+Limbaj 'mama' folosit: **C/C++**
 
 ### Tipuri de date
 - Integer
@@ -48,7 +50,12 @@ Limbaj 'mama' folosit: C/C++
 <cond> ::= <expr>
 
 <loop_while> ::= while "(" <cond> ")" "{" <instruction_list> "}"
+```
+`<c_string>::= '"' [^"]* '"'`
+Note : ` matches a double quote, followed by any characters except double quotes, followed by another double quote`2
 
+
+```EBNF
 VAR       ::= letter ( letter | digit ){0,127}
 CONST     ::= <c_int> | <c_double> | <c_string>
 <c_int>   ::= digit+
@@ -124,7 +131,6 @@ int main() {
 ### Errors
 
 ```C
-
 #include <iostream>
 using namespace std;
 
@@ -144,7 +150,6 @@ int main() {
 ```
 
 ```C
-
 #include <iostream>
 using namespace std;
 

@@ -1,0 +1,26 @@
+<app> ::= [ <type_user_list> ] int main "(" ")" "{" [ { <init_list> | <instruction_list> } ] "}"
+<init_list> ::= <init> | <init> <init_list>
+<init> ::= <type> VAR { "," VAR } ";"
+<type> ::= int | double | string | VAR
+<type_user_list> ::= <type_user> | <type_user> <type_user_list>
+<type_user> ::= struct VAR "{" <init_list> "}" ";"
+
+<instruction_list> ::= <instruction> | <instruction> <instruction_list>
+<instruction> ::= <assign> | <read> | <write> | <return> | <cond_if> | <loop_while>
+
+<ref> ::= VAR { "." VAR }
+<assign> ::= <ref> "=" <expr> ";"
+<expr> ::= <ref> | CONST | <expr> <op_arm> <expr> | <expr> <op_cmp> <expr>
+
+<op_arm> ::= "+" | "-" | "/" | "*" | "%" | "&&" | "||"
+<op_cmp> ::= "==" | "!=" | ">" | "<" | "<=" | ">="
+
+<read> ::= cin ">>" <ref> ";"
+<write> ::= cout "<<" <expr> ";"
+<return> ::= return <expr> ";"
+
+<cond_if> ::= if "(" <cond> ")" "{" <instruction_list> "}"
+              [ else "{" <instruction_list> "}" ]
+<cond> ::= <expr>
+
+<loop_while> ::= while "(" <cond> ")" "{" <instruction_list> "}"
