@@ -1,0 +1,20 @@
+struct circle {
+	double radius;
+	double perimeter;
+	double area;
+};
+
+int main() {
+	circle c;
+	double pi;
+    string word;
+
+    word="";
+	pi =                      3.14159 ;
+	cin >> c.radius;
+	c.perimeter = 2 * pi * c.radius;
+	c.area = pi * c.radius * c.radius;
+
+    cout<<word;cout<<word;
+	return circle;
+}
