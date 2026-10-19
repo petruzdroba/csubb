@@ -103,7 +103,7 @@ int main() {
     const int REPETITIONS = 3;
 
     const std::vector<int> account_counts = {4, 100, 1000, 10000};
-    const std::vector<int> thread_counts = {1, 2, 4, 8, 16, 32};
+    const std::vector<int> thread_counts = {1, 2, 4, 8, 16,65};
 
     std::cout << std::fixed << std::setprecision(4);
 

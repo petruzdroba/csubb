@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <vector>
 #include <mutex>
@@ -9,6 +8,10 @@
 #include <chrono>
 #include <cassert>
 #include <iomanip>
+
+//striped locking, breaks the accounts down into a couple of stripes
+// and each mutex in responsible for locking one stripe
+// granularity is coarser because each section can be locked
 
 class BankSystem {
 public:
@@ -36,9 +39,11 @@ public:
             return;
         }
 
+        // get which stripe the account belongs to
         int first = from % account_mutexes.size();
         int second = to % account_mutexes.size();
 
+        // if they are in the same stripe, we already have the mutex
         if (first == second) {
             std::lock_guard<std::mutex> lock(account_mutexes[first]);
 
@@ -49,6 +54,7 @@ public:
             balances[from] -= amount;
             balances[to] += amount;
         } else {
+            // different stripes, we need to obtain differnt mutexes for the transfer
             int low = std::min(first, second);
             int high = std::max(first, second);
 
@@ -107,10 +113,10 @@ int main() {
     const int INITIAL_BALANCE = 100000;
     const int TOTAL_OPERATIONS = 2000000;
     const int REPETITIONS = 3;
-    const int LOCK_COUNT = 64;
+    const int LOCK_COUNT = 8;
 
     const std::vector<int> account_counts = {4, 100, 1000, 10000};
-    const std::vector<int> thread_counts = {1, 2, 4, 8, 16, 32};
+    const std::vector<int> thread_counts = {1, 2, 4, 8, 16, 65};
 
     std::cout << "Locking strategy: " << LOCK_COUNT << " striped mutexes\n";
     std::cout << std::fixed << std::setprecision(4);
