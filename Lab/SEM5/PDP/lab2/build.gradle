@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.abc'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:6.0.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.register('run1', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'org.abc.Main'
+    args = ['100000', '100']
+}
+
+tasks.register('run2', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'org.abc.Main'
+    args = ['200000', '100']
+}
+
+tasks.register('run3', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'org.abc.Main'
+    args = ['100000', '50']
+}
+
+tasks.register('run4', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'org.abc.Main'
+    args = ['200000', '150']
+}
+
+tasks.register('run5', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'org.abc.Main'
+    args = ['100000', '10']
+}
+
+tasks.register('run6', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'org.abc.Main'
+    args = ['100000', '1000']
+}
