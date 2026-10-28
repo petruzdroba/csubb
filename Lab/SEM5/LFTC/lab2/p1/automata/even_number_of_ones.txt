@@ -1,0 +1,9 @@
+states: q_even q_odd
+alphabet: 0 1
+initial: q_even
+final: q_even
+transitions:
+q_even 0 q_even
+q_even 1 q_odd
+q_odd 0 q_odd
+q_odd 1 q_even
