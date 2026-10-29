@@ -107,43 +107,55 @@ class FiniteAutomaton:
 
     
     def accepts(self, sequence):
-        if not self.is_deterministic():
-            raise ValueError("Sequence acceptance requires a deterministic automaton.")
-
-        current_state = self.initial_state
+        current_states = {self.initial_state}
 
         for symbol in sequence:
             if symbol not in self.alphabet:
                 return False
 
-            destinations = self.transitions.get((current_state, symbol), set())
+            # each possible destination from next symbol
+            next_states = set()
 
-            if not destinations:
+            for state in current_states:
+                next_states.update(
+                    self.transitions.get((state, symbol), set())
+                )
+
+            if not next_states:
                 return False
 
-            current_state = next(iter(destinations))
+            current_states = next_states
 
-        return current_state in self.final_states
+        # if at least one state is final -> true
+        return bool(current_states & self.final_states)
 
 
     def longest_accepted_prefix(self, sequence):
-        if not self.is_deterministic():
-            raise ValueError("This operation requires a deterministic automaton.")
-
-        current_state = self.initial_state
-        longest_prefix = "" if current_state in self.final_states else None
+        current_states = {self.initial_state}
+        # if first state is final, empty is allowed
+        longest_prefix = "" if current_states & self.final_states else None
 
         for i, symbol in enumerate(sequence):
             if symbol not in self.alphabet:
                 break
 
-            destinations = self.transitions.get((current_state, symbol), set())
-            if not destinations:
+            # get all possible states from her
+            next_states = set()
+
+            for state in current_states:
+                next_states.update(
+                    self.transitions.get((state, symbol), set())
+                )
+
+            # stop if we cant leave, return what we have 
+            if not next_states:
                 break
 
-            current_state = next(iter(destinations))
+            current_states = next_states
 
-            if current_state in self.final_states:
+            # see if at least one state is final 
+            # extract prefix until current symbol
+            if current_states & self.final_states:
                 longest_prefix = sequence[:i + 1]
 
         return longest_prefix

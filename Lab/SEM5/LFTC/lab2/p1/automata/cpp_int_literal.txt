@@ -1,8 +1,8 @@
 
-states: start zero decimal octal hex_prefix hexadecimal bin_prefix binary
-alphabet: 0 1 2 3 4 5 6 7 8 9 a b c d e f A B C D E F x X
+states: start zero decimal octal hex_prefix hexadecimal bin_prefix binary suffix_l
+alphabet: 0 1 2 3 4 5 6 7 8 9 a b c d e f A B C D E F x X l L
 initial: start
-final: zero decimal octal hexadecimal binary
+final: zero decimal octal hexadecimal binary suffix_l
 transitions:
 start 0 zero
 start 1 decimal
@@ -90,5 +90,17 @@ hexadecimal E hexadecimal
 hexadecimal F hexadecimal
 bin_prefix 0 binary
 bin_prefix 1 binary
+bin_prefix 2 binary
 binary 0 binary
 binary 1 binary
+binary 2 binary
+zero l suffix_l
+zero L suffix_l
+decimal l suffix_l
+decimal L suffix_l
+octal l suffix_l
+octal L suffix_l
+hexadecimal l suffix_l
+hexadecimal L suffix_l
+binary l suffix_l
+binary L suffix_l
