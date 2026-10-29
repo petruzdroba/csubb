@@ -90,10 +90,8 @@ hexadecimal E hexadecimal
 hexadecimal F hexadecimal
 bin_prefix 0 binary
 bin_prefix 1 binary
-bin_prefix 2 binary
 binary 0 binary
 binary 1 binary
-binary 2 binary
 zero l suffix_l
 zero L suffix_l
 decimal l suffix_l
