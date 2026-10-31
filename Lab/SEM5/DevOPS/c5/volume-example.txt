@@ -1,0 +1,7 @@
+docker run -d --name db -e POSTGRES_PASSWORD=example -v pgdata:/var/lib/postgresql postgres:18
+docker exec -it psql -U postgres -c "CREATE TABLE notes(t text)"
+docker exec -it db psql -U postgres -c "CREATE TABLE notes(t text)"
+docker exec -it db psql -U postgres -c "INSERT INTO notes VALUES ('hello')"
+docker rm -f db
+docker run -d --name db2 -e POSTGRES_PASSWORD=example -v pgdata:/var/lib/postgresql postgres:18
+docker exec -it db2 psql -U postgres -c "SELECT * FROM notes"

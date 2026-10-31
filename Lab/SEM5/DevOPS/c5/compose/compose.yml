@@ -1,0 +1,36 @@
+services:
+  php:
+    image: php:8.2-fpm
+    networks:
+      - app_network
+
+  db:
+    image: postgres:18
+    container_name: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: mydb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app_network
+
+  adminer:
+    image: adminer:latest
+    container_name: web
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - app_network
+
+volumes:
+  pgdata:
+
+networks:
+  app_network:
+    driver: bridge
