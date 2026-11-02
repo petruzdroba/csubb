@@ -10,11 +10,12 @@ public class RowMajorBlockStrategy implements DistributionStrategy{
         int cols = result[0].length;
         int total = rows * cols; // total elements to compute, cells
 
+        // get the start idx and end idx -> not computed
         int start = threadId * total / nrThreads;
         int end = (threadId + 1) * total / nrThreads;
 
-        for(int i = start; i < end; i++) {
-            int row = i / cols;
+        for(int i = start; i < end; i++) { // go liniar
+            int row = i / cols; // from liniar idx to a matrix idx
             int col = i % cols;
 
             MatrixMultiplier.computeElement(a, b, result, row, col, threadId);

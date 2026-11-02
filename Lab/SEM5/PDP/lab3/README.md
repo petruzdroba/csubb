@@ -13,6 +13,28 @@ This class computes one element of the result matrix
 
 Traverse row by row to make matrix linear, and then split the elements into chunks evenly given to the threads 
 
+```java
+for(int i = start; i < end; i++) { 
+	int row = i / cols; 
+	int col = i % cols;
+}
+```
+
+```markdown
+Matrix (4 columns):
+[ 0  1  2  3 ]   ← row 0
+[ 4  5  6  7 ]   ← row 1
+[ 8  9 10 11 ]   ← row 2
+
+Linear indexing:
+i = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+```
+
+`i = 7` → `7 / 4 = 1` → row 1
+`i = 7` → `7 % 4 = 3` → column 3
+
+*Note: we divide by `cols` because it defines the row width*
+
 Divide the matrix into chunks and assign each thread an equal chunk (aprox)
 9x9 matrix (81 cells) to 4 threads => 20 20 20 21 cells for each 
 
@@ -57,6 +79,39 @@ Example with `nrThreads = 4`:
 - Thread 2: `2, 6, 10, 14, ...`
 - Thread 3: `3, 7, 11, 15, ...`
 
+So formula is 
+`i = threadId + k * nrThreads`, k is the the pass var in loop
+equivalent with 
+`cellBlockId % nrThreads == threadId`
+
+Replace in cyclic strategy with 
+```java
+for (int i = 0; i < total; i++) {
+    if (i % nrThreads == threadId) {
+	// (...)
+    }
+}
+```
+
 Matrix: 9x9, Threads: 4, Time: 169.712 ms
 Matrix: 1000x1000, Threads: 4, Time: 35532.499 ms
 Matrix: 500x300, Threads: 6, Time: 8896.068 ms
+
+## Split the cells
+
+5 x 3 matrix => 15 elements
+
+```java
+// For each thread:
+// Thread 0: start = 0 * 15 / 4 = 0,   end = 1 * 15 / 4 = 3
+// Thread 1: start = 1 * 15 / 4 = 3,   end = 2 * 15 / 4 = 7
+// Thread 2: start = 2 * 15 / 4 = 7,   end = 3 * 15 / 4 = 11
+// Thread 3: start = 3 * 15 / 4 = 11,  end = 4 * 15 / 4 = 15
+```
+
+*linear matrix goes from 0 to 14*
+
+in all strategies *i* in the for represents the item in the liniary made array, that gets transformed into a matrix type index that is passed to `MatrixMultiplier`
+
+- RowMajorBlockStrategy: Later threads get extra ( rest is acc at the end 3)
+- CyclicStrategy: Later threads get fewer (latter threads tart further back and hit end at the end)
