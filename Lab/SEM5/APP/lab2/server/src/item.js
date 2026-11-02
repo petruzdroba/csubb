@@ -1,3 +1,4 @@
+
 import Router from 'koa-router';
 import dataStore from 'nedb-promise';
 import { broadcast } from './wss.js';
@@ -16,20 +17,13 @@ export class ItemStore {
   }
 
   async insert(item) {
-    if (!item.name) { // validation
-      throw new Error('Missing name property')
-    }
-    if (!item.currency) { // validation
-      throw new Error('Missing currency property')
-    }
-    if (!item.ammount) { // validation
-      throw new Error('Missing ammount property')
-    }
-    if (!item.date_opened) { // validation
-      throw new Error('Missing date_opened property')
-    }
+    if (!item.name) throw new Error('Missing name property');
+    if (!item.currency) throw new Error('Missing currency property');
+    if (item.ammount == null) throw new Error('Missing ammount property');
+    if (!item.date_opened) throw new Error('Missing date_opened property');
+
     return this.store.insert(item);
-  };
+  }
 
   async update(props, item) {
     return this.store.update(props, item);
@@ -40,82 +34,131 @@ export class ItemStore {
   }
 }
 
-const itemStore = new ItemStore({ filename: './db/items.json', autoload: true });
+const itemStore = new ItemStore({
+  filename: './db/items.json',
+  autoload: true
+});
 
 export const itemRouter = new Router();
 
 itemRouter.get('/', async (ctx) => {
   const userId = ctx.state.user._id;
-  ctx.response.body = await itemStore.find({ userId });
-  ctx.response.status = 200; // ok
+  const skip = Math.max(0, parseInt(ctx.query.skip) || 0);
+  const limit = Math.min(100, Math.max(1, parseInt(ctx.query.limit) || 5));
+
+  const search = (ctx.query.search || '').trim().toLowerCase();
+  const currency = (ctx.query.currency || '').trim().toUpperCase();
+
+  let items = await itemStore.find({ userId });
+
+  if (search) {
+    items = items.filter(item =>
+      item.name.toLowerCase().includes(search)
+    );
+  }
+
+  if (currency) {
+    items = items.filter(item =>
+      item.currency.toUpperCase() === currency
+    );
+  }
+
+  ctx.body = items.slice(skip, skip + limit);
+  ctx.status = 200;
 });
 
 itemRouter.get('/:id', async (ctx) => {
   const userId = ctx.state.user._id;
-  const item = await noteStore.findOne({ _id: ctx.params.id });
-  const response = ctx.response;
-  if (item) {
-    if (item.userId === userId) {
-      ctx.response.body = item;
-      ctx.response.status = 200; // ok
-    } else {
-      ctx.response.status = 403; // forbidden
-    }
-  } else {
-    ctx.response.status = 404; // not found
+
+  const item = await itemStore.findOne({
+    _id: ctx.params.id,
+    userId
+  });
+
+  if (!item) {
+    ctx.status = 404;
+    return;
   }
+
+  ctx.body = item;
+  ctx.status = 200;
 });
 
-const createItem = async (ctx, item, response) => {
+const createItem = async (ctx, item) => {
   try {
     const userId = ctx.state.user._id;
-    item.userId = userId;
-    response.body = await itemStore.insert(item);
-    response.status = 201; // created
-    broadcast(userId, { type: 'created', payload: item });
+
+    const createdItem = await itemStore.insert({
+      ...item,
+      userId
+    });
+
+    ctx.body = createdItem;
+    ctx.status = 201;
+
+    broadcast(userId, {
+      type: 'created',
+      payload: createdItem
+    });
   } catch (err) {
-    response.body = { message: err.message };
-    response.status = 400; // bad request
+    ctx.body = { message: err.message };
+    ctx.status = 400;
   }
 };
 
-itemRouter.post('/', async ctx =>{console.log(ctx.request.body); await createItem(ctx, ctx.request.body, ctx.response)});
-
-itemRouter.put('/:id', async ctx => {
-  const item = ctx.request.body;
-  const id = ctx.params.id;
-  const itemId = item._id;
-  const response = ctx.response;
-  if (itemId && itemId !== id) {
-    response.body = { message: 'Param id and body _id should be the same' };
-    response.status = 400; // bad request
-    return;
-  }
-  if (!itemId) {
-    await createItem(ctx, item, response);
-  } else {
-    const userId = ctx.state.user._id;
-    item.userId = userId;
-    const updatedCount = await itemStore.update({ _id: id }, { $set: item });
-    if (updatedCount === 1) {
-      response.body = item;
-      response.status = 200; // ok
-      broadcast(userId, { type: 'updated', payload: item });
-    } else {
-      response.body = { message: 'Resource no longer exists' };
-      response.status = 405; // method not allowed
-    }
-  }
+itemRouter.post('/', async (ctx) => {
+  await createItem(ctx, ctx.request.body);
 });
 
+itemRouter.put('/:id', async (ctx) => {
+  const userId = ctx.state.user._id;
+  const id = ctx.params.id;
+  const item = ctx.request.body;
+
+  if (item._id && item._id !== id) {
+    ctx.body = { message: 'Param id and body _id should be the same' };
+    ctx.status = 400;
+    return;
+  }
+
+  const updatedItem = {
+    ...item,
+    _id: id,
+    userId
+  };
+
+  const updatedCount = await itemStore.update(
+    { _id: id, userId },
+    { $set: updatedItem }
+  );
+
+  if (updatedCount !== 1) {
+    ctx.body = { message: 'Resource not found' };
+    ctx.status = 404;
+    return;
+  }
+
+  ctx.body = updatedItem;
+  ctx.status = 200;
+
+  broadcast(userId, {
+    type: 'updated',
+    payload: updatedItem
+  });
+});
 
 itemRouter.del('/:id', async (ctx) => {
   const userId = ctx.state.user._id;
-  const item = await itemStore.findOne({ _id: ctx.params.id });
-  if (item && userId !== item.userId) {
-    ctx.response.status = 403; // forbidden
-  } else {
-    await itemStore.remove({ _id: ctx.params.id });
-    ctx.response.status = 204; // no content
+
+  const deletedCount = await itemStore.remove({
+    _id: ctx.params.id,
+    userId
+  });
+
+  if (deletedCount === 0) {
+    ctx.status = 404;
+    return;
   }
+
+  ctx.status = 204;
 });

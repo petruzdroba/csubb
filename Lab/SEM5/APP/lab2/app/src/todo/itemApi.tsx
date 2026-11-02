@@ -4,20 +4,36 @@ import { ItemProps } from './ItemProps';
 
 const itemUrl = `http://${baseUrl}/api/item`;
 
-export const getItems: (token: string) => Promise<ItemProps[]> = token => {
-  return withLogs(axios.get(itemUrl, authConfig(token)), 'getItems');
-}
+export const getItems = (
+  token: string,
+  skip: number,
+  limit: number = 5,
+  search: string = '',
+  currency: string = ''
+): Promise<ItemProps[]> => {
+  const params = new URLSearchParams({
+    skip: String(skip),
+    limit: String(limit),
+    search,
+    currency
+  });
 
-export const createItem: (token: string, item: ItemProps) => Promise<ItemProps[]> = (token, item) => {
+  return withLogs(
+    axios.get(`${itemUrl}?${params.toString()}`, authConfig(token)),
+    'getItems'
+  );
+};
+
+export const createItem = (token: string, item: ItemProps): Promise<ItemProps> => {
   return withLogs(axios.post(itemUrl, item, authConfig(token)), 'createItem');
-}
+};
 
-export const updateItem: (token: string, item: ItemProps) => Promise<ItemProps[]> = (token, item) => {
+export const updateItem = (token: string, item: ItemProps): Promise<ItemProps> => {
   return withLogs(axios.put(`${itemUrl}/${item._id}`, item, authConfig(token)), 'updateItem');
-}
+};
 
 interface MessageData {
-  type: string;
+  type: 'created' | 'updated';
   payload: ItemProps;
 }
 

@@ -11,6 +11,8 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonSelect,
+  IonSelectOption,
 } from "@ionic/react";
 import { getLogger } from "../core";
 import { ItemContext } from "./ItemProvider";
@@ -26,29 +28,36 @@ interface ItemEditProps extends RouteComponentProps<{
 const ItemEdit: React.FC<ItemEditProps> = ({ history, match }) => {
   const { items, saving, savingError, saveItem } = useContext(ItemContext);
   const [name, setName] = useState("");
-  const [currency, setCurrency] = useState<string>("");
+  const [currency, setCurrency] = useState<string>("RON");
   const [ammount, setAmmount] = useState<number>(0);
   const [date_opened, setDateOpened] = useState<Date>(new Date());
   const [item, setItem] = useState<ItemProps>();
+
   useEffect(() => {
     log("useEffect");
     const routeId = match.params.id || "";
-    const item = items?.find((it) => it._id === routeId);
-    setItem(item);
-    if (item) {
-      setName(item.name);
-      setCurrency(item.currency);
-      setAmmount(item.ammount);
-      setDateOpened(item.date_opened);
+    const foundItem = items?.find((it) => it._id === routeId);
+
+    setItem(foundItem);
+
+    if (foundItem) {
+      setName(foundItem.name);
+      setCurrency(foundItem.currency);
+      setAmmount(foundItem.ammount);
+      setDateOpened(foundItem.date_opened);
     }
   }, [match.params.id, items]);
+
   const handleSave = () => {
     const editedItem = item
       ? { ...item, name, currency, ammount, date_opened }
       : { name, currency, ammount, date_opened };
+
     saveItem && saveItem(editedItem).then(() => history.goBack());
   };
+
   log("render");
+
   return (
     <IonPage>
       <IonHeader>
@@ -59,18 +68,30 @@ const ItemEdit: React.FC<ItemEditProps> = ({ history, match }) => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
+
       <IonContent>
         <IonLabel>Name of account</IonLabel>
         <IonInput
           value={name}
           onIonChange={(e) => setName(e.detail.value || "")}
         />
+
         <IonLabel>Currency</IonLabel>
-        <IonInput
+        <IonSelect
           value={currency}
-          onIonChange={(e) => setCurrency(e.detail.value || "")}
-        />
-        <IonLabel>Ammount</IonLabel>
+          placeholder="Select currency"
+          interface="popover"
+          onIonChange={(e) => setCurrency(e.detail.value)}
+        >
+          <IonSelectOption value="RON">RON</IonSelectOption>
+          <IonSelectOption value="EUR">EUR</IonSelectOption>
+          <IonSelectOption value="USD">USD</IonSelectOption>
+          <IonSelectOption value="GBP">GBP</IonSelectOption>
+          <IonSelectOption value="CAD">CAD</IonSelectOption>
+          <IonSelectOption value="AUD">AUD</IonSelectOption>
+        </IonSelect>
+
+        <IonLabel>Amount</IonLabel>
         <IonInput
           value={ammount}
           type="number"
@@ -81,7 +102,9 @@ const ItemEdit: React.FC<ItemEditProps> = ({ history, match }) => {
 
         <IonDatetime
           value={date_opened.toString()}
-          onIonChange={(e) => setDateOpened((new Date(e.detail.value as string)) || new Date())}
+          onIonChange={(e) =>
+            setDateOpened(new Date(e.detail.value as string) || new Date())
+          }
         />
 
         <IonLoading isOpen={saving} />

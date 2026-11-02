@@ -5,7 +5,7 @@ import Router from 'koa-router';
 import bodyParser from "koa-bodyparser";
 import jwt from 'koa-jwt';
 import cors from '@koa/cors';
-import { jwtConfig, timingLogger, exceptionHandler } from './utils.js';
+import { jwtConfig, timingLogger, exceptionHandler, isRevoked } from './utils.js';
 import { initWss } from './wss.js';
 import { itemRouter } from './item.js';
 import { authRouter } from './auth.js';
@@ -23,6 +23,15 @@ app.use(bodyParser());
 const prefix = '/api';
 
 // public
+app.use(async (ctx, next) => {
+  if (ctx.path === '/health') {
+    ctx.body = { status: 'ok' };
+    return;
+  }
+
+  await next();
+});
+
 const publicApiRouter = new Router({ prefix });
 publicApiRouter
   .use('/auth', authRouter.routes());
@@ -30,7 +39,7 @@ app
   .use(publicApiRouter.routes())
   .use(publicApiRouter.allowedMethods());
 
-app.use(jwt(jwtConfig));
+app.use(jwt({ ...jwtConfig, isRevoked }));
 
 // protected
 const protectedApiRouter = new Router({ prefix });

@@ -1,7 +1,7 @@
 import Router from 'koa-router';
 import jwt from 'jsonwebtoken';
 import dataStore from "nedb-promise";
-import { jwtConfig } from './utils.js';
+import { jwtConfig, revokedTokens } from './utils.js';
 
 export class UserStore {
   constructor({ filename, autoload }) {
@@ -48,5 +48,28 @@ authRouter.post('/login', async (ctx) => {
   } else {
     ctx.response.body = { error: 'Invalid credentials' };
     ctx.response.status = 400; // bad request
+  }
+});
+
+authRouter.post('/logout', async (ctx) => {
+  const authorization = ctx.headers.authorization;
+  const token = authorization?.startsWith('Bearer ')
+    ? authorization.slice(7)
+    : null;
+
+  if (!token) {
+    ctx.status = 401;
+    ctx.body = { error: 'Missing token' };
+    return;
+  }
+
+  try {
+    jwt.verify(token, jwtConfig.secret);
+    revokedTokens.add(token);
+    ctx.status = 200;
+    ctx.body = { message: 'Logged out successfully' };
+  } catch {
+    ctx.status = 401;
+    ctx.body = { error: 'Invalid token' };
   }
 });

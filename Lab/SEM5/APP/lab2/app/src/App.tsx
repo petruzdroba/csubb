@@ -35,11 +35,15 @@ import { ItemList } from './todo';
 import { ItemProvider } from './todo/ItemProvider';
 import ItemEdit from './todo/ItemEdit';
 import { AuthProvider, Login, PrivateRoute } from './auth';
+import { NetworkProvider } from './core/NetworkStatus';
+import NetworkIndicator from './core/NetworkIndicator';
 
 setupIonicReact();
 
 const App: React.FC = () => (
+  <NetworkProvider>
   <IonApp>
+    <NetworkIndicator/>
     <IonReactRouter>
       <IonRouterOutlet>
         <AuthProvider>
@@ -54,6 +58,7 @@ const App: React.FC = () => (
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
+  </NetworkProvider>
 );
 
 export default App;
