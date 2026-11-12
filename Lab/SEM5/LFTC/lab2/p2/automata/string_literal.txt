@@ -1,0 +1,14 @@
+#   string = " (any character except " and \  |  \ any character)* "
+# <other> = any character that has no explicit transition from the state
+# (the analyzer feeds one source line at a time, so a string never spans lines)
+
+states: start body escape closed
+alphabet: " \ <other>
+initial: start
+final: closed
+transitions:
+start " body
+body " closed
+body \ escape
+body <other> body
+escape <other> body

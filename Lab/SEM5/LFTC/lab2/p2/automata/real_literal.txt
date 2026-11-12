@@ -1,0 +1,66 @@
+states: start int_part dot frac suf
+alphabet: 0 1 2 3 4 5 6 7 8 9 . f F l L
+initial: start
+final: dot frac suf
+
+transitions:
+# start
+start 0 int_part
+start 1 int_part
+start 2 int_part
+start 3 int_part
+start 4 int_part
+start 5 int_part
+start 6 int_part
+start 7 int_part
+start 8 int_part
+start 9 int_part
+
+# integer part
+int_part 0 int_part
+int_part 1 int_part
+int_part 2 int_part
+int_part 3 int_part
+int_part 4 int_part
+int_part 5 int_part
+int_part 6 int_part
+int_part 7 int_part
+int_part 8 int_part
+int_part 9 int_part
+int_part . dot
+int_part f suf
+int_part F suf
+int_part l suf
+int_part L suf
+
+# decimal point
+dot 0 frac
+dot 1 frac
+dot 2 frac
+dot 3 frac
+dot 4 frac
+dot 5 frac
+dot 6 frac
+dot 7 frac
+dot 8 frac
+dot 9 frac
+dot f suf
+dot F suf
+dot l suf
+dot L suf
+
+# fractional part
+frac 0 frac
+frac 1 frac
+frac 2 frac
+frac 3 frac
+frac 4 frac
+frac 5 frac
+frac 6 frac
+frac 7 frac
+frac 8 frac
+frac 9 frac
+frac f suf
+frac F suf
+frac l suf
+frac L suf

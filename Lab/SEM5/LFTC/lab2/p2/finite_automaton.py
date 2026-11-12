@@ -1,0 +1,156 @@
+OTHER = "<other>"
+# other is just another character, so for body it matches everything but " \ and for escape it matches any character
+
+class FiniteAutomaton:
+    def __init__(self, states, alphabet, initial_state, final_states, transitions):
+        self.states = set(states)
+        self.alphabet = set(alphabet)
+        self.initial_state = initial_state
+        self.final_states = set(final_states)
+        self.transitions = transitions
+        self._validate()
+
+    def display_states(self):
+        print("States:", self.states)
+
+    def display_alphabet(self):
+        print("Alphabet:", self.alphabet)
+
+    def display_transitions(self):
+        print("Transitions:")
+        for (state, symbol), destinations in self.transitions.items():
+            for destination in destinations:
+                print(f"{state} --{symbol}--> {destination}")
+
+    def display_final_states(self):
+        print("Final states:", self.final_states)
+
+    def is_deterministic(self):
+        return all(
+            len(destinations) <= 1
+            for destinations in self.transitions.values()
+        )
+
+    def _validate(self):
+        if not self.states:
+            raise ValueError("The set of states cannot be empty.")
+
+        if not self.alphabet:
+            raise ValueError("The alphabet cannot be empty.")
+
+        if self.initial_state not in self.states:
+            raise ValueError("The initial state must belong to the set of states.")
+
+        if not self.final_states.issubset(self.states):
+            raise ValueError("All final states must belong to the set of states.")
+
+        for (source, symbol), destinations in self.transitions.items():
+            if source not in self.states:
+                raise ValueError(f"Unknown source state: {source}")
+
+            if symbol not in self.alphabet:
+                raise ValueError(f"Unknown symbol: {symbol}")
+
+            if not destinations:
+                raise ValueError("A transition must have at least one destination.")
+
+            if not destinations.issubset(self.states):
+                raise ValueError(f"Unknown destination state in transition from {source}.")
+
+    @classmethod
+    def read_from_file(cls, filename):
+        states = set()
+        alphabet = set()
+        initial_state = None
+        final_states = set()
+        transitions = {}
+
+        with open(filename, "r", encoding="utf-8") as file:
+            lines = [line.strip() for line in file]
+
+        # comment lines in automata folder
+        lines = [line for line in lines if line and not line.startswith("#")]
+
+        section = None
+
+        for line in lines:
+            if line.startswith("states:"):
+                states = set(line.removeprefix("states:").split())
+            elif line.startswith("alphabet:"):
+                alphabet = set(line.removeprefix("alphabet:").split())
+            elif line.startswith("initial:"):
+                initial_state = line.removeprefix("initial:").strip()
+            elif line.startswith("final:"):
+                final_states = set(line.removeprefix("final:").split())
+            elif line == "transitions:":
+                section = "transitions"
+            elif section == "transitions":
+                source, symbol, destination = line.split()
+                transitions.setdefault((source, symbol), set()).add(destination)
+
+        return cls(states, alphabet, initial_state, final_states, transitions)
+
+    @classmethod
+    def read_from_keyboard(cls):
+        states = set(input("States (space-separated): ").split())
+        alphabet = set(input("Alphabet (space-separated): ").split())
+        initial_state = input("Initial state: ").strip()
+        final_states = set(input("Final states (space-separated): ").split())
+
+        transitions = {}
+        print("Enter transitions as: source symbol destination")
+        print("Enter an empty line to finish.")
+
+        while True:
+            line = input("> ").strip()
+            if not line:
+                break
+
+            source, symbol, destination = line.split()
+            transitions.setdefault((source, symbol), set()).add(destination)
+
+        return cls(states, alphabet, initial_state, final_states, transitions)
+
+    def _step(self, current_states, symbol):
+        """return all states reachable from current_states by reading one symbol"""
+        next_states = set()
+
+        for state in current_states:
+            destinations = self.transitions.get((state, symbol))
+
+            if destinations is None:
+                destinations = self.transitions.get((state, OTHER), set())
+
+            next_states.update(destinations)
+
+        return next_states
+
+    def accepts(self, sequence):
+        current_states = {self.initial_state}
+
+        for symbol in sequence:
+            current_states = self._step(current_states, symbol)
+
+            if not current_states:
+                return False
+
+        # if at least one state is final -> true
+        return bool(current_states & self.final_states)
+
+    def longest_accepted_prefix(self, sequence):
+        current_states = {self.initial_state}
+        # if the initial state is final, the empty prefix is accepted
+        longest_prefix = "" if current_states & self.final_states else None
+
+        for i, symbol in enumerate(sequence):
+            current_states = self._step(current_states, symbol)
+
+            # stop if we cant leave, return what we have
+            if not current_states:
+                break
+
+            # remember the prefix every time we are in a final state
+            if current_states & self.final_states:
+                longest_prefix = sequence[:i + 1]
+
+        return longest_prefix

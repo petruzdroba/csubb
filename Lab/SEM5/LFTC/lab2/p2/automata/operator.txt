@@ -1,0 +1,43 @@
+# one character : ( ) { } ; , . ' + - * / % = < >
+# two characters: == != <= >= << >> && ||
+# A lone ! & | is not a token (it is a lexical error)
+
+states: start single eq lt gt bang amp bar double
+alphabet: ( ) { } ; , . ' + - * / % = < > ! & |
+initial: start
+final: single eq lt gt double
+transitions:
+# single character tokens
+start ( single
+start ) single
+start { single
+start } single
+start ; single
+start , single
+start . single
+start ' single
+start + single
+start - single
+start * single
+start / single
+start % single
+# = ==
+start = eq
+eq = double
+# < <= <<
+start < lt
+lt = double
+lt < double
+# > >= >>
+start > gt
+gt = double
+gt > double
+# !=
+start ! bang
+bang = double
+# &&
+start & amp
+amp & double
+# ||
+start | bar
+bar | double

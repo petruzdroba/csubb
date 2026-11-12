@@ -1,0 +1,14 @@
+StateMachine
+    startState : String
+    states: vector<string> 
+    alphabet: vector<string>
+    initial_state: string
+    finale: vector<string>
+    transitions: vector<Transtitions>
+    
+
+Transition
+    source: string
+    simbol: char
+    destination: string
+
