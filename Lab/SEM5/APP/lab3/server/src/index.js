@@ -1,5 +1,6 @@
 import http from 'http';
 import Koa from 'koa';
+import serve from 'koa-static';
 import WebSocket from 'ws';
 import Router from 'koa-router';
 import bodyParser from "koa-bodyparser";
@@ -19,6 +20,7 @@ app.use(cors());
 app.use(timingLogger);
 app.use(exceptionHandler);
 app.use(bodyParser());
+app.use(serve('public'));
 
 const prefix = '/api';
 

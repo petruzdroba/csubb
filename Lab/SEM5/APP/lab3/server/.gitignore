@@ -9,3 +9,5 @@ build
 # misc
 .idea
 package-lock.json
+
+public/uploads/*

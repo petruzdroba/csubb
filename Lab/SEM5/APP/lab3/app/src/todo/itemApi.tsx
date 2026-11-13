@@ -32,6 +32,22 @@ export const updateItem = (token: string, item: ItemProps): Promise<ItemProps> =
   return withLogs(axios.put(`${itemUrl}/${item._id}`, item, authConfig(token)), 'updateItem');
 };
 
+export const uploadAvatar = async (token: string, id: string, dataUrl: string): Promise<{ avatarUrl: string }> => {
+  const blob = await (await fetch(dataUrl)).blob();
+  const formData = new FormData();
+
+  formData.append('avatar', blob, 'avatar.jpg');
+
+  return withLogs(
+    axios.post(`${itemUrl}/${id}/avatar`, formData, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }),
+    'uploadAvatar'
+  );
+};
+
 interface MessageData {
   type: 'created' | 'updated';
   payload: ItemProps;

@@ -1,20 +1,28 @@
-import React, { useCallback, useContext, useEffect, useReducer, useRef, useState } from 'react';
-import { getLogger } from '../core';
-import { useNetwork } from '../core/NetworkStatus';
-import { ItemProps } from './ItemProps';
-import { createItem, getItems, newWebSocket, updateItem } from './itemApi';
-import { AuthContext } from '../auth';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
+import { getLogger } from "../core";
+import { useNetwork } from "../core/NetworkStatus";
+import { ItemProps } from "./ItemProps";
+import { createItem, getItems, newWebSocket, updateItem } from "./itemApi";
+import { AuthContext } from "../auth";
 import {
   getCachedItems,
   getPendingItems,
   saveCachedItems,
   savePendingItems,
-  PendingItem
-} from '../offilne/OfflineStorage';
+  PendingItem,
+} from "../offilne/OfflineStorage";
+import { renameAvatar } from "./avatarStorage";
 
-const log = getLogger('ItemProvider');
+const log = getLogger("ItemProvider");
 
-type SaveItemFn = (item: ItemProps) => Promise<void>;
+type SaveItemFn = (item: ItemProps) => Promise<ItemProps | undefined>;
 
 export interface ItemsState {
   items: ItemProps[];
@@ -47,25 +55,25 @@ const initialState: ItemsState = {
   saving: false,
   hasMore: true,
   loadingMore: false,
-  search: '',
-  currency: ''
+  search: "",
+  currency: "",
 };
 
-const FETCH_ITEMS_STARTED = 'FETCH_ITEMS_STARTED';
-const FETCH_ITEMS_SUCCEEDED = 'FETCH_ITEMS_SUCCEEDED';
-const FETCH_ITEMS_FAILED = 'FETCH_ITEMS_FAILED';
-const LOAD_PENDING_ITEMS = 'LOAD_PENDING_ITEMS';
-const SAVE_ITEM_STARTED = 'SAVE_ITEM_STARTED';
-const SAVE_ITEM_SUCCEEDED = 'SAVE_ITEM_SUCCEEDED';
-const SAVE_ITEM_FAILED = 'SAVE_ITEM_FAILED';
-const SYNC_ITEM_SUCCEEDED = 'SYNC_ITEM_SUCCEEDED';
-const RESET_ITEMS = 'RESET_ITEMS';
-const LOAD_MORE_STARTED = 'LOAD_MORE_STARTED';
-const LOAD_MORE_SUCCEEDED = 'LOAD_MORE_SUCCEEDED';
-const LOAD_MORE_FAILED = 'LOAD_MORE_FAILED';
+const FETCH_ITEMS_STARTED = "FETCH_ITEMS_STARTED";
+const FETCH_ITEMS_SUCCEEDED = "FETCH_ITEMS_SUCCEEDED";
+const FETCH_ITEMS_FAILED = "FETCH_ITEMS_FAILED";
+const LOAD_PENDING_ITEMS = "LOAD_PENDING_ITEMS";
+const SAVE_ITEM_STARTED = "SAVE_ITEM_STARTED";
+const SAVE_ITEM_SUCCEEDED = "SAVE_ITEM_SUCCEEDED";
+const SAVE_ITEM_FAILED = "SAVE_ITEM_FAILED";
+const SYNC_ITEM_SUCCEEDED = "SYNC_ITEM_SUCCEEDED";
+const RESET_ITEMS = "RESET_ITEMS";
+const LOAD_MORE_STARTED = "LOAD_MORE_STARTED";
+const LOAD_MORE_SUCCEEDED = "LOAD_MORE_SUCCEEDED";
+const LOAD_MORE_FAILED = "LOAD_MORE_FAILED";
 
 const upsertItem = (items: ItemProps[], item: ItemProps) => {
-  const index = items.findIndex(it => it._id === item._id);
+  const index = items.findIndex((it) => it._id === item._id);
 
   if (index === -1) {
     return [item, ...items];
@@ -76,7 +84,10 @@ const upsertItem = (items: ItemProps[], item: ItemProps) => {
   return updated;
 };
 
-const reducer = (state: ItemsState, { type, payload }: ActionProps): ItemsState => {
+const reducer = (
+  state: ItemsState,
+  { type, payload }: ActionProps,
+): ItemsState => {
   switch (type) {
     case FETCH_ITEMS_STARTED:
       return {
@@ -84,7 +95,7 @@ const reducer = (state: ItemsState, { type, payload }: ActionProps): ItemsState 
         items: [],
         fetching: true,
         fetchingError: null,
-        hasMore: true
+        hasMore: true,
       };
 
     case FETCH_ITEMS_SUCCEEDED: {
@@ -100,7 +111,7 @@ const reducer = (state: ItemsState, { type, payload }: ActionProps): ItemsState 
         pendingItems: payload.pendingItems,
         unsentCount: payload.pendingItems.length,
         fetching: false,
-        hasMore: payload.items.length === 5
+        hasMore: payload.items.length === 5,
       };
     }
 
@@ -108,14 +119,14 @@ const reducer = (state: ItemsState, { type, payload }: ActionProps): ItemsState 
       return {
         ...state,
         fetchingError: payload.error,
-        fetching: false
+        fetching: false,
       };
 
     case LOAD_PENDING_ITEMS:
       return {
         ...state,
         pendingItems: payload.pendingItems,
-        unsentCount: payload.pendingItems.length
+        unsentCount: payload.pendingItems.length,
       };
 
     case SAVE_ITEM_STARTED:
@@ -127,24 +138,24 @@ const reducer = (state: ItemsState, { type, payload }: ActionProps): ItemsState 
         items: upsertItem(state.items, payload.item),
         pendingItems: payload.pendingItems,
         unsentCount: payload.pendingItems.length,
-        saving: false
+        saving: false,
       };
 
     case SAVE_ITEM_FAILED:
       return {
         ...state,
         savingError: payload.error,
-        saving: false
+        saving: false,
       };
 
     case SYNC_ITEM_SUCCEEDED: {
-      const items = state.items.filter(it => it._id !== payload.localId);
+      const items = state.items.filter((it) => it._id !== payload.localId);
 
       return {
         ...state,
         items: upsertItem(items, payload.item),
         pendingItems: payload.pendingItems,
-        unsentCount: payload.pendingItems.length
+        unsentCount: payload.pendingItems.length,
       };
     }
 
@@ -158,7 +169,7 @@ const reducer = (state: ItemsState, { type, payload }: ActionProps): ItemsState 
       const items = [...state.items];
 
       payload.items.forEach((item: ItemProps) => {
-        if (!items.some(existing => existing._id === item._id)) {
+        if (!items.some((existing) => existing._id === item._id)) {
           items.push(item);
         }
       });
@@ -167,7 +178,7 @@ const reducer = (state: ItemsState, { type, payload }: ActionProps): ItemsState 
         ...state,
         items,
         hasMore: payload.items.length === 5,
-        loadingMore: false
+        loadingMore: false,
       };
     }
 
@@ -190,8 +201,8 @@ export const ItemProvider: React.FC<ItemProviderProps> = ({ children }) => {
   const { isOnline } = useNetwork();
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const [search, setSearch] = useState('');
-  const [currency, setCurrency] = useState('');
+  const [search, setSearch] = useState("");
+  const [currency, setCurrency] = useState("");
 
   const syncing = useRef(false);
   const pageOffset = useRef(0);
@@ -206,7 +217,7 @@ export const ItemProvider: React.FC<ItemProviderProps> = ({ children }) => {
     saving,
     savingError,
     hasMore,
-    loadingMore
+    loadingMore,
   } = state;
 
   useEffect(() => {
@@ -238,17 +249,21 @@ export const ItemProvider: React.FC<ItemProviderProps> = ({ children }) => {
         try {
           let savedItem: ItemProps;
 
-          if (entry.operation === 'create') {
+          if (entry.operation === "create") {
             const { _id, ...item } = entry.item;
             savedItem = await createItem(token, item as ItemProps);
           } else {
             savedItem = await updateItem(token, entry.item);
           }
 
+          if (savedItem._id && entry.localId !== savedItem._id) {
+            await renameAvatar(entry.localId, savedItem._id);
+          }
+
           const currentPending = getPendingItems(token);
 
           const remaining = currentPending.filter(
-            p => p.localId !== entry.localId
+            (p) => p.localId !== entry.localId,
           );
 
           savePendingItems(token, remaining);
@@ -258,13 +273,13 @@ export const ItemProvider: React.FC<ItemProviderProps> = ({ children }) => {
             payload: {
               localId: entry.localId,
               item: savedItem,
-              pendingItems: remaining
-            }
+              pendingItems: remaining,
+            },
           });
 
-          log('synchronized item', entry.localId);
+          log("synchronized item", entry.localId);
         } catch (error) {
-          log('synchronization failed', entry.localId, error);
+          log("synchronization failed", entry.localId, error);
           break;
         }
       }
@@ -279,89 +294,90 @@ export const ItemProvider: React.FC<ItemProviderProps> = ({ children }) => {
     }
   }, [isOnline, syncPending]);
 
-  const saveItem = useCallback<SaveItemFn>(async item => {
-    if (!token) return;
+  const saveItem = useCallback<SaveItemFn>(
+    async (item) => {
+      if (!token) return undefined;
 
-    dispatch({ type: SAVE_ITEM_STARTED });
+      dispatch({ type: SAVE_ITEM_STARTED });
 
-    try {
-      let pending = getPendingItems(token);
+      try {
+        let pending = getPendingItems(token);
 
-      const existingPending = pending.find(
-        entry => entry.item._id === item._id
-      );
-
-      if (existingPending) {
-        existingPending.item = item;
-
-        pending = pending.map(entry =>
-          entry.localId === existingPending.localId ? existingPending : entry
+        const existingPending = pending.find(
+          (entry) => entry.item._id === item._id,
         );
+
+        if (existingPending) {
+          existingPending.item = item;
+
+          pending = pending.map((entry) =>
+            entry.localId === existingPending.localId ? existingPending : entry,
+          );
+
+          savePendingItems(token, pending);
+
+          dispatch({
+            type: SAVE_ITEM_SUCCEEDED,
+            payload: { item, pendingItems: pending },
+          });
+
+          if (isOnline) {
+            await syncPending();
+          }
+
+          return item;
+        }
+
+        if (isOnline) {
+          try {
+            let savedItem: ItemProps;
+
+            if (item._id) {
+              await updateItem(token, item);
+              savedItem = item;
+            } else {
+              savedItem = await createItem(token, item);
+            }
+
+            dispatch({
+              type: SAVE_ITEM_SUCCEEDED,
+              payload: { item: savedItem, pendingItems: pending },
+            });
+
+            return savedItem;
+          } catch (error) {
+            log("REST request failed, saving locally", error);
+          }
+        }
+
+        const localId = item._id || `local-${Date.now()}-${Math.random()}`;
+        const localItem = { ...item, _id: localId };
+
+        pending.push({
+          localId,
+          operation: item._id ? "update" : "create",
+          item: localItem,
+        });
 
         savePendingItems(token, pending);
 
         dispatch({
           type: SAVE_ITEM_SUCCEEDED,
-          payload: { item, pendingItems: pending }
+          payload: { item: localItem, pendingItems: pending },
         });
 
-        if (isOnline) {
-          await syncPending();
-        }
-
-        return;
+        return localItem;
+      } catch (error) {
+        log("saveItem failed", error);
+        dispatch({ type: SAVE_ITEM_FAILED, payload: { error } });
+        return undefined;
       }
-
-      if (isOnline) {
-        try {
-          const savedItem = item._id
-            ? await updateItem(token, item)
-            : await createItem(token, item);
-
-          dispatch({
-            type: SAVE_ITEM_SUCCEEDED,
-            payload: { item: savedItem, pendingItems: pending }
-          });
-
-          return;
-        } catch (error) {
-          log('REST request failed, saving locally', error);
-        }
-      }
-
-      const localId = item._id || `local-${Date.now()}-${Math.random()}`;
-
-      const localItem = {
-        ...item,
-        _id: localId
-      };
-
-      pending.push({
-        localId,
-        operation: item._id ? 'update' : 'create',
-        item: localItem
-      });
-
-      savePendingItems(token, pending);
-
-      dispatch({
-        type: SAVE_ITEM_SUCCEEDED,
-        payload: { item: localItem, pendingItems: pending }
-      });
-    } catch (error) {
-      log('saveItem failed', error);
-      dispatch({ type: SAVE_ITEM_FAILED, payload: { error } });
-    }
-  }, [token, isOnline, syncPending]);
+    },
+    [token, isOnline, syncPending],
+  );
 
   const loadMoreItems = useCallback(async () => {
-    if (
-      !token ||
-      !isOnline ||
-      !hasMore ||
-      fetching ||
-      loadingMoreRef.current
-    ) {
+    if (!token || !isOnline || !hasMore || fetching || loadingMoreRef.current) {
       return;
     }
 
@@ -374,7 +390,7 @@ export const ItemProvider: React.FC<ItemProviderProps> = ({ children }) => {
         pageOffset.current,
         5,
         search,
-        currency
+        currency,
       );
 
       saveCachedItems(token, search, currency, newItems, true);
@@ -382,10 +398,10 @@ export const ItemProvider: React.FC<ItemProviderProps> = ({ children }) => {
 
       dispatch({
         type: LOAD_MORE_SUCCEEDED,
-        payload: { items: newItems }
+        payload: { items: newItems },
       });
     } catch (error) {
-      log('loadMoreItems failed', error);
+      log("loadMoreItems failed", error);
       dispatch({ type: LOAD_MORE_FAILED });
     } finally {
       loadingMoreRef.current = false;
@@ -407,16 +423,12 @@ export const ItemProvider: React.FC<ItemProviderProps> = ({ children }) => {
     search,
     currency,
     setSearch,
-    setCurrency
+    setCurrency,
   };
 
-  log('returns');
+  log("returns");
 
-  return (
-    <ItemContext.Provider value={value}>
-      {children}
-    </ItemContext.Provider>
-  );
+  return <ItemContext.Provider value={value}>{children}</ItemContext.Provider>;
 
   function getItemsEffect() {
     let canceled = false;
@@ -438,13 +450,13 @@ export const ItemProvider: React.FC<ItemProviderProps> = ({ children }) => {
 
         const pendingItems = getPendingItems(token!);
 
-        const visiblePendingItems = pendingItems.filter(entry => {
+        const visiblePendingItems = pendingItems.filter((entry) => {
           const matchesSearch = entry.item.name
             .toLowerCase()
             .includes(search.toLowerCase());
 
-          const matchesCurrency = !currency ||
-            entry.item.currency.toUpperCase() === currency;
+          const matchesCurrency =
+            !currency || entry.item.currency.toUpperCase() === currency;
 
           return matchesSearch && matchesCurrency;
         });
@@ -465,8 +477,8 @@ export const ItemProvider: React.FC<ItemProviderProps> = ({ children }) => {
           payload: {
             items: serverItems,
             pendingItems,
-            visiblePendingItems
-          }
+            visiblePendingItems,
+          },
         });
       } catch (error) {
         if (!canceled) {
@@ -481,15 +493,15 @@ export const ItemProvider: React.FC<ItemProviderProps> = ({ children }) => {
     let closeWebSocket: (() => void) | undefined;
 
     if (token?.trim()) {
-      closeWebSocket = newWebSocket(token, message => {
+      closeWebSocket = newWebSocket(token, (message) => {
         if (canceled) return;
 
         const { type, payload: item } = message;
 
-        if (type === 'created' || type === 'updated') {
+        if (type === "created" || type === "updated") {
           dispatch({
             type: SAVE_ITEM_SUCCEEDED,
-            payload: { item, pendingItems: getPendingItems(token) }
+            payload: { item, pendingItems: getPendingItems(token) },
           });
         }
       });

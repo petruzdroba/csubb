@@ -1,4 +1,7 @@
-
+import multer from '@koa/multer';
+import fs from 'fs';
+import path from 'path';
+import { randomUUID } from 'crypto';
 import Router from 'koa-router';
 import dataStore from 'nedb-promise';
 import { broadcast } from './wss.js';
@@ -37,6 +40,22 @@ export class ItemStore {
 const itemStore = new ItemStore({
   filename: './db/items.json',
   autoload: true
+});
+
+const uploadDir = 'public/uploads';
+fs.mkdirSync(uploadDir, { recursive: true });
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: (req, file, cb) => cb(null, uploadDir),
+    filename: (req, file, cb) => {
+      cb(null, `${randomUUID()}${path.extname(file.originalname).toLowerCase()}`);
+    }
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    cb(null, ['image/jpeg', 'image/png', 'image/webp'].includes(file.mimetype));
+  }
 });
 
 export const itemRouter = new Router();
@@ -161,4 +180,34 @@ itemRouter.del('/:id', async (ctx) => {
   }
 
   ctx.status = 204;
+});
+
+itemRouter.post('/:id/avatar', upload.single('avatar'), async ctx => {
+  const userId = ctx.state.user._id;
+  const id = ctx.params.id;
+
+  const item = await itemStore.findOne({ _id: id, userId });
+
+  if (!item) {
+    if (ctx.file) fs.unlinkSync(ctx.file.path);
+    ctx.status = 404;
+    ctx.body = { message: 'Resource not found' };
+    return;
+  }
+
+  if (!ctx.file) {
+    ctx.status = 400;
+    ctx.body = { message: 'No image uploaded' };
+    return;
+  }
+
+  const avatarUrl = `/uploads/${ctx.file.filename}`;
+
+  await itemStore.update(
+    { _id: id, userId },
+    { $set: { avatarUrl } }
+  );
+
+  ctx.status = 200;
+  ctx.body = { avatarUrl };
 });

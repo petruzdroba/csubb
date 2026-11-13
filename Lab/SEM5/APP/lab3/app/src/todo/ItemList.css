@@ -1,0 +1,27 @@
+.accounts-map-modal {
+  --width: 95%;
+  --height: 90%;
+  --border-radius: 16px;
+}
+
+@media (max-width: 576px) {
+  .accounts-map-modal {
+    --width: 100%;
+    --height: 100%;
+    --border-radius: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .accounts-map-modal {
+    --width: 85%;
+    --height: 85%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .accounts-map-modal {
+    --width: 75%;
+    --height: 85%;
+  }
+}
